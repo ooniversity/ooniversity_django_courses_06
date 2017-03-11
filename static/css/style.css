@@ -1,0 +1,48 @@
+.m-top20{
+    margin-top: 20px;
+}
+
+.mylist1{
+    list-style-type: decimal;
+}
+
+.mylist2{
+    list-style-type: square;
+}
+
+.mylist3{
+    list-style-type: disc;
+}
+
+.mylist4{
+    list-style-type: circle;
+}
+
+.myBold{
+    font-weight: bold;
+}
+
+.myItalic{
+    font-style: italic;
+}
+
+.myLineThrough{
+    text-decoration: line-through;
+}
+
+.myBlueText{
+    color: #1b6d85;
+}
+
+.myRedText{
+    color: red;
+}
+
+.mySomethingBox{
+    width: 250px;
+    height: 50px;
+    background-color: gray;
+    border: 1px solid black;
+    text-align: center;
+    margin: 0 auto;
+}
