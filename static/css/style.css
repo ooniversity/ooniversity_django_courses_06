@@ -1,0 +1,62 @@
+body {
+	background-color: gray;
+}
+
+li {
+	font-size: 23px;
+}
+
+h1 {
+	font-family: "Times New Roman", Times, serif;
+}
+
+h2 {
+	font-family: "calibri", Garamond, 'Comic Sans MS';
+}
+
+p {
+	color: gray;
+}
+
+div.organization p {
+	color: black;
+	font-size: 25px;
+}
+
+div.organization li {
+	color: black;
+	font-size: 13px;
+}
+
+table {
+	border: 2px solid white;
+}
+
+th {
+	background-color: white;
+}
+
+td {
+	background-color: #FFDAB9;
+}
+
+.students {
+	color: white;
+}
+
+
+table#student_card th {
+	background-color: #F5DEB3;
+}
+
+table#student_card td {
+	background-color: #CD853F;
+}
+
+table#perfomance th {
+	background-color: #F0E68C;
+}
+
+table#perfomance td {
+	background-color: #FFDAB9;
+}
