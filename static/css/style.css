@@ -11,6 +11,13 @@ body {
     width: 100%;
     justify-content: space-around;
     color: #fff;
+    list-style: none;
+}
+.text {
+    font-family: Helvetica;
+}
+.header--course-desc {
+    color: #222;
 }
 .founders__image {
     width: 100%;
