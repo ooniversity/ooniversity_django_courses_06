@@ -66,7 +66,14 @@
                 <h3>Results</h3>
                 <p>{{ results.discriminant_text }} {{ results.discriminant }}</p>
 
-                <p>{{ results.root_text }} {% if 'x1' in results and 'x2' in results %}x1 = {{ results.x1 }}, x2 = {{ results.x2 }}{% elif 'x1' in results %}x1 = x2 = {{ results.x1 }}{% endif %}
+                <p>
+                    {{ results.root_text }}
+
+                    {% if 'x1' in results and 'x2' in results %}
+                        x1 = {{ results.x1 }}, x2 = {{ results.x2 }}
+                    {% elif 'x1' in results %}
+                        x1 = x2 = {{ results.x1 }}
+                    {% endif %}
                 </p>
             {% endif %}
 
