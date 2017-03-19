@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head>
+	<title>Quadratic equation</title>
+</head>
+<body>
+<p>Квадратное уравнение a*x*x + b*x + c = 0</p>
+<ul>
+	<li>a = {{ a|safe }}</li>
+	<li>b = {{ b|safe }}</li>
+	<li>c = {{ c|safe }}</li>
+</ul>
+{% if d %}
+<p>Дискриминант: {{ d }}</p>
+{% endif %}
+<p>{{ message }}</p>
+</body>
+</html>
