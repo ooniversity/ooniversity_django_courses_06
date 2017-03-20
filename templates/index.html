@@ -8,8 +8,9 @@
   <title>PyBursa06</title>
  
   <!-- Bootstrap -->
-  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-   <link href="../static/css/style.css" rel="stylesheet" >
+  {% load static%}
+  <link href=".{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'bootstrap/css/style.css' %}" rel="stylesheet" >
   
     </head>
     <body>
@@ -37,7 +38,8 @@
            <h4><program>Программа курса:</program></h4>
         <div/>
         <div/>
+        {% load static %}
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-       <script src="../static/js/bootstrap.min.js"></script>
+       <script src="{%static 'bootstrap/js/bootstrap.min.js'%}"></script>
     </body>
     </html>
