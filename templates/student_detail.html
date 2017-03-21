@@ -8,8 +8,9 @@
   <title>PyBursa06</title>
 
   <!-- Bootstrap -->
-  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../static/css/style.css" rel="stylesheet" >
+{% load static%}
+  <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'bootstrap/css/style.css' %}" rel="stylesheet" >
   
 </head>
 <body>
@@ -17,21 +18,22 @@
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <a class="navbar-brand" href="index.html">PyBursa</a>
+        <a class="navbar-brand" href="{% url 'index' %}">PyBursa</a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="index.html">Main</a></li>
-          <li><a href="contact.html">Contacts</a></li>
-          <li><a href="student_list.html">Students</a></li>
+          <li><a href="{% url 'index' %}">Main</a></li>
+              <li><a href="{% url 'contact' %}">Contacts</a></li>
+              <li><a href="{% url 'student_list' %}">Students</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
 
 <div class="well"><h2>Pupkin Kolya</h2></div>
-<img src="../static/images/python.png" class="img-circle" alt="Cinque Terre" width="304" height="236">
+
+<img src="{% static "bootstrap/images/python.png"%}" class="img-circle" alt="Cinque Terre" width="304" height="236">
 <div class="well"><h3>Студент о себе</h3></div>
 
 <div class="panel panel-default" id = "student_detail_panel">
@@ -124,7 +126,8 @@
    </div>
    </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="../static/js/bootstrap.min.js"></script>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <script src="{%static 'bootstrap/js/bootstrap.min.js'%}"></script>
 </body>
 </html>
