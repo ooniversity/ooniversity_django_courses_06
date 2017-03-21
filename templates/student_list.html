@@ -18,14 +18,14 @@
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <a class="navbar-brand" href="index.html">PyBursa</a>
+        <a class="navbar-brand" href="{% url 'index' %}">PyBursa</a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="index.html">Main</a></li>
-          <li><a href="contact.html">Contacts</a></li>
-          <li><a href="student_list.html">Students</a></li>
+          <li><a href="{% url 'index' %}">Main</a></li>
+          <li><a href="{% url 'contact' %}">Contacts</a></li>
+          <li><a href="{% url 'student_list' %}">Students</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -46,42 +46,42 @@
     </tr>
     <tr>
     
-        <td><a href="student_detail.html">1</a></td>
-        <td><a href="student_detail.html">Pupkin</a></td>
-        <td><a href="student_detail.html">Kolya</a></td>
+        <td><a href="{% url 'student_detail' %}">1</a></td>
+        <td><a href="{% url 'student_detail' %}">Pupkin</a></td>
+        <td><a href="{% url 'student_detail' %}">Kolya</a></td>
         <td>Украина,г.Киев,ул.Кировская,д.10,кв.48</td>
         <td>pupkin.k</td>
         
     </tr>
     
     <tr>
-        <td><a href="student_detail.html">2</a></td>
-        <td><a href="student_detail.html">Ivanov</a></td>
-        <td><a href="student_detail.html">Tolya</a></td>
+        <td><a href="{% url 'student_detail' %}">2</a></td>
+        <td><a href="{% url 'student_detail' %}">Ivanov</a></td>
+        <td><a href="{% url 'student_detail' %}">Tolya</a></td>
         <td>Россия,г.Москва,ул.Киевская,д.10,кв.48</td>
         <td>15</td>
     </tr>
     
     <tr>
-        <td><a href="student_detail.html">3</a></td>
-        <td><a href="student_detail.html">Petrov</a></td>
-        <td><a href="student_detail.html">Pasha</a></td>
+        <td><a href="{% url 'student_detail' %}">3</a></td>
+        <td><a href="{% url 'student_detail' %}">Petrov</a></td>
+        <td><a href="{% url 'student_detail' %}">Pasha</a></td>
         <td>Украина,г.Харьков,ул.ХренЕгоЗнает,д.10,кв.48</td>
         <td>66</td>
     </tr>
     
     <tr>
-        <td><a href="student_detail.html">4</a></td>
-        <td><a href="student_detail.html">Sidorov</a></td>
-        <td><a href="student_detail.html">Saha</a></td>
+        <td><a href="{% url 'student_detail' %}">4</a></td>
+        <td><a href="{% url 'student_detail' %}">Sidorov</a></td>
+        <td><a href="{% url 'student_detail' %}">Saha</a></td>
         <td>Украина,г.Одесса,ул.Дерибасовкая,д.45,кв.48</td>
         <td>42</td>
     </tr>
     
     <tr>
-        <td><a href="student_detail">5</a></td>
-        <td><a href="student_detail">Vasechkin</a></td>
-        <td><a href="student_detail">Sergei</a></td>
+        <td><a href="{% url 'student_detail' %}">5</a></td>
+        <td><a href="{% url 'student_detail' %}">Vasechkin</a></td>
+        <td><a href="{% url 'student_detail' %}">Sergei</a></td>
         <td>Украина,г.Львов,ул.Махно,д.15,кв.48</td>
         <td>44</td>
     </tr>
@@ -89,7 +89,7 @@
   </table>
 </div>
 
-{% load static %}
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
        <script src="{%static 'bootstrap/js/bootstrap.min.js'%}"></script>
 </body>
