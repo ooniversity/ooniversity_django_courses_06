@@ -10,7 +10,7 @@ def quadratic_results(request):
     data = request.GET
 
     if not data:
-        return
+        return render(request, 'results.html')
 
     is_valid_factors = True
 
