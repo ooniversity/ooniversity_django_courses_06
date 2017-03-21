@@ -24,8 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^polls/',include('polls.urls')),
     url(r'^$',views.index),
-    url(r'^contacts/$',views.contact),
-     # url(r'^student_list/$',views.student_list),
-     #  url(r'^student_details/$',views.studen_detail),
-
+    url(r'^contact/$',views.contact),
+    url(r'^student_list/$',views.student_list),
+    url(r'^student_details/$',views.student_detail),
 ]
