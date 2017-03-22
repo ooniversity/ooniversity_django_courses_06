@@ -3,10 +3,15 @@ from django.http import HttpResponse
 from quadratic.quadratic_handler import QuadraticEducation
 # Create your views here.
 
-def results(request,a,b,c):
-    a = int(a)
-    b = int(b)
-    c = int(c)
+def results(request):
+    a = ''
+    b = ''
+    c = ''
+    a_int = False
+    b_int = False
+    c_int = False
+    a = request.GET
+
     render()
 
 
