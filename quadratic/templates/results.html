@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>PyBursa Student list</title>
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <title>PyBursa - Equation</title>
+    <link href="{% static 'css/style.css '%}" rel="stylesheet">
+
     <!-- Bootstrap -->
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
@@ -35,39 +36,30 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="{% url 'index' %}">Main</a></li>
+        <li><a href="{% url 'index' %}">Main<span class="sr-only">(current)</span></a></li>
         <li><a href="{% url 'contact' %}">Contacts</a></li>
-        <li class="active"><a href="{% url 'student_list' %}">Students<span class="sr-only">(current)</span></a></li>
-        <li><a href="{% url 'results' %}?a=1&b=12&c=38">Equation</a></li>
+        <li><a href="{% url 'student_list' %}">Students</a></li>
+        <li class="active"><a href="{% url 'results' %}?a=7&b=7&c=7">Equation</a></li>
       </ul>
 
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<div class="container">
-  <div class="panel panel-default">
-  <!-- Default panel contents -->
-  <h2>PyBursa students</h2>
-  <div class="panel-heading">april 2017</div>
-
-  <!-- Table -->
-  <tbody><table class="table">
-    <td>#</td>
-    <td>фамилия имя</td>
-    <td>адрес</td>
-    <td>skype</td>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td><a href="{% url 'student_detail' %}">Иванов Иван</a></td>
-    <td>г.Харьков</td>
-    <td>ivanov</td>
-  </tr>
-  <tr>
-  </table>
-  </div>
+   <div class="container">
+      <h1 class="my_descript">Equation</h1>
+      <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
+      <ul>
+        <li>a = {{ a }}</li>
+        <p>{{ res_a }}</p>
+        <li>b = {{ b }}</li>
+        <p>{{ res_b }}</p>
+        <li>c = {{ c }}</li>
+        <p>{{ res_c }}</p>
+      </ul>
+      <p>{{ discr }}</p>
+      <p>{{ res_qadr }}</p>
+   </div>
 </div>
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
