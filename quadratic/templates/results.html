@@ -5,7 +5,7 @@
 <body>
 <h1>КВАДРАТНЕ РІВНЯННЯ:</h1>
 <h2 style="display:inline">ax<sup><small>2</small></sup>+bx+c=0</h2><br>
-<h2 style="color:brown; display:inline">{{a}}x<sup><small>2</small></sup>+{{b}}x+{{c}}=0 - з вашими параметрами</h2>
+<h2 style="color:brown; display:inline">{{ a }}x<sup><small>2</small></sup>+{{ b }}x+{{ c }}=0 - з вашими параметрами</h2>
       <ul>
         <li>a = {{ a }}</li>
         {% if err_a  %}<span><em>{{ err_a }}</em></span>{% endif %}
@@ -16,13 +16,13 @@
       </ul>
 {% if discriminant > 0 %}
     <p>Дискриминант: {{discriminant}}</p>
-    <p>Квадратное уравнение имеет два действительных корня: x1 = {{root1}}, x2 = {{root2}}</p>
+    <p>Квадратное уравнение имеет два действительных корня: x1 = {{ x1 }}, x2 = {{ x2 }}</p>
 {% elif discriminant < 0 %}
     <p>Дискриминант: {{discriminant}}</p>
     <p>Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.</p>
 {% elif discriminant == 0 %}
     <p>Дискриминант: {{discriminant}}</p>
-    <p>Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = {{root1}}</p>
+    <p>Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = {{ x1 }}</p>
 {% endif %}
 </body>
 </html>
