@@ -26,7 +26,7 @@
   <ul class="nav nav-pills">
     <li role="presentation" class="active"><a href="{% url 'index' %}">Main</a></li>
     <li role="presentation"><a href="{% url 'contact' %}">Contacts</a></li>
-    <li role="presentation"><a href="{% url 'student_list' %}">Students</a></li>
+    <li role="presentation"><a href="{% url 'students:list' %}">Students</a></li>
     <li role="presentation"><a href="{% url 'quadratic_results' %}">Quadratic</a></li>
   </ul>
 
@@ -41,6 +41,27 @@
   </div>
   
   <div class="container">
+  <h2>Выбирай на каком курсе ты хочешь учиться!</h2>
+  <p> </p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Курс</th>
+        <th>Описание</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for course_item in course_list %}
+      <tr>
+        <td><a href="{% url 'courses:detail' course_item.id  %}">{{course_item.name}}</a></td>
+        <td>{{course_item.short_description}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <br><br><br>
+
   <h1 class="selector_h1">Program</h1>
   <h2 class="selector3">Academic Plan<span class="label label-primary">PyBursa</span></h2>
   <h3>Введение в курс дела и основы Python<span class="label label-default">1 неделя</span></h3>
