@@ -5,7 +5,7 @@ app_name = 'students'
 
 urlpatterns = [
     url(r'^$', views.list_view, name='list_view'),
+    url(r'(\d)+/$', views.detail, name='detail'),
     url(r'(?P<course_id>[0-9]+)/$', views.list_view, name='list_view'),
-    url(r'^(\d+)$', views.detail, name='detail'),
 
 ]
