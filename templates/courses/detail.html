@@ -24,7 +24,7 @@
   <ul class="nav nav-pills">
     <li role="presentation" ><a href="{% url 'index' %}">Main</a></li>
     <li role="presentation"><a href="{% url 'contact' %}">Contacts</a></li>
-    <li role="presentation"><a href="{% url 'students:list' %}?course_id={{ course_.id }}">Students</a></li>
+    <li role="presentation"><a href="{% url 'students:list_view' %}?course_id={{ course_.id }}">Students</a></li>
     <li role="presentation"><a href="{% url 'quadratic_results' %}">Quadratic</a></li>
   </ul>
 

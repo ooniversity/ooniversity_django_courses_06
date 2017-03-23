@@ -22,7 +22,7 @@ def student_info(student_id):
 
 
 
-def list(request):
+def list_view(request):
     print('ITS STUDENT detail VIEWS')
     #print('request.GET:', request.GET)
 
