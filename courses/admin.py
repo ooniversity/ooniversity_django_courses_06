@@ -1,19 +1,15 @@
 from django.contrib import admin
 from courses.models import Course, Lesson
 
-# Register your models here.
-
-class  LessonInline(admin.StackedInline):
+class LessonInline(admin.TabularInline):
     model = Lesson
-    fields = (('subject', 'description', 'order'), )
+    fields = ('subject', 'description', 'order',)
 
 class CourseAdmin(admin.ModelAdmin):
     list_display = ['name', 'short_description']
     search_fields = ['name']
-    inlines = [LessonInline]
+    inlines = [LessonInline, ]
 
-#class LessonAdmin(admin.ModelAdmin):
-#    fields = ['subject', 'description', 'order']
 
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson)
