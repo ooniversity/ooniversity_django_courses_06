@@ -13,10 +13,12 @@ upper_case_name.short_description = 'Full name'
 
 class MembershipInline(admin.TabularInline):
     model = Student.courses.through
+    #filter_horizontal = ('courses',)
 
 class CourseAdmin(admin.ModelAdmin):
     inlines = [MembershipInline, ]
-
+    #filter_horizontal = ('courses',)
+    #pass
 
 
 class StudentAdmin(admin.ModelAdmin):
@@ -38,10 +40,9 @@ class StudentAdmin(admin.ModelAdmin):
     )
 
     inlines = [MembershipInline, ]
-    #exclude = ('courses',)
-    #filter_horizontal = ['inlines']
-
-    #formfield_override = {models.ModelMultiChoiceField: {'widget': widgets.TypedChoiceField} }
+    #inlines = []
+    exclude = ('courses',)
+    filter_horizontal = ('courses',)
 
 
 admin.site.register(Student, StudentAdmin)
