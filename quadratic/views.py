@@ -59,8 +59,8 @@ def quadratic_results(request):
     context = {**errors_dict,
                **values_dict,
                'discriminant': D,
-               'root1': str(x1),
-               'root2': str(x2)
+               'x1': str(x1),
+               'x2': str(x2)
                }
     # print(context)
     # print(type(x1))
