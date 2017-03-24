@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'polls.apps.PollsConfig',
-	'quadratic.apps.QuadraticConfig',
+	'quadratic',
+	'courses',
+	'students',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'pybursa.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,16 +126,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
 	os.path.join(BASE_DIR, "static"),
 ]
-
-TEMPLATES = [
-{'APP_DIRS': True,
-  'BACKEND': 'django.template.backends.django.DjangoTemplates',
-  'DIRS': [
-	os.path.join(BASE_DIR, "templates"), 
-	'Home/Documents/ITBursa/week5/ooniversity_django_courses_06/quadratic',
-	],
-  'OPTIONS': {'context_processors': ['django.template.context_processors.debug',
-                                     'django.template.context_processors.request',
-                                     'django.contrib.auth.context_processors.auth',
-
-'django.contrib.messages.context_processors.messages']}}]

@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{% static 'images/pybursa.png' %}">
-    
+    {% load static %}
+    <link href="{% static '/images/pybursa.png' %}">
     <title>PyBursa Starter</title>
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static '/css/style.css' %}" rel="stylesheet" type="text/css">
     <!--<link href="../static/css/bootstrap-theme.min.css" rel="stylesheet">-->
   </head>
   <body>
@@ -22,56 +21,28 @@
             <li><a href="{% url 'index' %}">Main</a></li>
             <li><a href="{% url 'contact' %}">Contacts</a></li>
             <li><a href="{% url 'student_list' %}">Students</a></li>
-            <li><a href="{% url 'results' %}">Quadratic equation</a></li>
+            <li class="active"><a href="{% url 'results' %}?a=7&b=7&c=7">Equation</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <div class="page-content">
-        <div class="container">
-        </br>
-            <h1 class="page-header">Quadratic equation</h1>
-
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">A Quadratic equation is any equation having the form:</h3>
-                </div>
-
-                <div class="panel-body">
-                    <b>ax<sup>2</sup> + bx + c = 0</b>
-                </div>
-            </div>
-
-            {% if factors %}
-                <h2>The results of a calculation</h2>
-
-                <h3>Factors</h3>
-                <ul class="list-group">
-                    {% for item in factors %}
-                        <li class="list-group-item">
-                            <p>{{ item.item_name }} = {{ item.item_value }}</p>
-
-                            {% if 'error_message' in item %}
-                                <div class="alert alert-danger" role="alert">
-                                    {{ item.error_message }}
-                                </div>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-
-            {% if results %}
-                <h3>Results</h3>
-                <p>{{ results.discriminant_text }} {{ results.discriminant }}</p>
-
-                <p>{{ results.root_text }} {% if 'x1' in results and 'x2' in results %}x1 = {{ results.x1 }}, x2 = {{ results.x2 }}{% elif 'x1' in results %}x1 = x2 = {{ results.x1 }}{% endif %}
-                </p>
-            {% endif %}
-
-        </div>
+    </br></br>
+    <div class="container">
+      <h1 class="my_descript">Equation</h1>
+      <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
+      <ul>
+        <li>a = {{ a }}</li>
+        <p>{{ res_a }}</p>
+        <li>b = {{ b }}</li>
+        <p>{{ res_b }}</p>
+        <li>c = {{ c }}</li>
+        <p>{{ res_c }}</p>
+      </ul>
+      <p>{{ discr }}</p>
+      <p>{{ res_qadr }}</p>
+	</div>
 </div>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
   </body>
 </html>
