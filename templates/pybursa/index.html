@@ -32,44 +32,40 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="{% url 'index' %}">Main</a></li>
             <li><a href="{% url 'contact' %}">Contacts</a></li>
-            <li><a href="{% url 'student_list' %}">Students</a></li>
+            <li><a href="{% url 'students:student_list' %}">Students</a></li>
             <li><a href="{% url 'results' %}?a=2&b=3&c=5">Equation</a></li>
           </ul>			  
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
 
-
     <div class="container">
-      <h2>Курс PyBursa - Онлайн курс Алексея Радченко
-«Веб-разработка на Python&Django»</h2>
-      <h1 class="my_descript">Description</h1>
-      <p> «Главная особенность курса - упор на практику с постоянной поддержкой преподавателей. Наша цель - помочь студентам и студенткам перейти от знания основ языка к созданию реальных проектов».</p>
+      <div class="jumbotron">
 
-      <p id="rad_name">Алексей Радченко, преподаватель курса</p>
+          <h1>PyBursa</h1>
+          <p>Мы супер классно преподаем Python с 1886 года.</p>
+
+      </div>
     </div>
 
     <div class="container">
-      <h1 class="my_prog">Program</h1>
-      <h2  class="my_weeks">1 неделя. Введение в курс дела и основы Python</h2>
-      <ul>
-        <li>Подготовка к курсу. Работа с системой автоматической проверки домашних заданий</li>
-        <li>Работа с консолью</li>
-        <li>типы данных, операторы</li>
-        <li>работа со строками и итерируемыми типами</li>
-        <li>запуск скрипта и параметры</li>
-        <li>синтаксис управляющих конструкций, условные операторы и циклы (if, for...)</li>
-        <li>исключения и разбор стектрейса</li>
-        <li>zen, pep8</li>
-      </ul>
-      <h2 class="my_weeks">2 неделя. Функции и модульность</h2>
-      <ul>
-        <li>Функции (def, lambda) </li>
-        <li>модули, структура </li>
-        <li>встроенные библиотеки http://docs.python.org/ </li>
-        <li>сторонние библиотеки (менеджер пакетов) PYPI </li>
-        <li>PYTHONPATH и виртуальное окружени</li>
-      </ul>
+	    <h2>Наши Python курсы. Выбирай любой!</h2>
+      <table class="table">
+        <tr>
+          <td><b>Курс</b></td>
+          <td><b>Описание</b></td>
+        </tr>
+      {% for course in courses %}
+        <tr>
+          <td><a href='{% url 'courses:courses' course.id  %}'>{{ course.name }}</a></td>
+          <td>{{ course.short_description }}</td>
+        </tr>
+      {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </tabla>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Список студентов pyBursa курса Веб-разработка на Python&Django</title>
+    <title>Карточка студента {{student.name}} {{student.surname}}</title>
 
     <!-- Bootstrap -->
     {% load staticfiles %}
@@ -32,70 +32,50 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'index' %}">Main</a></li>
             <li><a href="{% url 'contact' %}">Contacts</a></li>
-            <li class="active"><a href="{% url 'student_list' %}">Students</a></li>
+            <li><a href="{% url 'students:student_list' %}">Students</a></li>
             <li><a href="{% url 'results' %}?a=1&b=12&c=38">Equation</a></li>
-          </ul>	  
+          </ul>
+				  
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
 
     <div class="container">
-      <h2>Список студентов pyBursa </h2>
-      <h3 class="my_descript">Курс «Веб-разработка на Python&Django»</h3>
+      <h1 class="my_descript">{{student.name}} {{student.surname}}</h1>
     </div>
     
     <div class="container">
-      <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading">Под руководством Алексея Радченко</div>
-        <!-- Table -->
-        <table class="table">
-          <tr>
-            <td>No</td>
-            <td>Surname</td>
-            <td>Name</td>
-            <td>Address</td>
-            <td>Skype</td>
-          </tr>
-          <tr>
-            <td><a href="{% url 'student_detail' %}">1</a></td>
-            <td>Бурлаков</td>
-            <td>Алексей</td>
-            <td>Киев 1, Крещатик 26, до востребования</td>
-            <td>alex.tsumibito</td>
-          </tr>
-          <tr>
-            <td>2 </td>
-            <td>Игорь</td>
-            <td>Добродий</td>
-            <td>Some Fine Address</td>
-            <td>dipperside</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Леонидов</td>
-            <td>Максим</td>
-            <td>Some Excellent Address</td>
-            <td>@leusmaximus</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Гольдштейн</td>
-            <td>Дмитрий</td>
-            <td>Some Preaty Address</td>
-            <td>@israodin</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Mazur</td>
-            <td>Artem</td>
-            <td>Some COOl Address</td>
-            <td>@mazart</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  
+	    <table class="table">
+		      <tr>
+		        <td>дата рождения</td>
+		        <td>{{student.date_of_birth|date:"N d, Y"}}</td>
+		      </tr>
+		      <tr>
+		        <td>адрес</td>
+		        <td>{{student.address}}</td>
+		      </tr>
+		      <tr>
+		        <td>почта</td>
+		        <td>{{student.email}}</td>
+		      </tr>
+		      <tr>
+		        <td>телефон</td>
+		        <td>{{student.phone}}</td>
+		      </tr>
+		      <tr>
+		        <td>логин skype</td>
+		        <td>{{student.skype}}</td>
+		      </tr>
+		      <tr>
+		        <td>курсы</td>
+		        <td>{% for course in student.courses.all %}
+              <p><a href='{% url 'courses:courses' course.id  %}'>{{ course }}</a></p>
+            {% endfor %}
+		        </td>
+		      </tr>
+	    </table>
+    </div> 
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

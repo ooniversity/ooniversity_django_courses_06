@@ -5,13 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>pyBursa Contacts</title>
+    <title>Список студентов pyBursa {{ course_get }}</title>
 
     <!-- Bootstrap -->
     {% load staticfiles %}
     <link href="{% static '/css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static '/css/style.css' %}" rel="stylesheet">
-
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,42 +30,53 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="{% url 'index' %}">Main </a></li>
-            <li class="active"><a href="{% url 'contact' %}">Contacts</a></li>
-            <li><a href="{% url 'student_list' %}">Students</a></li>
+            <li><a href="{% url 'index' %}">Main</a></li>
+            <li><a href="{% url 'contact' %}">Contacts</a></li>
+            <li class="active"><a href="{% url 'students:student_list' %}">Students</a></li>
             <li><a href="{% url 'results' %}?a=1&b=12&c=38">Equation</a></li>
-          </ul>
-				  
+          </ul>	  
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
 
     <div class="container">
-      <h1>Организаторы курса:</h1>
-      <h2>Director</h2>
-      <ul>
-        <li class="contact_name" id="dr_contact_name">Name: Дарья</li>
-        <li class="skype_cn" id="dr_skype_cn">Skype: @daria</li>
-        <li class="dr_mail">Email: somemail@gmail.com</li>
-        <li  class="dr_phone">Phone: +382222222 </li>
-      </ul>
-      <h2>Manager</h2>
-      <ul>
-        <li class="contact_name">Name:  Лера Фомина</li>
-        <li class="skype_cn"> Skype: @lera.fomina</li>
-        <li class="some_mail">Email: somemail@gmail.com</li>
-        <li class="some_phone">Phone: +382222222 </li>
-      </ul>
       
-      <h2>Founder</h2>
-      <ul>
-        <li class="contact_name">Name: Алексей Радченко</li>
-        <li class="skype_cn">Skype: @dixon</li>
-        <li class="some_mail">Email: somemail@gmail.com</li>
-        <li class="some_phone">Phone: +382222222 </li>
-      </ul>    
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><h2>Список студентов pyBursa{{ course_get }}.<h2></div>
+        <!-- Table -->
+        <table class="table">
+          <tr>
+            <td>#</td>
+            <td>Фамилия Имя</td>
+            <td>адрес</td>
+            <td>skype</td>
+            <td>курсы</td>
+          </tr>
+          {% for student in students %}
+          <tr>
+            <td>{{ student.id }}</td>
+            <td><a href="{% url 'students:student_detail' student.id %}">{{ student.name }} {{ student.surname }}</a></td>
+            <td>{{ student.address }}</td>
+            <td>{{ student.skype }}</td>           
+            <td>
+            {% for course in student.courses.all %}
+              <p><a href='{% url 'courses:courses' course.id  %}'>{{ course }}</a></p>
+            {% endfor %}
+            </td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
     </div>
-    
+  
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
