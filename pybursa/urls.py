@@ -18,6 +18,8 @@ from django.contrib import admin
 
 from . import views
 
+admin.site.site_header = 'PyBursa Administration'
+
 urlpatterns = [
     url(r'^polls/', include('polls.urls')),
     url(r'^fun_polls/', include('polls.urls')),
