@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     #'quadratic',
     'courses',
     'students',
-    #'coaches'
+    'coaches',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +60,7 @@ TEMPLATES = [
   {'APP_DIRS': True,
   'BACKEND': 'django.template.backends.django.DjangoTemplates',
   'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates/courses'),
-           os.path.join(BASE_DIR, 'templates/students'), os.path.join(BASE_DIR, 'quadratic/templates')],
+           os.path.join(BASE_DIR, 'templates/students'), os.path.join(BASE_DIR, 'templates/coaches')],
   'OPTIONS': {'context_processors': ['django.template.context_processors.debug',
                                      'django.template.context_processors.request',
                                      'django.contrib.auth.context_processors.auth',
