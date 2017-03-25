@@ -32,7 +32,7 @@
       <div class="container">
 
         {% if current_course %}
-          <h1 class="page-header">Students of "{{ current_course.name}}" course</h1>
+          <h1 class="page-header">Students of "{{ current_course.name }}" course</h1>
         {% else %}
           <h1 class="page-header">Students of PyBursa</h1>
         {% endif %}
@@ -50,16 +50,16 @@
             </thead>
 
             <tbody>
-              {% for student in students_list%}
+              {% for student in students_list %}
                 <tr>
                   <td>{{ forloop.counter }}</td>
-                  <td><a href="{% url 'students:detail' student.id %}">{{ student.name }} {{ studnet.surname }}</a></td>
+                  <td><a href="{% url 'students:detail' student.id %}">{{ student.name }} {{ student.surname }}</a></td>
                   <td>{{ student.address }}</td>
                   <td>{{ student.skype }}</td>
                   <td>
                     {% for course in student.get_courses %}
                       <ul>
-                        <li><a href="{% url 'courses:detail' course.id %}">{{ course.name}}</a></li>
+                        <li><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></li>
                       </ul>
                     {% endfor %}
                   </td>
