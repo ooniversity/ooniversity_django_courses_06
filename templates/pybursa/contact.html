@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>pyBursa Contacts</title>
+
+    <!-- Bootstrap -->
+    {% load staticfiles %}
+    <link href="{% static '/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static '/css/style.css' %}" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'index' %}">
+            <img id='logo_itBursa' alt="Brand" src="{% static '/images/logo1.png' %}">
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'index' %}">Main </a></li>
+            <li class="active"><a href="{% url 'contact' %}">Contacts</a></li>
+            <li><a href="{% url 'students:student_list' %}">Students</a></li>
+            <li><a href="{% url 'results' %}?a=1&b=12&c=38">Equation</a></li>
+          </ul>
+				  
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+      <h1>Организаторы курса:</h1>
+      <h2>Director</h2>
+      <ul>
+        <li class="contact_name" id="dr_contact_name">Name: Дарья</li>
+        <li class="skype_cn" id="dr_skype_cn">Skype: @daria</li>
+        <li class="dr_mail">Email: somemail@gmail.com</li>
+        <li  class="dr_phone">Phone: +382222222 </li>
+      </ul>
+      <h2>Manager</h2>
+      <ul>
+        <li class="contact_name">Name:  Лера Фомина</li>
+        <li class="skype_cn"> Skype: @lera.fomina</li>
+        <li class="some_mail">Email: somemail@gmail.com</li>
+        <li class="some_phone">Phone: +382222222 </li>
+      </ul>
+      
+      <h2>Founder</h2>
+      <ul>
+        <li class="contact_name">Name: Алексей Радченко</li>
+        <li class="skype_cn">Skype: @dixon</li>
+        <li class="some_mail">Email: somemail@gmail.com</li>
+        <li class="some_phone">Phone: +382222222 </li>
+      </ul>    
+    </div>
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static '/js/bootstrap.js' %}"></script>
+  </body>
+</html>
