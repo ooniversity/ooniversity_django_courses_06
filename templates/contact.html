@@ -1,134 +1,164 @@
-﻿<!DOCTYPE html>
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<meta name="description" content="Control task">
-    <meta name="author" content="VOlny">
-	<link rel="icon" href="../static/images/favicon.jpg">
-    <title>CompuBursa :: Contacts</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyBursa contacts</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed menu-opener" data-toggle="collapse" data-target="#main-nav">Menu</button>
+                <a class="navbar-brand" href="{% url 'index' %}">PyBursa</a>
+            </div>
 
-	<link rel="shortcut icon" href="favicon.jpg">
+            <div class="collapse navbar-collapse" id="main-nav">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'index' %}">Main</a></li>
+                    <li class="active"><a href="{% url 'contact' %}">Contacts</a></li>
+                    <li><a href="{% url 'students:list_view' %}">Students</a></li>
+                    <li><a href="{% url 'quadratic_results' %}">Quadratic equation</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Bootstrap -->
-	<!-- Bootstrap core CSS -->
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
-    <link href="../static/css/style.css" rel="stylesheet">	
-	<link href="../static/css/font-awesome.min.css" rel="stylesheet">	
-	
-  </head>
-  <body>
-	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
-	  <div class="container">
-	    <strong><a class="navbar-brand" href="index.html" name="logo">TechBursa</a></strong>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li ><a href=index.html>Main</a></li>
-            <li class="active"><a href="contact.html">Contact</a></li>
-			<li><a href="student_list.html">Students</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
+    <div class="page-content">
+        <div class="container">
+            <h1 class="page-header">Contacts</h1>
 
+            <div class="persons-container">
+                <h2 class="persons-container__title">Executives</h2>
+
+                <div class="persons-list row">
+                    <div class="person-item">
+                        <div class="thumbnail">
+                            <img class="person-item__image" src="{% static 'images/profile-placeholder.png' %}" alt="director photo">
+
+                            <div class="caption">
+                                <h3 class="person-item__title">Director</h3>
+
+                                <div class="info-list">
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Name</dt>
+                                        <dd class="info-list__value">Lorem</dd>
+                                    </dl>
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Skype</dt>
+                                        <dd class="info-list__value">director.pybursa</dd>
+                                    </dl>
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Email</dt>
+                                        <dd class="info-list__value">director@pybursa</dd>
+                                    </dl>
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Phone</dt>
+                                        <dd class="info-list__value">111111</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="person-item">
+                        <div class="thumbnail">
+                            <img class="person-item__image" src="{% static 'images/profile-placeholder.png' %}" alt="manager photo">
+
+                            <div class="caption">
+                                <h3 class="person-item__title">Manager</h3>
+
+                                <div class="info-list">
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Name</dt>
+                                        <dd class="info-list__value">Ipsum dolore</dd>
+                                    </dl>
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Skype</dt>
+                                        <dd class="info-list__value">manager.pybursa</dd>
+                                    </dl>
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Email</dt>
+                                        <dd class="info-list__value">manager@pybursa</dd>
+                                    </dl>
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Phone</dt>
+                                        <dd class="info-list__value">222222</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="person-item">
+                        <div class="thumbnail">
+                            <img class="person-item__image" src="{% static 'images/profile-placeholder.png' %}" alt="founder photo">
+
+                            <div class="caption">
+                                <h3 class="person-item__title">Founder</h3>
+
+                                <div class="info-list">
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Name</dt>
+                                        <dd class="info-list__value">Sit Amet</dd>
+                                    </dl>
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Skype</dt>
+                                        <dd class="info-list__value">founder.pybursa</dd>
+                                    </dl>
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Email</dt>
+                                        <dd class="info-list__value">founder@pybursa</dd>
+                                    </dl>
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Phone</dt>
+                                        <dd class="info-list__value">333333</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="person-item">
+                        <div class="thumbnail">
+                            <img class="person-item__image" src="{% static 'images/profile-placeholder.png' %}" alt="teacher photo">
+
+                            <div class="caption">
+                                <h3 class="person-item__title">Teacher</h3>
+
+                                <div class="info-list">
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Name</dt>
+                                        <dd class="info-list__value">Consectetur</dd>
+                                    </dl>
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Skype</dt>
+                                        <dd class="info-list__value">teacher.pybursa</dd>
+                                    </dl>
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Email</dt>
+                                        <dd class="info-list__value">teacher@pybursa</dd>
+                                    </dl>
+                                    <dl class="info-list__row">
+                                        <dt class="info-list__title">Phone</dt>
+                                        <dd class="info-list__value">444444</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
     </div>
-	</nav>	
-	
-  <div class="container">
-	  <div class="revert jumbotron">
-	    	<h1 style=" margin-top: 10px;">Наши контакты</h1>
-  				<h3 style=" margin-top: 10px;"><i class="fa fa-users" aria-hidden="true">&nbsp</i><span class="orgtitle">ОРГАНИЗАТОРЫ КУРСА</span></h3>
-				<div class="row">
-				
-				  <div class="col-sm-6 col-md-4">
-					<div class="panel-group" role="tablist"> 
-						<div class="panel panel-info"> 
-							<div class="panel-heading" role="tab" id="Director"> 
-								<h4 class="panel-title"> 
-									<a href="#Director1" class="" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="Director1">
-									  <span class="glyphicon glyphicon-briefcase" aria-hidden="true">&nbsp</span><b>Director</b><span class="caret">&nbsp</span></a>
-								</h4>
-							</div> 
-							<div class="panel-collapse collapse in" role="tabpanel" id="Director1" aria-labelledby="Director" 
-							aria-expanded="true"> 
-								<ul class="list-group"> 
-									<li class="list-group-item"><i class="fa fa-user-circle" aria-hidden="true">&nbsp</i><strong>Name:</strong> IvIvan Samoylenko</li> 
-									<li class="list-group-item"><i class="fa fa-skype" aria-hidden="true">&nbsp</i><strong>Skype: </strong><a class="skype" href="#logo">ivaplachet</a></li> 
-									<li class="list-group-item"><i class="fa fa-envelope-open" aria-hidden="true">&nbsp</i><strong>Email: </strong><a class="mail" href="#logo">iava.sam@gmail.com</a></li> 
-									<li class="list-group-item"><i class="fa fa-phone-square" aria-hidden="true">&nbsp</i><strong>Phone:</strong> 8-800-555-35-55</li> 
-								</ul> 
-							</div>
-						</div> 
-					</div>
-				   </div>		
-				   
-				  <div class="col-sm-6 col-md-4">
-					<div class="panel-group" role="tablist"> 
-						<div class="panel panel-info"> 
-							<div class="panel-heading" role="tab" id="Manager"> 
-								<h4 class="panel-title"> 
-									<a href="#manager1" class="" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="manager1">
-									<span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp</span>Manager <span class="caret"></span></a>
-								</h4>
-							</div> 
-							<div class="panel-collapse collapse in" role="tabpanel" id="manager1" aria-labelledby="Manager" 
-							aria-expanded="true"> 
-								<ul class="list-group"> 
-									<li class="list-group-item"><i class="fa fa-user-circle" aria-hidden="true">&nbsp</i><strong>Name:</strong> Sam Jackson</li> 
-									<li class="list-group-item"><i class="fa fa-skype" aria-hidden="true">&nbsp</i><strong>Skype: </strong><a class="skype" href="#logo">samjack</a></li> 
-									<li class="list-group-item"><i class="fa fa-envelope-open" aria-hidden="true">&nbsp</i><strong>Email: </strong><a class="mail" href="#logo">samjack@gmail.com</a></li> 
-									<li class="list-group-item"><i class="fa fa-phone-square" aria-hidden="true">&nbsp</i><strong>Phone:</strong> 555-333-222-111</li> 
-								</ul> 
-							</div>
-						</div> 
-					</div>
-				   </div>	
-				   
-				  <div class="col-sm-6 col-md-4">
-					<div class="panel-group" role="tablist"> 
-						<div class="panel panel-info"> 
-							<div class="panel-heading" role="tab" id="Founder"> 
-								<h4 class="panel-title"> 
-									<a href="#founder1" class="" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="founder1">
-									<span class="glyphicon glyphicon-piggy-bank" aria-hidden="true">&nbsp</span>Founder <span class="caret"></span></a>
-								</h4>
-							</div> 
-							<div class="panel-collapse collapse in" role="tabpanel" id="founder1" aria-labelledby="Founder" 
-							aria-expanded="true"> 
-								<ul class="list-group"> 
-									<li class="list-group-item"><i class="fa fa-user-circle" aria-hidden="true">&nbsp</i><strong>Name: </strong>Seva Sedyh</li> 
-									<li class="list-group-item"><i class="fa fa-skype" aria-hidden="true">&nbsp</i><strong>Skype: </strong><a class="skype" href="#logo">sevmahmed</a></li> 
-									<li class="list-group-item"><i class="fa fa-envelope-open" aria-hidden="true">&nbsp</i><strong>Email: </strong><a class="mail" href="#logo">sivushka@gmail.com</a></li> 
-									<li class="list-group-item"><i class="fa fa-phone-square" aria-hidden="true">&nbsp</i><strong>Phone:</strong> 333-222-13-37</li> 
-								</ul> 
-							</div>
-						</div> 
-					</div>
-				   </div>						
-				</div>	
-				
-	  </div>
-	</div>
-	
 
-	<footer class="footer">
-      <div class="container">
-        <p class="text-muted">&copy <span class="foot">&nbsp :: Volny Ltd. :: &nbsp</span>
-			<a href="mailto:privatmail@yahoo.com?Subject=Privat%20Mail_top">
-				<span class="glyphicon glyphicon glyphicon-envelope" aria-hidden="true"></span> - manklondike.
-			</a> 
-		</p>
-      </div>
-    </footer>	
-
- <!-- Bootstrap core JavaScript
-          ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-	
-    <script src="../static/js/bootstrap.js"></script>
-	
-  </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
 </html>
