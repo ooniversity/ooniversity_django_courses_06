@@ -32,7 +32,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="{% url 'index' %}">Main</a></li>
             <li><a href="{% url 'contact' %}">Contacts</a></li>
-            <li><a href="{% url 'students:student_list' %}">Students</a></li>
+            <li><a href="{% url 'students:list_view' %}">Students</a></li>
             <li><a href="{% url 'results' %}?a=2&b=3&c=5">Equation</a></li>
           </ul>			  
         </div><!-- /.navbar-collapse -->
@@ -57,7 +57,7 @@
         </tr>
       {% for course in courses %}
         <tr>
-          <td><a href='{% url 'courses:courses' course.id  %}'>{{ course.name }}</a></td>
+          <td><a href='{% url 'courses:detail' course.id  %}'>{{ course.name }}</a></td>
           <td>{{ course.short_description }}</td>
         </tr>
       {% endfor %}
