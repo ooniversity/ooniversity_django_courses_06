@@ -14,3 +14,5 @@ urlpatterns = [
     url(r'^courses/', include('courses.urls', namespace='courses')),    
     url(r'^students/', include('students.urls', namespace='students')),
 ]
+
+admin.site.site_header = 'PyBursa Administration'
