@@ -15,28 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from . import views 
-
-
-admin.site.site_header = 'PyBursa Administration'
+from . import views
 
 
 
-
-
+app_name = 'students'
 
 urlpatterns = [
     
     
-    url(r'^$', views.index, name='index'),
-    url(r'^courses/', include('courses.urls')),
-    url(r'^students/', include('students.urls')),
-    url(r'^contact/$', views.contact, name='contact'),
-    #url(r'^student_list/$', views.student_list, name='student_list'),
-    url(r'^student_detail/$', views.student_detail, name='student_detail'),
-
-    url(r'^quadratic/', include('quadratic.urls')),
-
-    url(r'^admin/', admin.site.urls)
+    url(r'^$', views.list_view, name='list_view'),
+    url(r'^(?P<student_id>[0-9]+)/$', views.detail, name='detail'),
     
 ]
