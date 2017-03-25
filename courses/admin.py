@@ -2,9 +2,9 @@ from django.contrib import admin
 from courses.models import Course, Lesson
 
 
-class LessonInline(admin.StackedInline):
+class LessonInline(admin.TabularInline):
 	model = Lesson
-	fields = ['subject', 'description']
+	fields = ['subject', 'description', 'order']
 
 class CourseAdmin(admin.ModelAdmin):
 	list_display = ["name", "short_description"]
