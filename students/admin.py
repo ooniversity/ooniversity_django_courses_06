@@ -11,4 +11,5 @@ class StudentAdmin(admin.ModelAdmin):
             ]
     list_filter = ['courses']
     search_fields = ['surname', 'email']
+    filter_horizontal = ['courses']
 admin.site.register(Student, StudentAdmin)
