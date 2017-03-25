@@ -1,57 +1,77 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Main-PyBursa</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyBursa students list</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed menu-opener" data-toggle="collapse" data-target="#main-nav">Menu</button>
+                <a class="navbar-brand" href="{% url 'index' %}">PyBursa</a>
+            </div>
 
-    <!-- Bootstrap -->
-    {% load static %}
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+            <div class="collapse navbar-collapse" id="main-nav">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'index' %}">Main</a></li>
+                    <li><a href="{% url 'contact' %}">Contacts</a></li>
+                    <li class="active"><a href="{% url 'students:list_view' %}">Students</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+    <div class="page-content">
+        <div class="container">
 
-  <body>
-  <ul class="nav nav-pills">
-    <li role="presentation" ><a href="{% url 'index' %}">Главная</a></li>
-    <li role="presentation"><a href="{% url 'contact' %}">Контакты</a></li>
-    <li role="presentation" class="active"><a href="{% url 'students:list_view' %}">Студенты</a></li>
-  </ul>
+            {% if current_course %}
+                <h1 class="page-header">A students of "{{ current_course.name }}" course</h1>
+            {% else %}
+                <h1 class="page-header">A students of PyBursa</h1>
+            {% endif %}
 
-  <div class="container">
-  <h2>Список студентов</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>фамилия имя</th>
-        <th>адрес</th>
-        <th>skype</th>
-        <th>курсы</th>
-      </tr>
-    </thead>
-    <tbody>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr class="info">
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Skype</th>
+                            <th>Courses</th>
+                        </tr>
+                    </thead>
 
-    {% for student, crs in students_of_course %}
-    <tr>
-       <td>{{ forloop.counter }}</td >
-       <td><a href="{% url 'students:detail' student.id %}">{{ student.name }} {{ student.surname }}</a></td>
-       <td>{{ student.address }}</td>
-       <td>{{ student.skype }}</td>
-       <td>{% for c, i in crs %}<a href="{% url 'courses:detail' i  %}">{{ c }}</a><br>{% endfor %}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+                    <tbody>
+                        {% for student in students_list %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td><a href="{% url 'students:detail' student.id %}">{{ student.name }} {{ student.surname }}</a></td>
+                                <td>{{ student.address }}</td>
+                                <td>{{ student.skype }}</td>
+                                <td>
+                                    {% for course in student.get_courses %}
+                                        <ul>
+                                            <li><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></li>
+                                        </ul>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-  </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
 </html>
