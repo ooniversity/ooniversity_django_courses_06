@@ -17,9 +17,9 @@ def quadratic_results(request):
         return res, my_int 
        
     url_data = request.GET
-    a = url_data['a'] if url_data.__contains__('a') else ''
-    b = url_data['b'] if url_data.__contains__('b') else ''
-    c = url_data['c'] if url_data.__contains__('c') else ''
+    a = url_data.get('a', '')
+    b = url_data.get('b', '')
+    c = url_data.get('c', '')
     res_a, a = try_int(a)                                       
     res_b, b = try_int(b)   
     res_c, c = try_int(c) 
