@@ -41,7 +41,7 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr class="info">
-                            <th>#</th>
+                            {% comment %}<th>#</th>{% endcomment %}
                             <th>Name</th>
                             <th>Address</th>
                             <th>Skype</th>
@@ -52,7 +52,7 @@
                     <tbody>
                         {% for student in students_list %}
                             <tr>
-                                <td>{{ forloop.counter }}</td>
+                                {% comment %}<td>{{ forloop.counter }}</td>{% endcomment %}
                                 <td><a href="{% url 'students:detail' student.id %}">{{ student.name }} {{ student.surname }}</a></td>
                                 <td>{{ student.address }}</td>
                                 <td>{{ student.skype }}</td>
