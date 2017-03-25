@@ -8,7 +8,10 @@ class StudentAdmin(admin.ModelAdmin):
 			'fields': ('name', 'surname', 'date_of_birth')
 		}), 
 		('Contact info', {
-			'fields': ('email', 'phone', 'address', 'skype', 'courses')
+			'fields': ('email', 'phone', 'address', 'skype')
+		}),
+		(None, {
+			'fields': ('courses',)
 		}),
 	)
 	search_fields = ['surname', 'email']
