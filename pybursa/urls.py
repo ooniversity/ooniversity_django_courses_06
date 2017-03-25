@@ -18,6 +18,8 @@ from django.contrib import admin
 from .views import index, contact, student_list, student_detail
 from quadratic.views import quadratic_results
 
+admin.site.site_header = 'PyBursa Administration'
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 	url(r'^polls/', include('polls.urls')),
