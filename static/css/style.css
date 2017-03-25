@@ -108,6 +108,21 @@
   vertical-align: middle;
 }
 
+/* --------------- */
+.courses-table__name {
+  width: 30%;
+}
+
+.table ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.table ul li {
+  padding: 4px 0;
+}
+
 @media (min-width:600px) {
   .persons-list {
     display: -webkit-box;
