@@ -1,65 +1,114 @@
 from django.shortcuts import render
-from django.http import QueryDict
-from math import sqrt
+from django.http import HttpResponse
 
-def ItIsInt(**kwargs) -> dict:
-    '''return 2 dict
-       first - error_list
-       second - given argumets if they named as "a","b" or "c" '''
-    
-    errors={} # dict of error strings
-    args={} # int argument or raw data if not integer value given
-    for key in 'abc':
-        if not kwargs.get(key):
-            errors['err_'+key] = "коэффициент не определен"
-            args['arg_'+key]='' # no data - empty arg value (prevent None)
-        else:
-            try:
-                #print("!!!we in tray!!! ",key," : ",kwargs.get(key))
-                args['arg_'+key] = int(kwargs[key])
-                errors['err_'+key] = "" # no error - empty string value
-            except ValueError:
-                errors['err_'+key] = "коэффициент не целое число"
-                args['arg_'+key]=kwargs.get(key) # wrong data to show
-    if kwargs.get('a') == '0':
-        errors[key] = "коэффициент при первом слагаемом уравнения не может быть равным нулю"
-    return errors, args         
+import math
 
-
-def discriminant(a,b,c):
-    return b*b-(4*a*c)
-
-def roots(discriminant,a,b) -> list:
-    '''Return root(s) of quadratic equation if discriminant>=0'''
-    rootlist=[]
-    if discriminant > 0:
-        rootlist.append((-b+sqrt(discriminant))/(2*a))
-        rootlist.append((-b-sqrt(discriminant))/(2*a))
-    elif discriminant == 0:
-        rootlist.append(-b/(2*a))
-    return rootlist
-      
-    
-      
-# Create your views here.
 def quadratic_results(request):
-    D=x1=x2=''
-#    print(request.GET.dict())
-    web_params=request.GET.dict()
-    errors_dict,values_dict=(ItIsInt(**web_params))
-    print("err-lst=",errors_dict,'\narg-lst=',values_dict)
-    if not any(errors_dict.values()): # if no errors - calculate discriminant
-        D=discriminant(*values_dict.values())
-        if D >= 0: # calc roots
-            try:
-                x1,x2=roots(D,values_dict['arg_a'],values_dict['arg_b']) # > 0
-            except ValueError:
-                x1=roots(D,values_dict['arg_a'],values_dict['arg_b'])[0] # = 0
-        
-    #print("deskr=",D,'x1,x2=',x1,x2)
-    #if a
-    #context = {'first': a, 'second': b, 'free_set': c}
-    # context=request.GET.dict())
-    context = {**errors_dict, **values_dict,'discriminant': D,'root1': x1,'root2': x2}
-    print(context)
-    return render(request, 'quadratic/results.html', context)
+    # print('request: ', request.GET['c'] == '')
+    # return HttpResponse(request.GET)
+
+    data = request.GET
+
+    if not data:
+        return render(request, 'results.html')
+
+    is_valid_factors = True
+
+    error_messages = {
+        'not_defined': 'коэффициент не определен',
+        'not_integer': 'коэффициент не целое число',
+        'is_zero': 'коэффициент при первом слагаемом уравнения не может быть равным нулю',
+    }
+
+    result_messages = {
+        'discriminant_text': 'Дискриминант:',
+        'two_roots': 'Квадратное уравнение имеет два действительных корня:',
+        'no_roots': 'Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.',
+        'one_root': 'Дискриминант равен нулю, квадратное уравнение имеет один действительный корень:',
+    }
+
+    context = {
+        'factors': [],
+        'results': {},
+    }
+
+    a = data['a']
+    b = data['b']
+    c = data['c']
+
+    a_item = {
+        'item_name': 'a',
+        'item_value': a
+    }
+
+    b_item = {
+        'item_name': 'b',
+        'item_value': b
+    }
+
+    c_item = {
+        'item_name': 'c',
+        'item_value': c
+    }
+
+    if a == '':
+        a_item['error_message'] = error_messages['not_defined']
+        is_valid_factors = False
+    else:
+        try:
+            if int(a) == 0:
+                a_item['error_message'] = error_messages['is_zero']
+                is_valid_factors = False
+        except ValueError:
+            a_item['error_message'] = error_messages['not_integer']
+            is_valid_factors = False
+
+    if b == '':
+        b_item['error_message'] = error_messages['not_defined']
+        is_valid_factors = False
+    else:
+        try:
+            int(b)
+        except ValueError:
+            b_item['error_message'] = error_messages['not_integer']
+            is_valid_factors = False
+
+    if c == '':
+        c_item['error_message'] = error_messages['not_defined']
+        is_valid_factors = False
+    else:
+        try:
+            int(c)
+        except ValueError:
+            c_item['error_message'] = error_messages['not_integer']
+            is_valid_factors = False
+
+    context['factors'].append(a_item)
+    context['factors'].append(b_item)
+    context['factors'].append(c_item)
+
+    if is_valid_factors:
+        results = dict()
+
+        A = int(a)
+        B = int(b)
+        C = int(c)
+
+        D = B**2 - 4*A*C
+
+        results['discriminant_text'] = result_messages['discriminant_text']
+        results['discriminant'] = D
+
+        if D < 0:
+            results['root_text'] = result_messages['no_roots']
+        elif D == 0:
+            results['root_text'] = result_messages['one_root']
+            results['x1'] = -B/(2*A)
+        else:
+            results['root_text'] = result_messages['two_roots']
+            results['x1'] = (-B + math.sqrt(B**2 - 4*A*C)) / (2*A)
+            results['x2'] = (-B - math.sqrt(B**2 - 4*A*C)) / (2*A)
+
+        context['results'] = results
+
+    return render(request, 'results.html', context)
