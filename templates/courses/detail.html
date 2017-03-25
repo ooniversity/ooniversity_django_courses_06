@@ -33,7 +33,6 @@
             <li><a href="{% url 'index' %}">Main</a></li>
             <li><a href="{% url 'contact' %}">Contacts</a></li>
             <li><a href="{% url 'students:list_view' %}?course_id={{ my_course.id }}">Students</a></li>
-            <li><a href="{% url 'results' %}?a=2&b=3&c=5">Equation</a></li>
           </ul>			  
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -42,8 +41,7 @@
     <div class="container">
       <div class="jumbotron">
           <h1>{{ my_course.name }}</h1>
-          <h3>{{ my_course.short_description }}</h3>
-		  <p>{{ my_course.description }}</p>	
+	        <p>{{ my_course.description }}</p>	
       </div>
     </div>
 

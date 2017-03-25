@@ -45,7 +45,7 @@ def quadratic_results(request):
         if my_discr != '':
             my_discr = 'Дискриминант: ' + str(my_discr)
 
-    return render(request, 'results.html', {
+    return render(request, 'quadratic/results.html', {
             'a': a,
             'b': b,
             'c': c,
