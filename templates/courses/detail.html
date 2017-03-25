@@ -19,9 +19,9 @@
 
             <div class="collapse navbar-collapse" id="main-nav">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{% url 'index' %}">Main</a></li>
+                    <li><a href="{% url 'index' %}">Main</a></li>
                     <li><a href="{% url 'contact' %}">Contacts</a></li>
-                    <li><a href="{% url 'students:list_view' %}">Students</a></li>
+                    <li><a href="{% url 'students:list_view' %}?course_id={{ course.id }}">Students</a></li>
                     <li><a href="{% url 'quadratic_results' %}">Quadratic equation</a></li>
                 </ul>
             </div>
@@ -31,27 +31,29 @@
     <div class="page-content">
         <div class="container">
 
-            <div class="jumbotron">
-                <h1>PyBursa</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta error pariatur, alias tempore, quia in dolor, quae nostrum voluptatem nisi iure fugit? Quisquam neque ullam eaque quas expedita suscipit repellendus.</p>
+            <<div class="jumbotron">
+                <h1>{{ course.name }}</h1>
+                <p>{{ course.description }}</p>
             </div>
 
-            <h2 class="page-header">Our courses</h2>
+            <h2 class="page-header">Course plan</h2>
 
             <div class="table-responsive">
                 <table class="table table-bordered courses-table">
                     <thead>
                         <tr class="info">
-                            <th class="courses-table__name">Course</th>
+                            <th>#</th>
+                            <th class="courses-table__name">Subject</th>
                             <th>Description</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        {% for course in course_list %}
+                        {% for lesson in lessons_list %}
                             <tr>
-                                <th><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></th>
-                                <td>{{ course.short_description }}</td>
+                                <td>{{ lesson.order }}</td>
+                                <td><strong>{{ lesson.subject }}</strong></td>
+                                <td>{{ lesson.description }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
