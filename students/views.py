@@ -3,7 +3,7 @@ from students.models import Student
 from courses.models import Course
 
 
-def students(request):
+def list_view(request):
     req = request.GET
     course_id = req.get('course_id', '')
     if course_id != '':
@@ -13,13 +13,13 @@ def students(request):
     else:
         my_students = Student.objects.all()
         course_filter_txt = ''
-    return render(request, 'students/student_list.html', {
+    return render(request, 'students/list.html', {
 				    'students': my_students,
                     'course_get': course_filter_txt,	
 				    })
 
-def student_detail(request, student_id):
+def detail(request, student_id):
     student = Student.objects.filter(id=int(student_id)).first()
-    return render(request, 'students/student_detail.html', {
+    return render(request, 'students/detail.html', {
 				    'student': student,	
 				    })

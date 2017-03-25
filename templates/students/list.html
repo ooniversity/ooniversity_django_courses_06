@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Курс {{ my_course.name }}</title>
+    <title>Список студентов pyBursa {{ course_get }}</title>
 
     <!-- Bootstrap -->
     {% load staticfiles %}
@@ -21,9 +21,9 @@
   </head>
   <body>
 
-  <nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container-fluid">
-       <div class="navbar-header">
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
           <a class="navbar-brand" href="{% url 'index' %}">
             <img id='logo_itBursa' alt="Brand" src="{% static '/images/logo1.png' %}">
           </a>
@@ -32,43 +32,51 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'index' %}">Main</a></li>
             <li><a href="{% url 'contact' %}">Contacts</a></li>
-            <li><a href="{% url 'students:student_list' %}?course_id={{ my_course.id }}">Students</a></li>
-            <li><a href="{% url 'results' %}?a=2&b=3&c=5">Equation</a></li>
-          </ul>			  
+            <li class="active"><a href="{% url 'students:list_view' %}">Students</a></li>
+            <li><a href="{% url 'results' %}?a=1&b=12&c=38">Equation</a></li>
+          </ul>	  
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
 
     <div class="container">
-      <div class="jumbotron">
-          <h1>{{ my_course.name }}</h1>
-          <h3>{{ my_course.short_description }}</h3>
-		  <p>{{ my_course.description }}</p>	
+      
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><h2>Список студентов pyBursa{{ course_get }}.<h2></div>
+        <!-- Table -->
+        <table class="table">
+          <tr>
+            <td>#</td>
+            <td>Фамилия Имя</td>
+            <td>адрес</td>
+            <td>skype</td>
+            <td>курсы</td>
+          </tr>
+          {% for student in students %}
+          <tr>
+            <td>{{ student.id }}</td>
+            <td><a href="{% url 'students:detail' student.id %}">{{ student.name }} {{ student.surname }}</a></td>
+            <td>{{ student.address }}</td>
+            <td>{{ student.skype }}</td>           
+            <td>
+            {% for course in student.courses.all %}
+              <p><a href='{% url 'courses:detail' course.id  %}'>{{ course }}</a></p>
+            {% endfor %}
+            </td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
       </div>
     </div>
-
-    <div class="container">
-	    <h2>План курса:</h2>
-      <table class="table">
-        <tr>
-          <td><b>#</b></td>
-          <td><b>Тема</b></td>
-          <td><b>Описание</b></td>
-        </tr>
-      {% for lesson in course_lessons %}
-        <tr>
-          <td>{{ lesson.order }} </td>
-          <td>{{ lesson.subject }} </td>
-          <td>{{ lesson.description }}</td>
-        </tr>
-      {% endfor %}
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tabla>
-    </div>
+  
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
