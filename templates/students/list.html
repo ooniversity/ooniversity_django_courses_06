@@ -12,7 +12,11 @@
         <td><a href="{% url 'students:detail' student.id %}">{{student.name}} {{student.surname}}</a></td>
         <td>{{student.address}}</td>
         <td>{{student.skype}}</td>
-        <td><a href="{% url 'courses:detail' course_id %}">{{student.courses}}</a></td>
+        {% if course_id != None%}
+            <td><a href="{% url 'courses:detail' course_id %}">{{student.courses}}</a></td>
+        {% else %}
+            <td><a href="{% url 'students:list_view' %}">{{student.courses}}</a></td>
+        {% endif %}
     </tr>
      {% endfor %}
 </table>
