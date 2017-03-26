@@ -12,4 +12,4 @@ class Coach(models.Model):
     description = models.TextField(null=True, blank=True)
     
     def __str__(self):
-        return self.user.first_name 
+        return self.user.username 
