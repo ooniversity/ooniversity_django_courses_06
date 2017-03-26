@@ -39,11 +39,9 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-    <div class="container">
-      <h1 class="my_descript">{{ student.surname }} {{ student.name }}</h1>
-    </div>
     
     <div class="container">
+        <h1 class="my_descript">{{ student.surname }} {{ student.name }}</h1>
 	    <table class="table">
 		      <tr>
 		        <td>дата рождения</td>
@@ -58,12 +56,12 @@
 		        <td>{{ student.email }}</td>
 		      </tr>
 		      <tr>
-		        <td>телефон</td>
-		        <td>{{ student.phone }}</td>
-		      </tr>
-		      <tr>
 		        <td>логин skype</td>
 		        <td>{{ student.skype }}</td>
+		      </tr>
+		      <tr>
+		        <td>телефон</td>
+		        <td>{{ student.phone }}</td>
 		      </tr>
 		      <tr>
 		        <td>курсы</td>
