@@ -5,13 +5,9 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Coach(models.Model):
-    SEX=(
-            ('M', 'Male'),
-            ('F', 'Female'),
-        )
     user = models.OneToOneField (User,on_delete=models.CASCADE)
     date_of_birth = models.DateField('Дата народження')
-    gender = models.CharField('Стать',max_length=1,choices=SEX)
+    gender = models.CharField('Стать',max_length=1,choices=(('M', 'Male'), ('F', 'Female')))
     phone = models.CharField('Тел',max_length=15)
     address = models.CharField('Адреса',max_length=25)
     skype = models.CharField(max_length=15)
@@ -27,6 +23,5 @@ class Coach(models.Model):
     def surname(self):
         return self.user.last_name
 
-    #def get_email(self):
-        #return '%s' % (self.user.email)
-    #get_email.short_description = 'email'
+    def e_mail(self):
+        return self.user.email
