@@ -40,34 +40,34 @@
   
   <div class="jumbotron">
     <div class="container">
-          <h1 class="studlst coolshadow">Студент: {{person.name}} {{person.surname}}</h1>
+          <h1 class="studlst coolshadow">{{person.name}} {{person.surname}}</h1>
     </div>
     <div class="container">
             <table class="table">
                       <tr>
-                        <td style="width: 20%;"><strong>Дата народження:</strong></td>
+                        <td style="width: 20%;">дата рождения</td>
                         <td>{{person.date_of_birth|date:"N d, Y"}}</td>
                       </tr>
                       <tr>
-                        <td><strong>Адреса:</strong></td>
+                        <td>адрес</td>
                         <td>{{person.address}}</td>
                       </tr>
                       <tr>
-                        <td><strong>E-mail:</strong></td>
+                        <td>почта</td>
                         <td>{{person.email}}</td>
                       </tr>
                       <tr>
-                        <td><strong>Логін Skype:</strong></td>
+                        <td>логин skype</td>
                         <td>{{person.skype}}</td>
                       </tr>
                       <tr>
-                        <td><strong>Телефон:</strong></td>
+                        <td>телефон</td>
                         <td>{{person.phone}}</td>
                       </tr>
                       <tr>
-                        <td><strong>Курсы:</strong></td>
+                        <td>курсы</td>
                         <td>{% for course in person.courses.all %}
-                                <strong><a href="{% url 'courses:detail' course.id  %}">{{ course }}</a><br></strong>
+                                <a href="{% url 'courses:detail' course.id  %}">{{ course }}</a><br>
                             {% endfor %}
                         </td>
                       </tr>
