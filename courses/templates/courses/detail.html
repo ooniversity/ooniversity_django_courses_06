@@ -30,13 +30,36 @@
         <li><a href="{% url 'quadratic_results' %}?a=1&b=6&c=9">Quadratic Equation</a></li>
       </ul>
     </div>
-    </div>
     </nav>
     <div class="container">
       <div class="jumbotron">
       <h2>{{ course.name }}</h2>
       <p>{{ course.description }}</p>
+     </div>
+
+      <h2>Преподаватели</h2><br/>
+      {% if course.coach %}
+      <div class="panel panel-default">
+        <div class="panel-heading">Coach</div>
+          <div class="panel-body"><a href="{% url 'coaches:detail' course.coach.id %}">{{ course.coach.full_name }}</a><br/>
+      {{ course.coach.description }}
+          </div>
+      </div>
+      {% endif %}
+      {% if course.assistant %}
+      <div class="panel panel-default">
+        <div class="panel-heading">Assistant</div>
+          <div class="panel-body"><a href="{% url 'coaches:detail' course.assistant.id %}">{{ course.assistant.full_name }}</a><br/>
+        {{ course.assistant.description }}
+        </div>
+      </div>
     </div>
+      {% endif %}
+    <div class="container">
+      <div class="jumbotron">
+      <h2>{{ course.name }}</h2>
+      <p>{{ course.description }}</p>
+      </div>
     <table cellspacing="10">
       <thead>
         <tr>
@@ -45,17 +68,17 @@
           <th>Description</th>
         </tr>
       </thead>
-    <tbody>
-     {% for les in lessons %}
-     <tr>
-       <td>{{ les.order }}</td>
-       <td>{{ les.subject }}</td>
-       <td>{{ les.description }}</td>
-     </tr>
-     {% endfor %}
-    </tbody>
-  </table>
-</div>
+      <tbody>
+      {% for les in lessons %}
+      <tr>
+        <td>{{ les.order }}</td>
+        <td>{{ les.subject }}</td>
+        <td>{{ les.description }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

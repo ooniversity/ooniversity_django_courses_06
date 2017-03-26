@@ -31,37 +31,35 @@
       </ul>
     </div>
   </nav>
-    </nav>
     <h2 align="center">Список студентов</h2>
     <div class="container">
-    <table>
-    <thead>
+      <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>фамилия имя</th>
+          <th>адрес</th>
+          <th>skype</th>
+          <th>курсы</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for student in students_list %}
       <tr>
-        <th>#</th>
-        <th>фамилия имя</th>
-        <th>адрес</th>
-        <th>skype</th>
-        <th>курсы</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for student in students_list %}
-    <tr>
         <td>{{ forloop.counter }}</td>
         <td><a href="{% url 'students:detail' student.id %}">{{ student.surname }} {{ student.name }}</a></td>
         <td>{{ student.address }}</td>
         <td>{{ student.skype }}</td>
         <td>
-            {% for course in student.courses.all %}
-            <a href="{% url 'courses:detail' course.id %}">{{ course.name }}<br></a>
-            {% endfor %}
+        {% for course in student.courses.all %}
+        <a href="{% url 'courses:detail' course.id %}">{{ course.name }}<br></a>
+        {% endfor %}
         </td>
-    <tr> 
-    {% endfor %}
-    </tbody>
-  </table>
-
-  </div>
+      <tr> 
+      {% endfor %}
+      </tbody>
+      </table>
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

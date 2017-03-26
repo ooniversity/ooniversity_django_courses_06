@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>main</title>
+    <title>ItBursa - Main</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
@@ -26,31 +26,62 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="{% url 'index' %}">Main</a></li>
         <li><a href="{% url 'contact' %}">Contacts</a></li>
-        <li><a href="{% url 'student_list' %}">Students</a></li>
+        <li><a href="{% url 'students:list_view' %}?course_id={{ course.id }}">Students</a></li>
         <li><a href="{% url 'quadratic_results' %}?a=1&b=6&c=9">Quadratic Equation</a></li>
       </ul>
+      </div>
     </div>
   </nav>
-    <div class="container">
-      <p>Квадратное уроавнение a*x*x + b*x + c = 0</p>
-      <ul>
-        <li>a = {{ a }}</li>{{ error_a }}
-        <li>b = {{ b }}</li>{{ error_b }}
-        <li>c = {{ c }}</li>{{ error_c }}
-      </ul>
-      {% if flag == True %}
-      <p>Дискриминант: {{ descr }}</p>
-      <p>{{ info }}</p>
-      {% endif %}
+  <h2 align="center">{{ coach.user.first_name }} {{ coach.user.last_name }}</h2>
+  <div class="container">
+    <div class="table-responsive">
+    <table class="table table-striped">
+      <tr>
+        <td>дата рождения</td>
+        <td>{{ coach.date_of_birth }}</td>
+      </tr>
+      <tr>
+        <td>адрес</td>
+        <td>{{ coach.address }}</td>
+      </tr>
+      <tr>
+        <td>логин skype</td>
+        <td>{{ coach.skype }}</td>
+      </tr>
+      <tr>
+        <td>email</td>
+          <td>{{ coach.user.email }}</td>
+      </tr>
+      <tr>
+        <td>телефон</td>
+        <td>{{ coach.phone }}</td>
+      </tr>
+      <tr>
+        <td>Курсы учитель</td>
+        <td>{% for course in teacher %}
+            <p><a href="{% url 'courses:detail' course.id %}">{{course.name}}</a>
+               студенты курса 
+            <a href="{% url 'students:list_view' %}?course_id={{course.id}}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+            </p>
+            {% endfor %}
+        </td>
+      </tr>        
+      <tr>
+        <td>Курсы ассистент</td>
+        <td>{% for course in assistant %}
+            <p><a href="{% url 'courses:detail' course.id %}">{{course.name}}</a>
+            студенты курса 
+            <a href="{% url 'students:list_view' %}?course_id={{course.id}}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+            </p>
+            {% endfor %}
+        </td>
+      </tr>        
+      </table>   
     </div>
+  </div>    
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
   </body>
 </html>
-
-
-
-
-
