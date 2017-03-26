@@ -4,6 +4,6 @@ from django.contrib.auth.models import User
 
 class CoachAdmin(admin.ModelAdmin):
 	list_display = ['user', 'gender', 'skype', 'description']
-#	list_filter = ['is_active']
+	list_filter = ['is_active']
 
 admin.site.register(Coach, CoachAdmin)
