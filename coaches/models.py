@@ -22,3 +22,7 @@ class Coach(models.Model):
         return '%s' % (self.user.last_name)
     get_surname.short_description = 'surname'
     # surname = property(_get_user_last_name)
+
+    def get_email(self):
+        return '%s' % (self.user.email)
+    get_email.short_description = 'email'
