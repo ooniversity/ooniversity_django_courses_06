@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang='en-us'>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,30 +40,30 @@
     </nav>
 
     <div class="container">
-      <h1 class="my_descript">{{student.name}} {{student.surname}}</h1>
+      <h1 class="my_descript">{{ student.surname }} {{ student.name }}</h1>
     </div>
     
     <div class="container">
 	    <table class="table">
 		      <tr>
 		        <td>дата рождения</td>
-		        <td>{{student.date_of_birth|date:"N d, Y"}}</td>
+		        <td>{{ student.date_of_birth|date:"N d, Y" }}</td>
 		      </tr>
 		      <tr>
 		        <td>адрес</td>
-		        <td>{{student.address}}</td>
+		        <td>{{ student.address }}</td>
 		      </tr>
 		      <tr>
 		        <td>почта</td>
-		        <td>{{student.email}}</td>
+		        <td>{{ student.email }}</td>
 		      </tr>
 		      <tr>
 		        <td>телефон</td>
-		        <td>{{student.phone}}</td>
+		        <td>{{ student.phone }}</td>
 		      </tr>
 		      <tr>
 		        <td>логин skype</td>
-		        <td>{{student.skype}}</td>
+		        <td>{{ student.skype }}</td>
 		      </tr>
 		      <tr>
 		        <td>курсы</td>
@@ -71,6 +71,10 @@
                         <p><a href='{% url 'courses:detail' course.id  %}'>{{ course }}</a></p>
                     {% endfor %}
 		        </td>
+		      </tr>
+		      <tr>
+		        <td></td>
+		        <td></td>
 		      </tr>
 	    </table>
     </div> 
