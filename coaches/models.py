@@ -23,5 +23,5 @@ class Coach(models.Model):
     def surname(self):
         return self.user.last_name
 
-    def e_mail(self):
-        return self.user.email
+'''    def e_mail(self):
+        return self.user.email'''
