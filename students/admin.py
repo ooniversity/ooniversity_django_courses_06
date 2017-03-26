@@ -5,11 +5,6 @@ from courses.models import Course
 class StudentAdmin(admin.ModelAdmin):
 
 
-
-
-
-
-
     search_fields = ['surname', 'email']
     list_display = [ 'fulname', 'email', 'skype']
     list_display_links = [ 'fulname',]
