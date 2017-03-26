@@ -13,4 +13,4 @@ class Student(models.Model):
     phone = models.CharField(max_length=250)
     address = models.CharField(max_length=250)
     skype = models.CharField(max_length=250)
-    courses = models.ForeignKey(Course, on_delete=models.CASCADE)
+    courses = models.ManyToManyField(Course)
