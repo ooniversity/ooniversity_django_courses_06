@@ -6,9 +6,9 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 
 
 class StudentAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'email', 'skype')
+    list_filter = ['courses',]
     search_fields = ['surname', 'email']
-    list_display = ['full_name', 'email', 'skype']
-    list_filter = ['courses']
     filter_horizontal = ['courses']
     
     fieldsets = [('Personal info', {'fields': ['name', 'surname', 'date_of_birth']}),
@@ -16,8 +16,8 @@ class StudentAdmin(admin.ModelAdmin):
                  (None, {'fields': ['courses']}),]
                 
 
-    def full_name(self, obj):
-        return str(obj.name + ' ' + obj.surname)
+    def full_name(self, row):
+        return '{} {}'.format(row.name, row.surname)
 
 
 admin.site.site_header = 'PyBursa Administration'
