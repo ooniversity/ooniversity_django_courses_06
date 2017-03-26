@@ -36,6 +36,39 @@
                 <p>{{ course.description }}</p>
             </div>
 
+	        <h2 class="page-header">Course teachers</h2>
+                {% if course.coach %}
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">
+                    
+                    <a href="{% url 'coaches:detail' course.coach.id %}">{{ coach.first_name }} {{ coach.last_name }}</a>
+                    </h3>
+                   </div>
+
+                <div class="panel-body">
+                         <p>{{ course.coach.description }}</p>{% endif %}
+                </div>
+                </div>
+
+                <h2 class="page-header">Course assistants</h2>
+                {% if course.assistant %}
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">
+                    
+                    <a href="{% url 'coaches:detail' assistant.id %}">{{ assistant.first_name }} {{ assistant.last_name }}</a>
+                    </h3>
+                   </div>
+
+                <div class="panel-body">
+                         <p>{{ course.assistant.description }}</p>{% endif %}
+                </div>
+                </div>
+                
+
+
+
             <h2 class="page-header">Course plan</h2>
 
             <div class="table-responsive">
