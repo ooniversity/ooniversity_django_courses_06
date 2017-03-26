@@ -5,8 +5,8 @@ class Course(models.Model):
 	name = models.CharField(max_length=254) # название курса
 	short_description = models.CharField(max_length=254) # краткое описание
 	description = models.TextField() # полное описание
-#	coach = models.ForeignKey(Coach)
-#	assistant = models.ForeignKey(Coach)
+	coach = models.ForeignKey(Coach, null=True, related_name='coach_courses')
+	assistant = models.ForeignKey(Coach, null=True, related_name='assistant_courses')
 
 	def __str__(self): # функция возвращает название курса
 		return self.name 
