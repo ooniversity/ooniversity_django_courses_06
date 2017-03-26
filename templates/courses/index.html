@@ -1,0 +1,17 @@
+<html>
+<head></head>
+<body>
+Меню: <a href="{% url 'students:list_view' %}">Студенты</a>
+<h1>Название курс</h1>
+<p>Описание курса</p>
+<br><br>
+
+<table>
+    <tr><th>Курс</th><th>Описание</th></tr>
+    {% for course in courses %}
+    <tr><td><a href="{% url 'courses:detail' course.id %}">{{course.name}}</a></td><td>{{course.short_description}}</td></tr>
+     {% endfor %}
+</table>
+
+</body>
+</html>

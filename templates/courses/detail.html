@@ -1,0 +1,19 @@
+<html>
+<head></head>
+<body>
+Меню: <a href="{% url 'students:list_view' %}?course_id={{course.id}}">Студенты</a>
+<br>
+
+{{course.name}}<br>
+{{course.description}}
+<br><br>
+
+<table>
+    <tr><th>#</th><th>Тема</th><th>Описание</th></tr>
+    {% for lesson in lessons %}
+    <tr><td>{{lesson.id}}</td><td>{{lesson.subject}}</td><td>{{lesson.description}}</td></tr>
+     {% endfor %}
+</table>
+
+</body>
+</html>
