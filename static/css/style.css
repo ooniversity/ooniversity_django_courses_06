@@ -123,6 +123,10 @@
   padding: 4px 0;
 }
 
+.panel-title {
+  font-weight: bold;
+}
+
 @media (min-width:600px) {
   .persons-list {
     display: -webkit-box;
