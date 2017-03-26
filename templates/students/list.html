@@ -1,0 +1,21 @@
+<html>
+<head></head>
+<body>
+<h1>Список студентов</h1>
+<br><br>
+
+<table>
+    <tr><th>#</th><th>Фамилия имя</th><th>Адрес</th><th>skype</th><th>Курсы</th></tr>
+    {% for student in students %}
+    <tr>>
+        <td>{{student.id}}</td>
+        <td><a href="{% url 'students:detail' student.id %}">{{student.name}} {{student.surname}}</a></td>
+        <td>{{student.address}}</td>
+        <td>{{student.skype}}</td>
+        <td><a href="{% url 'courses:detail' course_id %}">{{student.courses}}</a></td>
+    </tr>
+     {% endfor %}
+</table>
+
+</body>
+</html>
