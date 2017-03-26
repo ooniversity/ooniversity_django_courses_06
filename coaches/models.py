@@ -12,6 +12,7 @@ class Coach(models.Model):
 	skype = models.CharField(max_length=254)
 	description = models.TextField()
 	is_active = models.BooleanField(default=True)
+	is_staff = models.BooleanField(default=True)
 
 	def __str__(self):
 		return self.user.username	
