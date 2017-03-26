@@ -17,3 +17,9 @@ class Student(models.Model):
 
     def get_courses(self):
         return self.courses.all()
+
+    def _get_full_name(self):
+        """Returns the person's full name."""
+        return '%s %s' % (self.name, self.surname)
+
+    fullname = property(_get_full_name)

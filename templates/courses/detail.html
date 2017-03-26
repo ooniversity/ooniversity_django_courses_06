@@ -36,6 +36,34 @@
                 <p>{{ course.description }}</p>
             </div>
 
+            <h2>Instructors</h2>
+
+            {% if coach %}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Teacher</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <h4>{{ coach.get_name }} {{ coach.get_surname }}</h4>
+                        <p>{{ coach.description }}</p>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if assistant %}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Assistant</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <h4>{{ assistant.get_name }} {{ assistant.get_surname }}</h4>
+                        <p>{{ assistant.description }}</p>
+                    </div>
+                </div>
+            {% endif %}
+
             <h2 class="page-header">Course plan</h2>
 
             <div class="table-responsive">
