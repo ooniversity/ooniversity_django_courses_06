@@ -45,7 +45,10 @@
                     </div>
 
                     <div class="panel-body">
-                        <h4>{{ coach.get_name }} {{ coach.get_surname }}</h4>
+                        <h4>
+                            <a href="{% url 'coaches:detail' coach.id %}">{{ coach.get_name }} {{ coach.get_surname }}</a>
+                        </h4>
+
                         <p>{{ coach.description }}</p>
                     </div>
                 </div>
@@ -58,7 +61,10 @@
                     </div>
 
                     <div class="panel-body">
-                        <h4>{{ assistant.get_name }} {{ assistant.get_surname }}</h4>
+                        <h4>
+                            <a href="{% url 'coaches:detail' assistant.id %}">{{ assistant.get_name }} {{ assistant.get_surname }}</a>
+                        </h4>
+
                         <p>{{ assistant.description }}</p>
                     </div>
                 </div>
