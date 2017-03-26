@@ -6,7 +6,7 @@ class Course(models.Model):
     short_description = models.CharField('Опис',max_length=200)     # краткое описание
     description = models.TextField('Детальна інформація')      # полное описание
     def __str__(self):
-        return '%s | %s' % (self.name, self.short_description)
+        return '%s' % (self.name)
     
 class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE) # курс
