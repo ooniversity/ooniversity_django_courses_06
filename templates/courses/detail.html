@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TechBursa Python/Django :: Main</title>
+    <title>TechBursa Python/Django :: Про курс</title>
 
 	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
 
@@ -27,7 +27,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="{% url 'index' %}">Main</a></li>
             <li><a href="{% url 'contact' %}">Contacts</a></li>
-            <li><a href="{% url 'students:list_view' %}">Students</a></li>
+            <li><a href="{% url 'students:list_view' %}?course_id={{ course.id }}">Students</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -37,31 +37,38 @@
 
 	<div class="container">
 	  <div class="jumbotron">
-	    	<h1 class="coolshadow">Вітаємо сайті <a href="#">&laquoTechBursa&raquo!</a></h1>
-			<p class="greetings">Цей сайт присвячено курсу інтенсивного, практичного навчання WEB-програмуванню на мові Python з використанням фреймворку Django. 
-			А також освоєнню і застосуанню найновіших методів та інструментів ефективної розробки, впровадження та розгортання
-			WEB-проектів та сайтів. <br>
-			<a href="#">TechBursa!</a> - це передові методи навчання! <br>
-			<strong>Приєднуйтесь до нашої спільноти!</strong>
-			</p>
+	    	<h1 class="coolshadow">Курс - &laquo{{course.name}}&raquo</h1>
+			<h2><strong>Description</strong><small> (опис курсу):</small></h2>
+			<p class="greetings"><strong>{{course.description}}</strong></p>
 	  </div>
 	</div>
 
 	<div class="container">
-        <div class="panel panel-primary"> 
-            <div class="panel-heading"> 
-                <h2 class="panel-title" align="center"><h2 class="Program">ПЕРЕЛІК КУРСІВ:</h2></h2>
-            </div> 
-            <div class="panel-body">
-                <div class="row">
-                        <ol class="num" >
-                        {% for each_course in courses %}
-                            <li style="font-size: 14pt;"><strong><a href="{% url 'courses:detail' each_course.id  %}">{{each_course.name}}</a> :: </strong><em><b>{{each_course.short_description}}</b></em> ::</li>
-                        {% endfor %}
-                        </ol>
-                </div>
-            </div>
-        </div>
+		<div class="panel panel-primary"> 
+			  <div class="panel-heading"> 
+				<h2 class="panel-title" align="center"><h2 class="Program">Програма курсу:</h2></h2>
+			  </div>
+			  <div class="panel-body">
+                            <table class="table table-striped">
+                                <thead align=center>
+                                <tr>
+                                    <th><h4>№</h4></th>
+                                    <th style="width: 20%;"><h4>Тема</h4></th>
+                                    <th><h4>Опис</h4></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for each_lesson in lessons %}
+                                <tr>
+                                    <td style="vertical-align: middle;"><strong>{{ each_lesson.order }}</strong></td>
+                                    <td style="vertical-align: middle;"><strong>{{ each_lesson.subject }}</strong></td>
+                                    <td style="vertical-align: middle;"><strong>{{ each_lesson.description }}</strong></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+		</div>
 	</div>
 
 	<footer class="footer">

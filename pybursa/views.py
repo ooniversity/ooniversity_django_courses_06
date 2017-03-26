@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from courses.models import Course
 # Create your views here.
 
 
 def index (request):
-    return render(request,'index.html')
+    list_of_courses=Course.objects.all()
+    return render(request,'index.html', {'courses': list_of_courses})
   
 def contact(request):
     return render(request,'contact.html')
