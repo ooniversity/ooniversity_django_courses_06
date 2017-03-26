@@ -14,6 +14,7 @@ def list_view(request):
                     'students': my_students,	
 				    })
 
+
 def detail(request, student_id):
     student = Student.objects.filter(id=int(student_id)).first()
     return render(request, 'students/detail.html', {
