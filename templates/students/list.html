@@ -55,16 +55,14 @@
         </thead>      
       <tbody>
         {% for person in stud_on_course %}
-        <tr class="link" onclick="document.location = '{% url 'students:detail' person.id %}';">
-          <td>{{ forloop.counter }}</td>
-          <td><a href="{% url 'students:detail' person.id %}">{{person}}</a></td>
-          <td>{{person.address}}</td>
-          <td>{{person.skype}}
-          <td>
+        <tr>
+          <td style="vertical-align: middle;">{{ forloop.counter }}</td>
+          <td style="vertical-align: middle;"><a href="{% url 'students:detail' person.id %}">{{person}}</a></td>
+          <td style="vertical-align: middle;">{{person.address}}</td>
+          <td style="vertical-align: middle;">{{person.skype}}
+          <td style="vertical-align: middle;">
             {% for course in person.courses.all %}
-                <ul>
-                    <li><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></li>
-                </ul>
+                <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a><br>
             {% endfor %}
           </td>
         </tr>
