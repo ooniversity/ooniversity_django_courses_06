@@ -11,6 +11,5 @@ class Student(models.Model):
     skype = models.CharField(max_length=64)
     courses = models.ManyToManyField(Course, verbose_name=u'курсы, на которых учится студент')
     
-    def __str__(self):
-        return self.name  
+
 
