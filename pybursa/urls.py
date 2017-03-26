@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #url(r'^quadratic/results/', include('quadratic.urls')),
     url(r'courses/', include('courses.urls'), name='courses'),
-    url(r'students/', include('students.urls'), name='students')
+    url(r'students/', include('students.urls'), name='students'),
+    url(r'^coaches/', include('coaches.urls'), name='coaches'),
 ]

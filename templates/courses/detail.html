@@ -36,6 +36,42 @@
   </div>
 
   <div class="container">
+
+
+    <h2>Преподы</h2>
+    <br/>
+      {% if course_.coach %}
+      <div class="panel panel-default">
+        <div class="panel-heading">Coach</div>
+          <div class="panel-body"><a href="{% url 'coaches:detail' course_.coach.id %}">{{ course_.coach.full_name }}</a><br/>
+      {{ course_.coach.description }}
+          </div>
+
+
+
+      {% endif %}
+      {% if course_.assistant %}
+      <div class="panel panel-default">
+        <div class="panel-heading">Assistant</div>
+          <div class="panel-body"><a href="{% url 'coaches:detail' course_.assistant.id %}">{{ course_.assistant.full_name }}</a><br/>
+        {{ course_.assistant.description }}
+        </div>
+      </div>
+    </div>
+      {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
   <h2>План курса</h2>
   <p></p>
   <table class="table table-striped">
