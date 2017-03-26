@@ -5,7 +5,7 @@ from courses.models import Course, Lesson
 class LessonInline(admin.TabularInline):
     model = Lesson
     fields = ['subject', 'description', 'order']
-    ordering = ('order',)
+   # ordering = ('order',)
     extra = 0
 
    

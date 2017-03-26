@@ -1,6 +1,7 @@
 from django.db import models
 from courses.models import Course
 
+
 class Student(models.Model):
     name = models.CharField(verbose_name=u'имя', max_length=64)
     surname = models.CharField(verbose_name=u'фамилия', max_length=64)
@@ -11,5 +12,8 @@ class Student(models.Model):
     skype = models.CharField(max_length=64)
     courses = models.ManyToManyField(Course, verbose_name=u'курсы, на которых учится студент')
     
+    def __str__(self):
+            return '%s %s' % (self.surname, self.name)
+        
 
 
