@@ -8,12 +8,23 @@
 {{course.description}}
 <br><br>
 
+преподаватель<br>
+<a href="{% url 'coaches:detail' course.coach.id %}">{{course.coach.name}} {{course.coach.surname}}</a><br>
+{{course.coach.description}}
+<br><br>
+ассистент<br>
+<a href="{% url 'coaches:detail' course.assistant.id %}">{{course.assistant.name}} {{course.assistant.surname}}</a><br>
+{{course.assistant.description}}
+<br><br>
+
 <table>
     <tr><th>#</th><th>Тема</th><th>Описание</th></tr>
     {% for lesson in lessons %}
     <tr><td>{{lesson.id}}</td><td>{{lesson.subject}}</td><td>{{lesson.description}}</td></tr>
      {% endfor %}
 </table>
+<br><br>
+
 
 </body>
 </html>

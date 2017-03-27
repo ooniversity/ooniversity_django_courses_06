@@ -1,0 +1,30 @@
+<html>
+<head></head>
+<body>
+{{coach.name}} {{coach.surname}}<br>
+<br><br>
+
+<table>
+    <tr><th></th><th></th></tr>
+    <tr><td>дата рождения</td><td>{{coach.date_of_birth}}</td></tr>
+    <tr><td>адрес</td><td>{{coach.address}}</td></tr>
+    <tr><td>почта</td><td>{{user.email}}</td></tr>
+    <tr><td>скайп</td><td>{{coach.skype}}</td></tr>
+    <tr><td>телефон</td><td>{{coach.phone}}</td></tr>
+
+    <tr><th>курсы учитель</th><th>студенты курса</th></tr>
+    {% for course in course_coach%}
+    <tr><td><a href="{% url 'courses:detail' course.id %}">{{course.name}}</a></td>
+        <td><a href="{% url 'students:list_view' %}?course_id={{course.id}}">студенты курса</a></td></tr>
+    {% endfor %}
+
+    <tr><th>курсы ассистент</th><th>студенты курса</th></tr>
+    {% for assistant in course_assistant%}
+    <tr><td><a href="{% url 'courses:detail' assistant.id %}">{{assistant.name}}</a></td>
+        <td><a href="{% url 'students:list_view' %}?course_id={{assistant.id}}">студенты курса</a></td></tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>
