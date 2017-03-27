@@ -8,7 +8,6 @@
     <meta name="author" content="">
     {% load static %}
     <link rel="icon" href="{% static 'images/pybursa.png' %}">
-    
     <title>Contacts</title>
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{%static 'css/style.css' %}" rel="stylesheet">
@@ -20,20 +19,49 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'index' %}">Main</a></li>
             <li><a href="{% url 'contact' %}">Contacts</a></li>
-            <li><a href="{% url 'students:list_view' %}">Students</a></li>
+            <li><a href="{% url 'students:list_view' %}?course_id={{ course.id }}">Students</a></li>
             <li><a href="{% url 'results' %}">Quadratic equation</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav>
-    </br>
-    </br>
+
     <div class="page-content">
       <div class="container">
 
           <div class="jumbotron">
             <h1>{{ course.name }}</h1>
             <p>{{ course.description }}</p>
+          </div>
+
+          <h2 class="page-header">Course teachers</h2>
+          {% if course.coach %}
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                    
+              <a href="{% url 'coaches:detail' course.coach.id %}">{{ coach.first_name }} {{ coach.last_name }}</a>
+              </h3>
+            </div>
+
+            <div class="panel-body">
+              <p>{{ course.coach.description }}</p>{% endif %}
+            </div>
+          </div>
+
+          <h2 class="page-header">Course assistants</h2>
+          {% if course.assistant %}
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                    
+              <a href="{% url 'coaches:detail' assistant.id %}">{{ assistant.first_name }} {{ assistant.last_name }}</a>
+              </h3>
+            </div>
+
+            <div class="panel-body">
+              <p>{{ course.assistant.description }}</p>{% endif %}
+            </div>
           </div>
 
           <h2 class="page-header">Course Plan</h2>
@@ -53,7 +81,7 @@
                   <tr>
                     <td>{{ lesson.order }}</td>
                     <td>{{ lesson.subject }}</td>
-                    <td>{{ lesson.description}}</td>
+                    <td>{{ lesson.description }}</td>
                   </tr>
                 {% endfor %}
               </tbody>
