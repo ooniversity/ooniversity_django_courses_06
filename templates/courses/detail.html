@@ -43,8 +43,8 @@
 	</div>
 
         <div class="container">
+            {% if coach %}
             <h2>Викладацький склад:</h2>
-<!--             {% if coach %} -->
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title"><strong>Викладач</strong></h3>
@@ -56,7 +56,7 @@
                         <p>{{ coach.description }}</p>
                     </div>
                 </div>
-<!--             {% endif %} -->
+            {% endif %}
 
 <!--             {% if assistant %} -->
                 <div class="panel panel-info">
