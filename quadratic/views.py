@@ -1,56 +1,43 @@
 from django.shortcuts import render
-from math import sqrt
-from django.http import QueryDict
+
+# Create your views here.
+from django.http import HttpResponse, HttpResponseNotFound
+
 
 def quadratic_results(request):
-    def try_int(data):
-        my_int = data
-        if data == '':
-            res = 'коэффициент не определен'
-        else:
-            try: 
-                my_int = int(data)
-                res = ''           
-            except: 
-                res = 'коэффициент не целое число'
-        return res, my_int 
-       
-    url_data = request.GET
-    a = url_data['a'] if url_data.__contains__('a') else ''
-    b = url_data['b'] if url_data.__contains__('b') else ''
-    c = url_data['c'] if url_data.__contains__('c') else ''
-    res_a, a = try_int(a)                                       
-    res_b, b = try_int(b)   
-    res_c, c = try_int(c) 
-    if a == 0:
-        res_a = 'коэффициент при первом слагаемом уравнения не может быть равным нулю'
-        my_discr = ''
-        res_qadr = ''
-    elif a == '' or b == '' or c == '':
-        my_discr = ''
-        res_qadr = ''
+    mes_a=''
+    mes_b=''
+    mes_c=''
+    a_int=False
+    b_int=False
+    c_int=False
+    a=request.GET.get('a')
+    b=request.GET.get('b')
+    c=request.GET.get('c')
+    if ((a.isdigit()==True) or ((len(a)>1) and (a[0]=='-') and (a[1:].isdigit())==True)):
+        a_int=True
+    if ((b.isdigit()==True) or ((len(b)>1) and (b[0]=='-') and (b[1:].isdigit())==True)):
+        b_int=True
+    if ((c.isdigit()==True) or ((len(c)>1) and (c[0]=='-') and (c[1:].isdigit())==True)):
+        c_int=True
+
+    if (a == '0') or (a =='') or (a_int==False) or (b=="") or (b_int==False) or (c=="") or (c_int==False):
+        ch=1
+        if (a!='') and (a_int==False):
+            mes_a="коэффициент не целое число"
+        if (b!='') and (b_int==False):
+            mes_b="коэффициент не целое число"
+        if (c!='') and (c_int==False):
+            mes_c="коэффициент не целое число"
+             
+
+        return render(request, "quadratic/results.html", {"a": a, "b": b, "c": c, "mes_a": mes_a,"mes_b": mes_b,"mes_c": mes_c, "ch":ch})
     else:
-        my_discr = b*b - 4*a*c
-        if my_discr < 0:
-            res_qadr = 'Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.'
-        elif my_discr == 0:
-            x1 = -b /(2 * a)
-            res_qadr = 'Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = ' + str(x1)
-        elif my_discr > 0:
-            x1 = (-b + sqrt(my_discr)) / (2 * a)
-            x2 = (-b - sqrt(my_discr)) / (2 * a)
-            res_qadr = 'Квадратное уравнение имеет два действительных корня: x1 = ' + str(x1) + ', x2 = '+ str(x2)
-
-        if my_discr != '':
-            my_discr = 'Дискриминант: ' + str(my_discr)
-
-    return render(request, 'results.html', {
-            'a': a,
-            'b': b,
-            'c': c,
-            'res_a': res_a,
-            'res_b': res_b,
-            'res_c': res_c,
-            'discr': my_discr,
-            'res_qadr': res_qadr
-        })
+        ch=0
+        d=int(b)**2 - 4*int(a)*int(c)
+        if d<0:
+            return render(request, "quadratic/results.html", {"a": a, "b": b, "c": c, "discr": d,"ch":ch})
+        else:
+            x1=(-int(b)+d**(1/2))/2*int(a)
+            x2=(-int(b)-d**(1/2))/2*int(a)
+        return render(request, "quadratic/results.html", {"a": a, "b": b, "c": c, "discr": d,"x1": x1, "x2": x2, "ch":ch})

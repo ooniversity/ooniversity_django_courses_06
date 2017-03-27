@@ -1,1 +1,1 @@
-# ooniversity_django_courses_06
+# ooniversity_django_courses_05
