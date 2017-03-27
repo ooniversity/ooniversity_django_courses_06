@@ -3,6 +3,7 @@
 
 from django.shortcuts import render
 from .models import Course, Lesson
+from coaches.models import Coach
 
 
 def index(request):
@@ -13,5 +14,6 @@ def index(request):
 def detail(request, course_id):
     course = Course.objects.get(id=course_id)
     lessons = Lesson.objects.select_related().filter(course=course_id)
+    print(course)
 
     return render(request, 'courses/detail.html', {'course': course, 'lessons': lessons})
