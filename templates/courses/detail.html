@@ -11,7 +11,6 @@
     {% load staticfiles %}
     <link href="{% static '/css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static '/css/style.css' %}" rel="stylesheet">
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,54 +44,28 @@
 	        <p>{{ my_course.description }}</p>	
       </div>
     </div>
-    
-    <div class="container">
-    <h2>Преподаватели:</h2>
-    </div>
-    <div class="container">
-      <div class="panel panel-default">      
-          <!-- Default panel contents -->
-        <div class="panel-heading"><h4>Учитель</h4> </div>
-          <div class="container">
-	          <h5 class="coaches"><a href='{% url 'coaches:detail' course_coache.id %}'>{{ course_coache.user.first_name }} {{ course_coache.user.last_name }}</a></h5>
-	          <p>{{ my_course.coach.description }}</p>
-	        </div>
-        </div>
-      </div>
-     </div>
-     
-     <div class="container"> 
-      <div class="panel panel-default">       
-          <!-- Default panel contents -->
-        <div class="panel-heading"><h4>Ассистент</h4></div>
-          <div class="container">
-        	  <h5 class="coaches"><a href='{% url 'coaches:detail' course_assist.id %}'>{{ course_assist.user.first_name }} {{ course_assist.user.last_name }}</a></h5>
-	          <p>{{ my_course.assistant.description }}</p>
-          </div>
-        </div>
-      </div>     
-    </div>
-    
+
     <div class="container">
 	    <h2>План курса:</h2>
-      <div class="panel panel-default">       
-          <!-- Default panel contents -->        
-          <table class="table">         
-            <tr>           
-              <td><b>#</b></td>
-              <td><b>Тема</b></td>
-              <td><b>Описание</b></td>
-            </tr>         
-          {% for lesson in course_lessons %}
-            <tr>
-              <td>{{ lesson.order }} </td>
-              <td>{{ lesson.subject }} </td>
-              <td>{{ lesson.description }}</td>
-            </tr>
-          {% endfor %}
-          </table>
-        </div>
-      </div>
+      <table class="table">
+        <tr>
+          <td><b>#</b></td>
+          <td><b>Тема</b></td>
+          <td><b>Описание</b></td>
+        </tr>
+      {% for lesson in course_lessons %}
+        <tr>
+          <td>{{ lesson.order }} </td>
+          <td>{{ lesson.subject }} </td>
+          <td>{{ lesson.description }}</td>
+        </tr>
+      {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tabla>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
