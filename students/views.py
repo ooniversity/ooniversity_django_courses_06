@@ -7,15 +7,15 @@ def list_view(request):
     req = request.GET
     course_id = req.get('course_id', '')
     if course_id != '':
-        my_students = Student.objects.filter(courses=Course.objects.filter(id=int(course_id)))
+        course_students = Student.objects.filter(courses__id=course_id)
     else:
-        my_students = Student.objects.all()
+        course_students = Student.objects.all()
     return render(request, 'students/list.html', {
-                    'students': my_students,	
-				    })
+                           'students': course_students,	
+                           })
 
 def detail(request, student_id):
-    student = Student.objects.filter(id=int(student_id)).first()
+    student = Student.objects.get(id=student_id)
     return render(request, 'students/detail.html', {
-				    'student': student,	
-				    })
+                           'student': student,	
+                           })
