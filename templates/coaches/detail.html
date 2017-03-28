@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang='ru'>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Карточка coach</title>
+
+    <!-- Bootstrap -->
+    {% load staticfiles %}
+    <link href="{% static '/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static '/css/style.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'index' %}">
+            <img id='logo_itBursa' alt="Brand" src="{% static '/images/logo1.png' %}">
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'index' %}">Main</a></li>
+            <li><a href="{% url 'contact' %}">Contacts</a></li>
+            <li><a href="{% url 'students:list_view' %}">Students</a></li>
+          </ul>
+				  
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+
+    <div class="page-content">
+      <div class="container">
+        <h1 class="page-header">{{ coach.user.first_name }} {{ coach.user.last_name }}</h1>
+         <div class="panel panel-default">
+           <table class="table">
+             <tr>
+               <th>Дата рождения</th>
+               <td>{{ coach.date_of_birth }}</td>
+             </tr>
+             <tr>
+               <th>Адрес</th>
+               <td>{{ coach.address }}</td>
+             </tr>
+             <tr>
+               <th>Почта</th>
+               <td>{{ coach.user.email }}</td>
+             </tr>
+             <tr>
+               <th>Логин Skype</th>
+               <td>{{ coach.skype }}</td>
+             </tr>
+             <tr>
+               <th>Телефон</th>
+               <td>{{ coach.phone }}</td>
+             </tr>
+            {% if coach_courses %}
+             <tr>
+               <th>курсы учитель</th>
+               <td>
+               {% for course in coach_courses.all %}
+                 <ul>
+                   <li><a href='{% url 'courses:detail' course.id  %}'>{{ course }}</a> course students <a href='{% url 'students:list_view' %}?course_id={{ course.id }}' class="glyphicon glyphicon-share" aria-hidden="true"></a></p>
+                   </li>
+                 </ul>
+               {% endfor %}
+               </td>
+             </tr>
+             {% endif %}       
+
+            {% if assistant_courses %}
+             <tr>
+               <th>курсы ассистент</th>
+               <td>
+               {% for course in assistant_courses.all %}
+                 <ul>
+                   <li><a href='{% url 'courses:detail' course.id  %}'>{{ course }}</a> студенты курса <a href='{% url 'students:list_view' %}?course_id={{ course.id }}' class="glyphicon glyphicon-share" aria-hidden="true"></a></p>
+                   </li>
+                 </ul>
+               {% endfor %}
+               </td>
+             </tr>
+             {% endif %}       
+         </table>
+       </div>
+     </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static '/js/bootstrap.js' %}"></script>
+  </body>
+</html>
