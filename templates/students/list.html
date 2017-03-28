@@ -53,9 +53,9 @@
             <td>skype</td>
             <td>курсы</td>
           </tr>
-          {% for student  in students %}
+          {% for student in students %}
           <tr>
-            <td>{{ forloop.counter }}</td>
+            <td>{{ student.id }}</td>
             <td><a href="{% url 'students:detail' student.id %}">{{ student.name }} {{ student.surname }}</a></td>
             <td>{{ student.address }}</td>
             <td>{{ student.skype }}</td>           
@@ -66,9 +66,11 @@
             </td>
           </tr>
           {% endfor %}
+
         </table>
       </div>
-    </div> 
+    </div>
+  
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
