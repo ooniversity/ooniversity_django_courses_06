@@ -11,6 +11,7 @@
     {% load staticfiles %}
     <link href="{% static '/css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static '/css/style.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,7 +48,7 @@
            <table class="table">
              <tr>
                <th>Дата рождения</th>
-               <td>{{ coach.date_of_birth|date:"N d, Y" }}</td>
+               <td>{{ coach.date_of_birth }}</td>
              </tr>
              <tr>
                <th>Адрес</th>
