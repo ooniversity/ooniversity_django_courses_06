@@ -5,5 +5,5 @@ from . import views
 
 app_name = 'courses'
 urlpatterns = [
-    url(r'^(?P<course_num>[0-9]+)/$', views.detail, name='detail'),
+    url(r'^(?P<course_num>\d+)/$', views.detail, name='detail'),
 ]

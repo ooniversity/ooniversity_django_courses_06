@@ -66,11 +66,11 @@
                <th>Телефон</th>
                <td>{{ coach.phone }}</td>
              </tr>
-            {% if coach_courses %}
+            {% if coach.coach_courses.all %}
              <tr>
                <th>курсы учитель</th>
                <td>
-               {% for course in coach_courses.all %}
+               {% for course in coach.coach_courses.all %}
                  <ul>
                    <li><a href='{% url 'courses:detail' course.id  %}'>{{ course }}</a> course students <a href='{% url 'students:list_view' %}?course_id={{ course.id }}' class="glyphicon glyphicon-share" aria-hidden="true"></a></p>
                    </li>
@@ -80,11 +80,11 @@
              </tr>
              {% endif %}       
 
-            {% if assistant_courses %}
+            {% if coach.assistant_courses %}
              <tr>
                <th>курсы ассистент</th>
                <td>
-               {% for course in assistant_courses.all %}
+               {% for course in coach.assistant_courses.all %}
                  <ul>
                    <li><a href='{% url 'courses:detail' course.id  %}'>{{ course }}</a> студенты курса <a href='{% url 'students:list_view' %}?course_id={{ course.id }}' class="glyphicon glyphicon-share" aria-hidden="true"></a></p>
                    </li>
