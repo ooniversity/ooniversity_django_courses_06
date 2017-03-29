@@ -9,7 +9,7 @@
 
 {% block content %}
         <div class='jumbotron'>
-         <h1>PyBursa. Python and Django</h1>
+         <h1>Python and Django</h1>
          <h3>Description</h3>
          <p class="description_main">За 9 недель курса вы создадите собственный сайт на Python и Django.</p>
          <p class="description">
@@ -22,7 +22,7 @@
 
       <div class="container">
         <div class="jumbotron">
-          <h3>Program</h3></br>
+          <!--<h3>Program</h3></br>
           <p><a class="btn btn-primary btn-lg" data-toggle="collapse" data-target="#hide-prog" role="button">Week 1 - 9</a></p>
           <div id="hide-prog" class="collapse">
           <p class="week1">Week 1. Введение в курс дела и основы Python</p>
@@ -35,7 +35,7 @@
           <p class="week8">Week 8. Django: CBV, Реализация стандартных задач</p>
           <p class="week9">Week 9. Django: Средства отладки и тестирования, Деплоймент</p>  
           </div>
-        </div>
+        </div>-->
 
         <h2 class="page-header">Our courses</h2>
         
@@ -52,7 +52,7 @@
               {% for course in courses_list %}
                 <tr>
                   <th><a href={% url 'courses:detail' course.id %}>{{ course.name }}</a></th>
-                  <td>{{ course.short_descriptioin }}</td>
+                  <td>{{ course.short_description }}</td>
                 </tr>
               {% endfor %}
             </tbody>
