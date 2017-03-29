@@ -13,4 +13,4 @@ class CourseAdmin(admin.ModelAdmin):
 	search_fields = ['name']
 
 admin.site.register(Course, CourseAdmin)
-admin.site.register(Lesson)
+admin.site.register(Lesson) 

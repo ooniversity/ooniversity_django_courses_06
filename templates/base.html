@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>main</title>
+    <title>{% block title %}ItBursa{% endblock title %}</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
@@ -24,33 +24,18 @@
         <a class="navbar-brand" href="{% url 'index' %}">ItBursa</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{% url 'index' %}">Main</a></li>
-        <li><a href="{% url 'contact' %}">Contacts</a></li>
-        <li><a href="{% url 'student_list' %}">Students</a></li>
-        <li><a href="{% url 'quadratic_results' %}?a=1&b=6&c=9">Quadratic Equation</a></li>
+        <li class="{% block nav_class_index %}{% endblock %}"><a href="{% url 'index' %}">Main</a></li>
+        <li class="{% block nav_class_contact %}{% endblock %}"><a href="{% url 'contact' %}">Contacts</a></li>
+        <li class="{% block nav_class_students %}{% endblock %}"><a href="{% url 'students:list_view' %}">Students</a></li>
+        <li class="{% block nav_class_quadratic %}{% endblock %}"><a href="{% url 'quadratic_results' %}?a=1&b=6&c=9">Quadratic Equation</a></li>
       </ul>
     </div>
   </nav>
-    <div class="container">
-      <p>Квадратное уроавнение a*x*x + b*x + c = 0</p>
-      <ul>
-        <li>a = {{ a }}</li>{{ error_a }}
-        <li>b = {{ b }}</li>{{ error_b }}
-        <li>c = {{ c }}</li>{{ error_c }}
-      </ul>
-      {% if flag == True %}
-      <p>Дискриминант: {{ descr }}</p>
-      <p>{{ info }}</p>
-      {% endif %}
-    </div>
+  {% block content %}
+  {% endblock content %}
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
   </body>
 </html>
-
-
-
-
-
