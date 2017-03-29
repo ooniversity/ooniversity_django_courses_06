@@ -9,6 +9,8 @@
 
 {% block content %}
 {% include 'include/course_description_include.html' %}
+           <p class="description">{{ description|truncatechars:32 }}</p>
+        </div>
       </div>
 
       <div class="container">
