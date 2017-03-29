@@ -22,7 +22,7 @@
 
 
 
-  <body>
+  <div>
   <ul class="nav nav-pills">
     <li role="presentation" {% block main_active %} class="" {% endblock main_active %}><a href="{% url 'index' %}">Главная</a></li>
     <li role="presentation" {% block contacts_active %} class="" {% endblock contacts_active %}><a href="{% url 'contact' %}">Контакты</a></li>
@@ -62,7 +62,6 @@
     </tbody>
   </table>
 
-  {% include 'include/index_plan_include.html' %}
 
   <div class="jumbotron">
     <div class="container">
@@ -70,9 +69,7 @@
     Поэтому мы отчисляем студентов, которые не делают домашние задания в срок — два проваленных дедлайна без уважительной причины,
     и мы вынуждены будем вас отчислить.</p>
     </div>
-  </div>
-  </div>
-  </div>
+   </div>
   {% endblock content %}
 
   {% block pager_footer %}
