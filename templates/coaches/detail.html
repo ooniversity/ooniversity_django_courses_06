@@ -7,45 +7,43 @@
 
 {% block content %}
     <div class="container">
-    <h2>{{coach.user.first_name}} {{ coach.user.last_name }}</h2>
+    <h2 class="page-header coolshadow">{{coach.user.first_name}} {{ coach.user.last_name }}</h2>
 <div>
     <div class="table-responsive">
     <table class="table table-striped">
       <tr>
         <th>Date of birth</th>
-        <th>{{coach.date_of_birth|date:"d F, Y"}}</th>
+        <th>{{ coach.date_of_birth|date:"d F, Y" }}</th>
       </tr>
 
       <tr>
         <th>Address</th>
-        <th>{{coach.address}}</th>
+        <th>{{ coach.address }}</th>
       </tr>
 
       <tr>
         <th>Email</th>
-        <th>{{coach.user.email}}</th>
+        <th>{{ coach.user.email }}</th>
       </tr>
             <th>Skype</th>
-            <th>{{coach.skype}}</th>
+            <th>{{ coach.skype }}</th>
         </tr>
             <th>Phone</th>
-            <th>{{coach.phone}}</th>
+            <th>{{ coach.phone }}</th>
         </tr>
             <th>Coach on</th>
              <td>{% for course in teacher %}
-               <p><a href="{% url 'courses:detail' course.id %}">{{course.name}}</a>
-               Course students 
-               <a href="{% url 'students:list_view' %}?course_id={{course.id}}"><span class="glyphicon glyphicon-info-sign"></span></a>
+               <p><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a> 
+               <a href="{% url 'students:list_view' %}?course_id={{ course.id }}"><span class="glyphicon glyphicon-info-sign"></span>Course students</a>
                </p>
                {% endfor %}
              </td>
         </tr>        
         </tr>
             <th>Courses assist</th>
-             <td>{% for course in assistant %}
-               <p><a href="{% url 'courses:detail' course.id %}">{{course.name}}</a>
-               Course students 
-               <a href="{% url 'students:list_view' %}?course_id={{course.id}}"><span class="glyphicon glyphicon-info-sign"></span></a>
+             <td><p>{% for course in assistant %}
+               <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a> 
+               <a href="{% url 'students:list_view' %}?course_id={{course.id}}"><span class="glyphicon glyphicon-info-sign"></span>Course students</a>
                </p>
                {% endfor %}
              </td>

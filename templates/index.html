@@ -8,16 +8,7 @@
 
 
 {% block content %}
-        <div class='jumbotron'>
-         <h1>Python and Django</h1>
-         <h3>Description</h3>
-         <p class="description_main">За 9 недель курса вы создадите собственный сайт на Python и Django.</p>
-         <p class="description">
-          На протяжении курса Вы пройдете через все стадии разработки сайта от проектирования интерфейса и структуры данных до программирования функционала и деплоймента.
-
-          Вы научитесь языку, и освоите технологии и инструменты, которые необходимые web-разработчику, (git/github, html/css, bootstrap, databases, linux, shell, nginx, deployment), научитесь понимать, что именно Вам нужно и где находятся ответы на возникающие вопросы.
-         </p>
-        </div>
+{% include 'include/course_description_include.html' %}
       </div>
 
       <div class="container">
@@ -51,8 +42,8 @@
             <tbody>
               {% for course in courses_list %}
                 <tr>
-                  <th><a href={% url 'courses:detail' course.id %}>{{ course.name }}</a></th>
-                  <td>{{ course.short_description }}</td>
+                  <th><a href={% url 'courses:detail' course.id %}>{{ course.name|upper }}</a></th>
+                  <td>{{ course.short_description|title }}</td>
                 </tr>
               {% endfor %}
             </tbody>
