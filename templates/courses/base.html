@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Courses {% endblock title %}
+
+
+{% block jumbotron_header %}{{ course_.name }}{% endblock jumbotron_header %}
+{% block jumbotron_header2 %}Description{% endblock jumbotron_header2 %}
+{% block jumbotron_header3 %}{% endblock jumbotron_header3 %}
+{% block jumbotron_description %}{{ course_.description|truncatechars:32 }}{% endblock jumbotron_description %}
+
+
+{% block pager_footer %}{% endblock pager_footer %}
