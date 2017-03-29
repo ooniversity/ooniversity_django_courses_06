@@ -1,16 +1,14 @@
-{% extends "students/base.html" %}
+{% extends "base.html" %}
 
 
 {% load staticfiles %}
 
 
-{% block title %}students detail{% endblock title %}
-
-
-{% block page_header %}Детали о студенте{% endblock page_header %}
+{% block title %}students detail{% endblock %}
 
 
 {% block content %}
+<h2 align="center">Список студентов</h2>
 <div class='container'>
    <h2>{{ student.name }} {{ student.surname }}</h2>
 </div>
@@ -59,4 +57,4 @@
   {% endfor %}
 </table>
 </div>
-{% endblock content %}
+{% endblock %}

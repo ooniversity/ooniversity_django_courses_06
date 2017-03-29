@@ -4,7 +4,7 @@
 {% load staticfiles %}
 
 
-{% block title %}students detail{% endblock title %}
+{% block title %}courses detail{% endblock %}
 
 
 {% block nav_class_students %}active{% endblock %}
@@ -29,7 +29,7 @@
 <div class="container">
   <div class="jumbotron">
   <h2>{{ course.name }}</h2>
-  <p>{{ course.description|truncatechars:32 }}</p>
+  <p>{{ course.description }}</p>
   </div>
 <table cellspacing="10">
   <thead>
@@ -50,4 +50,4 @@
   </tbody>
 </table>
 </div>
-{% endblock content %}
+{% endblock %}

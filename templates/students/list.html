@@ -1,7 +1,10 @@
-{% extends "students/base.html" %}
+{% extends "base.html" %}
 
 
-{% block page_header %}Список студентов{% endblock page_header %}
+{% load staticfiles %}
+
+
+{% block title %}students detail{% endblock %}
 
 
 {% block content %}
@@ -35,4 +38,4 @@
   </tbody>
 </table>
 </div>
-{% endblock content %}
+{% endblock %}
