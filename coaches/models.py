@@ -11,7 +11,6 @@ class Coach(models.Model):
 	address = models.CharField(max_length=254)
 	skype = models.CharField(max_length=254)
 	description = models.TextField()
-	email = models.EmailField(null=True)
 	is_active = models.BooleanField(default=True)
 	is_staff = models.BooleanField(default=True)
 
