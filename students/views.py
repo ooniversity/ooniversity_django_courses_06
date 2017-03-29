@@ -4,11 +4,11 @@ from courses.models import Course
 
 def list_view(request):
 	data = request.GET
-
+	course = None
 	if data:
 		course_id = data['course_id']
 		course = Course.objects.get(id=course_id)
-		students_list = Student.objects.filter(courses_id=course_id)
+		students_list = Student.objects.filter(courses__id=course_id)
 
 		context = {
 			'students_list': students_list,
