@@ -38,7 +38,7 @@ def edit(request, student_id):
 		if form.is_valid():
 			student = form.save()
 			messages.success(request, "Info on the student has been successfully changed.")
-			return redirect('/students/')
+			return redirect('/')
 	else:
 		form = StudentModelForm(request.POST, instance=student)
 	form = StudentModelForm(instance=student)
