@@ -14,33 +14,14 @@
 
     <div class="container">
       {% if course.coach %}
-      <h2>Викладацький склад:</h2>
-        <div class="panel panel-info">
-          <div class="panel-heading">
-             <h3 class="panel-title"><strong>Викладач</strong></h3>
-          </div>
-          <div class="panel-body">
-            <h4>
-              <a href="{% url 'coaches:detail' coach.id %}">{{ course.coach.name }} {{ course.coach.surname }}</a>
-            </h4>
-            <p>{{ course.coach.description }}</p>
-          </div>
-        </div>
+        <h2>Викладацький склад:</h2>
+        {% include "include/mentor_include.html" with mentor_title='Викладач' mentor=course.coach %}
       {% endif %}
-        <div class="panel panel-info">
-            <div class="panel-heading">
-               <h3 class="panel-title"><strong>Асистент</strong></h3>
-            </div>
-            <div class="panel-body">
-              <h4>
-                 <a href="{% url 'coaches:detail' assistant.id %}">{{ course.assistant.name }} {{ course.assistant.surname }}</a>
-              </h4>
-              <p>{{ course.assistant.description }}</p>
-            </div>
-        </div>
-    </div>
-	
-	
+        
+      {% if course.assistant %}
+        {% include "include/mentor_include.html" with mentor_title='Асистент' mentor=course.assistant %}
+      {% endif %}
+
 	<div class="container">
 		<div class="panel panel-primary"> 
 			  <div class="panel-heading"> 
