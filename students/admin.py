@@ -4,7 +4,6 @@ from courses.models import Course
 
 class StudentAdmin(admin.ModelAdmin):
 	list_display = ['full_name', 'email', 'skype']
-#	list_display_links = ['fulname',]
 	fieldsets = (
 		('Personal info', {
 			'fields': ('name', 'surname', 'date_of_birth')
@@ -18,6 +17,6 @@ class StudentAdmin(admin.ModelAdmin):
 	)
 	search_fields = ['surname', 'email']
 	list_filter = ['courses']
-	filteer_horizontal = ['courses',]
+	filter_horizontal = ['courses',]
 
 admin.site.register(Student, StudentAdmin)
