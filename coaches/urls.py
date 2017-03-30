@@ -4,5 +4,5 @@ from . import views
 
 app_name = 'coaches'
 urlpatterns = [
-    url(r'^(?P<coaid>[0-9]+)/$', views.detail, name='detail'),
+    url(r'^(?P<id>\d+)/$', views.detail, name='detail'),
 ]
