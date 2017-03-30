@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from quadratic.forms import QuadraticForm
 
 def validation(value, first_value=False):
 
@@ -23,16 +23,12 @@ def calc_root(order = 1):
         x = (-int(b) - int(d) ** (1 / 2)) / 2 * int(a)
     return x
 
-from django import forms
 
-class QuadraticForm(forms.Form):
-    a = forms.CharField(max_length=10)
-    b = forms.CharField(max_length=10)
-    c = forms.CharField(max_length=10)
 
 def quadratic_results(request):
+    
     form = QuadraticForm()
-    #context[] = form
+    #print(request.POST)
     a = request.GET['a']
     b = request.GET['b']
     c = request.GET['c']
