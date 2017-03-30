@@ -18,4 +18,4 @@ class Coach(models.Model):
 		return self.user.first_name
 
 	def last_name(self):
-		return self.user.last_surname	
+		return self.user.last_name	

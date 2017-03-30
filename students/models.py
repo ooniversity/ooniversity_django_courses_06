@@ -16,3 +16,6 @@ class Student(models.Model):
 
 	def __str__(self):
 		return self.name
+
+	def get_courses(self):
+		return Course.objects.filter(student=self)
