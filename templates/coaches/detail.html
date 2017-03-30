@@ -54,8 +54,7 @@
             <th>Coach on</th>
              <td>{% for course in teacher %}
                <p><a href="{% url 'courses:detail' course.id %}">{{course.name}}</a>
-               Course students 
-               <a href="{% url 'students:list_view' %}?course_id={{course.id}}"><span class="glyphicon glyphicon-info-sign"></span></a>
+               <a href="{% url 'students:list_view' %}?course_id={{course.id}}">Course students<span class="glyphicon glyphicon-info-sign"></span></a>
                </p>
                {% endfor %}
              </td>
@@ -63,9 +62,8 @@
         </tr>
             <th>Courses assist</th>
              <td>{% for course in assistant %}
-               <p><a href="{% url 'courses:detail' course.id %}">{{course.name}}</a>
-               Course students 
-               <a href="{% url 'students:list_view' %}?course_id={{course.id}}"><span class="glyphicon glyphicon-info-sign"></span></a>
+               <p><a href="{% url 'courses:detail' course.id %}">{{course.name}}</a> 
+               <a href="{% url 'students:list_view' %}?course_id={{course.id}}">Course students<span class="glyphicon glyphicon-info-sign"></span></a>
                </p>
                {% endfor %}
              </td>
