@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block pageTitle %}Информация о преподавателе {{ coach.full_name }}.{% endblock pageTitle%}
+
+{% block content %}
+
+  <div class="container">
+  <h3>{{ coach.full_name }}</h3>
+  <table class="table table-striped">
+    <tbody>
+    {% include "include/user_details.html" with user=coach %}
+    <tr>
+      <td>Преподаватель :</td>>
+      <td>
+        {% for course in teachercorses.all %}
+          <p>
+            {{ course.name }} Студенти курса <a href="{% url 'students:list_view' %}?course_id={{ course.id }}" class="glyphicon glyphicon-list" aria-hidden="true"></a></li>
+          </p>
+        {% endfor %}
+      </td>
+    </tr>
+    <tr>
+      <td>Ассистент :</td>>
+      <td>
+        {% for course in assistantcorses.all %}
+          <p>
+            {{ course.name }} Студенти курса <a href="{% url 'students:list_view' %}?course_id={{ course.id }}" class="glyphicon glyphicon-list" aria-hidden="true"></a>
+          </p>
+        {% endfor %}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+{% endblock %}

@@ -17,15 +17,16 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from pybursa.views import index, contact, student_list, student_detail
 from courses.views import detail
+#from coaches.views import coaches
 
 urlpatterns = [
     url(r'^$', index, name='index' ),
     url(r'^contact/$', contact, name='contact'),
-    url(r'^student_list/$', student_list, name='student_list'),
-    url(r'student_detail/', student_detail, name='student_detail'),
     #url(r'^polls/', include('polls.urls')),
     url(r'^admin/', admin.site.urls),
-    #url(r'^quadratic/results/', include('quadratic.urls')),
-    url(r'courses/', include('courses.urls'), name='courses'),
-    url(r'students/', include('students.urls'), name='students')
+    url(r'^quadratic/', include('quadratic.urls'), name='quadratic'),
+    url(r'^courses/', include('courses.urls'), name='courses'),
+    url(r'^students/', include('students.urls'), name='students'),
+    url(r'^coaches/', include('coaches.urls'), name='coaches')
 ]
+
