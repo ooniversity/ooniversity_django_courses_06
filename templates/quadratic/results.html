@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block pageTitle %} Список контактов.{% endblock pageTitle%}
+
+{% block isContactActive %}active{% endblock isContactActive %}
+
+{% block content %}
+
+  <div class="jumbotron">
+   <div class="container">
+    <form method="get">
+      {{ form.as_p }}
+      <input type="submit">
+    </form>
+
+    </div>
+  </div>
+
+
+<!---
+  <div class="jumbotron">
+   <div class="container">
+
+    <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
+    <ul>
+      <li>a = {{ a }}</li>
+        <p>{{ koefA }}</p>
+      <li>b = {{ b }}</li>
+        <p>{{ koefB }}</p>
+      <li>c = {{ c }}</li>
+        <p>{{ koefC }}</p>
+    </ul>
+    {% if isCorrect %}
+        <p>Дискриминант: {{ discrim }}</p>
+        <p>{{ mainresult }}</p>
+    {% endif %}
+    </div>
+  </div>
+  -->
+{% endblock %}

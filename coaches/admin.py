@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 # Register your models here.
 
 class CoachAdmin(admin.ModelAdmin):
-    list_view = ['user', 'gender', 'skype', 'description']
-
-
-
+#	fields   = ['user', 'skype', 'description']
+   list_display = ('name', 'surname', 'gender', 'skype', 'description')
+   list_filter = ['user', 'user__is_staff']
+   list_display_links = ['name', 'surname', 'skype',]
 
 admin.site.register(Coach, CoachAdmin)
