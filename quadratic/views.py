@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import QueryDict
 from math import sqrt
+from quadratic.forms import QuadraticForm
 
 
 def ItIsInt(**kwargs) -> dict:
@@ -43,7 +44,17 @@ def roots(discriminant, a, b) -> list:
 
 # Create your views here.
 def quadratic_results(request):
-    D = x1 = x2 = ''
+    if request.GET:
+        form = QuadraticForm(request.GET)
+    else:
+        form = QuadraticForm()
+#   if not form.is_valid():
+        #print('we are here!!!',request)
+        #print('we are here!!!',form)
+        #print('aaaaaaaaaaaaaa=============',form.cleaned_data)
+        #print('FORM-AAAAAA!!! ------------ ',form['a'].value())
+        #return redirect('/')'''
+    D = x1 = x2 = message = ''
 #    print(request.GET.dict())
     web_params = request.GET.dict()
     errors_dict, values_dict = (ItIsInt(**web_params))
@@ -53,15 +64,19 @@ def quadratic_results(request):
         if D >= 0:  # calc roots
             try:
                 x1, x2 = roots(D, values_dict['a'], values_dict['b'])  # > 0
+                message='Квадратное уравнение имеет два действительных корня: x1 = '+str(x1)+', x2 = '+str(x2)
             except ValueError:
                 x1 = roots(D, values_dict['a'], values_dict['b'])[0]  # = 0
+                message='Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = '+str(x1)
+        else:
+            message='Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.'
 
     context = {**errors_dict,
                **values_dict,
                'discriminant': D,
                'x1': str(x1),
-               'x2': str(x2)
+               'x2': str(x2),
+               'message': message,
+               'form': form,
                }
-    # print(context)
-    # print(type(x1))
     return render(request, 'results.html', context)
