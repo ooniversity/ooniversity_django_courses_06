@@ -1,78 +1,29 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Курс {{ my_course.name }}</title>
+{% extends "base.html" %}
+{% load staticfiles %}
 
-    <!-- Bootstrap -->
-    {% load staticfiles %}
-    <link href="{% static '/css/bootstrap.css' %}" rel="stylesheet">
-    <link href="{% static '/css/style.css' %}" rel="stylesheet">
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
+{% block title %}PyBursa - Курс {{ my_course.name }}{% endblock title %}
 
-  <nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container-fluid">
-       <div class="navbar-header">
-          <a class="navbar-brand" href="{% url 'index' %}">
-            <img id='logo_itBursa' alt="Brand" src="{% static '/images/logo1.png' %}">
-          </a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'index' %}">Main</a></li>
-            <li><a href="{% url 'contact' %}">Contacts</a></li>
-            <li><a href="{% url 'students:list_view' %}?course_id={{ course.id }}">Students</a></li>
-          </ul>			  
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
 
+{% block students_filter_link %}?course_id={{ course.id }}{% endblock %}
+
+
+{% block content %}
     <div class="container">
       <div class="jumbotron">
           <h1>{{ course.name }}</h1>
-	        <p>{{ course.description }}</p>	
+	        <p>{{ course.description|truncatechars:32 }}</p>	
       </div>
     </div>
-    
     <div class="container">
     <h2>Преподаватели:</h2>
     </div>
-    <div class="container">
-      <div class="panel panel-default">      
-          <!-- Default panel contents -->
-        <div class="panel-heading"><h4>Учитель</h4> </div>
-          <div class="container">
-	          <h5 class="coaches"><a href='{% url 'coaches:detail' course.coach.id %}'>{{ course.coach.user.first_name }} {{ course.coach.user.last_name }}</a></h5>
-	          <p>{{ course.coach.description }}</p>
-	        </div>
-        </div>
-      </div>
-     </div>
-     
-     <div class="container"> 
-      <div class="panel panel-default">       
-          <!-- Default panel contents -->
-        <div class="panel-heading"><h4>Ассистент</h4></div>
-          <div class="container">
-        	  <h5 class="coaches"><a href='{% url 'coaches:detail' course.assistant.id %}'>{{ course.assistant.user.first_name }} {{ course.assistant.user.last_name }}</a></h5>
-	          <p>{{ course.assistant.description }}</p>
-          </div>
-        </div>
-      </div>     
-    </div>
+
+
+{% include "include/couch_include.html"  with block_title="Учитель" instructor=course.coach %}
+{% include "include/couch_include.html"  with block_title="Ассистент" instructor=course.assistant %}
     
+
     <div class="container">
 	    <h2>План курса:</h2>
       <div class="panel panel-default">       
@@ -94,9 +45,4 @@
         </div>
       </div>
     </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static '/js/bootstrap.js' %}"></script>
-  </body>
-</html>
+{% endblock content %}
