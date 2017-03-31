@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% load staticfiles %}
 
 {% block title %}Информация o курсе {{course.name}}.{% endblock title %}
@@ -6,6 +7,7 @@
 {% block groupFilter %}?course_id={{ course.id }}{% endblock groupFilter%}
 
 {% block content %}
+
   <div class="container">
     <div class="container">
         <h1 class="coolshadow">Курс - &laquo{{course.name}}&raquo</h1>
@@ -43,4 +45,5 @@
       </tbody>
     </table>
   </div>
+  
 {% endblock content %}
