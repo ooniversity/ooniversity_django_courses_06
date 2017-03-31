@@ -13,15 +13,14 @@
 {% block content %}
   <div class="container">
     <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
-    <form method="get">
+    <form>
     {{ form.as_p }}
     <input type="submit" />
     </form>
     <br />
-
     {% if flag == True %}
     <p>Дискриминант: {{ diskr }}</p>
-    <p>{{ messages }}</p>
+    <p>{{ info }}</p>
     {% endif %}
   </div>
 {% endblock content %}
