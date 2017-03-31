@@ -4,13 +4,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{% block title %}{% endblock title %}</title>
+    <title>{% block title %} PyBursa {% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
   </head>
-
-
 
   <body>
   <ul class="nav nav-pills navbar-inverse">
@@ -20,6 +18,7 @@
   </ul>
   
     {% block content %}
+
     {% endblock content %}
 
   <nav>

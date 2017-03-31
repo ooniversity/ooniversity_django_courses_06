@@ -10,11 +10,11 @@ def detail(request, id):
     except Coach.DoesNotExist:
         raise Http404("No coach or assistent id=" + id)
 
-    return render(request, 'coach/detail.html', {
+    return render(request, 'coaches/detail.html', {
     				'coach': coach,
     				'teachercorses' : coach.coach_courses, 
     				'assistantcorses' : coach.assistant_courses})
-
-def list_view(request):
-	coachs = Coach.objects.all()
-	return render(request, 'coach/list.html', {'coachs': coachs })
+#
+#def list_view(request):
+#	coachs = Coach.objects.all()
+#	return render(request, 'coaches/list.html', {'coachs': coachs })
