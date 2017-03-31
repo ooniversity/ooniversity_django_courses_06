@@ -6,7 +6,7 @@ from django.dispatch import receiver
 
 class Coach(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(null=True, blank=True)
     gender = models.CharField(max_length=255, choices=(('M', 'Male'),('F', 'Female')))
     phone = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
@@ -23,4 +23,4 @@ class Coach(models.Model):
         return self.user.last_name
 
     def full_name(self):
-        return ("%s %s" % (self.user.first_name, self.user.last_name))
+        return '{} {}'.format(self.user.first_name, self.user.last_name)
