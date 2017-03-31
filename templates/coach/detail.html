@@ -2,7 +2,7 @@
 
 {% load staticfiles %}
 
-{% block pageTitle %}Информация о преподавателе {{ coach.full_name }}.{% endblock pageTitle%}
+{% block title %}Информация о преподавателе {{ coach.full_name }}.{% endblock title %}
 
 {% block content %}
 
@@ -10,7 +10,7 @@
   <h3>{{ coach.full_name }}</h3>
   <table class="table table-striped">
     <tbody>
-    {% include "include/user_details.html" with user=coach %}
+    {% include "include/user_details_include.html" with user=coach %}
     <tr>
       <td>Преподаватель :</td>>
       <td>
@@ -34,4 +34,4 @@
     </tbody>
   </table>
   </div>
-{% endblock %}
+{% endblock content%}
