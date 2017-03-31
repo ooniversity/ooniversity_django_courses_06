@@ -4,7 +4,7 @@
 
 {% block isStudentsListActive %}active{% endblock isStudentsListActive %}
 
-{% block pageTitle %} Информация о студенте {{ student.full_name }}.{% endblock pageTitle%}
+{% block title %} Информация о студенте {{ student.full_name }}.{% endblock title %}
 
 {% block content %}
 
@@ -13,7 +13,7 @@
   <p></p>
   <table class="table table-striped">
     <tbody>
-    {% include "include/user_details.html" with user=student %}
+    {% include "include/user_details_include.html" with user=student %}
     <tr>
         <td>курсы</td>
         <td>
@@ -27,4 +27,4 @@
     </tbody>
   </table>
   </div>
-{% endblock %}
+{% endblock content %}

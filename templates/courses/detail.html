@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block pageTitle %}Информация o курсе {{course.name}}.{% endblock pageTitle%}
+{% block title %}Информация o курсе {{course.name}}.{% endblock title %}
 
 {% block groupFilter %}?course_id={{ course.id }}{% endblock groupFilter%}
 
@@ -14,11 +14,11 @@
     </div>
     <div class="container">
       {% if course.coach %}
-        {% include "include/course_teacher_info.html" with title="Преподаватель" mentor=course.coach  %}
+        {% include "include/course_teacher_info_include.html" with title="Преподаватель" mentor=course.coach  %}
       {% endif %}
       
       {% if course.assistant %}
-            {% include "include/course_teacher_info.html" with title="Ассистент" mentor=course.assistant  %}    
+            {% include "include/course_teacher_info_include.html" with title="Ассистент" mentor=course.assistant  %}    
       {% endif %}
     </div>
 
@@ -43,4 +43,4 @@
       </tbody>
     </table>
   </div>
-{% endblock content%}
+{% endblock content %}
