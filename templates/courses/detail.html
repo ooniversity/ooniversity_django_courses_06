@@ -12,7 +12,7 @@
     <div class="container">
         <h1 class="coolshadow">Курс - &laquo{{course.name}}&raquo</h1>
       <h2>Description</h2>
-      <p class="greetings"><strong>{{course.description|truncatechars:50}}</strong></p>
+      <p class="greetings"><strong>{{course.description|truncatechars:32}}</strong></p>
     </div>
     <div class="container">
       {% if course.coach %}
