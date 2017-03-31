@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block pageTitle %} Информация о преподавателе {{ student.full_name }}.{% endblock pageTitle%}
+
+{% block content %}
+
+  <div class="container">
+  <h2>{{ student.full_name }}</h2>
+  <p></p>
+  <table class="table table-striped">
+    <tbody>
+    <tr>
+      <td>дата рождения</td>
+      <td>{{ student.date_of_birth }}</td>
+    </tr>
+    <tr>
+      <td>адрес</td>
+      <td>{{ student.address }}</td>
+    </tr>
+    <tr>
+      <td>почта</td>
+      <td>{{ student.email }}</td>
+    </tr>
+    <tr>
+        <td>логин skype</td>
+        <td>{{ student.skype }}</td>
+    </tr>
+    <tr>
+        <td>телефон</td>
+        <td>{{ student.phone }}</td>
+    </tr>
+    <tr>
+        <td>курсы</td>
+        <td>
+          {% for course in student.courses.all %}
+            <ul>
+              <li>{{ course.name }}</a></li>
+            </ul>
+          {% endfor %}
+        </td>
+    </tr>
+    </tbody>
+  </table>
+
+  </div>
+{% endblock %}

@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-# Create your models here.
 
 class Coach(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -16,3 +15,12 @@ class Coach(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def name(self):
+    	return self.user.first_name
+
+    def surname(self):
+        return self.user.last_name
+
+    def full_name(self):
+        return ("%s %s" % (self.user.first_name, self.user.last_name))
