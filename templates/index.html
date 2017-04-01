@@ -7,7 +7,7 @@
 {% block nav_class_index %}active{% endblock nav_class_index %}
 
 
-{% block main_content %} 
+{% block content %} 
 
 
 {% include "include/messages_include.html" %}
@@ -48,7 +48,7 @@
                     <tbody>
                         {% for course in courses_list %}
                             <tr>
-                                <th><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></th>
+                                <th><a href="{% url 'courses:detail' course.id %}">{{ course.name|upper }}</a></th>
                                 <td>{{ course.short_description }}</td>
                             </tr>
                         {% endfor %}
@@ -56,6 +56,6 @@
                 </table>
             </div>
 
-{% endblock main_content %}
+{% endblock content %}
  
 

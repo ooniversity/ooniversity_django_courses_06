@@ -3,6 +3,8 @@ from django.shortcuts import render
 from . models import Student
 from courses.models import Course
 
+
+
 def list_view(request):
     data = request.GET
 
@@ -32,3 +34,20 @@ def detail(request, student_id):
     }
 
     return render(request, 'students/detail.html', context)
+
+def add(request,id):
+	if request.method == 'POST':
+		form = StudentModelForm(request.POST)
+		if form.is_valid():
+			student = form.save()
+			message = u"Student %s %s has been successfully added." %(student.name, student.surname)
+			messages.success(request, message)
+			return redirect('students:list_view')
+	else:
+		form = StudentModelForm()
+
+	return render(request, 'students/add.html', {'form':form})
+
+
+
+ 

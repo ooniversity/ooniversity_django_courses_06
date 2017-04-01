@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block title %}Pybursa - Уравнение {% endblock title %}
+
+
+{% load staticfiles %}
+
+
+{% block content %}
+    <div class="container">
+    <div class="container">
+        <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
+          <form method="get">
+            {{ form.as_p }}
+            <input type="submit" value="Решить"/>
+		<br />
+		<br />
+          </form>
+        <p>{{disc.message}}{{disc.value}}</p>
+        <p>{{text_result.message}}{{text_result.value}}</p>
+        
+    </div>
+    <hr>
+{% endblock content %}
