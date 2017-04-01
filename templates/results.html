@@ -1,0 +1,12 @@
+<div class="container">
+  <p>Квадратное уроавнение a*x*x + b*x + c = 0</p>
+  <ul>
+    <li>a = {{  a  }}</li>{{ error_a  }}
+    <li>b = {{  b  }}</li>{{ error_b  }}
+    <li>c = {{  c  }}</li>{{ error_c  }}
+  </ul>
+  {% if flag == True %}
+  <p>Дискриминант: {{  descr  }}</p>
+  <p>{{ info  }}</p>
+  {% endif %}
+</div>
