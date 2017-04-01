@@ -8,20 +8,16 @@
 
 
 {% block nav_class_quadratic %}active{% endblock %}
-
-
 {% block content %}
   <div class="container">
     <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
     <form method="get">
     {{ form.as_p }}
-    <input type="submit" />
+    <input type="submit" value="Решить" />
     </form>
     <br />
-
-    {% if flag == True %}
-    <p>Дискриминант: {{ diskr }}</p>
-    <p>{{ messages }}</p>
-    {% endif %}
+    <p>{{ diskr }}</p>
+    <p>{{ info }}</p>
   </div>
 {% endblock content %}
+
