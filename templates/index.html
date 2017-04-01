@@ -1,67 +1,38 @@
+{% extends "base.html" %}
+
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyBursa</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <nav class="navbar navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed menu-opener" data-toggle="collapse" data-target="#main-nav">Menu</button>
-                <a class="navbar-brand" href="{% url 'index' %}">PyBursa</a>
-            </div>
 
-            <div class="collapse navbar-collapse" id="main-nav">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="{% url 'index' %}">Main</a></li>
-                    <li><a href="{% url 'contact' %}">Contacts</a></li>
-                    <li><a href="{% url 'students:list_view' %}">Students</a></li>
-                    <li><a href="{% url 'quadratic_results' %}">Quadratic equation</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
-    <div class="page-content">
-        <div class="container">
+{% block title %}PyBursa Home{% endblock title %}
 
-            <div class="jumbotron">
-                <h1>PyBursa</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta error pariatur, alias tempore, quia in dolor, quae nostrum voluptatem nisi iure fugit? Quisquam neque ullam eaque quas expedita suscipit repellendus.</p>
-            </div>
 
-            <h2 class="page-header">Our courses</h2>
+{% block nav_class_index %}active{% endblock %}
 
-            <div class="table-responsive">
-                <table class="table table-bordered courses-table">
-                    <thead>
-                        <tr class="info">
-                            <th class="courses-table__name">Course</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
 
-                    <tbody>
-                        {% for course in courses_list %}
-                            <tr>
-                                <th><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></th>
-                                <td>{{ course.short_description }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+{% block content %}
 
-        </div>
-    </div>
+{% include "include/jumbotron_include.html" with block_title="Pybursa" block_text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione ipsa saepe pariatur repudiandae a perspiciatis magnam expedita iusto autem molestiae voluptatum tenetur aliquid vel ex fugit laudantium, doloremque obcaecati explicabo!" %}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-</body>
-</html>
+<h2 class="page-header">Our courses</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered courses-table">
+        <thead>
+            <tr class="info">
+                <th class="courses-table__name">Course</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for course in courses_list %}
+                <tr>
+                    <th><a href="{% url 'courses:detail' course.id %}">{{ course.name|upper }}</a></th>
+                    <td>{{ course.short_description|title }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
