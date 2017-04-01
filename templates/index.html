@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+
+{% block title %}PyBursa - Веб-разработка на Python&Django{% endblock title %}
+
+
+{% block active_index %}"active"{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+      <div class="jumbotron">
+
+          <h1>PyBursa</h1>
+          <p>Мы супер классно преподаем Python с 1886 года.</p>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>Наши Python курсы. Выбирай любой!</h2>
+      <table class="table">
+        <tr>
+          <td><b>Курс</b></td>
+          <td><b>Описание</b></td>
+        </tr>
+      {% for course in courses %}
+        <tr>
+          <td><a href='{% url 'courses:detail' course.id  %}'>{{ course.name|upper }}</a></td>
+          <td>{{ course.short_description|title }}</td>
+        </tr>
+      {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </tabla>
+    </div>
+{% endblock content %}

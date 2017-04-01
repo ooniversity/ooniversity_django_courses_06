@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block title %}pyBursa Contacts{% endblock title %}
+
+
+{% block active_contacts %}"active"{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+      <h1>Организаторы курса:</h1>
+
+{% include "include/contact_include.html" with contact_position='Director' id1="dr_contact_name" id2="dr_skype_cn" contact_name='Дарья' contact_skype='@daria' contact_email='somemail@gmail.com' contact_phone='' %}
+
+
+{% include "include/contact_include.html" with contact_position='Manager' contact_name='Лера Фомина' contact_skype='@lera.fomina<' contact_email='somemail@gmail.com' contact_phone='' %}
+
+
+{% include "include/contact_include.html" with contact_position='Founder' contact_name='Алексей Радченко' contact_skype='@dixon' contact_email='somemail@gmail.com' contact_phone='' %}
+
+    </div>
+{% endblock content %}
+  
