@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %}students detail{% endblock %}
+
+
+{% block content %}
+<h2 align="center">Список студентов</h2>
+<div class='container'>
+   <h2>{{ student.name }} {{ student.surname }}</h2>
+</div>
+<div class="container">
+<table>
+  <tr>
+    <td>дата рождения</td>
+    <td>{{ student.date_of_birth }}</td>
+  </tr>
+  <tr>
+    <td>адрес</td>
+    <td>{{ student.address }}</td>
+  </tr>
+  <tr>
+    <td>почта</td>
+    <td>{{ student.email }}</td>
+  </tr>
+  <tr>
+    <td>логин skype</td>
+    <td>{{ student.skype }}</td>
+  </tr>
+  <tr>
+    <td>телефон</td>
+    <td>{{ student.phone }}</td>
+  </tr>
+  <tr>
+    <td>курсы</td>
+    <td>
+    {% for course in student.courses.all %}
+    <a href="{% url 'courses:detail' course.id %}">{{ course.name }}<br></a>
+    {% endfor %}
+    </td>
+  </tr>
+  {% for student in students_list %}
+  <tr>
+    <td>{{ student.id }}</td>
+    <td><a href="{% url 'students:detail' student.id %}">{{ student.surname }} {{ student.name }}</a></td>
+    <td>{{ student.address }}</td>
+    <td>{{ student.skype }}</td>
+    <td>
+    {% for course in student.courses.all %}
+    <a href="{% url 'courses:detail' course.id %}">{{ course.name }}<br></a>
+    {% endfor %}
+    </td>
+  <tr> 
+  {% endfor %}
+</table>
+</div>
+{% endblock %}
