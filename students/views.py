@@ -28,8 +28,8 @@ def create(request):
 	form = StudentModelForm(request.POST or None)
 	if form.is_valid():
 		student = form.save()
-		messages.success(request, "Student {} {} has been successfully added.".format(student.name, student.surname))
-		return redirect('/students/')
+		messages.success(request, "Student %s has been successfully added." %(student.full_name))
+		return redirect('students:list_view')
 	return render(request, 'students/add.html', {'form': form})
 
 def remove(request, id):
