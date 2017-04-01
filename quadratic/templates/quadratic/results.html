@@ -1,39 +1,22 @@
 {% extends 'base.html' %}
-{% block title %} Список контактов.{% endblock title %}
 
-{% block isContactActive %}active{% endblock isContactActive %}
+{% block title %} Решение уравнения.{% endblock title %}
+
+{% block isQuadraticActive %}active{% endblock isQuadraticActive %}
 
 {% block content %}
 
   <div class="jumbotron">
+  <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
    <div class="container">
     <form method="get">
       {{ form.as_p }}
       <input type="submit">
     </form>
 
+      <p>{{ discrim }}</p>
+      <p>{{ mainresult }}</p>    
+
     </div>
   </div>
-
-
-<!---
-  <div class="jumbotron">
-   <div class="container">
-
-    <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
-    <ul>
-      <li>a = {{ a }}</li>
-        <p>{{ koefA }}</p>
-      <li>b = {{ b }}</li>
-        <p>{{ koefB }}</p>
-      <li>c = {{ c }}</li>
-        <p>{{ koefC }}</p>
-    </ul>
-    {% if isCorrect %}
-        <p>Дискриминант: {{ discrim }}</p>
-        <p>{{ mainresult }}</p>
-    {% endif %}
-    </div>
-  </div>
-  -->
 {% endblock %}

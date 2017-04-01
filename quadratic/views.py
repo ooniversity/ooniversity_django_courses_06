@@ -1,12 +1,33 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from quadratic.forms import QuadraticForm
 import math
 
 def quadratic_results(request):
-    form = QuadraticForm()
-#    context['form']=form
-    return render(request, 'quadratic/results.html', {'form':form})
+    discrim = mainresult = ""
+    if len(request.GET) > 0:
+        form = QuadraticForm(request.GET)
+        if form.is_valid():
+            a = form.cleaned_data['a']
+            b = form.cleaned_data['b']
+            c = form.cleaned_data['c']
+
+            discrim = b**2 -4*a*c
+            if discrim < 0:
+                mainresult = "Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений."
+            if discrim == 0:
+                mainresult = "Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = "+str(-b/(2*a))
+            if discrim > 0 :
+                mainresult = "Квадратное уравнение имеет два действительных корня: x1 = "+str((-b + math.sqrt(discrim)) / (2*a))+", x2= "+str((-b - math.sqrt(discrim)) / (2*a))
+
+            return render(request, 'quadratic/results.html', 
+                { "form": form,
+                  "discrim" : discrim,
+                  "mainresult" : mainresult
+                })
+    else:
+        form = QuadraticForm()
+    return render(request, 'quadratic/results.html',  {'form': form})
  
 """    def check_int(str):
         try:
@@ -19,7 +40,7 @@ def quadratic_results(request):
     coefB = request.GET.get('b', None)
     coefC = request.GET.get('c', None)
 
-    koefA = koefB = koefC = a = b = c = discrim = mainresult = ""
+    koefA = koefB = koefC = a = b = c = 
     a = b = c = ""
     isCorrect = True
 
