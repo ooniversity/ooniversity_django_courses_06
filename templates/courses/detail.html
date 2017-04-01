@@ -7,10 +7,21 @@
 {% block title %}courses detail{% endblock %}
 
 
-{% block nav_class_students %}active{% endblock %}
-
 
 {% block content %}
+{% if messages %}
+<div class="container">
+  <div class="messages">
+      {% for message in messages %}
+      <div class="alert alert-success" role="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ message }}
+      </div>
+      {% endfor %}
+  </div>
+</div>
+{% endif %}
+
 <div class="container">
   <div class="jumbotron">
   <h2>{{ course.name }}</h2>
@@ -31,11 +42,12 @@
   <h2>{{ course.name }}</h2>
   <p>{{ course.description|truncatechars:32 }}</p>
   </div>
+  <p><a class="btn btn-default" href="{% url 'courses:add_lesson' %}" role="button">Добавить занятие</a></p>
 <table cellspacing="10">
   <thead>
     <tr>
       <th>#</th>
-      <th>Course</th>
+      <th>Lesson</th>
       <th>Description</th>
     </tr>
   </thead>
