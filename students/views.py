@@ -3,9 +3,6 @@ from students.models import Student
 from courses.models import Course
 from students.forms import StudentModelForm
 from django.contrib import messages
-from django import forms
-from django.core.urlresolvers import reverse 
-
 
 # Create your views here.
 def detail (request,id):
