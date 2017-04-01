@@ -15,7 +15,8 @@
     <li role="presentation" class="{% block isIndexActive %}{% endblock isIndexActive %}"><a href="{% url 'index' %}">Меню</a></li>
     <li role="presentation" class="{% block isContactActive %}{% endblock isContactActive %}"><a href="{% url 'contact' %}">Контакты</a></li>
     <li role="presentation" class="{% block isStudentsListActive %}{% endblock isStudentsListActive %}"><a href="{% url 'students:list_view' %}{% block groupFilter %}{% endblock groupFilter %}">Студенты</a></li>
-  </ul>
+    <li class="{% block isQuadraticActive %}{% endblock isQuadraticActive %}"><a href="{% url 'quadratic_results' %}">Quadratic</a></li>
+</ul>
   
     {% block content %}
 
