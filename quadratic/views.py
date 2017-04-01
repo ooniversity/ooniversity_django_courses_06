@@ -5,19 +5,10 @@ from django.contrib import messages
 def quadratic_results(request):
     if request.method == 'GET':
         form = QuadraticForm(request.GET)
-#    else:
-#        form = QuadraticForm(request.POST)
 
     request_dictionary = {}
-    #parameters_list = request.GET
-
-    #a = request.GET.get('a', None)
-    #b = request.GET.get('b', None)
-    #c = request.GET.get('c', None)
     for every in ['a', 'b', 'c']:
         request_dictionary[every] = request.GET.get(every, None)
-
-
 
     #isdigit
     if request_dictionary['a']:
@@ -37,7 +28,6 @@ def quadratic_results(request):
         a_isdigit = None
         a_not_0 = None
 
-
     #
     if request_dictionary['b']:
         try:
@@ -47,7 +37,6 @@ def quadratic_results(request):
             b_isdigit = False
     else:
         b_isdigit = None
-
 
     #
     if request_dictionary['c']:
@@ -75,20 +64,11 @@ def quadratic_results(request):
             x1 = -b / (2 * a)
             request_dictionary['x1'] = x1
 
-
     request_dictionary['a_isdigit'] = a_isdigit
-    #request_dictionary['a_not_0'] = a_not_0
-    #request_dictionary['a_not_0'] = form.clean_a(a)
     request_dictionary['b_isdigit'] = b_isdigit
     request_dictionary['c_isdigit'] = c_isdigit
-
     request_dictionary['form'] = form
-    #message_ = request_dictionary['a_not_0']
-    #messages.error(request, message_)
-    #request_dictionary['messages'] = messages
 
     context = request_dictionary
 
-
-#    return render(request, 'results.html', request_dictionary)
     return render(request, 'results.html', context)
