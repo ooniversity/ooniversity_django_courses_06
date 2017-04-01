@@ -4,9 +4,9 @@ from courses.models import Course
 
 def index(request):
     courses = Course.objects.all()
-    return render(request, 'pybursa/index.html', {
+    return render(request, 'index.html', {
 				'courses': courses,	
 				})
 				
 def contact(request):
-    return render(request, 'pybursa/contact.html')
+    return render(request, 'contact.html')
