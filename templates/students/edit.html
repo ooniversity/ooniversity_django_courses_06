@@ -1,0 +1,26 @@
+{% extends "students/base.html" %}
+{% load static %}
+
+
+{% block title %}Student Info{% endblock title %}
+
+{% block content %}
+{% if messages %}
+<ul class='messages'>
+	{% for message in messages %}
+	<li {% if message.tags %} class='{{ message.tags }}'{% endif %}>{{ message }}</li>
+	{% endfor %}
+</ul>
+{% endif %}
+
+<div class='container'>
+<h4>Редактирование данных студента</h4>
+<hr>
+
+<form method='post'>
+	{{ form.as_p}}
+<input type='submit' value='Изменить'/>
+</form>
+</div>
+
+{% endblock content %}
