@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+
+{% block title %}
+    {% if current_course %}
+        A students of "{{ current_course.name }}" course
+    {% else %}
+        A students of PyBursa
+    {% endif %}
+{% endblock title %}
+
+
+{% block nav_class_students %}active{% endblock %}
+
+
+{% block content %}
+
+{% if current_course %}
+    <h1 class="page-header">A students of "{{ current_course.name }}" course</h1>
+{% else %}
+    <h1 class="page-header">A students of PyBursa</h1>
+{% endif %}
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr class="info">
+                <th>#</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Skype</th>
+                <th>Courses</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for student in students_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><a href="{% url 'students:detail' student.id %}">{{ student.name|title }} {{ student.surname|title }}</a></td>
+                    <td>{{ student.address }}</td>
+                    <td>{{ student.skype }}</td>
+                    <td>
+                        {% for course in student.get_courses %}
+                            <ul>
+                                <li><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></li>
+                            </ul>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
