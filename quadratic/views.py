@@ -36,4 +36,4 @@ def quadratic_results(request):
             messages.success(request, 'Дискриминант: {}'.format(D))
             messages.success(request, message)
 
-    return render(request, 'results.html', {'form': form})
+    return render(request, 'quadratic/results.html', {'form': form})
