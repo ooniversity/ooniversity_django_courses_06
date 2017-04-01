@@ -8,7 +8,7 @@
 {% block nav_class_index %}active{% endblock nav_class_index %}
 
 
-{% block main_content %} 
+{% block content %} 
 
 
 {% include "include/messages_include.html" %}
@@ -22,8 +22,7 @@
 
             <div class="jumbotron">
                 <h1>{{ course.name }}</h1>
-                <p>{{ course.description|truncatechars:32 }}</p> 
-               <!-- <p>{{ course.description }}</p>-->
+                <p>{{ course.description|truncatechars:32 }}
             </div>
 
             <h2 class="page-header">Course plan</h2>
@@ -73,7 +72,7 @@
 
         </div>
     </div>
-{% endblock main_content %} 
+{% endblock content %} 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
