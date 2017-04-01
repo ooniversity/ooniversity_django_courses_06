@@ -1,1 +1,66 @@
 {% extends "students/base.html" %}
+
+
+{% block content %}
+
+
+{% if messages %}
+
+<div class='container'>
+	<div class='messages'>
+		{% for message in messages %}
+		<div class='alert alert-success' role='alert' {% if message.tags %} class='{{ message.tags }}' {% endif %}>
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+			{{ message }}
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% endif %}
+
+<div class='container'>
+	<p><a class='btn btn-primary' href="{% url 'students:add' %}" role='button'>Добавить нового студента</a></p>
+		<h3>Список студентов</h3>
+		<hr>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr class="info">
+                <th>#</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Skype</th>
+                <th>Courses</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+            {% for student in students_list %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td><a href="{% url 'students:detail' student.id %}">{{ student.name }} {{ student.surname }}</a></td>
+                  <td>{{ student.address }}</td>
+                  <td>{{ student.skype }}</td>
+                  <td>
+                    {% for course in student.get_courses %}
+                      <ul>
+                        <li><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></li>
+                      </ul>
+                    {% endfor %}
+                   </td>
+                   <td>
+                    <a class='btn btn-primary' href="{% url 'students:edit' student.id %}" role='button'>Изменить</a>
+                    <a class='btn btn-primary' href="{% url 'students:remove' student.id %}" role='button'>Удалить</a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
