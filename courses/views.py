@@ -4,7 +4,7 @@ from coaches.models import Coach
 
 def detail(request, course_id):
 	course = Course.objects.get(id=course_id)
-	lessons_list = Lesson.objects.filter(course=course)
+	lessons_list = Lesson.objects.filter(course=course_id)
 	coach = Coach.objects.get(id=course.coach.id)
 	assistant = Coach.objects.get(id=course.assistant.id)
 	
