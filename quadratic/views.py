@@ -5,11 +5,10 @@ from quadratic.forms import QuadraticForm
 
 def quadratic_results(request):
     context = {'error': False}
-    if request.method == "GET":
-        form = QuadraticForm()
-    else:
+    if request.method == "POST":
         form = QuadraticForm(request.POST)
         if form.is_valid():
+
             a = form.clean_a()
             b = form.cleaned_data['b']
             c = form.cleaned_data['c']
@@ -26,8 +25,9 @@ def quadratic_results(request):
             context['a'] = a
             context['b'] = b
             context['c'] = c
-            
-
-
+    else:
+        form = QuadraticForm()
+        
     context['form'] = form
+
     return render(request, 'quadratic/results.html', context)
