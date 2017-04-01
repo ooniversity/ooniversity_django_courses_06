@@ -3,6 +3,7 @@ from math import sqrt
 from django import forms
 from django.contrib import messages
 
+
 class QuadraticForm(forms.Form):
     a = forms.IntegerField(label='коэффициент a')
     b = forms.IntegerField(label='коэффициент b')
@@ -13,6 +14,7 @@ class QuadraticForm(forms.Form):
         if a == 0:
             raise forms.ValidationError("коэффициент при первом слагаемом уравнения не может быть равным нулю")
         return a
+
 
 def quadratic_results(request):
     context = {'error': False}
@@ -37,7 +39,7 @@ def quadratic_results(request):
 
             if my_discr != '':
                 my_discr = 'Дискриминант: ' + str(my_discr)
-
+                
             context['a'] = a
             context['b'] = b
             context['c'] = c
