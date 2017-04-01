@@ -1,103 +1,50 @@
+{% extends "base.html" %}
+
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyBursa</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <nav class="navbar navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed menu-opener" data-toggle="collapse" data-target="#main-nav">Menu</button>
-                <a class="navbar-brand" href="{% url 'index' %}">PyBursa</a>
-            </div>
 
-            <div class="collapse navbar-collapse" id="main-nav">
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'index' %}">Main</a></li>
-                    <li><a href="{% url 'contact' %}">Contacts</a></li>
-                    <li><a href="{% url 'students:list_view' %}?course_id={{ course.id }}">Students</a></li>
-                    <li><a href="{% url 'quadratic_results' %}">Quadratic equation</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
-    <div class="page-content">
-        <div class="container">
+{% block title %}{{ course.name }}{% endblock title %}
 
-            <div class="jumbotron">
-                <h1>{{ course.name }}</h1>
-                <p>{{ course.description }}</p>
-            </div>
 
-            <h2>Instructors</h2>
+{% block course_id %}?course_id={{ course.id }}{% endblock %}
 
-            {% if coach %}
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Teacher</h3>
-                    </div>
 
-                    <div class="panel-body">
-                        <h4>
-                            <a href="{% url 'coaches:detail' coach.id %}">{{ coach.get_name }} {{ coach.get_surname }}</a>
-                        </h4>
+{% block content %}
 
-                        <p>{{ coach.description }}</p>
-                    </div>
-                </div>
-            {% endif %}
+{% include "include/jumbotron_include.html" with block_title=course.name block_text=course.description|truncatechars:32 %}
 
-            {% if assistant %}
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Assistant</h3>
-                    </div>
+<h2>Instructors</h2>
 
-                    <div class="panel-body">
-                        <h4>
-                            <a href="{% url 'coaches:detail' assistant.id %}">{{ assistant.get_name }} {{ assistant.get_surname }}</a>
-                        </h4>
+{% if coach %}
+    {% include "../include/person_panel_include.html" with panel_title="Teacher" person=coach %}
+{% endif %}
 
-                        <p>{{ assistant.description }}</p>
-                    </div>
-                </div>
-            {% endif %}
+{% if assistant %}
+    {% include "../include/person_panel_include.html" with panel_title="Assistant" person=assistant %}
+{% endif %}
 
-            <h2 class="page-header">Course plan</h2>
+<h2 class="page-header">Course plan</h2>
 
-            <div class="table-responsive">
-                <table class="table table-bordered courses-table">
-                    <thead>
-                        <tr class="info">
-                            <th>#</th>
-                            <th class="courses-table__name">Subject</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
+<div class="table-responsive">
+    <table class="table table-bordered courses-table">
+        <thead>
+            <tr class="info">
+                <th>#</th>
+                <th class="courses-table__name">Subject</th>
+                <th>Description</th>
+            </tr>
+        </thead>
 
-                    <tbody>
-                        {% for lesson in lessons_list %}
-                            <tr>
-                                <td>{{ lesson.order }}</td>
-                                <td><strong>{{ lesson.subject }}</strong></td>
-                                <td>{{ lesson.description }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-</body>
-</html>
+        <tbody>
+            {% for lesson in lessons_list %}
+                <tr>
+                    <td>{{ lesson.order }}</td>
+                    <td><strong>{{ lesson.subject }}</strong></td>
+                    <td>{{ lesson.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
