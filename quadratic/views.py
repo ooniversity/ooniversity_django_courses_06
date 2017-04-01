@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 
 def validation(value, first_value=False):
+
     value_error = ''
     not_int_error = 'коэффициент не целое число'
     none_error = 'коэффициент не определен'
@@ -22,7 +23,16 @@ def calc_root(order = 1):
         x = (-int(b) - int(d) ** (1 / 2)) / 2 * int(a)
     return x
 
+from django import forms
+
+class QuadraticForm(forms.Form):
+    a = forms.CharField(max_length=10)
+    b = forms.CharField(max_length=10)
+    c = forms.CharField(max_length=10)
+
 def quadratic_results(request):
+    form = QuadraticForm()
+    #context[] = form
     a = request.GET['a']
     b = request.GET['b']
     c = request.GET['c']
@@ -47,7 +57,7 @@ def quadratic_results(request):
             x2 = (-int(b) - int(diskr) ** (1 / 2)) / 2 * int(a)
             messages = "Квадратное уравнение имеет два действительных корня: x1 = %s, x2 = %s" %(x1, x2)     
 
-    context = {'a': a, 'b': b, 'c': c, 'error_a': error_a, 'error_b': error_b, 'error_c': error_c, 'diskr': diskr, 'flag' : flag, 'messages': messages}
+    context = {'form': form, 'a': a, 'b': b, 'c': c, 'error_a': error_a, 'error_b': error_b, 'error_c': error_c, 'diskr': diskr, 'flag' : flag, 'messages': messages}
     return render(request, 'quadratic/results.html', context)
 
 

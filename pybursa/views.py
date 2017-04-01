@@ -1,8 +1,10 @@
 from django.shortcuts import render
-
+from django.http import HttpResponse
+from courses.models import Course, Lesson
 
 def index(request):
-    return render(request, 'index.html')
+    courses = Course.objects.all()
+    return render(request, "index.html", {"courses_list": courses})
 
 def contact(request):
     return render(request, 'contact.html')

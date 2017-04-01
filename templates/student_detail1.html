@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Student list</title>
+    <title>students detail</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -32,52 +32,59 @@
     </div>
   </nav>
   <div class="container">
-    <h2>Студенты курса ItBursa</h2>
-    <p>Ниже представлен список студентов</p>
-  <table>
-  <tr>
-    <th>No</th>
-    <th>Surname</th>
-    <th>Name</th>
-    <th>Address</th>
-    <th>Skype</th>
-  </tr>
-  <tr>
-    <td><a href="{% url 'student_detail' %}">1</a></td>
-    <td>Curie</td>
-    <td>Marie</td>
-    <td>Warszawa, Poland</td>
-    <td>radioactive_girl</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>King</td>
-    <td>Stephen</td>
-    <td>Portland, USA</td>
-    <td>richard_bachman</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>Rogers</td>
-    <td>Steven</td>
-    <td>USA</td>
-    <td>captain_america</td>
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>Shevchenko</td>
-    <td>Taras</td>
-    <td>Ukraine, Morincy</td>
-    <td>kobzar</td>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>van Rossum</td>
-    <td>Guido </td>
-    <td>Nederland</td>
-    <td>guido_py</td>
-  </tr>
-</table>
+    <h2>Marie Curie</h2>
+    <img src="../static/images/madame-curie.jpg" alt="this is Madame Curie" style="width:512px;">
+    <h6>(I won the Nobel)</h6>
+    <h4>Student's card</h4>
+    <table>
+      <tr>
+        <th>Surname</th>
+        <td>Curie</td>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <td>Marie</td>
+      </tr>
+      <tr>
+        <th>Patronymic</th>
+        <td>...</td>
+      </tr>
+      <tr>
+        <th>Birth Date</th>
+        <td>7.11.1867</td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td>Warszawa, Poland</td>
+      </tr>
+      <tr>
+        <th>E-mail</th>
+        <td>radioactive_girl@gmail.com</td>
+      </tr>
+      <tr>
+        <th>Skype</th>
+        <td>radioactive_girl</td>
+      </tr>
+      </table>
+      <h4>Performance</h4>
+      <table>
+      <tr>
+        <th>Problem Task</th>
+        <td>...</td>
+      </tr>
+      <tr>
+        <th>Tests</th>
+        <td>...</td>
+      </tr>
+      <tr>
+        <th>Average Grade</th>
+        <td>10/10</td>
+      </tr>
+      <tr>
+        <th>Rating</th>
+        <td>1-st</td>
+      </tr>
+      </table>
   </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

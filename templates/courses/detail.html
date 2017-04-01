@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %}courses detail{% endblock %}
+
+
+{% block nav_class_students %}active{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+  <h2>{{ course.name }}</h2>
+  <p>{{ course.description|truncatechars:32 }}</p>
+</div>
+<h2>Преподаватели</h2><br/>
+
+  {% if course.coach %}
+  {% include "include/coach_include.html" with block_title="Coach" instructor=course.coach %}
+  {% endif %}
+
+  {% if course.assistant %}
+  {% include "include/coach_include.html" with block_title="Assistant" instructor=course.assistant %}
+  {% endif %}
+
+<div class="container">
+  <div class="jumbotron">
+  <h2>{{ course.name }}</h2>
+  <p>{{ course.description|truncatechars:32 }}</p>
+  </div>
+<table cellspacing="10">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Course</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for les in lessons %}
+  <tr>
+    <td>{{ les.order }}</td>
+    <td>{{ les.subject }}</td>
+    <td>{{ les.description }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}
