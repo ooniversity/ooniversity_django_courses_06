@@ -1,0 +1,13 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ panel_title }}</h3>
+    </div>
+
+    <div class="panel-body">
+        <h4>
+            <a href="{% url 'coaches:detail' coach.id %}">{{ person.get_name|title }} {{ person.get_surname|title }}</a>
+        </h4>
+
+        <p>{{ person.description }}</p>
+    </div>
+</div>
