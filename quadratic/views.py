@@ -33,7 +33,7 @@ def quadratic_results(request):
                     x1, x2 = roots(D, a, b)  # > 0
                     message='Квадратное уравнение имеет два действительных корня: x1 = ' + str(x1) + ', x2 = ' + str(x2)
                 except ValueError:
-                    x1 = roots(D, values_dict['a'], values_dict['b'])[0]  # = 0
+                    x1 = roots(D, a, b)[0]  # = 0
                     message='Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = ' + str(x1)
             else:
                 message='Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.'
