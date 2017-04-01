@@ -1,6 +1,7 @@
 from django.db import models
 from courses.models import Course
 
+
 class Student(models.Model):
     name = models.CharField(max_length=255)
     surname = models.CharField(max_length=255)
@@ -12,7 +13,7 @@ class Student(models.Model):
     courses = models.ManyToManyField(Course, related_name='course')
     
     def full_name(self):
-        return self.name + ' ' + self.surname
+        return "%s %s" % (self.name, self.surname)
 
     def __str__(self):
         return self.name
