@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}ADD NEW STUDENT{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="panel panel-primary"> 
+            <div class="panel-heading"> 
+                <h2 class="panel-title" align="center">
+                    <h2 class="Program">Ввести нового студента:</h2>
+                </h2>
+            </div>
+    <div class="panel-body">
+        <div class='container'>
+            <form method='post'>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Ok</button>
+            </form>
+        </div>
+        <br>
+    </div>
+</div>
+
+{% endblock content %}
