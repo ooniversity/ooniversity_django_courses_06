@@ -13,6 +13,23 @@
 {% load static %}
 
 
+{% if messages %}
+<div class = "alert alert-success" role="alert">
+   {% for message in messages %}
+      {{ message }}
+   {% endfor %}
+</div>
+{% endif %}
+
+<div class="container">
+    <p><a href="/students/add/" class="btn btn-success" role="button">
+       <span class="glyphicon glyphicon-plus"></span> 
+       Добавить нового студента
+</a></p>
+
+
+
+
     <div class="page-content">
         <div class="container">
 
@@ -32,7 +49,9 @@
                             <th>Skype</th>
                             <th>Courses</th>
                         </tr>
-                    </thead>
+                  
+
+  </thead>
 
                     <tbody>
                         {% for student in students_list %}
@@ -47,9 +66,22 @@
                                             <li><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></li>
                                         </ul>
                                     {% endfor %}
-                                </td>
-                            </tr>
-                        {% endfor %}
+  <td>
+            <a href="{% url 'students:edit' student.id %}" class="btn btn-success" type="button">
+              <span class="glyphicon glyphicon-pencil"></span>            
+                Изменить
+            </a>
+</td>
+
+  <td>
+            <a href="{% url 'students:remove' student.id %}" class="btn btn-success" type="button">
+              <span class="glyphicon glyphicon-pencil"></span>            
+                Удалить
+            </a>
+</td>
+
+
+                       {% endfor %}
                     </tbody>
                 </table>
             </div>
