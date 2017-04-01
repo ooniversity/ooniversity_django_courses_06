@@ -15,7 +15,7 @@ def chck_params(parametr):
          check_parametr = True
     return check_parametr
 
-def results(request):
+def quadratic_results(request):
     a = ''
     b = ''
     c = ''
