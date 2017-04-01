@@ -40,7 +40,6 @@ def edit(request, id):
         else:
             form = StudentModelForm(request.POST, instance=student)
     form = StudentModelForm(instance=student)
-    print(form['surname'].value(),'\n',form)
     return render(request, 'students/edit.html', {'form': form})
 
 def remove(request, id):
