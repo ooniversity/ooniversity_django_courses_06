@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %}courses detail{% endblock %}
+
+
+
+
+{% block content %}
+<div class="container">
+	<div class="jumbotron">
+    <p>Курс <b>{{ course.name }}</b> будет удален</p>
+	<form method='post'>
+		<input type="submit" value="Подтвердить" />
+		<a href="{% url 'index' %}">
+   			<input type="button" value="Отменить" />
+		</a>
+	</form>
+	</div>
+</div>
+{% endblock %}

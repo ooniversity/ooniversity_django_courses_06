@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %}courses detail{% endblock %}
+
+
+{% if messages %}
+<div class="container">
+  <div class="messages">
+      {% for message in messages %}
+      <div class="alert alert-success" role="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ message }}
+      </div>
+      {% endfor %}
+  </div>
+</div>
+{% endif %}
+{% block content %}
+<div class="container">
+	<div class="jumbotron">
+	<h2 align='center'>Добавить занятие</h2>
+	<form method='post'>
+		{{ form.as_p }}
+	<input type="submit" />
+	</form>
+</div>
+</div>
+{% endblock %}
+
+
