@@ -42,7 +42,7 @@
   <h2>{{ course.name }}</h2>
   <p>{{ course.description|truncatechars:32 }}</p>
   </div>
-  <p><a class="btn btn-default" href="{% url 'courses:add_lesson' %}" role="button">Добавить занятие</a></p>
+  <p><a class="btn btn-default" href="{% url 'courses:add_lesson' course.id %}" role="button">Добавить занятие</a></p>
 <table cellspacing="10">
   <thead>
     <tr>
