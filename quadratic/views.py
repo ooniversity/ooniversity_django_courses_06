@@ -1,43 +1,55 @@
 from django.shortcuts import render
 
-# Create your views here.
-from django.http import HttpResponse, HttpResponseNotFound
+import math
+
+from quadratic.forms import QuadraticForm
+
+
+def discriminant(data):
+
+    a = data['a']
+    b = data['b']
+    c = data['c']
+
+    dis_text_null = 'Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.'
+    dis_text_result = 'Дискриминант: %(dis)d'
+
+    result_text = 'Квадратное уравнение имеет два действительных корня: x1 = %(x1)s, x2 = %(x2)s'
+    result_text_eq = 'Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = %(x1)s'
+
+    dis = b ** 2 - 4 * a * c
+    dis_result = dis_text_result % {'dis': dis}
+
+    if dis >= 0:
+        x1 = (-b + math.sqrt(dis)) / 2 * a
+        x2 = (-b - math.sqrt(dis)) / 2 * a
+
+        if dis == 0:
+            result_text_x1_x2 = result_text_eq % {'x1': x1}
+        else:
+            result_text_x1_x2 = result_text % {'x1': x1, 'x2': x2}
+
+    else:
+        result_text_x1_x2 = dis_text_null
+
+    context = {'dis_result': dis_result,
+               'result_text_x1_x2': result_text_x1_x2,
+               }
+
+    return context
 
 
 def quadratic_results(request):
-    mes_a=''
-    mes_b=''
-    mes_c=''
-    a_int=False
-    b_int=False
-    c_int=False
-    a=request.GET.get('a')
-    b=request.GET.get('b')
-    c=request.GET.get('c')
-    if ((a.isdigit()==True) or ((len(a)>1) and (a[0]=='-') and (a[1:].isdigit())==True)):
-        a_int=True
-    if ((b.isdigit()==True) or ((len(b)>1) and (b[0]=='-') and (b[1:].isdigit())==True)):
-        b_int=True
-    if ((c.isdigit()==True) or ((len(c)>1) and (c[0]=='-') and (c[1:].isdigit())==True)):
-        c_int=True
 
-    if (a == '0') or (a =='') or (a_int==False) or (b=="") or (b_int==False) or (c=="") or (c_int==False):
-        ch=1
-        if (a!='') and (a_int==False):
-            mes_a="коэффициент не целое число"
-        if (b!='') and (b_int==False):
-            mes_b="коэффициент не целое число"
-        if (c!='') and (c_int==False):
-            mes_c="коэффициент не целое число"
-             
+    form = QuadraticForm()
 
-        return render(request, "quadratic/results.html", {"a": a, "b": b, "c": c, "mes_a": mes_a,"mes_b": mes_b,"mes_c": mes_c, "ch":ch})
-    else:
-        ch=0
-        d=int(b)**2 - 4*int(a)*int(c)
-        if d<0:
-            return render(request, "quadratic/results.html", {"a": a, "b": b, "c": c, "discr": d,"ch":ch})
-        else:
-            x1=(-int(b)+d**(1/2))/2*int(a)
-            x2=(-int(b)-d**(1/2))/2*int(a)
-        return render(request, "quadratic/results.html", {"a": a, "b": b, "c": c, "discr": d,"x1": x1, "x2": x2, "ch":ch})
+    context = {}
+    if len(request.GET) > 0:
+        form = QuadraticForm(request.GET)
+        if form.is_valid():
+            dict_discriminant = discriminant(form.cleaned_data)
+            context.update(dict_discriminant)
+
+    context['form'] = form
+
+    return render(request, 'quadratic/results.html', context)

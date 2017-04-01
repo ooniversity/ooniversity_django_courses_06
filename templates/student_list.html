@@ -63,22 +63,51 @@
   <h2>PyBursa students</h2>
   <div class="panel-heading">april 2017</div>
 
-  <!-- Table -->
-  <tbody><table class="table">
-    <td>#</td>
-    <td>фамилия имя</td>
-    <td>адрес</td>
-    <td>skype</td>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td><a href="{% url 'student_detail' %}">Иванов Иван</a></td>
-    <td>г.Харьков</td>
-    <td>ivanov</td>
-  </tr>
-  <tr>
-  </table>
-  </div>
+<div class="radius">
+<table class="table table-condensed">
+<tr class="active">
+<td class="t_s_n">No</td>
+<td class="t_s_sn">Surname</td>
+<td class="t_s_sn">Name</td>
+<td class="t_s_a">Address</td>
+<td class="t_s_s">Skype</td>
+</tr>
+<tr class="success">
+<td class="t_s_n"><a href="{% url 'student_detail' %}">1</a></td>
+<td class="t_s_sn"><a href="{% url 'student_detail' %}">Ivanov</a></td>
+<td class="t_s_sn"><a href="{% url 'student_detail' %}">Ivan</a></td>
+<td class="t_s_a"><a href="{% url 'student_detail' %}">Lenin St. Moscow, Russia</a></td>
+<td class="t_s_s"><a href="{% url 'student_detail' %}">skype_ivanov</a></td>
+</tr>
+<tr class="warning">
+<td class="t_s_n">2</td>
+<td class="t_s_sn">Kurbatov</td>
+<td class="t_s_sn">Nikita</td>
+<td class="t_s_a">Sverdlova St. Murmansk, Russia</td>
+<td class="t_s_s">skype_nikita</td>
+</tr>
+<tr class="warning">
+<td class="t_s_n">3</td>
+<td class="t_s_sn">Filimonov</td>
+<td class="t_s_sn">Stas</td>
+<td class="t_s_a">pr. Leninsky Moscow, Russia</td>
+<td class="t_s_s">skype_stas</td>
+</tr>
+<tr class="warning">
+<td class="t_s_n">4</td>
+<td class="t_s_sn">Lesin</td>
+<td class="t_s_sn">Alexey</td>
+<td class="t_s_a">Bogatyrskij prospekt Sankt-Peterburg, Russia </td>
+<td class="t_s_s">skype_alex</td>
+</tr>
+<tr class="warning">
+<td class="t_s_n">5</td>
+<td class="t_s_sn">Kalashnikov</td>
+<td class="t_s_sn">Maxim</td>
+<td class="t_s_a">Bazarnaya St. Odessa Ukraine</td>
+<td class="t_s_s">skype_max</td>
+</tr>
+</table>
 </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
