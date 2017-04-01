@@ -21,7 +21,7 @@ def quadratic_results(request):
     if request.method == "GET":
         form = QuadraticForm()
     else:
-        form = QadraticForm(request.POST)
+        form = QuadraticForm(request.POST)
         if form.is_valid():
             a = form.clean_a()
             b = form.cleaned_data['b']
