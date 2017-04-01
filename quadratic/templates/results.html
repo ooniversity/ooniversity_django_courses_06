@@ -24,38 +24,18 @@
     </div>
 </div>
 
-{% if factors %}
-    <h2>The results of a calculation</h2>
+<form method="get" action="/quadratic/results/" class="quadratic-form">
+    <!--{% csrf_token %}-->
+    {{ form.as_p }}
+    <input type="submit" value="Submit" class="btn btn-primary">
+</form>
 
-    <h3>Factors</h3>
-    <ul class="list-group">
-        {% for item in factors %}
-            <li class="list-group-item">
-                <p>{{ item.item_name }} = {{ item.item_value }}</p>
-
-                {% if 'error_message' in item %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ item.error_message }}
-                    </div>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-{% endif %}
-
-{% if results %}
-    <h3>Results</h3>
-    <p>{{ results.discriminant_text }} {{ results.discriminant }}</p>
-
-    <p>
-        {{ results.root_text }}
-
-        {% if 'x1' in results and 'x2' in results %}
-            x1 = {{ results.x1 }}, x2 = {{ results.x2 }}
-        {% elif 'x1' in results %}
-            x1 = x2 = {{ results.x1 }}
-        {% endif %}
-    </p>
+{% if messages %}
+<ul class="list-group">
+    {% for message in messages %}
+        <li class="{% if message.tags %}{{message.tags}}{%endif%} list-group-item">{{ message }}</li>
+    {% endfor %}
+</ul>
 {% endif %}
 
 {% endblock content %}
