@@ -55,70 +55,81 @@
     </nav>
     
 
-<div class="container">
-
-  <h1>Иванов Иван</h1>
+<div class="media">
+<h1 class="media-heading intro">Иванов Иван</h1><br>
+  <a class="media-left" href="{% url 'student_detail' %}"></a>
+    <br><button type="button" class="btn btn-success">About student</button>
     
-      <div class="row">
-
-          <div class="blog-post">
-     
-          <table class="table table-bordered" ,="" style="width: 50%">
-         
-            <tbody><tr><td class="student_info">Surname</td><td>Ivanov</td></tr>
-            <tr><td class="student_info">Name</td><td>Name</td></tr>
-            <tr><td class="student_info">Patronymic</td><td>Ivanovich</td></tr>
-            <tr><td class="student_info">Rating</td><td>1</td></tr>
-            <tr><td class="student_info">Average Grade</td><td>100</td></tr>
-            <tr><td class="student_info">Package</td><td>Standart</td></tr>
-            <tr><td class="student_info">Birth Date</td><td>11/02/1898</td></tr>
-            <tr><td class="student_info">Post</td><td>61010</td></tr>
-            <tr><td class="student_info">Skype</td><td>ivanov</td></tr>         
+<div class="radius">
+<table class="table table-condensed">
+<caption class="caption">Student`s card</caption>
+<tr class="active">
+<td class="1_os">Surname</td>
+<td class="2_os">Ivanov</td>
+</tr>
+<tr class="active">
+<td class="1_os">Name</td>
+<td class="2_os">Ivan</td>
+</tr>
+<tr class="active">
+<td class="1_os">Patronymic</td>
+<td class="2_os">Ivanovich</td>
+</tr>
+<tr class="active">
+<td class="1_os">Birth Date</td>
+<td class="2_os">11.02.1898</td>
+</tr>
+<tr class="active">
+<td style="width: 19.4577%;">Address</td>
+<td class="2_os">Lenin St. Moscow, Russia</td>
+</tr>
+<tr class="active">
+<td class="1_os">E-mail</td>
+<td class="2_os">ivanov@gmail.com</td>
+</tr>
+<tr class="active">
+<td class="1_os">Skype</td>
+<td class="2_os">ivanov</td>
+</tr>
+<tr class="active">
+<td class="1_os">Average Grade</td>
+<td class="2_os">99,9%</td>
+</tr>
+<tr class="active">
+<td class="1_os">Rating</td>
+<td class="2_os">1</td>
+</tr>
+</table>
 </div>
-  <div class="container">
-  <tbody><table class="table">
-    <td>Course</td>
-    <td>week</td>
-    <td>Control type</td>
-    <td>grade</td>
-  </tr>
-  <tr>
-    <td>PY101</td>
-    <td>week1</td>
-    <td>tests</td>
-    <td>100%</td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td>Problem task #1</td>
-    <td>100%</td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td>Problem task #2</td>
-    <td>100%</td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>week2</td>
-    <td>tests</td>
-    <td>100%</td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td>Problem task #1</td>
-    <td>100%</td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td>Problem task #2</td>
-    <td>100%</td>
-  </tr>
-  </table>
+
+<table class="table table-condensed tbl">
+<caption class="caption">Perfomance</caption>
+<tr>
+<td>Course</td>
+<td>Week</td>
+<td>Control Type</td>
+<td>Grade</td>
+</tr>
+<tr>
+<td>PY105 HTML&CSS</td>
+<td>Week1</td>
+<td>Tests</td>
+<td>92%</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Problem Task N1</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Week2</td>
+<td>Tests</td>
+<td>&nbsp;</td>
+</tr>
+
+</table>
 </div>
 </div>
     <!-- Bootstrap core JavaScript
