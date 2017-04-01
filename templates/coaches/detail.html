@@ -7,6 +7,9 @@
 {% block title %}{{ coach.get_name }} {{ coach.get_surname }} coach detail{% endblock title %}
 
 
+{% block nav_class_index %}active{% endblock %}
+
+
 {% block content %}
 
 <h1 class="page-header">{{ coach.get_name|title }} {{ coach.get_surname|title }}</h1>
