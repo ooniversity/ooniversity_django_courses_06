@@ -3,10 +3,10 @@ from math import sqrt
 from django import forms
 from django.contrib import messages
 
-class QadraticForm(forms.Form):
-    a = forms.IntegerField(label='a:')
-    b = forms.IntegerField(label='b:')
-    c = forms.IntegerField(label='c:')
+class QuadraticForm(forms.Form):
+    a = forms.IntegerField(label='коэффициент a')
+    b = forms.IntegerField(label='коэффициент b')
+    c = forms.IntegerField(label='коэффициент c')
 
     def clean_a(self):
         a = int(self.cleaned_data['a'])
@@ -17,15 +17,13 @@ class QadraticForm(forms.Form):
 def quadratic_results(request):
     context = {'error': False}
     if request.method == "GET":
-        form = QadraticForm()
+        form = QuadraticForm()
     else:
         form = QadraticForm(request.POST)
         if form.is_valid():
             a = form.clean_a()
             b = form.cleaned_data['b']
             c = form.cleaned_data['c']
-
-
             my_discr = b*b - 4*a*c
             if my_discr < 0:
                 res_qadr = 'Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.'
