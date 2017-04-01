@@ -6,23 +6,38 @@
 
 {% block content %}   
     <div class="container">
-      <h1 class="my_descript">Equation</h1>
       <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
-
-      {% if messages %}
-      <ul class="messages">
-          {% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-          {% endfor %}
-      </ul>
-      {% endif %}      
 
       <form method="post">{% csrf_token %}
       {{ form.as_p }}
       <input type="submit" name="Ввод">
       </form>
-
-      <p>{{ discr }}</p>
-      <p>{{ res_qadr }}</p>
     </div>
+
+    <div class="container">
+      <p></p>
+
+      {% if discr < 0 %}
+
+      <p>Дискриминант: {{ discr }}</p>
+      <p>Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.</p>
+
+      {% elif discr == 0 %}
+
+      <p>Дискриминант: {{ discr }}</p>
+      <p>Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = {{ x1 }}</p>
+
+      {% elif discr > 0 %}
+
+      <p>Дискриминант: {{ discr }}</p>
+      <p>Квадратное уравнение имеет два действительных корня: x1 = {{ x1 }}, x2 = {{ x2 }} </p>
+
+      {% else %} 
+
+      <p></p>
+
+      {% endif %}
+
+    </div>
+    
 {% endblock content %}
