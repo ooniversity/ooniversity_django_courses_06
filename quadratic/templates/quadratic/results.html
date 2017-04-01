@@ -8,9 +8,9 @@
     <div class="container">
       <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
 
-      <form method="post">{% csrf_token %}
+      <form method="get">{% csrf_token %}
       {{ form.as_p }}
-      <input type="submit" name="Ввод">
+      <input type="submit">
       </form>
     </div>
 
