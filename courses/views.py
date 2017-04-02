@@ -51,7 +51,7 @@ def edit(request, id):
 
 def add_lesson(request, id):
 	if request.method == "POST":
-		form = LessonModelForm(request.POST, initial={"course": course})
+		form = LessonModelForm(request.POST)
 		if form.is_valid():
 			lesson = form.save()
 			messages.success(request, "Lesson %s has been successfully added." %( lesson.subject) )
