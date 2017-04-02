@@ -20,7 +20,7 @@ def add(request):
 		messages.success(request, "Course %s has been successfully added." %(course.name))
 		return redirect('index')
 
-	return render(request, 'courses/add.html', {'form': form})
+	return render(request, 'add.html', {'form': form})
 
 def remove(request, id):
 	course = Course.objects.get(id = id)
