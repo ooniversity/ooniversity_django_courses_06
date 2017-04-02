@@ -5,7 +5,10 @@ from django.contrib import messages
 from courses.forms import CourseModelForm, LessonModelForm
 
 def detail(request, course_id):
-	context = {'course': Course.objects.get(id=course_id), 'lessons': Lesson.objects.filter(course=course_id)}
+	course = Course.objects.get(id=course_id)
+	lesson = Lesson.objects.filter(course=course_id)
+	context = {'course': course, 'lessons': lesson}
+	print(dir(lesson))
 	return render(request, "courses/detail.html", context)
 
 def add(request):
@@ -13,7 +16,7 @@ def add(request):
 		form = CourseModelForm(request.POST)
 		if form.is_valid():
 			course = form.save()
-			messages.success(request, "Course %s has been successfully added." % (course.name))
+			messages.success(request, "Course %s has been successfully added." %course.name) 
 			return redirect('index')
 	else:	
 		form = CourseModelForm()
@@ -26,7 +29,7 @@ def edit(request, course_id):
 		form = CourseModelForm(request.POST, instance=course)
 		if form.is_valid():
 			course = form.save()
-			messages.success(request, "The changes have been saved.")
+			messages.success(request, "The changes have been saved.") 
 			return redirect('courses:edit', course.id)
 	else:
 		form = CourseModelForm(request.POST, instance=course)
@@ -38,7 +41,7 @@ def remove(request, course_id):
 	course = Course.objects.get(id=course_id)
 	if request.method == "POST":
 		course.delete()
-		messages.success(request, "Course %s has been deleted." % (course.name))
+		messages.success(request, "Course %s has been deleted." %course.name)
 		return redirect('index')
 	return render(request, 'courses/remove.html', {'course': course})
 
@@ -48,7 +51,7 @@ def add_lesson(request, course_id):
 		form = LessonModelForm(request.POST)
 		if form.is_valid():
 			lesson = form.save()
-			messages.success(request, "Lesson %s has been successfully added." % (lesson.subject))
+			messages.success(request, "Lesson %s has been successfully added." %lesson.subject)
 			return redirect('courses:detail', lesson.course.id)
 	else:
 		course = Course.objects.get(id=course_id)	
