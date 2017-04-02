@@ -28,8 +28,8 @@ def create(request):
         if form.is_valid():
             instance = form.save()
             context['form'] = instance
-            message = messages.success(request, "Student %s %s has been successfully added." %(instance.name, instance.surname))
-            return redirect('/students/', messages=message)
+            messages.success(request, "Student %s %s has been successfully added." %(instance.name, instance.surname))
+            return redirect('/students/')
     else:
         form = StudentModelForm()
     context['form'] = form
@@ -54,9 +54,9 @@ def remove(request, student_id):
     context = {'error': False}
     instance = Student.objects.get(id=student_id)
     if request.method == 'POST':
-        message = messages.success(request, "Info on %s %s has been successfully deleted." %(instance.name, instance.surname))
+        messages.success(request, "Info on %s %s has been successfully deleted." %(instance.name, instance.surname))
         instance.delete()
-        return redirect('/students/', message)
+        return redirect('/students/')
     else:
         form = StudentModelForm(instance)
     context['student'] = instance
