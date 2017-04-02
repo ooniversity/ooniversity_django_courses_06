@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 
 from . models import Student
 from courses.models import Course
+from . forms import StudentModelForm
 
 def list_view(request):
     data = request.GET
@@ -32,3 +34,25 @@ def detail(request, student_id):
     }
 
     return render(request, 'students/detail.html', context)
+
+
+def create(request):
+    if request.method == 'POST':
+        form = StudentModelForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            message = 'Student {} {} has been successfully added.'.format(data['name'], data['surname'])
+
+            messages.success(request, message)
+
+            return redirect('/students/')
+    else:
+        form = StudentModelForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'students/add.html', context)
