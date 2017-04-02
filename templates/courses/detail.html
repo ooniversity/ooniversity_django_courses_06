@@ -12,6 +12,15 @@
 
 {% block content %}
 
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{message.tags}}{%endif%}" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
 {% include "include/jumbotron_include.html" with block_title=course.name block_text=course.description|truncatechars:32 %}
 
 <h2>Instructors</h2>
@@ -25,6 +34,15 @@
 {% endif %}
 
 <h2 class="page-header">Course plan</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <a href="{% url 'courses:add_lesson' course.id %}" class="btn btn-info">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Add new lesson
+        </a>
+    </div>
+</div>
 
 <div class="table-responsive">
     <table class="table table-bordered courses-table">
@@ -46,5 +64,14 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <a href="{% url 'courses:add_lesson' course.id %}" class="btn btn-info">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Add new lesson
+        </a>
+    </div>
 </div>
 {% endblock content %}

@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 
 from . models import Student
 from courses.models import Course
+from . forms import StudentModelForm
 
 def list_view(request):
     data = request.GET
@@ -32,3 +34,70 @@ def detail(request, student_id):
     }
 
     return render(request, 'students/detail.html', context)
+
+
+def create(request):
+    if request.method == 'POST':
+        form = StudentModelForm(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+
+            form.save()
+
+            message = 'Student {} {} has been successfully added.'.format(data['name'], data['surname'])
+
+            messages.success(request, message)
+
+            return redirect('/students/')
+    else:
+        form = StudentModelForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'students/add.html', context)
+
+
+def edit(request, student_id):
+    student = Student.objects.get(id=student_id)
+
+    if request.method == 'POST':
+        form = StudentModelForm(request.POST, instance=student)
+
+        if form.is_valid():
+            student = form.save()
+
+            message = 'Info on the student has been successfully changed.'
+
+            messages.success(request, message)
+
+            return redirect('/students/edit/{}'.format(student_id))
+    else:
+        form = StudentModelForm(instance=student)
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'students/edit.html', context)
+
+def remove(request, student_id):
+    student = Student.objects.get(id=student_id)
+
+    if request.method == 'POST':
+        message = 'Info on {} {} has been successfully deleted.'.format(student.name, student.surname)
+
+        student.delete()
+
+
+        messages.success(request, message)
+
+        return redirect('/students/')
+
+    context = {
+        'student': student
+    }
+
+    return render(request, 'students/remove.html', context)
