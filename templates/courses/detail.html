@@ -24,7 +24,7 @@
       {% if course.assistant %}
         {% include "include/mentor_include.html" with mentor_title='Асистент' mentor=course.assistant %}
       {% endif %}
-      <p><a class='btn btn-sm btn-success' href="{% url 'courses:add-lesson' %}" role='button'>
+      <p><a class='btn btn-sm btn-success' href="{% url 'courses:add-lesson' course.id %}" role='button'>
             <span class="glyphicon glyphicon-plus-sign"></span> Добавить занятие</a>
       </p>
 	<div class="container">
