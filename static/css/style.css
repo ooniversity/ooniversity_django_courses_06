@@ -131,6 +131,22 @@
   margin: 0 0 40px;
 }
 
+.person-form {
+  margin: 0 0 40px;
+}
+
+.helptext {
+  display: block;
+  margin: 5px 0 30px 20px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.table .btn {
+  display: block;
+  margin: 5px 0;
+}
+
 @media (min-width:600px) {
   .persons-list {
     display: -webkit-box;

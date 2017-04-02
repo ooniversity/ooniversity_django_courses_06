@@ -1,0 +1,16 @@
+{% extends "students/base.html" %}
+
+
+{% block title %}Remove student{% endblock title %}
+
+
+{% block content %}
+
+<h1 class="page-header">Student {{ student.name }} {{ student.surname }} will be removed</h1>
+
+<form method="post" class="person-form">
+    {% csrf_token %}
+    <input type="submit" value="Delete" class="btn btn-danger">
+</form>
+
+{% endblock content %}
