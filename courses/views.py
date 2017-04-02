@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 
 from . models import Course, Lesson
 from coaches.models import Coach
+from . forms import CourseModelForm, LessonModelForm
 
 def detail(request, course_id):
     course = Course.objects.get(id=course_id)
@@ -16,3 +18,68 @@ def detail(request, course_id):
         'assistant': assistant,
     }
     return render(request, 'courses/detail.html', context)
+
+
+def add(request):
+    if request.method == 'POST':
+        form = CourseModelForm(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+
+            form.save()
+
+            message = 'Course {} has been successfully added.'.format(data['name'])
+
+            messages.success(request, message)
+
+            return redirect('/')
+    else:
+        form = CourseModelForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'courses/add.html', context)
+
+def edit(request, course_id):
+    course = Course.objects.get(id=course_id)
+
+    if request.method == 'POST':
+        form = CourseModelForm(request.POST, instance=course)
+
+        if form.is_valid():
+            student = form.save()
+
+            message = 'The changes have been saved.'
+
+            messages.success(request, message)
+
+            return redirect('/courses/edit/{}'.format(course_id))
+    else:
+        form = CourseModelForm(instance=course)
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'courses/edit.html', context)
+
+def remove(request, course_id):
+    course = Course.objects.get(id=course_id)
+
+    if request.method == 'POST':
+        message = 'Course {} has been deleted.'.format(course.name)
+
+        course.delete()
+
+        messages.success(request, message)
+
+        return redirect('/')
+
+    context = {
+        'course': course
+    }
+
+    return render(request, 'courses/remove.html', context)

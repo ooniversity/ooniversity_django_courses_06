@@ -1,7 +1,7 @@
-{% extends "students/base.html" %}
+{% extends "base.html" %}
 
 
-{% block title %}Edit student data{% endblock title %}
+{% block title %}Edit course data{% endblock title %}
 
 
 {% block content %}
@@ -15,9 +15,9 @@
     {% endfor %}
 {% endif %}
 
-<h1 class="page-header">Edit student data</h1>
+<h1 class="page-header">Edit course data</h1>
 
-<form method="post" class="person-form">
+<form method="post" class="course-form">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Update" class="btn btn-primary">
