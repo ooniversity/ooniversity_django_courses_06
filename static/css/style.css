@@ -142,6 +142,11 @@
   font-style: italic;
 }
 
+.table .btn {
+  display: block;
+  margin: 5px 0;
+}
+
 @media (min-width:600px) {
   .persons-list {
     display: -webkit-box;

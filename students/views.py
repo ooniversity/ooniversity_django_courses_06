@@ -80,3 +80,22 @@ def edit(request, student_id):
     }
 
     return render(request, 'students/edit.html', context)
+
+def remove(request, student_id):
+    student = Student.objects.get(id=student_id)
+
+    if request.method == 'POST':
+        message = 'Info on {} {} has been successfully deleted.'.format(student.name, student.surname)
+
+        student.delete()
+
+
+        messages.success(request, message)
+
+        return redirect('/students/')
+
+    context = {
+        'student': student
+    }
+
+    return render(request, 'students/remove.html', context)
