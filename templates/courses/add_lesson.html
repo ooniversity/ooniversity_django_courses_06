@@ -3,7 +3,7 @@
 {% load static %}
 
 
-{% block title %}AdD NEW LESSON{% endblock title %}
+{% block title %}ADD NEW LESSON{% endblock title %}
 
 {% block content %}
 
@@ -20,11 +20,11 @@
             <form method='post'>
                 {% csrf_token %}
                 {{ form.as_p }}
-<!--                 <input type="submit" value="Ok"/> -->
-                <hr>
+                <input type="submit" value="Ok"/>
+<!--                <hr>
                 <button type="submit" class="btn btn-success btn-sm">
                     <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Ok
-                </button>
+                </button>-->
             </form>
         </div>
     </div>
