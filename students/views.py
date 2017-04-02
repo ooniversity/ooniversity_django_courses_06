@@ -41,6 +41,8 @@ def create(request):
         form = StudentModelForm(request.POST)
 
         if form.is_valid():
+            data = form.cleaned_data
+
             form.save()
 
             message = 'Student {} {} has been successfully added.'.format(data['name'], data['surname'])
