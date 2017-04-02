@@ -8,15 +8,13 @@
 
 
 {% block content %} 
-	<div class="container">
-	  {% if messages %}
-	  <ul class="messages">
-	    {% for message in messages %}
-	    <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">{{ message }}</li>
-	    {% endfor %}
-	  </ul>
-	  {% endif %}
-	</div>
+    <div class="container">
+      {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    </div>
     <div class="container">
       <h1 class="my_descript">Редактирование данных студента</h1>
         <form method="post">{% csrf_token %}

@@ -18,13 +18,10 @@
     <div class="container">
       <h2>Наши Python курсы. Выбирай любой!</h2>
       {% if messages %}
-      <ul class="messages">
         {% for message in messages %}
-        <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">{{ message }}</li>
+        <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">{{ message }}</div>
         {% endfor %}
-      </ul>
-      {% endif %}
-      
+      {% endif %}     
       <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">
