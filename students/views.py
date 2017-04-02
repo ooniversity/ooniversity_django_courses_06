@@ -39,22 +39,23 @@ def remove(request, id):
 	if request.method == "POST":
 		studentname = student.full_name()
 		student.delete()
-		messages.success(request, "Info on "+studentname+" has been successfully deleted.")
+		messages.success(request, "Info on %s has been successfully deleted." %(studentname))
 		return redirect('/students/')
 	return render(request, 'students/remove.html', {'student': student})
 
 def edit(request, id):
 	student = Student.objects.get(id = id)
+
 	if request.method == "POST":
 		form = StudentModelForm(request.POST, instance=student)
 		if form.is_valid():
 			student = form.save()
-			messages.success(request, "Изменения сохранены.")
-			return redirect('/students/')
+			messages.success(request, "Info on the student has been successfully changed.")
+			url_string = reverse('students:edit', args=(id))
+			print(url_string)
+			return redirect(url_string)
 		else:
 			form = StudentModelForm(request.POST, instance=student)
     
 	form = StudentModelForm(instance=student)
-	return render(request, 'students/edit.html', {'form': form})
-
-	
+	return render(request, 'students/edit.html', {'form': form})	

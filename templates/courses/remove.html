@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Удаление курса{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <h2 class="Program">Удалить данные o курсе: {{ course.name }}?</h2>
+</div>
+    <div class="panel-body">
+        <div class='container'>
+            <form method='post'>
+                {% csrf_token %}
+                <input type="submit" value="Ok"/>
+                {# <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Ok</button> #}
+            </form>
+        </div>
+        <br>
+    </div>
+</div>
+{% endblock content %}
