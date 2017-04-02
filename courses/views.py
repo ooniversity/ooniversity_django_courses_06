@@ -13,7 +13,7 @@ def detail(request, id):
     lessons = Lesson.objects.filter(course_id = int(id)).order_by('order')
     return render(request, 'courses/detail.html', {'course': course, 'lessons': lessons})
 
-def create(request):
+def add(request):
 	form = CourseModelForm(request.POST or None)
 	if form.is_valid():
 		course = form.save()
