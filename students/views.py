@@ -3,6 +3,8 @@ from students.models import Student
 from courses.models import Course
 from students.forms import StudentModelForm
 from django.contrib import messages
+from django import forms
+from django.core.urlresolvers import reverse
 
 
 def list_view(request):
@@ -22,37 +24,38 @@ def detail(request, id):
     else:	
     	student = Student.objects.first()
     courses = Course.objects.all()
-    return render(request, 'students/detail.html', {'student': student, 'courses' : courses})
+    return render(request, 'students/detail.html', {'student': student})
 
 def create(request):
 	form = StudentModelForm(request.POST or None)
 	if form.is_valid():
 		student = form.save()
-		messages.success(request, "Student {} {} has been successfully added.".format(student.name, student.surname))
-		return redirect('/students/')
+		messages.success(request, "Student %s has been successfully added." %(student.full_name))
+		return redirect('students:list_view')
 	return render(request, 'students/add.html', {'form': form})
 
 def remove(request, id):
-	student = StudentModelForm.objects.get(id = id)
+	student = Student.objects.get(id = id)
 	if request.method == "POST":
-		studentname = student.full_name
+		studentname = student.full_name()
 		student.delete()
-		message.success(request, "Student "+studentname+" was deleted")
+		messages.success(request, "Info on %s has been successfully deleted." %(studentname))
 		return redirect('/students/')
 	return render(request, 'students/remove.html', {'student': student})
 
 def edit(request, id):
-	student = StudentModelForm.objects.get(id = id)
+	student = Student.objects.get(id = id)
+
 	if request.method == "POST":
 		form = StudentModelForm(request.POST, instance=student)
 		if form.is_valid():
 			student = form.save()
-			messages.success(request, "Изменения сохранены.")
-			return redirect('/students/')
+			messages.success(request, "Info on the student has been successfully changed.")
+			url_string = reverse('students:edit', args=(id))
+			print(url_string)
+			return redirect(url_string)
 		else:
 			form = StudentModelForm(request.POST, instance=student)
     
 	form = StudentModelForm(instance=student)
-	return render(request, 'students/edit.html', {'form': form})
-
-	
+	return render(request, 'students/edit.html', {'form': form})	
