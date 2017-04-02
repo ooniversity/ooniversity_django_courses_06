@@ -26,8 +26,19 @@
 
     <div class="container">
 	    <h2>План курса:</h2>
-      <div class="panel panel-default">       
-          <!-- Default panel contents -->        
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+        <a class="btn btn-primary" role="button" href="{% url 'courses:add-lesson' course.id %}" >
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить занятие
+        </a></div>        
           <table class="table">         
             <tr>           
               <td><b>#</b></td>
