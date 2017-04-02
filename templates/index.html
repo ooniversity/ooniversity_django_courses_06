@@ -1,13 +1,27 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
 
 {% block nav_index %}active{% endblock %}
 
 
 {% block title %}TechBursa Python/Django :: Main{% endblock title %}
 
-
 {% block content %}
+
+{% if messages %}
+<div class='container'>
+    <div class='messages'>
+       {% for message in messages %}
+       <div class='alert alert-success' role='alert' {% if message.tags %} class='{{ message.tags }}' {% endif %}>
+         <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+         {{ message }}
+       </div>
+       {% endfor %}
+    </div>
+</div>
+{% endif %}
+
   <div class="container">
     <div class="jumbotron">
         <h1 class="coolshadow">Вітаємо сайті <a href="#">&laquoTechBursa&raquo!</a></h1>
@@ -23,17 +37,45 @@
   <div class="container">
     <div class="panel panel-primary"> 
       <div class="panel-heading"> 
-          <h2 class="panel-title" align="center"><h2 class="Program">ПЕРЕЛІК КУРСІВ:</h2></h2>
+          <h3 class="panel-title" align="center"><h2 class="Program">ПЕРЕЛІК КУРСІВ:</h2></h3>
       </div> 
       <div class="panel-body">
+            <div class="container">
+                <p><a class='btn btn-sm btn-success' href="{% url 'courses:add' %}" role='button'>
+                <span class="glyphicon glyphicon-plus-sign"></span> Добавить курс</a></p>
+            </div>
         <div class="row">
-          <ol class="num" >
-           {% for each_course in courses %}
-             <li style="font-size: 14pt;"><strong><a href="{% url 'courses:detail' each_course.id  %}">{{each_course.name|upper}}</a> :: </strong><em><b>{{each_course.short_description|title}}</b></em> ::</li>
+            <table class="table table-hover table-striped" align="center" style="width:95%; margin-bottom: 5px;" > 
+            {% for course in courses %}
+                <tr>
+                    <td width="1%" style="vertical-align: middle;">
+                     <div style="text-align: center;background-color: steelblue; color: white;padding: 3px;font-weight: bolder;">
+                        {{ forloop.counter }}
+                     </div>
+                    </td>
+                    <td width="3%" style="vertical-align: middle;"><strong><a href="{% url 'courses:detail' course.id  %}">{{course.name|upper}}</a></strong></td>
+                    <td width="30%" style="vertical-align: middle;"><em><b>{{course.short_description|title}}</b></em></td>
+                    <td width="10%" style="vertical-align: middle;">
+                        <a class="btn btn-sm btn-primary" href="{% url 'courses:edit' course.id %}" role="button">
+                        <span class="glyphicon glyphicon-edit"></span> Изменить</a>&nbsp
+                        <a class="btn btn-sm btn-primary" href="{% url 'courses:remove' course.id %}" role="button">
+                        <span class="glyphicon glyphicon-remove-sign"></span> Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </table>
+<!--          <ol class="num" >
+           {% for course in courses %}
+             <li style="font-size: 14pt;"><strong><a href="{% url 'courses:detail' course.id  %}">{{course.name|upper}}</a> :: </strong><em><b>{{course.short_description|title}}</b></em> ::
+             <div>{{course.short_description|title}}<div>
+             </li>            
            {% endfor %}
-          </ol>
+          </ol>-->
         </div>
       </div>
     </div>
-  </div>
 {% endblock content %}
+
+/*    display:inline-block;
+    */
+}
