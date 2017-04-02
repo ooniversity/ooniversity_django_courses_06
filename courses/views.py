@@ -6,28 +6,31 @@ from django.contrib import messages
 from django import forms
 from django.core.urlresolvers import reverse
 
-# Create your views here.
-
 def detail(request, id):
+
     course = Course.objects.get(pk = int(id))
-    lessons = Lesson.objects.filter(course_id = int(id)).order_by('order')
+    lessons = Lesson.objects.filter(course_id = int(id)).order_by('order')    
     return render(request, 'courses/detail.html', {'course': course, 'lessons': lessons})
 
 def add(request):
+
 	form = CourseModelForm(request.POST or None)
 	if form.is_valid():
 		course = form.save()
 		messages.success(request, "Course %s has been successfully added." %(course.name))
 		return redirect('index')
+
 	return render(request, 'courses/add.html', {'form': form})
 
 def remove(request, id):
 	course = Course.objects.get(id = id)
+
 	if request.method == "POST":
 		coursename = course.name
 		course.delete()
 		messages.success(request, "Course %s has been deleted." %(course.name))
 		return redirect('index')
+
 	return render(request, 'courses/remove.html', {'course': course})
 
 def edit(request, id):
@@ -38,7 +41,7 @@ def edit(request, id):
 		if form.is_valid():
 			course = form.save()
 			messages.success(request, "The changes have been saved.")
-			url_string = reverse('courses:edit', args=(id))
+			url_string = reverse('courses:edit', args=id)
 			return redirect(url_string)
 		else:
 			form = CourseModelForm(request.POST, instance=course)
@@ -48,7 +51,7 @@ def edit(request, id):
 
 def add_lesson(request, id):
 	if request.method == "POST":
-		form = LessonModelForm(request.POST)
+		form = LessonModelForm(request.POST, initial={"course": course})
 		if form.is_valid():
 			lesson = form.save()
 			messages.success(request, "Lesson %s has been successfully added." %( lesson.subject) )
