@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block title %}Редактирование данных студента{% endblock title %}
+
+
+{% block active_students %}"active"{% endblock %}
+
+
+{% block content %} 
+	  {% if messages %}
+	  <ul class="messages">
+	    {% for message in messages %}
+	    <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">{{ message }}</li>
+	    {% endfor %}
+	  </ul>
+	  {% endif %}
+
+    <div class="container">
+      <h1 class="my_descript">Редактирование данных студента</h1>
+        <form method="post">{% csrf_token %}
+          {{ form.as_p }}
+          <input class="btn btn-primary" type="submit" value="Изменить"> 
+        </form>
+    </div> 
+
+{% endblock content %}
