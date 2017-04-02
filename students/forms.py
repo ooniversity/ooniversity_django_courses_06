@@ -1,8 +1,6 @@
 from django import forms
 from . views import Student
 
-print(dir(forms))
-
 class StudentModelForm(forms.ModelForm):
     class Meta:
         model = Student
