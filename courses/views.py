@@ -39,7 +39,6 @@ def edit(request, id):
 			course = form.save()
 			messages.success(request, "The changes have been saved.")
 			url_string = reverse('courses:edit', args=(id))
-			print(url_string)
 			return redirect(url_string)
 		else:
 			form = CourseModelForm(request.POST, instance=course)
@@ -48,11 +47,14 @@ def edit(request, id):
 	return render(request, 'courses/edit.html', {'form': form})
 
 def add_lesson(request, id):
-	form = LessonModelForm(request.POST or None)
-	if form.is_valid():
-		form = form.save()
-		print(form)
-#		messages.success(request, "Lesson %s has been successfully added." %(lesson.name))
-		url_string = reverse('courses:detail', args=(id))
-		return redirect(url_string)
+	if request.method == "POST":
+		form = LessonModelForm(request.POST)
+		if form.is_valid():
+			lesson = form.save()
+			messages.success(request, "Lesson %s has been successfully added." %( lesson.subject) )
+			return redirect('courses:detail', lesson.course.id)
+	else:
+		course = Course.objects.get(id=id)	
+		form = LessonModelForm(initial={"course": course}) 		
+
 	return render(request, 'courses/add_lesson.html', {'form': form})	
