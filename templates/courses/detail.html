@@ -55,7 +55,7 @@
           <td>{{ lesson.description }}</td>
         </tr>
       {% endfor %}
-        <p><a class='btn btn-sm btn-success' href="{% url 'courses:add-lesson' course.id %}" role='button'><span class="glyphicon glyphicon-plus-sign"></span> Добавить урок</a></p>
+        <p><a class='btn btn-sm btn-success' href="{% url 'courses:add_lesson' course.id %}" role='button'><span class="glyphicon glyphicon-plus-sign"></span> Добавить урок</a></p>
 
       </tbody>
     </table>
