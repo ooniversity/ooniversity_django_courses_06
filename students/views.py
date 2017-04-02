@@ -56,3 +56,27 @@ def create(request):
     }
 
     return render(request, 'students/add.html', context)
+
+
+def edit(request, student_id):
+    student = Student.objects.get(id=student_id)
+
+    if request.method == 'POST':
+        form = StudentModelForm(request.POST, instance=student)
+
+        if form.is_valid():
+            student = form.save()
+
+            message = 'Info on the student has been successfully changed.'
+
+            messages.success(request, message)
+
+            return redirect('/students/edit/{}'.format(student_id))
+    else:
+        form = StudentModelForm(instance=student)
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'students/edit.html', context)
