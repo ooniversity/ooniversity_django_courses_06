@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% block title %}Удаление Курса{% endblock title %}
+
+
+{% block active_index %}"active"{% endblock %}
+
+
+{% block content %}   
+    <div class="container">
+      <h1 class="my_descript">Курс {{ course.name }} будет удален!</h1>
+        <form method="post">{% csrf_token %}
+
+          <input class="btn btn-danger" type="submit" value="Удалить"> 
+        </form>
+    </div> 
+
+{% endblock content %}
