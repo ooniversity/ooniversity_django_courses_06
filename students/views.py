@@ -52,7 +52,6 @@ def edit(request, id):
 			student = form.save()
 			messages.success(request, "Info on the student has been successfully changed.")
 			url_string = reverse('students:edit', args=(id))
-			print(url_string)
 			return redirect(url_string)
 		else:
 			form = StudentModelForm(request.POST, instance=student)
