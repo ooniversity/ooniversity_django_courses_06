@@ -4,6 +4,9 @@
 
 
 {% block content %}
+
+{% include "include/messages_include.html" %}
+
 	<div class="container">
 	  <div class="jumbotron">
     	<h1 class="coolshadow">Курс - &laquo{{course.name}}&raquo</h1>
@@ -21,7 +24,9 @@
       {% if course.assistant %}
         {% include "include/mentor_include.html" with mentor_title='Асистент' mentor=course.assistant %}
       {% endif %}
-
+      <p><a class='btn btn-sm btn-success' href="{% url 'courses:add_lesson' %}" role='button'>
+            <span class="glyphicon glyphicon-plus-sign"></span> Добавить занятие</a>
+      </p>
 	<div class="container">
 		<div class="panel panel-primary"> 
 			  <div class="panel-heading"> 

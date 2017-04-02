@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block title %}AdD NEW LESSON{% endblock title %}
+
+{% block content %}
+
+{% include "include/messages_include.html" %}
+
+<div class="container">
+    <div class="panel panel-success"> 
+            <div class="panel-heading"> 
+                <h2 class="panel-title Program" align="center">Створити нове заняття</h2>
+            </div>
+    <div class="panel-body">
+        <div class='container'>
+            <form method='post'>
+                {% csrf_token %}
+                {{ form.as_p }}
+<!--                 <input type="submit" value="Ok"/> -->
+                <hr>
+                <button type="submit" class="btn btn-success btn-sm">
+                    <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Ok
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+
+{% endblock content %}
