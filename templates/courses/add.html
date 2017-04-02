@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Course Info{% endblock title %}
+
+{% block content %}
+
+<div class='container'>
+<h4>Добавить курс</h4>
+<hr>
+
+<form method='post'>
+	{{ form.as_p }}
+<input type='submit' value='Создать'/>
+</form>
+</div>
+
+{% endblock content %}

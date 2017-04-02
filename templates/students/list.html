@@ -20,7 +20,7 @@
 {% endif %}
 
 <div class='container'>
-	<p><a class='btn btn-primary' href="{% url 'students:add' %}" role='button'>Добавить нового студента</a></p>
+	<p><a class='btn btn-primary' href="{% url 'students:add' %}" role='button'><span class='glyphicon glyphicon-plus' aria-hidden='true'> Добавить нового студента</span></a></p>
 		<h3>Список студентов</h3>
 		<hr>
 
@@ -52,8 +52,8 @@
                     {% endfor %}
                    </td>
                    <td>
-                    <a class='btn btn-primary' href="{% url 'students:edit' student.id %}" role='button'>Изменить</a>
-                    <a class='btn btn-primary' href="{% url 'students:remove' student.id %}" role='button'>Удалить</a>
+                    <a class='btn btn-primary' href="{% url 'students:edit' student.id %}" role='button'><span class='glyphicon glyphicon-pencil' aria-hidden='true'> Изменить</span></a>
+                    <a class='btn btn-primary' href="{% url 'students:remove' student.id %}" role='button'><span class='glyphicon glyphicon-remove' aria-hidden='true'> Удалить</span></a>
                   </td>
                 </tr>
               {% endfor %}
