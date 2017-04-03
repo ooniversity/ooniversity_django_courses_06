@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Edit student{% endblock title %}
+
+
+{% block jumbotron %}
+  {% block jumbotron_header %}{% endblock jumbotron_header %}</h1>
+  {% block jumbotron_header2 %}{% endblock jumbotron_header2 %}</h2>
+  {% block jumbotron_header3 %}{% endblock jumbotron_header3 %}
+  {% block jumbotron_description %}{% endblock jumbotron_description %}
+{% endblock jumbotron %}
+
+
+{% block content %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<div class="container">
+<h2>Редактирование студента</h2>
+<form method='post'>
+  {% csrf_token %}
+  {{ form.as_p }}
+<input type="submit" value="Изменить" />
+</form>
+</div>
+{% endblock content %}
+
+
+{% block pager_footer %}{% endblock pager_footer %}
