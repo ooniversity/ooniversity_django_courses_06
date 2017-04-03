@@ -45,7 +45,6 @@ def detail(request, id):
     all_student_info = student_info(student_id)
     return render(request, 'students/detail.html', {'all_student_info': all_student_info})
 
-
 def create(request):
     if request.method == 'POST':
         print('Its  CREATE_POST_method!')
@@ -58,7 +57,7 @@ def create(request):
                              'Student {0} {1} has been successfully added.'.format(student.name, student.surname))
             return redirect('students:list_view')
     else:
-            form = StudentModelForm()
+        form = StudentModelForm()
     return render(request, 'students/add.html', {'form': form})
 
 def edit(request, id):
