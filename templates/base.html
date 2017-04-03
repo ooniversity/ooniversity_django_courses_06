@@ -43,9 +43,25 @@
   {% endblock jumbotron %}
 
   {% block content %}
+  {% if messages %}
+    <div class="container">
+    <div class="messages">
+      {% for message in messages %}
+      <div class="alert alert-success" role="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    </div>
+  {% endif %}
+
   <div class="container">
   <h2>Выбирай на каком курсе ты хочешь учиться!</h2>
-  <p> </p>
+  <p>
+  <a class='btn btn-sm btn-success' href="{% url 'courses:add' %}" role='button'>
+  <span class="glyphicon glyphicon-plus-sign"></span>Добавить курс</a>
+  </p>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -58,6 +74,10 @@
       <tr>
         <td><a href="{% url 'courses:detail' course_item.id  %}">{{course_item.name|upper}}</a></td>
         <td>{{course_item.short_description|title}}</td>
+        <td><a class="btn btn-default" href="{% url 'courses:edit' course_item.id %}" role="button">
+            <span class="glyphicon glyphicon-pencil"></span>Изменить</a></td>
+        <td><a class="btn btn-default" href="{% url 'courses:remove' course_item.id %}" role="button">
+            <span class="glyphicon glyphicon-pencil"></span>Удалить</a></td>
       </tr>
     {% endfor %}
     </tbody>

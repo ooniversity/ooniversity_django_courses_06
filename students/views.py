@@ -21,9 +21,6 @@ def student_info(student_id):
     neW_.append((x, stR_))
     return neW_
 
-
-
-
 def list_view(request):
     try:
         students_of_course = Student.objects.filter(courses__id=request.GET['course_id'])
@@ -76,8 +73,6 @@ def edit(request, id):
             student = form.save()
             messages.success(request, 'Info on the student has been successfully changed.')
             return redirect('students:list_view')
-        else:
-            form = StudentModelForm(request.POST, instance=student)
     form = StudentModelForm(instance=student)
     return render(request, 'students/edit.html', {'form': form})
 
