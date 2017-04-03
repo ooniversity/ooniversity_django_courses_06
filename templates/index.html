@@ -15,20 +15,19 @@
         </ul>
     {% endif %}
 
-<div class="container">
-  <div class="jumbotron">
-      <h1 class="blog-title">PyBursa</h1>
-  </div>
-  <div>
-      <h3 class="blog-title">Description</h3>
-      <p>Курсы ItBursa начали работу в 2014 году. Мы специализируемся на «модных» языках программирования. Принципиальное наше отличие от других курсов – максимум практики и жесткая система обязательных домашних заданий.</p>
-  </div>
-  <div class="container">
-      <h3 class="blog-title">Program</h3>
-      <p>Курсы ItBursa начали работу в 2014 году. Мы специализируемся на «модных» языках программирования. Принципиальное наше отличие от других курсов – максимум практики и жесткая система обязательных домашних заданий.</p>
-  </div>
+    <div class="container">
+      <div class="jumbotron">
+        <div class="page-header">
+          <h3 id="title_course">PyBursa</h3>
+          <p>Курс Python/Django предназначен для начинающих программистов, которые хотят освоить язык Python и фреймворк Django.</p>
+        </div>
+      </div>
+    </div>
 
-    <div>
+
+    <div class="container">
+	<a href="{% url 'courses:add' %}">Добавить новый курс</a>
+        <div>
 
         <table class="table">
           <tr  class="table_title">
@@ -38,10 +37,21 @@
 
           {% for course in courses %}
               <tr>
-                <td><a href="{%  url 'courses:detail'  course.id %}">{{ course.name }}</a></td>
-                <td>{{ course.short_description }}</td>
-              </tr>
-          {% endfor %}
+                <td><a href="{%  url 'courses:detail'  course.id %}">{{ course.name|upper }}</a></td>
+                <td>{{ course.short_description|title }}</td>
+              
+		        <td>
+                            <a href="{% url 'courses:edit'  course.id %}">Изменить</a>
+                        </td>
+                        <td>
+                            <a href="{% url 'courses:remove'  course.id %}">Удалить</a>
+                        </td>
+  		</tr>
+	{% endfor %}
         </table>
         </div>
+    </div>
+
+
+
 {% endblock %}
