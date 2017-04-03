@@ -16,7 +16,26 @@
 
 
 {% block content %}
+
+  </br>
+
+{% if messages %}
   <div class="container">
+  <div class="messages">
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  </div>
+{% endif %}
+
+  <p>
+  <a class='btn btn-sm btn-success' href="{% url 'students:add' %}" role='button'>
+    <span class="glyphicon glyphicon-plus-sign"></span>Добавить нового студента</a>
+  </p>
   <h2>Список студентов</h2>
   <table class="table table-striped">
     <thead>
@@ -26,22 +45,26 @@
         <th>адрес</th>
         <th>skype</th>
         <th>курсы</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
 
-    {% for student, crs in students_of_course %}
+    {% for student, cours in students_of_course %}
     <tr>
        <td>{{ forloop.counter }}</td >
        <td><a href="{% url 'students:detail' student.id %}">{{ student.name }} {{ student.surname }}</a></td>
        <td>{{ student.address }}</td>
        <td>{{ student.skype }}</td>
-       <td>{% for c, i in crs %}<a href="{% url 'courses:detail' i  %}">{{ c }}</a><br>{% endfor %}</td>
+       <td>{% for cours_, id in cours %}<a href="{% url 'courses:detail' id  %}">{{ cours_ }}</a><br>{% endfor %}</td>
+       <td><a class="btn btn-default" href="{% url 'students:edit' student.id %}" role="button"><span class="glyphicon glyphicon-pencil"></span>Изменить</a></td>
+       <td><a class="btn btn-default" href="{% url 'students:remove' student.id %}" role="button"><span class="glyphicon glyphicon-remove"></span>Удалить</a></td>
     </tr>
     {% endfor %}
     </tbody>
   </table>
-{% endblock content %}
+
+    {% endblock content %}
 
 
 <{% block previous %} class="selector_li" {% endblock previous%}>
