@@ -10,6 +10,10 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
+    def get_all_name_and_shorts_desc(self):
+        qs =  Course.objects.all(self.name,self.short_description)
+        return qs
+
 class Lessons(models.Model):
     subject = models.CharField(max_length=56)
     description = models.TextField()
