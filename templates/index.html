@@ -16,6 +16,21 @@
 
             <h2 class="page-header">Our courses</h2>
 
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<br />
+<a href="{% url 'courses:add' %}" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Add course
+        </a>
+
+
             <div class="table-responsive">
                 <table class="table table-bordered courses-table">
                     <thead>

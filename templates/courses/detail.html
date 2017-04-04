@@ -42,6 +42,7 @@
                     <h3 class="panel-title">
                     
                     <a href="{% url 'coaches:detail' assistant.id %}">{{ assistant.first_name }} {{ assistant.last_name }}</a>
+<br />
                     </h3>
                    </div>
 
@@ -49,6 +50,33 @@
                          <p>{{ course.assistant.description }}</p>{% endif %}
                 </div>
                 </div>
+<br />
+<a href="{% url 'courses:edit' course.id %}" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Edit course
+        </a>
+
+<br />
+<a href="{% url 'courses:remove' course.id %}" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Remove course
+        </a>
+
+<br />
+<a href="{% url 'courses:add-lesson' course.id %}" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Add lesson
+        </a>
+
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
                 
 
 
