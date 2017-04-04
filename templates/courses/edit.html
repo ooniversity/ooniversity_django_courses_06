@@ -4,12 +4,21 @@
 {% block title %}Edit course{% endblock title %}
 
 {% block content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 <h1 class="page-header">Edit Course</h1>
 
 <form method="post" class="course-form">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Create" class="btn btn-primary">
+    <input type="submit" value="Submit" class="btn btn-primary">
 </form>
 
 {% endblock content %}
