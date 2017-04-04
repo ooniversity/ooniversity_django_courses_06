@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Удаление{% endblock %}
+
+{% block navigation_students %}"active"{% endblock %}
+
+
+{%  block content %}
+
+    <div class="container">
+        <H4>{{ delete_student }}</H4>
+
+        <form method="post">
+            {% csrf_token %}
+        <input type="submit" value="Удалить">
+        </form>
+    </div>
+
+{% endblock %}
