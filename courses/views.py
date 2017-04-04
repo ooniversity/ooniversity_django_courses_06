@@ -55,4 +55,3 @@ def add_lesson(request, id):
         form = LessonModelForm(initial={'course':id})
     return render(request, 'courses/add_lesson.html', {'form': form})
 
-
