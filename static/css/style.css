@@ -1,0 +1,143 @@
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.founders {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    color: #fff;
+    list-style: none;
+}
+.text {
+    font-family: Helvetica;
+}
+.header--course-desc {
+    color: #222;
+}
+.founders__image {
+    width: 100%;
+    height: auto;
+    max-width: 320px;
+    transition: 0.3s;
+}
+.founders__item:hover .founders__image {
+    transform: rotate3d(0,1,0,360deg);
+    transition: 0.7s;
+}
+.founders__item {
+    flex: 0 0 30%;
+}
+.table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.table__row {
+    display: flex;
+    justify-content: space-between;
+    background: #eee;
+    margin-bottom: 3px;
+    padding: 10px 20px;
+}
+.table__row:hover {
+    background: #ccc;
+}
+.table__row--head {
+    background: #aaa;
+}
+.table__cell {
+    flex: 1 1 10%;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+
+}
+.table__cell--long {
+    flex-basis: 60%;
+}
+.table__main-holder {
+    display: flex;
+    justify-content: space-between;
+}
+.table__wrapper {
+    flex: 1 1 100%;
+    margin: 0 15px;
+}
+.student-detail__image {
+    max-width: 320px;
+    height: auto;
+}
+.quadratic-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+.course__table {
+    display: flex;
+    flex-direction: column;
+}
+.course__row {
+    display: flex;
+    border-bottom: 1px solid #aaa;
+}
+.course__cell {
+    flex: 1 1 10%;
+    word-break: break-all;
+    padding: 5px;
+}
+.table-responsive a {
+    margin-right: 10px;
+}
+.inner-wrapper {
+    width: 100%;
+}
+.width100per {
+    width: 100%;
+}
+.quadratic-form {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+.quadratic-form input[type=number] {
+    text-align: center;
+}
+.add-student-form p,
+.edit-student-form p {
+    display: flex;
+}
+.add-student-form label,
+.add-student-form input {
+    flex: 1 1 20%;
+    min-width: 100px;
+    padding: 5px;
+}
+.add-student-form label{
+    text-align: right;
+    margin-right: 20px;
+    max-width: 100px;
+}
+.edit-student-form {
+    width: 100%;
+}
+.success-bg {
+    width: 100%;
+    background: #69B569;
+    color: #fff;
+}
+@media screen and (max-width: 768px) {
+    .table__main-holder {
+        flex-wrap: wrap;
+    }
+}
