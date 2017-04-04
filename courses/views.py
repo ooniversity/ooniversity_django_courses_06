@@ -3,6 +3,6 @@ from courses.models import Course,Lessons
 # Create your views here.
 
 def list_courses(request):
-
-    return  render()
+    context = Course.objects.all()
+    return  render(request,('index.html'),{'list_courses': context})
 
