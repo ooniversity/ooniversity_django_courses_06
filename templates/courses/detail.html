@@ -7,36 +7,36 @@
 {% block title %}courses detail{% endblock %}
 
 
+{% block students_course_id %}?course_id={{ course.id }}{% endblock %}
+
 
 {% block content %}
+
+
 {% if messages %}
 <div class="container">
   <div class="messages">
-      {% for message in messages %}
-      <div class="alert alert-success" role="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        {{ message }}
-      </div>
-      {% endfor %}
+  {% for message in messages %}
+    <div class="alert alert-success" role="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message }}
+    </div>
+    {% endfor %}
   </div>
 </div>
 {% endif %}
-
 <div class="container">
   <div class="jumbotron">
   <h2>{{ course.name }}</h2>
   <p>{{ course.description|truncatechars:32 }}</p>
-</div>
+  </div>
 <h2>Преподаватели</h2><br/>
-
   {% if course.coach %}
   {% include "include/coach_include.html" with block_title="Coach" instructor=course.coach %}
   {% endif %}
-
   {% if course.assistant %}
   {% include "include/coach_include.html" with block_title="Assistant" instructor=course.assistant %}
   {% endif %}
-
 <div class="container">
   <div class="jumbotron">
   <h2>{{ course.name }}</h2>

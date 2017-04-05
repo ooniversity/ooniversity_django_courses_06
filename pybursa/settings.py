@@ -72,6 +72,13 @@ TEMPLATES = [
     },
 ]
 
+
+EMAIL_HOST = "smtp.sendgrip.net"
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = "edsrtkv"
+EMAIL_HOST_PASSWORD = "sendgrid_2017"
+
+
 WSGI_APPLICATION = 'pybursa.wsgi.application'
 
 
@@ -128,3 +135,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+

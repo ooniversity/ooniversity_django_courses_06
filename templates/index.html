@@ -41,7 +41,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for course in courses_list %}
+  {% for course in courses %}
   <tr>
     <td><a href="{% url 'courses:detail' course.id %}">{{ course.name|upper }}</a></td>
     <td>{{ course.short_description|title }}<a class="btn btn-default" href="{% url 'courses:edit' course.id %}" role="button">Изменить</a>
