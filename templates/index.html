@@ -46,9 +46,9 @@
             <th>Курс</th>
             <th>Описание</th>
         </tr>
-           {% for course in list_courses %}
+           {% for id,course in enumerate(list_courses) %}
         <tr>
-                <td><h5><a href="index.html">{{ course.name }}</a></h5></td>
+                <td><h5><a href={% url 'lessons_list' %}>{{ course.name }}</a></h5></td>
                <td><h5>{{ course.short_description }}</h5></td>
                </tr>
             {% endfor %}

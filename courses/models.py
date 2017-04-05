@@ -9,6 +9,9 @@ class Course(models.Model):
 
     def __str__(self):
         return self.name
+    def get_course_id_per_name_of_course(name):
+         qs = Course.objects.filter(name=name)
+         return qs.id
 
 class Lessons(models.Model):
     subject = models.CharField(max_length=56)
@@ -18,4 +21,10 @@ class Lessons(models.Model):
 
     def __str__(self):
         return self.subject
+
+    def get_list_lessons(course):
+        qs = Lessons.objectsfilter(course=course).vlues('order','subject','description')
+        return qs
+
+
 
