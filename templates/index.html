@@ -34,6 +34,14 @@
         </ul>
             </div>
 
+
+<div class="container">
+    <p><a href="/courses/add/" class="btn btn-success" role="button">
+       <span class="glyphicon glyphicon-plus"></span> 
+       Добавить новий курс
+</a></p>
+
+
             <h2 class="page-header">Our courses</h2>
 
             <div class="table-responsive">
@@ -51,7 +59,23 @@
                                 <th><a href="{% url 'courses:detail' course.id %}">{{ course.name|upper }}</a></th>
                                 <td>{{ course.short_description }}</td>
                             </tr>
-                        {% endfor %}
+                        
+
+<td><a href="{% url 'courses:edit' course.id %}" 
+	class="btn btn-success" type="button">
+              <span class="glyphicon glyphicon-pencil"></span>            
+                Изменить
+            </a>
+</td>
+
+  <td>
+            <a href="{% url 'courses:remove' course.id %}" class="btn btn-success" type="button">
+              <span class="glyphicon glyphicon-pencil"></span>            
+                Удалить
+            </a>
+</td>
+{% endfor %}
+
                     </tbody>
                 </table>
             </div>
