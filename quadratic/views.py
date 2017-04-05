@@ -8,8 +8,7 @@ from . forms import QuadraticForm
  
 
 def quadratic_results(request):
-    deskr = None
-    message = None
+    
     if request.method == "POST":
         form = QuadraticForm(request.POST)
         
