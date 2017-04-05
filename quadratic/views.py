@@ -28,13 +28,12 @@ def quadratic_results(request):
                 
             elif deskr == 0:
                 x = (-b + math.sqrt(deskr)) / (2 * a)
-                message = 'Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = %d' % (x)
-                
+                message = 'Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = {}'.format(round(x))
             else:
                 x1 = -b + math.sqrt(deskr) / (2 * a)
                 x2 = -b - math.sqrt(deskr) / (2 * a)
                 
-                message = 'Квадратное уравнение имеет два действительных корня: x1 = %d, x2 = %d' % (x1, x2)
+                message = 'Квадратное уравнение имеет два действительных корня: x1 = {}, x2 = {}'.format(round(x1), round(x2))
             
     else:
         form = QuadraticForm()
@@ -46,7 +45,7 @@ def quadratic_results(request):
 
 
 
-def index(request):
+'''def index(request):
     return render(request, "index.html")
 
 def contact(request):
@@ -56,5 +55,5 @@ def student_list(request):
     return render(request, "student_list.html")
 
 def student_detail(request):
-    return render(request, "student_detail.html")
+    return render(request, "student_detail.html")'''
     
