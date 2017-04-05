@@ -8,8 +8,7 @@ from . forms import QuadraticForm
  
 
 def quadratic_results(request):
-    deskr = None
-    message = None
+    message = {}
     if request.method == "POST":
         form = QuadraticForm(request.POST)
         
@@ -22,7 +21,7 @@ def quadratic_results(request):
             
             
             deskr = b ** 2 - 4 * a * c
-           
+            diskr = "Дискриминант: {}".format(deskr)
             if deskr < 0:
                 message = 'Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.'
                 
@@ -35,12 +34,11 @@ def quadratic_results(request):
                 x2 = -b - math.sqrt(deskr) / (2 * a)
                 
                 message = 'Квадратное уравнение имеет два действительных корня: x1 = %d, x2 = %d' % (x1, x2)
-            messages.success(request, 'Дискриминант: {}'.format(deskr))
-            messages.success(request, message)
+            
     else:
         form = QuadraticForm()
         #context = {'form': form, 'message':message}
-    return render(request, 'quadratic/results.html', {'form':form})
+    return render(request, 'quadratic/results.html', {'form':form, 'message': message, 'diskr':diskr})
 
 
 
