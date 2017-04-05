@@ -23,14 +23,12 @@
     {{ form.as_p }}
     <input type="submit" value="Решение" />
     </form>
+
+<span>{% if diskr %}{{ diskr }}{% endif %}</span>
+        <div>{{ message }}</div>
+
      </div>
 
-{% if messages %}
-<ul class="list-group">
-    {% for message in messages %}
-        <li class="{% if message.tags %}{{message.tags}}{%endif%} list-group-item">{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+
 
 {% endblock content %}
