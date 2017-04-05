@@ -4,7 +4,7 @@
 {% load staticfiles %}
 
 
-{% block title %}students detail{% endblock %}
+{% block title %}{% endblock %}
 
 
 {% block nav_class_students %}active{% endblock %}
@@ -12,22 +12,19 @@
 
 {% block content %}
 {% if messages %}
-
 <div class="container">
   <div class="messages">
-      {% for message in messages %}
-      <div class="alert alert-success" role="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        {{ message }}
-      </div>
-      {% endfor %}
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message }}
+    </div>
+    {% endfor %}
   </div>
 </div>
 {% endif %}
-
 <div class="container">
-  <p><a class="btn btn-default" href="{% url 'students:add' %}" role="button">Добавить нового студента</a></p>
-
+<p><a class="btn btn-default" href="{% url 'students:add' %}" role="button">Добавить нового студента</a></p>
 <table>
   <thead>
     <tr>
@@ -39,7 +36,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for student in students_list %}
+  {% for student in object_list %}
     <tr>
       <td>{{ forloop.counter }}</td>
       <td>
@@ -56,6 +53,21 @@
       </td>
     <tr> 
   {% endfor %}
+{% if is_paginated %}
+  <div class="pagination">
+    <span class="step-links">
+      {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+      <span class="current">
+      Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+      </span>
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">next</a>
+      {% endif %}
+    </span>
+  {% endif %}
+  </div>
   </tbody>
 </table>
 </div>

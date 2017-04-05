@@ -4,14 +4,14 @@
 {% load staticfiles %}
 
 
-{% block title %}students detail{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 
 {% block content %}
 <div class="container">
-	<p>Студент {{ student.full_name }} будет удален</p>
-	<form method='post'>
-		<input type="submit" />
-	</form>
+  <p>Студент {{ student.full_name }} будет удален</p>
+  <form method='post'>
+    <input type="submit" />
+  </form>
 </div>
 {% endblock %}

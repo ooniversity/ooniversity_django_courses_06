@@ -4,16 +4,15 @@ from quadratic.forms import QuadraticForm
 
 
 def quadratic_results(request):
-    if len(request.GET) > 0:
+    if request.method == "GET":
         form = QuadraticForm(request.GET)
-        context = {}
-        context["form"] = form
+        context = {"form": form}
         context["diskr"] = ''
         if form.is_valid():
             a = form.cleaned_data['a']
             b = form.cleaned_data['b']
             c = form.cleaned_data['c']
-            diskr = b * b - 4 * a * c
+            diskr = b*b - 4*a*c
             context['diskr'] = "Дискриминант: %s" %diskr
             if diskr < 0:
                 context["info"] = "Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений."
@@ -28,5 +27,3 @@ def quadratic_results(request):
         form = QuadraticForm()
         context = {'form': form}
     return render(request, 'quadratic/results.html', context)
-
-
