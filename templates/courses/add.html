@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block title %}PyBursa - Add Courses{% endblock title %}
+
+
+
+{% block nav_class_index %}active{% endblock nav_class_index %}
+
+
+{% block content %} 
+
+
+{% include "include/messages_include.html" %}
+
+
+{% load static %}
+
+<div class="page-header"><h3 class="text-center">{{ title }}</h3></div>
+	<div class="container">
+		<form method="post">
+			{% csrf_token %}          
+			{{ form.as_p }}
+            <input type="submit" value="Сохранить"/>
+<input type="submit" 
+            value="Выход" id="btn_crtlesson_cancel"
+            onClick="history.go(-1);return true;">
+		</form>
+	</div>
+<hr>
+{% endblock content %}

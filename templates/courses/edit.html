@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block title %}PyBursa - Edit Courses{% endblock title %}
+
+
+
+{% block nav_class_index %}active{% endblock nav_class_index %}
+
+
+{% block content %} 
+
+
+{% include "include/messages_include.html" %}
+
+
+{% load static %}
+ <div class="page-header">
+    <h2 class="text-center">{{ title }}</h2>
+  </div>
+
+  <div class="form-group form-group-lg">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Изменить"/>
+    </form>
+  </div>
+  </br>
+{% endblock content %}

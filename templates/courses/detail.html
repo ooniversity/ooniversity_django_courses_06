@@ -27,6 +27,14 @@
 
             <h2 class="page-header">Course plan</h2>
 
+
+<p><a href="{% url 'courses:add-lesson' course.id %}" class="btn btn-success" role="button">
+<span class="glyphicon glyphicon-plus"></span>Добавить занятие</a></p>
+
+
+
+
+
             <div class="table-responsive">
                 <table class="table table-bordered courses-table">
                     <thead>
@@ -37,15 +45,16 @@
                         </tr>
                     </thead>
 
-                    <tbody>
-                        {% for lesson in lessons_list %}
-                            <tr>
-                                <td>{{ lesson.order }}</td>
-                                <td><strong>{{ lesson.subject }}</strong></td>
-                                <td>{{ lesson.description }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
+                     <tbody>
+
+        {% for l in lessons %}
+          <tr>
+            <td>{{ l.order }}</td>
+            <td style="width:17%">{{ l.subject }}</td>
+            <td style="width:50%">{{ l.description }}</td>
+          </tr>
+        {% endfor %}
+</tbody>
                 </table>
             </div>
 
