@@ -35,10 +35,12 @@ def quadratic_results(request):
                 x2 = -b - math.sqrt(deskr) / (2 * a)
                 
                 message = 'Квадратное уравнение имеет два действительных корня: x1 = %d, x2 = %d' % (x1, x2)
+            messages.success(request, 'Дискриминант: {}'.format(deskr))
+            messages.success(request, message)
     else:
         form = QuadraticForm()
         #context = {'form': form, 'message':message}
-    return render(request, 'quadratic/results.html', {'message':message, 'form':form})
+    return render(request, 'quadratic/results.html', {'form':form})
 
 
 
