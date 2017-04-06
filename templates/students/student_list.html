@@ -47,13 +47,13 @@
     </thead>
     <tbody>
 
-    {% for student, cours in students_of_course %}
+    {% for student in object_list %}
     <tr>
        <td>{{ forloop.counter }}</td >
        <td><a href="{% url 'students:detail' student.id %}">{{ student.name }} {{ student.surname }}</a></td>
        <td>{{ student.address }}</td>
        <td>{{ student.skype }}</td>
-       <td>{% for cours_, id in cours %}<a href="{% url 'courses:detail' id  %}">{{ cours_ }}</a><br>{% endfor %}</td>
+       <td>{% for course in student.courses.all %}<a href="{% url 'courses:detail' course.id  %}">{{ course }}</a><br>{% endfor %}</td>
        <td><a class="btn btn-default" href="{% url 'students:edit' student.id %}" role="button"><span class="glyphicon glyphicon-pencil"></span>Изменить</a></td>
        <td><a class="btn btn-default" href="{% url 'students:remove' student.id %}" role="button"><span class="glyphicon glyphicon-remove"></span>Удалить</a></td>
     </tr>
