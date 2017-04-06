@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from pybursa.views import index, contact, student_list, student_detail
-from courses.views import detail
+#from courses.views import detail
 
 urlpatterns = [
     url(r'^$', index, name='index' ),
