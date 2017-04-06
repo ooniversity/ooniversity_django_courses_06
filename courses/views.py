@@ -6,6 +6,60 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
+class CourseDetailView(DetailView):
+    model = Course
+    template_name = 'detail.html'
+    context_object_name = 'course'
+
+class CourseCreateView(CreateView):
+    model = Course
+    template_name = 'add.html'
+    context_object_name = 'course'
+    form_class = CourseModelForm
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Course creation'
+        return context
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Course has been successfully added.')
+        return response
+
+class CourseUpdateView(UpdateView):
+    model = Course
+    template_name = 'edit.html'
+    context_object_name = 'course'
+    form_class = CourseModelForm
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Course update'
+        return context
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'The changes have been saved.')
+        return response
+
+class CourseDelete(DeleteView):
+    model = Course
+    template_name = 'remove.html'
+    context_object_name = 'course'
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Course deletion'
+        return context
+
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(self, request, *args, **kwargs)
+        messages.success(self.request, 'Course has been deleted.')
+        return response
 
 class CourseDetailView(DetailView):
     model = Course
