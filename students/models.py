@@ -12,7 +12,7 @@ class Student(models.Model):
     courses = models.ManyToManyField(Course)
 
     def full_name(self):
-        return ("%s %s" % (self.name, self.surname))
+        return '{0} {1}'.format(self.name, self.surname)
 
     def __str__(self):
         return self.name

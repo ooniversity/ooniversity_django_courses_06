@@ -11,16 +11,14 @@ class StudentListView(ListView):
     model = Student
 
     def get_queryset(self):
+        qs = super().get_queryset()
         course_id = self.request.GET.get('course_id', None)
         if course_id:
-            object_list = Student.objects.filter(courses__id=course_id)
-        else:
-            object_list = Student.objects.all()
-        return object_list
+            qs = qs.filter(courses__id=course_id)
+        return qs
 
 class StudentDetailView(DetailView):
     model = Student
-    context_object_name = 'object_detail'
 
 class StudentCreateView(CreateView):
     model = Student
