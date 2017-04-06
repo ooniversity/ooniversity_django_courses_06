@@ -7,6 +7,9 @@
 {% block title %} Courses {% endblock title %}
 
 
+{% block students_link %}<a href="{% url 'students:list_view' %}?course_id={{ course.id }}"{% endblock students_link %}
+
+
 {% block jumbotron_header %}{{ course.name }}{% endblock jumbotron_header %}
 {% block jumbotron_header2 %}Description{% endblock jumbotron_header2 %}
 {% block jumbotron_header3 %}{% endblock jumbotron_header3 %}
