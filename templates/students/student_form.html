@@ -13,7 +13,7 @@
 {% block content %}
 <div class="container">
   <div class="jumbotron">
-  <h2 align='center'>Добавить нового студента</h2>
+  <h2 align='center'>{% block  page_header %}{{ page_header }}{% endblock %}</h2>
     <form method='post'>
     {{ form.as_p }}
       <input type="submit" />
