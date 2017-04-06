@@ -51,9 +51,9 @@ def quadratic_results(request):
 			context[name_value + '_error'] = coefficient.error_message
 			context[name_value] = coefficient.value
 	if not context['error']:
-		a = context['a']
-		b = context['b']
-		c = context['c']
+		a = context['a'] = form.clean_a()
+		b = context['b'] = form.cleaned_data['b']
+		c = context['c'] = form.cleaned_data['c']
 		d = get_discr(a, b, c)
 		if d < 0:
 			result_message = 'Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.'
