@@ -75,7 +75,7 @@ class CourseDeleteView(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         response = super().delete(self, request, *args, **kwargs)
-        messages.success(self.request, 'Course has been deleted.')
+        messages.success(self.request, 'Course {} has been deleted.'.format(self.object.name))
         return response
 
 
