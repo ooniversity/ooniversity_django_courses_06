@@ -56,7 +56,7 @@ class CourseUpdateView(UpdateView):
         return response
 
 
-class CourseDelete(DeleteView):
+class CourseDeleteView(DeleteView):
     model = Course
     template_name = 'courses/remove.html'
     context_object_name = 'course'
@@ -72,13 +72,26 @@ class CourseDelete(DeleteView):
         messages.success(self.request, 'Course has been deleted.')
         return response
 
-def add_lesson(request, id):
-    if request.method == 'POST':
-        form = LessonModelForm(request.POST)
-        if form.is_valid():
-            lesson = form.save()
-            messages.success(request, 'Lesson {0} has been successfully added.'.format(lesson.subject))
-            return redirect('courses:detail', id)
-    else:
-        form = LessonModelForm(initial={'course':id})
-    return render(request, 'courses/add_lesson.html', {'form': form})
+
+class LessonCreateView(CreateView):
+    model = Lesson
+    template_name = 'courses/add_lesson.html'
+    context_object_name = 'lessons'
+    form_class = LessonModelForm
+    success_url = reverse_lazy('courses: detail')
+
+    def get_success_url(self):
+        return reverse_lazy('courses:detail', kwargs={'pk': self.object.course.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Lesson creation'
+        return context
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Lesson has been successfully added.')
+        return response
+
+
+
