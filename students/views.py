@@ -3,12 +3,10 @@ from students.models import Student
 from courses.models import Course
 from students.forms import StudentModelForm
 from django.contrib import messages
-from django import forms
-from django.core.urlresolvers import reverse
 from django.urls import reverse_lazy
-from django.views.generic.edit import FormView, DeleteView, UpdateView
-from django.views.generic import ListView, DetailView, CreateView
-from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 class StudentDetailView(DetailView):
     model =  Student
@@ -21,7 +19,6 @@ class StudentDetailView(DetailView):
 
 class StudentListView(ListView):
     model = Student
-    context_object_name = 'studentsList'
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -71,11 +68,11 @@ class StudentDeleteView(DeleteView):
 class StudentUpdateView(UpdateView):
     model = Student
     form_class =  StudentModelForm
-    template_name = 'students/edit.html'
-
-    def get_success_url(self, **kwargs):
-    	print(self.kwargs)
-    	return reverse_lazy('students:edit', args = (self.kwargs['pk']))
+    success_url = reverse_lazy('students:list_view')
+    
+#    def get_success_url(self, **kwargs):
+#    	print(self.kwargs)
+#    	return reverse_lazy('students:edit', args = (self.kwargs['pk']))
 
     def form_valid(self, form):
         response = super().form_valid(form)
