@@ -17,6 +17,11 @@
       <input type="submit" value="Решить" />
       </form>
       <br />
+      {% if error %}
+      <p>{{ a_error }}</p>
+      <p>{{ b_error }}</p>
+      <p>{{ c_error }}</p>
+      {% endif %}
 
       {% if not error %}
       <p>Дискриминант: {{ d }}</p>
