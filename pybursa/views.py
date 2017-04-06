@@ -17,7 +17,6 @@ class IndexView(CoursesMixin, TemplateView):
 
 @cache_page(5)
 def index(request):
-    print("INDEX")
     courses = Course.objects.all()
     return render(request, "index.html", {"courses": courses})
 
