@@ -26,6 +26,7 @@ class CourseCreateView(CreateView):
     context_object_name = 'course'
     form_class = CourseModelForm
     success_url = reverse_lazy('index')
+    #print('!!!! CourseCreateView:', CourseCreateView)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -34,7 +35,9 @@ class CourseCreateView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(self.request, 'Course has been successfully added.')
+        saved_form = form.save()
+        messages.success(self.request,
+                         'Course {} has been successfully added.'.format(saved_form.name))
         return response
 
 
