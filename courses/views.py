@@ -3,6 +3,9 @@ from courses.models import Course, Lesson
 from django import forms
 from django.contrib import messages
 from courses.forms import CourseModelForm, LessonModelForm
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.views.generic.list import ListView
 
 
 def detail(request, course_id):

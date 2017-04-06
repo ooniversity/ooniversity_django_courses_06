@@ -45,6 +45,7 @@ class StudentCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = "Student registration"
+        context['page_header'] = "Создание нового студента"
         return context
 
 
@@ -61,6 +62,7 @@ class StudentUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = "Student info update"
+        context['page_header'] = "Редактирование студента"
         return context
 
 
