@@ -13,7 +13,7 @@ class Coefficient(object):
 
 	def is_valid(self):
 		if not self.value:
-			self.error_message = "коэффициент не определен"
+			self.error_message = "This field is required."
 			return False
 
 		try:
