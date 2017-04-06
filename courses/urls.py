@@ -7,7 +7,7 @@ urlpatterns = [
     url(r'(?P<id>\d+)/add_lesson$', views.add_lesson, name='add-lesson'),
 
     #url(r'remove/(?P<id>\d+)/$', views.remove, name='remove'),
-    url(r'^remove/(?P<pk>\d+)/$', views.CourseDelete.as_view(), name='remove'),
+    url(r'^remove/(?P<pk>\d+)/$', views.CourseDeleteView.as_view(), name='remove'),
 
     #url(r'edit/(?P<id>\d+)/$', views.edit, name='edit'),
     url(r'^edit/(?P<pk>\d+)/$', views.CourseUpdateView.as_view(), name='edit'),

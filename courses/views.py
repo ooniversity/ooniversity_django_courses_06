@@ -56,7 +56,7 @@ class CourseUpdateView(UpdateView):
         return response
 
 
-class CourseDelete(DeleteView):
+class CourseDeleteView(DeleteView):
     model = Course
     template_name = 'courses/remove.html'
     context_object_name = 'course'
