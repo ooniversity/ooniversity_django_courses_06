@@ -19,7 +19,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from pybursa import views
 from quadratic.views import quadratic_results
-
+from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),

@@ -9,6 +9,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
 
     <title>{% block title %}{% endblock %}</title>
 
@@ -42,7 +43,7 @@
             <ul class="nav navbar-nav">
             <li class={% block navigation_index %}{% endblock %}><a href={% url 'index' %}>Main</a></li>
             <li class={% block navigation_contact %}{% endblock %}><a href={% url 'contact' %}>Contacts</a></li>
-            <li class={% block navigation_students %}{% endblock %}><a href={% url 'students:list_view' %}>Students</a></li>
+	    <li class={% block navigation_students %}{% endblock %}><a href={% url 'students:list_view' %}{% block get_course_id %}{% endblock %}>Students</a></li>
 
           </ul>
         </div>

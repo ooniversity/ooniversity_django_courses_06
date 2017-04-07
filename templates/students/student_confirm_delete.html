@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Удаление{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block navigation_students %}"active"{% endblock %}
 
@@ -8,7 +8,7 @@
 {%  block content %}
 
     <div class="container">
-        <H4>{{ delete_student }}</H4>
+        <H4>"Студент {{ student.name }} {{ student.surname }} будет удален"</H4>
 
         <form method="post">
             {% csrf_token %}
