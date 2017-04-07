@@ -2,7 +2,7 @@
 
 {% block title %}Курс{% endblock %}
 
-
+{% block get_course_id %}?course_id={{ course.id }}{% endblock %}
 
 {% block content %}
 
@@ -18,12 +18,11 @@
         <div class="jumbotron">
             <div class="page-header">
                 <h3 id="title_course">{{ course }}</h3>
-
+		<h1>{{ course.name }}</h1>
                 <p>{{ course.description|truncatechars:32 }}</p>
             </div>
         </div>
     </div>
-
 
     <div class="container">
         <h3>Преподователи</h3>
@@ -52,5 +51,7 @@
                 {% endfor %}
             </table>
         </div>
+        <a href="{% url 'courses:add-lesson' course.id %}">Добавить занятие</a>
     </div>
-{% endblock content %}
+{% endblock %}
+

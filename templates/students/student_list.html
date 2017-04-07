@@ -6,7 +6,6 @@
 
 
 {% block content %}
-
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -15,11 +14,9 @@
         </ul>
     {% endif %}
 
-
     <div class="page-header">
         <h3 id="title_course">Список студентов</h3>
     </div>
-
 
     <div class="container">
         <div>
@@ -34,24 +31,24 @@
                     <th></th>
                 </tr>
 
-                {% for student in students %}
+                {% for student in student_list %}
                     <tr>
                         <td>{{ student.id }}</td>
                         <td>
-                            <a href="{% url 'students:detail'  student.id %}">{{ student.surname }} {{ student.name }}</a>
+                            <a href="{% url 'students:detail' student.id %}">{{ student.surname }} {{ student.name }}</a>
                         </td>
                         <td>{{ student.address }}</td>
                         <td>{{ student.skype }}</td>
                         <td>
                             {% for course in student.get_courses %}
-                                <p><a href="{% url 'courses:detail'  course.id %}">{{ course.name }}</a></p>
+                                <p><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></p>
                             {% endfor %}
                         </td>
                         <td>
-                            <a href="{% url 'students:edit'  student.id %}">Изменить</a>
+                            <a href="{% url 'students:edit' student.id %}">Изменить</a>
                         </td>
                         <td>
-                            <a href="{% url 'students:remove'  student.id %}">Удалить</a>
+                            <a href="{% url 'students:remove' student.id %}">Удалить</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -59,4 +56,4 @@
         </div>
         <a href="{% url 'students:add' %}">Добавить нового студента</a>
     </div>
-{% endblock content %}
+{% endblock %}
