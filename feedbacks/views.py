@@ -29,5 +29,3 @@ class FeedbackView(CreateView):
         mail_admins(self.object.subject, self.object.message, self.object.from_email)
         messages.success(self.request, 'Thank you for your feedback! We will keep in touch with you very soon!')
         return response
-
-
