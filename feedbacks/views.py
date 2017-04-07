@@ -11,7 +11,7 @@ class FeedbackView(CreateView):
     template_name = 'feedbacks/feedback.html'
     context_object_name = 'feedback'
     form_class = FeedbackForm
-    success_url = reverse_lazy('feedbacks:feed-back')
+    success_url = reverse_lazy('feedback')
     #success_url = reverse_lazy('index')
 
 

@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from pybursa.views import index, contact, student_list, student_detail
-#from courses.views import detail
+from feedbacks import views
 
 urlpatterns = [
     url(r'^$', index, name='index' ),
@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'courses/', include('courses.urls'), name='courses'),
     url(r'students/', include('students.urls'), name='students'),
     url(r'^coaches/', include('coaches.urls'), name='coaches'),
-    url(r'^feedback/', include('feedbacks.urls'), name='feedback'),
+    #url(r'^feedback/', include('feedbacks.urls'), name='feedback'),
+    url(r'^feedback/', views.FeedbackView.as_view(), name='feedback'),
 ]
