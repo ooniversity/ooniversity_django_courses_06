@@ -4,7 +4,6 @@ from coaches.models import Coach
 from courses.forms import CourseModelForm, LessonModelForm
 from django.contrib import messages
 from django.urls import reverse_lazy
-from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -16,7 +15,7 @@ class CourseDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = "Информация о курсе"
-        context['lessons'] = Lesson.objects.filter(course_id=self.kwargs['pk'])
+        context['lessons'] = Lesson.objects.filter(course=self.kwargs['pk'])
         return context
 
 class CourseCreateView(CreateView):
@@ -54,12 +53,12 @@ class CourseDeleteView(DeleteView):
 class CourseUpdateView(UpdateView):
     model = Course
     form_class =  CourseModelForm
-    success_url = reverse_lazy('index')
+#    success_url = reverse_lazy('index')
     template_name = 'courses/edit.html'
     
-#    def get_success_url(self, **kwargs):
+    def get_success_url(self, **kwargs):
 #        print(self.kwargs)
-#        return reverse_lazy('courses:edit', args = (self.kwargs['pk']))
+        return reverse_lazy('courses:edit', args = (self.kwargs['pk']))
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -69,8 +68,9 @@ class CourseUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = "Course update"
-        context['coach'] = Lesson.objects.filter(course_id=self.kwargs['pk'])
-        return context    
+        context['coach'] = Coach.objects.filter(coach_courses=self.kwargs['pk'])
+        context['assistant'] = Coach.objects.filter(assistant_courses=self.kwargs['pk'])
+        return context
 
 class LessonCreateView(CreateView):
     model = Lesson
