@@ -27,7 +27,7 @@ class CourseCreateView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(self.request, "Course has been successfully added")
+        messages.success(self.request, "Course %s has been successfully added." %(self.object.name))
         return response
 
     def get_context_data(self, **kwargs):
@@ -42,7 +42,7 @@ class CourseDeleteView(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         response = super().delete(request, *args, **kwargs)
-        messages.success(request, "Course has been successfully deleted.")
+        messages.success(request, "Course %s has been successfully deleted." %(self.object.name))
         return response
 
     def get_context_data(self, **kwargs):
@@ -63,12 +63,13 @@ class CourseUpdateView(UpdateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(self.request, "Course info has been successfully changed.")
+        messages.success(self.request, "Course %s info has been successfully changed." %(self.object.name))
         return response
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = "Course update"
+        context['coach'] = Lesson.objects.filter(course_id=self.kwargs['pk'])
         return context    
 
 class LessonCreateView(CreateView):
@@ -87,7 +88,7 @@ class LessonCreateView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(self.request, "Lesson has been successfully added")
+        messages.success(self.request, "Lesson has been successfully added.")
         return response
 
     def get_context_data(self, **kwargs):
