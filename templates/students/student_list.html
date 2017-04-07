@@ -5,7 +5,7 @@
 {% block nav_students %}active{% endblock %}
 
 
-{% block title %}{{ title }} }}{% endblock title %}
+{% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
 
@@ -30,7 +30,7 @@
           </tr>
         </thead>      
       <tbody>
-        {% for person in stud_on_course %}
+        {% for person in object_list %}
         <tr>
           <td style="vertical-align: middle;">{{ forloop.counter }}</td>
           <td style="vertical-align: middle;"><a href="{% url 'students:detail' person.id %}">{{person}}</a></td>
