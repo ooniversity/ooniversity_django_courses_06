@@ -12,11 +12,24 @@ from django.urls import reverse_lazy
 class StudentListView(ListView):
     model = Student
     paginate_by = 2
+    global_course_id = None
 
     def get_queryset(self):
+        global global_course_id
+
+
+
         qs = super().get_queryset()
+        print('COURSE_ID:', self.request.GET.get('course_id'))
         course_id = self.request.GET.get('course_id', None)
         if course_id:
+            global_course_id = self.request.GET.get('course_id', None)
+        print('GLOBAL_COURSE_ID:', global_course_id)
+
+        if self.request.GET.get('page', None):
+            qs = qs.filter(courses__id=global_course_id)
+        elif course_id:
+            print('RUN_if_statement')
             qs = qs.filter(courses__id=course_id)
         return qs
 
