@@ -12,26 +12,15 @@
     <div class="container">
       <h1 class="my_descript">Equation</h1>
       <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
-      {% if a == 0 %}
-      <ul>
-        <li>{{ a_error }}</li>
-      </ul>
-      {% elif error %}
-      <ul>
-        <li>{{ a_error }}</li>
-        <li>{{ b_error }}</li>
-        <li>{{ c_error }}</li>
-      </ul>
-      {% endif %}
       <form method="get">
       {{ form.as_p }}
       <input type="submit" value="Решить" />
       </form>
       <br />
 
-      {% if not error %}
-      <p>Дискриминант: {{ d }}</p>
-      <p>{{ result_message }}</p>
+      {% if discriminant != '' %}
+      <p>Дискриминант: {{ discriminant }}</p>
+      <p>{{ message }}</p>
       {% endif %}
     </div>
 {% endblock content %}
