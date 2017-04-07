@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block isStudentsListActive %}active{% endblock isStudentsListActive %}
+
+{% block title %} {{ title}} : {{ student.full_name }}.{% endblock title %}
+
+{% block content %}
+
+  <div class="container">
+
+    <h3>{{ student.full_name }}</h3>
+
+    <p></p>
+    <table class="table table-striped">
+      <tbody>
+      {% include "include/user_details_include.html" with user=student %}
+      <tr>
+          <td>курсы</td>
+          <td>
+            {% for course in student.courses.all %}
+              <ul>
+                <li>{{ course.name }}</li>
+              </ul>
+            {% endfor %}
+          </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}

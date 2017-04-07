@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'quadratic',
+    'feedbacks',
     'courses.apps.CoursesConfig',
     'students.apps.StudentsConfig',
     'coaches.apps.CoachesConfig'
@@ -68,6 +69,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pybursa.wsgi.application'
 
+
+EMAIL_HOST = "127.0.0.1"
+EMAIL_PORT = "1025"
+
+ADMINS = [('John', 'john@example.com'), ('Mary', 'mary@example.com')]
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
