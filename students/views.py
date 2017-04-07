@@ -49,7 +49,6 @@ class StudentCreateView(CreateView):
         return context
 
 
-
 class StudentDeleteView(DeleteView):
     model = Student
     success_url = reverse_lazy('students:list_view')
@@ -71,7 +70,6 @@ class StudentUpdateView(UpdateView):
     success_url = reverse_lazy('students:list_view')
     
 #    def get_success_url(self, **kwargs):
-#    	print(self.kwargs)
 #    	return reverse_lazy('students:edit', args = (self.kwargs['pk']))
 
     def form_valid(self, form):

@@ -2,7 +2,7 @@
 
 {% load staticfiles %}
 
-{% block title %}Информация o курсе {{course.name}}.{% endblock title %}
+{% block title %}{{ title}} : {{course.name}}.{% endblock title %}
 
 {% block groupFilter %}?course_id={{ course.id }}{% endblock groupFilter%}
 

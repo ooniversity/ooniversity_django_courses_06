@@ -1,12 +1,10 @@
-{% extends "base.html" %}
-{% load static %}
-
+{% extends 'base.html' %}
 
 {% block title %}{{ title}}{% endblock title %}
 
+{% block isFeedbackActive %}active{% endblock isFeedbackActive %}
+
 {% block content %}
-<div class="container">
-  <h2 class="Program">Изменить данные курса : {{ course.name }} </h2>
 
   {% if messages %}
     <div class="container">
@@ -21,16 +19,16 @@
     </div>
   {% endif %}
 
-</div>
-    <div class="panel-body">
-        <div class='container'>
-            <form method='post'>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Сохранить"/>
-            </form>
-        </div>
-        <br>
+
+  <div class="jumbotron">
+  <p>форма отзыва</p>
+   <div class="container">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Отправить отзыв">
+    </form>
+
     </div>
-</div>
-{% endblock content %}
+  </div>
+{% endblock %}

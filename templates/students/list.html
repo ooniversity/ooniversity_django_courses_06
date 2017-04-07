@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block isStudentsListActive %}active{% endblock isStudentsListActive %}
+
+{% block title %}{{ title}}{% endblock title %}
+
+{% block content %}
+  <div class="container">
+  <h2>Список студентов</h2>
+
+  {% if messages %}
+    <div class="container">
+      <div class="messages">
+          {% for message in messages %}
+          <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{ message }}
+          </div>
+          {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <p><a class='btn btn-sm btn-success' href="{% url 'students:add' %}" role='button'><span class="glyphicon glyphicon-plus-sign"></span> Добавить нового студента</a></p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>фамилия имя</th>
+        <th>адрес</th>
+        <th>skype</th>
+        <th>курсы</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for student in studentsList %}
+    <tr>
+      <td><a href="{% url 'students:detail' student.id %}">{{ student.id }}</a></td>
+      <td>{{ student.name }} {{ student.surname }}</a></td>
+      <td>{{ student.address }}</td>
+      <td>{{ student.skype }}</td>
+      <td>
+        {% for course in student.courses.all %}
+          <ul>
+            <li>{{ course.name }}</a></li>
+          </ul>
+        {% endfor %}
+      </td>
+      <td style="vertical-align: middle">
+        <a class='btn btn-sm btn-primary' href="{% url 'students:edit' student.id %}" role='button'>
+            <span class="glyphicon glyphicon-pencil"></span> Изменить
+        </a>
+        <a class='btn btn-sm btn-primary' href="{% url 'students:remove' student.id %}" role='button'>
+            <span class="glyphicon glyphicon-remove"></span> Удалить
+        </a>
+      </td> 
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
