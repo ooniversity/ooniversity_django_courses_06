@@ -28,6 +28,7 @@
     <li role="presentation" {% block contacts_active %} class="" {% endblock contacts_active %}><a href="{% url 'contact' %}">Контакты</a></li>
     <li role="presentation" {% block students_active %} class="" {% endblock students_active %}>{% block students_link %}<a href="{% url 'students:list_view' %}"{% endblock students_link %}>Студенты</a></li>
     <li role="presentation" {% block quadratic_active %} class="" {% endblock quadratic_active %}><a href="{% url 'quadratic_results' %}">Quadratic</a></li>
+    <li role="presentation" {% block feedback_active %} class="" {% endblock feedback_active %}><a href="{% url 'feedbacks:feed-back' %}">Обратная связь</a></li>
   </ul>
 
   {% block jumbotron %}
