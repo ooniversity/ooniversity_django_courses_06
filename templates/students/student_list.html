@@ -60,13 +60,13 @@
         <nav>
         <ul class="pagination">
             {% if page_obj.has_previous %}
-                <li><a href="?page={{ page_obj.previous_page_number }}"><span aria-hidden="true">&laquo; previous</span><span class="sr-only">Попередня</span></a></li>
+                <li><a href="?page={{ page_obj.previous_page_number }}"><span aria-hidden="true"><< previous</span></a></li>
             {% endif %}
             {% for page in paginator.page_range %}
                 <li {% if page == page_obj.number %} class="active" {% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
             {% endfor %}
             {% if page_obj.has_next %}
-                <li><a href="?page={{ page_obj.next_page_number }}"><span aria-hidden="true">next &raquo;</span><span class="sr-only">Наступна</span></a></li>
+                <li><a href="?page={{ page_obj.next_page_number }}"><span aria-hidden="true">next >></span></a></li>
             {% endif %}
         </ul>
         </nav>
