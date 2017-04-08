@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'courses',
     'students',
     'coaches',
+    'feedbacks.apps.FeedbacksConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
