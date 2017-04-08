@@ -10,5 +10,8 @@ class CourseAdmin(admin.ModelAdmin):
 	search_fields = ['name']
 	inlines = [LessonInline]
 
+class LessonAdmin(admin.ModelAdmin):
+	list_per_page = 5
+
 admin.site.register(Course, CourseAdmin)
-admin.site.register(Lesson)
+admin.site.register(Lesson, LessonAdmin)
