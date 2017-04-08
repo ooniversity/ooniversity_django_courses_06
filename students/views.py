@@ -11,11 +11,10 @@ from courses.models import Course
 # Create your views here.
 class StudentDetailView(DetailView):
     model = Student
-    context_object_name = 'person'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'TechBursa Python/Django 06 :: Students - detail'
+        context['title'] = 'TechBursa Python/Django 06 :: Students - DetailView'
         return context
 
 

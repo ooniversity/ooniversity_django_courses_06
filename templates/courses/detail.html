@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}TechBursa Python/Django 06 :: Students{% endblock title %}
-
+{% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
 
@@ -27,7 +26,6 @@
       <p><a class='btn btn-sm btn-success' href="{% url 'courses:add-lesson' course.id %}" role='button'>
             <span class="glyphicon glyphicon-plus-sign"></span> Добавить занятие</a>
       </p>
-	<div class="container">
 		<div class="panel panel-primary"> 
 			  <div class="panel-heading"> 
 				<h2 class="panel-title" align="center"><h2 class="Program">Програма курсу:</h2></h2>
@@ -52,6 +50,5 @@
                     </tbody>
                 </table>
               </div>
-		</div>
 	</div>
 {% endblock content %}
