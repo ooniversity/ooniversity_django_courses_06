@@ -60,7 +60,21 @@
             </tbody>
           </table>
           {% if is_paginated %}
-          <div class="pagination">
+          <nav>
+          <ul class="pagination">
+            {% if page_obj.has_previous %}
+              <li><a href="?page={{ page_obj.previous_page_number }}"><span aria-hidden="true"><< previous</span></a></li>
+            {% endif %}
+            {% for page in paginator.page_range %}
+              <li {% if page == page_obj.number %} class="active" {% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+              <li><a href="?page={{ page_obj.next_page_number }}"><span aria-hidden="true"> next >></span></a></li>
+            {% endif %}
+          </ul>
+          </nav>
+          {% endif %}
+          <!--<div class="pagination">
             <span class="step-links">
               {% if page_obj.has_previous %}
                 <a href="?page={{ page_obj.previous_page_number }}"><< previous</a>
@@ -74,8 +88,7 @@
                 <a href="?page={{ page_obj.next_page_number }}">next >></a>
               {% endif %}
             </span>
-          </div>
-          {% endif %}
+          </div>-->
         </div>
       </div>
     </div>
