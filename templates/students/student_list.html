@@ -57,14 +57,14 @@
   <div class="pagination">
     <span class="step-links">
       {% if page_obj.has_previous %}
-      <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-default"><< previous</a>
+      <p><a href="?page={{ page_obj.previous_page_number }}" class="btn btn-default"><< previous</a>
       {% endif %}
-      <span class="current">
-      <p  class="btn btn-default">Page {{ page_obj.number }} of {{ paginator.num_pages }}.</p>
-      </span>
+      {% for page in page_obj.paginator.page_range %}
+      <a href="?page={{ page }}" class="btn btn-default">{{ page }}</a>
+      {% endfor %}
       {% if page_obj.has_next %}
       <a href="?page={{ page_obj.next_page_number }}" class="btn btn-default">next >></a>
-      {% endif %}
+      {% endif %}</p>
     </span>
   {% endif %}
   </div>
