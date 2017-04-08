@@ -12,8 +12,23 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 class CourseDetailView(DetailView):
-	model = Course
+    model = Course
+    context_object_name = 'course'
+    template_name = 'courses/detail.html'
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        course_id = self.request.GET.get('course_id', None)
+        if course_id:
+            qs = qs.filter(courses__id=course_id)
+                   
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['lessons'] = Lesson.objects.filter(course=self.object.pk)
+        context['course'] = Course.objects.get(id=self.object.pk)
+        return context
 
 
 '''def detail(request, course_id):
@@ -26,7 +41,7 @@ class CourseDetailView(DetailView):
     return render(request, "courses/detail.html", {'course':course, 'lessons_list': lessons_list, 'coach':coach, 'assistant':assistant}) '''
 
 
-def add(request):
+'''def add(request):
     
     if request.method == "POST":
         form = CourseModelForm(request.POST)
@@ -39,10 +54,31 @@ def add(request):
     else:
         form = CourseModelForm()
         
-    return render(request, "courses/add.html", {'form':form})
+    return render(request, "courses/add.html", {'form':form})'''
 
 
-def edit(request, pk):
+class CourseCreateView(CreateView):
+    model = Course
+    form_class = CourseModelForm
+    success_url = reverse_lazy('index')
+    context_object_name = 'course'
+    template_name = 'courses/add.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Course creation'
+        #context['button_name'] = 'Add'
+        return context
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Course {} has been successfully added.'.format(self.object.name))
+        return response
+    
+
+
+
+'''def edit(request, pk):
     course = Course.objects.get(id=pk)
     if request.method == "POST":
         form = CourseModelForm(request.POST, instance=course)
@@ -57,9 +93,32 @@ def edit(request, pk):
 
     
     
-    return render(request, "courses/edit.html", {'form':form})
+    return render(request, "courses/edit.html", {'form':form})'''
 
-def remove(request, pk):
+
+class CourseUpdateView(UpdateView):
+    model = Course
+    form_class = CourseModelForm
+    context_object_name = 'course'
+    template_name = 'courses/edit.html' 
+
+    def get_success_url(self):
+        return reverse('courses:edit', args=(self.object.pk,))
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Course update'
+        return context
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'The changes have been saved.')
+        return response
+    
+    
+
+
+'''def remove(request, pk):
     course = Course.objects.get(id=pk)
     if request.method == "POST":
                 
@@ -71,9 +130,24 @@ def remove(request, pk):
 
     
     
-    return render(request, "courses/remove.html", {'form':form})
+    return render(request, "courses/remove.html", {'form':form}) '''
+
     
+class CourseDeleteView(DeleteView):
+    model = Course
+    success_url = reverse_lazy('index')
+    context_object_name = 'course'
+    template_name = 'courses/remove.html'
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Course deletion'
+        return context 
+
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(self.request, 'Course {} has been deleted.'.format(self.object.name))
+        return response       
 
 
 def add_lesson(request, pk):

@@ -26,7 +26,7 @@
                   <div class="panel-heading">
                     <h3 class="panel-title">
                     
-                    <a href="{% url 'coaches:detail' course.coach.id %}">{{ coach.first_name }} {{ coach.last_name }}</a>
+                    <a href="{% url 'coaches:detail' course.coach.id %}">{{ course.coach.first_name }} {{ course.coach.last_name }}</a>
                     </h3>
                    </div>
 
@@ -41,7 +41,7 @@
                   <div class="panel-heading">
                     <h3 class="panel-title">
                     
-                    <a href="{% url 'coaches:detail' assistant.id %}">{{ assistant.first_name }} {{ assistant.last_name }}</a>
+                    <a href="{% url 'coaches:detail' course.assistant.id %}">{{ course.assistant.first_name }} {{ course.assistant.last_name }}</a>
 <br />
                     </h3>
                    </div>
@@ -94,7 +94,7 @@
                     </thead>
 
                     <tbody>
-                        {% for lesson in lessons_list %}
+                        {% for lesson in lessons %}
                             <tr>
                                 <td>{{ lesson.order }}</td>
                                 <td><strong>{{ lesson.subject }}</strong></td>
