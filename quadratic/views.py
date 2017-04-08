@@ -10,13 +10,13 @@ from . forms import QuadraticForm
 def quadratic_results(request):
     message = {}
     diskr = ''
-    if request.method == "POST":
-        form = QuadraticForm(request.POST)
+    if request.method == "GET":
+        form = QuadraticForm(request.GET)
         
         
         if form.is_valid():
             data = form.cleaned_data
-            a = form.clean_a()
+            a = data['a']
             b = data['b']
             c = data['c']
             

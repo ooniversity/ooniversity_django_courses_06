@@ -3,17 +3,27 @@ from . models import Course, Lesson
 from coaches.models import Coach
 from courses.forms import CourseModelForm, LessonModelForm
 from django.contrib import messages
+from django.views.generic.detail import DetailView
+from django.views.generic import ListView
+from django.views.generic import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
+
 
 # Create your views here.
+class CourseDetailView(DetailView):
+	model = Course
 
-def detail(request, course_id):
+
+
+'''def detail(request, course_id):
     
     course = Course.objects.get(id=course_id)
     lessons_list = Lesson.objects.filter(course=course)
     coach = Coach.objects.get(id=course.coach.id)
     assistant = Coach.objects.get(id=course.assistant.id)
 
-    return render(request, "courses/detail.html", {'course':course, 'lessons_list': lessons_list, 'coach':coach, 'assistant':assistant})
+    return render(request, "courses/detail.html", {'course':course, 'lessons_list': lessons_list, 'coach':coach, 'assistant':assistant}) '''
 
 
 def add(request):
