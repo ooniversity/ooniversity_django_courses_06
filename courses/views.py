@@ -1,19 +1,109 @@
-from django.shortcuts import render, redirect
-from courses.models import Course
-from courses.forms import CourseModelForm, LessonModelForm
 from django.contrib import messages
-
+from django.urls import reverse_lazy
+from django.shortcuts import render, redirect
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from courses.models import Course, Lesson
+from courses.forms import CourseModelForm, LessonModelForm
 
 # Create your views here.
-def detail(request, id):
-    course = Course.objects.get(pk=id)
-    lessons = course.lesson_set.all()
-    return render(request, 'courses/detail.html', {
-                  'course': course,
-                  'lessons': lessons,
-                  'coach': course.coach,
-                  'assistant': course.assistant, })
 
+class CourseDetailView(DetailView):
+    model = Course
+    template_name = 'courses/detail.html' 
+    context_object_name = 'course'
+
+    def get_context_data(self, **kwargs):
+        context = super(CourseDetailView,self).get_context_data(**kwargs)
+        context['title'] = 'TechBursa Python/Django 06 :: CourseDetail'
+        context['lessons'] = Lesson.objects.filter(course=self.kwargs['pk'])
+        return context
+
+
+class CourseCreateView(CreateView):
+    model = Course
+    template_name = 'courses/add.html'
+    form_class = CourseModelForm
+    success_url = reverse_lazy('index')
+    context_object_name = 'course'
+
+    def form_valid(self, form):
+        response = super(CourseCreateView, self).form_valid(form)
+        messages.success(self.request, "Course {} has been successfully added.".format(self.object.name))
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Course creation"
+        return context
+
+
+class CourseUpdateView(UpdateView):
+    model = Course
+    form_class =  CourseModelForm
+    success_url = reverse_lazy('courses:edit')
+    template_name = 'courses/edit.html'
+    context_object_name = 'course'
+
+    
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('courses:edit', args = (self.kwargs['pk']))
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "The changes have been saved.")
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Course update"
+        return context
+
+
+class CourseDeleteView(DeleteView):
+    model = Course
+    success_url = reverse_lazy('index')
+    template_name = 'courses/remove.html'
+    context_object_name = 'course'
+
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(request, "Course {} has been deleted.".format(self.object.name))
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Course deletion"
+        return context
+
+
+class LessonCreateView(CreateView):
+    model = Lesson
+    template_name = 'courses/add_lesson.html'
+    form_class = LessonModelForm
+    context_object_name = 'lessons'
+    success_url = reverse_lazy('courses:detail')
+
+    def get_initial(self):
+        initial = super().get_initial()
+        course = Course.objects.get(id=self.kwargs['pk'])
+        initial['course'] = course
+        return initial
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('courses:detail', args=(self.kwargs['pk']))
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Lesson has been successfully added.")
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "ADD LESSON"
+        return context
+    
+#--------------------------- old syntax ----------------
 
 def add(request):
     if request.method == "POST":

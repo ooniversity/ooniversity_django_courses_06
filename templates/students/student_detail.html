@@ -10,34 +10,34 @@
 {% block content %}  
   <div class="jumbotron">
     <div class="container">
-      <h1 class="coolshadow">{{person.name}} {{person.surname}}</h1>
+      <h1 class="coolshadow">{{student.name}} {{student.surname}}</h1>
     </div>
 
     <div class="container">
       <table class="table">
           <tr>
             <td>дата рождения</td>
-            <td>{{person.date_of_birth|date:"N d, Y"}}</td>
+            <td>{{student.date_of_birth|date:"N d, Y"}}</td>
           </tr>
           <tr>
             <td>адрес</td>
-            <td>{{person.address}}</td>
+            <td>{{student.address}}</td>
           </tr>
           <tr>
             <td>почта</td>
-            <td>{{person.email}}</td>
+            <td>{{student.email}}</td>
           </tr>
           <tr>
             <td>логин skype</td>
-            <td>{{person.skype}}</td>
+            <td>{{student.skype}}</td>
           </tr>
           <tr>
             <td>телефон</td>
-            <td>{{person.phone}}</td>
+            <td>{{student.phone}}</td>
           </tr>
           <tr>
             <td>курсы</td>
-            <td>{% for course in person.courses.all %}
+            <td>{% for course in student.courses.all %}
                     <a href="{% url 'courses:detail' course.id  %}">{{ course }}</a><br>
                 {% endfor %}
             </td>
