@@ -24,6 +24,6 @@ app_name = 'coaches'
 urlpatterns = [
     
     
-    url(r'^(?P<pk>[0-9]+)/$', views.detail, name='detail'),
+    url(r'^(?P<coach_id>[0-9]+)/$', views.detail, name='detail'),
     
 ]

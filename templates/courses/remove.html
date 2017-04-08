@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
 
-{% block title %}Edit course{% endblock title %}
+{% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-<h1 class="page-header">Edit Course</h1>
+<h1 class="page-header">{{ title }}</h1>
+</br><p>Course {{ course.name }} will be deleted.</p>
 
 <form method="post" class="course-form">
     {% csrf_token %}
