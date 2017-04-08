@@ -1,15 +1,9 @@
 from django.contrib import admin
 from students.models import Student
 
-# Register your models here.
-
-#def upper_case_name(obj):
-#   return ("%s %s" % (obj.name, obj.surname))
-#upper_case_name.short_description = 'Full name'
 
 class StudentAdmin(admin.ModelAdmin):
     search_fields = ['surname', 'email']
-    #list_display = [upper_case_name, 'email', 'skype']
     list_display = ['full_name', 'email', 'skype']
     list_filter = ['courses']
     filter_horizontal = ['courses', ]
@@ -25,7 +19,5 @@ class StudentAdmin(admin.ModelAdmin):
 
         (None, {'fields': ['courses']})
     )
-
-
 
 admin.site.register(Student, StudentAdmin)

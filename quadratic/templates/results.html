@@ -16,10 +16,8 @@
 
 {% block quadratic_active %} class="active" {% endblock quadratic_active %}
 
+
 {% block content %}
-
-
-
   <div class="jumbotron">
   <div class="container">
     <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
@@ -35,12 +33,9 @@
       {% if D > 0 %}<p><strong>Квадратное уравнение имеет два действительных корня: x1 = {{ x1 }}, x2 = {{ x2 }}</strong></p>{% endif %}
       {% if D == 0 %}<p><strong>Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = {{ x1 }}</strong></p>{% endif %}
       {% if D < 0 %}<p><strong>Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.</strong></p>{% endif %}
-
-
   </div>
-
   </div>
-
 {% endblock content %}
+
 
 {% block pager_footer %}{% endblock pager_footer %}

@@ -20,8 +20,6 @@
     <![endif]-->
   </head>
 
-
-
   <div>
   <ul class="nav nav-pills">
     <li role="presentation" {% block main_active %} class="" {% endblock main_active %}><a href="{% url 'index' %}">Главная</a></li>
@@ -42,6 +40,7 @@
     </div>
   </div>
   {% endblock jumbotron %}
+
 
   {% block content %}
   {% if messages %}
@@ -84,7 +83,6 @@
     </tbody>
   </table>
 
-
   <div class="jumbotron">
     <div class="container">
     <p class="selector5">Мы выдаем только один вид дипломов — «курс успешно пройден».</br>
@@ -93,6 +91,7 @@
     </div>
    </div>
   {% endblock content %}
+
 
   {% block pager_footer %}
   <nav aria-label="...">

@@ -18,23 +18,14 @@ class StudentListView(ListView):
     def get_queryset(self):
         global global_course_id
         global trigger
-        #trigger = None
-
-
         qs = super().get_queryset()
-        print('COURSE_ID:', self.request.GET.get('course_id'))
-        print('PAGE:', self.request.GET.get('page', None))
         course_id = self.request.GET.get('course_id', None)
         if course_id:
             global_course_id = self.request.GET.get('course_id', None)
             trigger = True
-            print('GLOBAL_COURSE_ID:', global_course_id)
-
         if self.request.GET.get('page', None) and trigger:
-            print('Label_1')
             qs = qs.filter(courses__id=global_course_id)
         elif course_id:
-            print('Label_2')
             qs = qs.filter(courses__id=course_id)
         else:
             trigger = False

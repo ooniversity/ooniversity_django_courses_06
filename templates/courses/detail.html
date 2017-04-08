@@ -35,17 +35,17 @@
     <br/>
       {% if course.coach %}
       <div class="panel panel-default">
-        <div class="panel-heading">Coach</div>
-          <div class="panel-body"><a href="{% url 'coaches:detail' course.coach.id %}">{{ course.coach.full_name }}</a><br/>
+      <div class="panel-heading">Coach</div>
+      <div class="panel-body"><a href="{% url 'coaches:detail' course.coach.id %}">{{ course.coach.full_name }}</a><br/>
       {{ course.coach.description }}
-          </div>
+      </div>
       {% endif %}
       {% if course.assistant %}
       <div class="panel panel-default">
-        <div class="panel-heading">Assistant</div>
-          <div class="panel-body"><a href="{% url 'coaches:detail' course.assistant.id %}">{{ course.assistant.full_name }}</a><br/>
+      <div class="panel-heading">Assistant</div>
+      <div class="panel-body"><a href="{% url 'coaches:detail' course.assistant.id %}">{{ course.assistant.full_name }}</a><br/>
         {{ course.assistant.description }}
-        </div>
+      </div>
       </div>
     </div>
       {% endif %}

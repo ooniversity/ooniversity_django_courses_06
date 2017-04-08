@@ -19,7 +19,6 @@ def quadratic_results(request):
                 a_not_0 = True
             else:
                 a_not_0 = False
-                #message_ = request_dictionary['a_not_0']
                 messages.error(request, form.clean_a(a))
         except:
             a_isdigit = False
