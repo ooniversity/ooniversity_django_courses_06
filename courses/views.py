@@ -11,6 +11,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 class CourseDetailView(DetailView):
     model = Course
     template_name = 'courses/detail.html'
+    context_object_name = 'course'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -23,6 +24,7 @@ class CourseCreateView(CreateView):
     template_name = 'courses/add.html'
     form_class = CourseModelForm
     success_url = reverse_lazy('index')
+    context_object_name = 'course'
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -38,6 +40,7 @@ class CourseDeleteView(DeleteView):
     model = Course
     success_url = reverse_lazy('index')
     template_name = 'courses/remove.html'
+    context_object_name = 'course'
 
     def delete(self, request, *args, **kwargs):
         response = super().delete(request, *args, **kwargs)
@@ -55,6 +58,7 @@ class CourseUpdateView(UpdateView):
     form_class =  CourseModelForm
 #    success_url = reverse_lazy('index')
     template_name = 'courses/edit.html'
+    context_object_name = 'course'
     
     def get_success_url(self, **kwargs):
 #        print(self.kwargs)
@@ -76,6 +80,7 @@ class LessonCreateView(CreateView):
     model = Lesson
     template_name = 'courses/add_lesson.html'
     form_class = LessonModelForm
+    context_object_name = 'lessons'
 
     def get_initial(self):
         initial = super().get_initial()
