@@ -16,7 +16,7 @@ def quadratic_results(request):
         
         if form.is_valid():
             data = form.cleaned_data
-            a = form.clean_a()
+            a = data['a']
             b = data['b']
             c = data['c']
             
