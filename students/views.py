@@ -16,7 +16,7 @@ class StudentListView(ListView):
 
     def get_queryset(self):
         global global_course_id
-
+        #global_course_id = None
 
 
         qs = super().get_queryset()
@@ -24,7 +24,7 @@ class StudentListView(ListView):
         course_id = self.request.GET.get('course_id', None)
         if course_id:
             global_course_id = self.request.GET.get('course_id', None)
-        print('GLOBAL_COURSE_ID:', global_course_id)
+            print('GLOBAL_COURSE_ID:', global_course_id)
 
         if self.request.GET.get('page', None):
             qs = qs.filter(courses__id=global_course_id)
