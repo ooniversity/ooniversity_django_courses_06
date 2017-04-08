@@ -1,77 +1,70 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
 
-{% load static %}
-
-
-{% block title %}PyBursa Home{% endblock title %}
+{% block nav_index %}active{% endblock %}
 
 
-{% block nav_class_index %}active{% endblock %}
-
+{% block title %}TechBursa Python/Django :: Main{% endblock title %}
 
 {% block content %}
 
-{% if messages %}
-    {% for message in messages %}
-        <div class="alert {% if message.tags %}alert-{{message.tags}}{%endif%}" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endif %}
+{% include "include/messages_include.html" %}
 
-{% include "include/jumbotron_include.html" with block_title="Pybursa" block_text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione ipsa saepe pariatur repudiandae a perspiciatis magnam expedita iusto autem molestiae voluptatum tenetur aliquid vel ex fugit laudantium, doloremque obcaecati explicabo!" %}
-
-<h2 class="page-header">Our courses</h2>
-
-<div class="panel panel-default">
-    <div class="panel-body">
-        <a href="{% url 'courses:add' %}" class="btn btn-info">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            Add new course
-        </a>
+  <div class="container">
+    <div class="jumbotron">
+        <h1 class="coolshadow">Вітаємо сайті <a href="#">&laquoTechBursa&raquo!</a></h1>
+      <p class="greetings">Цей сайт присвячено курсу інтенсивного, практичного навчання WEB-програмуванню на мові Python з використанням фреймворку Django. 
+      А також освоєнню і застосуанню найновіших методів та інструментів ефективної розробки, впровадження та розгортання
+      WEB-проектів та сайтів. <br>
+      <a href="#">TechBursa!</a> - це передові методи навчання! <br>
+      <strong>Приєднуйтесь до нашої спільноти!</strong>
+      </p>
     </div>
-</div>
+  </div>
 
-<div class="table-responsive">
-    <table class="table table-bordered courses-table">
-        <thead>
-            <tr class="info">
-                <th class="courses-table__name">Course</th>
-                <th>Description</th>
-                <th></th>
-            </tr>
-        </thead>
-
-        <tbody>
-            {% for course in courses_list %}
+  <div class="container">
+    <div class="panel panel-primary"> 
+      <div class="panel-heading"> 
+          <h3 class="panel-title" align="center"><h2 class="Program">ПЕРЕЛІК КУРСІВ:</h2></h3>
+      </div> 
+      <div class="panel-body">
+            <div class="container">
+                <p><a class='btn btn-sm btn-success' href="{% url 'courses:add' %}" role='button'>
+                <span class="glyphicon glyphicon-plus-sign"></span> Добавить курс</a></p>
+            </div>
+        <div class="row">
+            <table class="table table-hover table-striped" align="center" style="width:95%; margin-bottom: 5px;" > 
+            {% for course in courses %}
                 <tr>
-                    <th><a href="{% url 'courses:detail' course.id %}">{{ course.name|upper }}</a></th>
-                    <td>{{ course.short_description|title }}</td>
-                    <td>
-                        <a href="{% url 'courses:edit' course.id %}" class="btn btn-info">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            Edit
-                        </a>
-
-                        <a href="{% url 'courses:remove' course.id %}" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                            Delete
-                        </a>
+                    <td width="1%" style="vertical-align: middle;">
+                     <div style="text-align: center;background-color: steelblue; color: white;padding: 3px;font-weight: bolder;">
+                        {{ forloop.counter }}
+                     </div>
+                    </td>
+                    <td width="3%" style="vertical-align: middle;"><strong><a href="{% url 'courses:detail' course.id  %}">{{course.name|upper}}</a></strong></td>
+                    <td width="30%" style="vertical-align: middle;"><em><b>{{course.short_description|title}}</b></em></td>
+                    <td width="10%" style="vertical-align: middle;">
+                        <a class="btn btn-sm btn-primary" href="{% url 'courses:edit' course.id %}" role="button">
+                        <span class="glyphicon glyphicon-edit"></span> Изменить</a>&nbsp
+                        <a class="btn btn-sm btn-primary" href="{% url 'courses:remove' course.id %}" role="button">
+                        <span class="glyphicon glyphicon-remove-sign"></span> Удалить</a>
                     </td>
                 </tr>
             {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-body">
-        <a href="{% url 'courses:add' %}" class="btn btn-info">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            Add new course
-        </a>
+            </table>
+<!--          <ol class="num" >
+           {% for course in courses %}
+             <li style="font-size: 14pt;"><strong><a href="{% url 'courses:detail' course.id  %}">{{course.name|upper}}</a> :: </strong><em><b>{{course.short_description|title}}</b></em> ::
+             <div>{{course.short_description|title}}<div>
+             </li>            
+           {% endfor %}
+          </ol>-->
+        </div>
+      </div>
     </div>
-</div>
 {% endblock content %}
+
+/*    display:inline-block;
+    */
+}

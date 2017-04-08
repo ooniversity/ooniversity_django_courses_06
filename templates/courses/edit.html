@@ -1,26 +1,35 @@
 {% extends "base.html" %}
 
+{% load static %}
 
-{% block title %}Edit course data{% endblock title %}
-
+{% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
 
-{% if messages %}
-    {% for message in messages %}
-        <div class="alert {% if message.tags %}alert-{{message.tags}}{%endif%}" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            {{ message }}
+{% include "include/messages_include.html" %}
+
+<div class="container">
+    <div class="panel panel-success"> 
+            <div class="panel-heading"> 
+                <h2 class="panel-title" align="center">
+                    <h2 class="Program">Редагувати дані по курсу: 
+                                        <b>{{ form.name.value }}</b>
+                    </h2>
+                </h2>
+            </div>
+    <div class="panel-body">
+        <div class='container'>
+            <form method='post'>
+                {% csrf_token %}
+                {{ form.as_p }}
+<!--                 <input type="submit" value="Ok"/> -->
+                <hr>
+                <button type="submit" class="btn btn-success btn-sm">
+                    <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Ok
+                </button>
+            </form>
         </div>
-    {% endfor %}
-{% endif %}
-
-<h1 class="page-header">Edit course data</h1>
-
-<form method="post" class="course-form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update" class="btn btn-primary">
-</form>
-
+    </div>
+</div>
+<br>
 {% endblock content %}

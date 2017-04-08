@@ -1,71 +1,69 @@
 {% extends "base.html" %}
 
 
-{% load static %}
+{% block nav_contacts %}active{% endblock %}
 
 
-{% block title %}{{ coach.get_name }} {{ coach.get_surname }} coach detail{% endblock title %}
+{% block title %}TechBursa Python/Django 06 :: Coaches{% endblock title %}
 
 
 {% block content %}
 
-<h1 class="page-header">{{ coach.get_name|title }} {{ coach.get_surname|title }}</h1>
+<div class="page-content">
+    <div class="container">
+        <h1 class="page-header coolshadow">{{ coach.name }} {{ coach.surname }}</h1>
+        <div class="table-responsive">
+            <table class="table table-striped", with="30%">
+                <tr>
+                    <th style="width: 20%;">Дата народження:</th>
+                    <td>{{ coach.date_of_birth|date:"d F, Y" }}</td>
+                </tr>
+                <tr>
+                    <th>Адреса:</th>
+                    <td>{{ coach.address }}</td>
+                </tr>
+                <tr>
+                    <th>E-mail:</th>
+                    <td>{{ coach.user.email }}</td>
+                </tr>
+                <tr>
+                    <th>Skype:</th>
+                    <td>{{ coach.skype }}</td>
+                </tr>
+                <tr>
+                    <th>Тел.:</th>
+                    <td>{{ coach.phone }}</td>
+                </tr>
+                {% if coach_courses %}
+                    <tr>
+                        <th>Викладач курсів:</th>
+                        <td>
+                            <p>{% for course in coach.coach_courses.all %}
+                                    <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a>
+                                    студенти курсу
+                                    <a href="{% url 'students:list_view' %}?course_id={{ course.id }}" class="glyphicon glyphicon-new-window" aria-hidden="true"></a>
+                            </p>{% endfor %}
+                        </td>
+                    </tr>
+                {% endif %}
 
-<div class="table-responsive">
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>Date of birth</th>
-            <td>{{ coach.date_of_birth|date:'j F, Y' }}</td>
-        </tr>
-        <tr>
-            <th>Address</th>
-            <td>{{ coach.address }}</td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>{{ coach.get_email }}</td>
-        </tr>
-        <tr>
-            <th>Skype</th>
-            <td>{{ coach.skype }}</td>
-        </tr>
-        <tr>
-            <th>Phone</th>
-            <td>{{ coach.phone }}</td>
-        </tr>
-        {% if coach_courses %}
-            <tr>
-                <th>Coach Courses</th>
-                <td>
-                    {% for course in coach_courses %}
-                        <ul>
-                            <li>
+                {% if assistant_courses %}
+                    <tr>
+                        <th>Асистент курсів</th>
+                        <td>
+                            {% for course in coach.assistant_courses.all %}
+                            <p>
                                 <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a>
-                                course students
-                                <a href="{% url 'students:list_view' %}?course_id={{ course.id }}" class="glyphicon glyphicon-share" aria-hidden="true"></a>
-                            </li>
-                        </ul>
-                    {% endfor %}
-                </td>
-            </tr>
-        {% endif %}
+                                студенти курсу
+                                <a href="{% url 'students:list_view' %}?course_id={{ course.id }}" class="glyphicon glyphicon-new-window" aria-hidden="true"></a>
+                            {% endfor %}
+                            </p>
+                        </td>
+                    </tr>
+                {% endif %}
+            </table>
+        </div>
 
-        {% if assistant_courses %}
-            <tr>
-                <th>Assistant Courses</th>
-                <td>
-                    {% for course in assistant_courses %}
-                        <ul>
-                            <li>
-                                <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a>
-                                course students
-                                <a href="{% url 'students:list_view' %}?course_id={{ course.id }}" class="glyphicon glyphicon-share" aria-hidden="true"></a>
-                            </li>
-                        </ul>
-                    {% endfor %}
-                </td>
-            </tr>
-        {% endif %}
-    </table>
+    </div>
 </div>
 {% endblock content %}

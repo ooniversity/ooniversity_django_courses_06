@@ -1,28 +1,19 @@
 from django.contrib import admin
+from courses.models import Course, Lesson
 
-from . models import Course, Lesson
 
-class LessonInline(admin.StackedInline):
+class LessonInline(admin.TabularInline):
     model = Lesson
-    fields = ['subject', 'description', 'order']
-
+    extra = 0   
+    
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ['name', 'short_description']
+    list_display = ('name', 'short_description')
     search_fields = ['name']
     inlines = [LessonInline]
-    # list_filter = []
-    # fields = ['name', 'description']
-    # exclude = ['description']
-    # readonly_fields = []
+    
+class LessonAdmin(admin.ModelAdmin):
+    list_per_page = 10
 
-    # change widget
-    # raw_id_fileds = []
-
-    # buttons
-    # save_as = True
-    # save_on_top = True
-
-    # fieldsets =
 
 admin.site.register(Course, CourseAdmin)
-admin.site.register(Lesson)
+admin.site.register(Lesson, LessonAdmin)
