@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+
+{% block title %}PyBursa student detail{% endblock title %}
+
+
+{% block nav_class_student %}active{% endblock nav_class_student %}
+
+
+{% block content %} 
+
+
+{% load static %}
+
+
+    <div class="page-content">
+        <div class="container">
+
+            <h1 class="page-header">{{ student.name }} {{ student.surname }}</h1>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Date of birth</th>
+                        <td>{{ student.date_of_birth }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{ student.address }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ student.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Skype</th>
+                        <td>{{ student.skype }}</td>
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <td>{{ student.phone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Courses</th>
+                        <td>
+                            {% for course in student.get_courses %}
+                                <ul>
+                                    <li><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></li>
+                                </ul>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+{% endblock content %} 
+
+</body>
+</html>
