@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'students.apps.StudentsConfig',
     'coaches.apps.CoachesConfig',
     'quadratic.apps.QuadraticConfig',
+    'feedbacks.apps.FeedbacksConfig',
 ]
 
 MIDDLEWARE = [
@@ -72,11 +73,17 @@ TEMPLATES = [
     },
 ]
 
+"""
+EMAIL_HOST = "127.0.0.1"
+EMAIL_PORT = "1025"
+"""
 
-EMAIL_HOST = "smtp.sendgrip.net"
-EMAIL_PORT = "587"
-EMAIL_HOST_USER = "edsrtkv"
-EMAIL_HOST_PASSWORD = "sendgrid_2017"
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_HOST_USER = 'edstrkv@gmail.com'
+EMAIL_HOST_PASSWORD = ''
+
+ADMINS = (('Eduard Striukov', 'edstrkv@gmail.com'),)
 
 
 WSGI_APPLICATION = 'pybursa.wsgi.application'
