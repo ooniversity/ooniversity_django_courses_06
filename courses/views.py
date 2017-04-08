@@ -56,9 +56,10 @@ class CourseDeleteView(DeleteView):
 class CourseUpdateView(UpdateView):
     model = Course
     form_class =  CourseModelForm
-#    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('courses:edit')
     template_name = 'courses/edit.html'
     context_object_name = 'course'
+
     
     def get_success_url(self, **kwargs):
 #        print(self.kwargs)
@@ -66,14 +67,14 @@ class CourseUpdateView(UpdateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(self.request, "Course %s info has been successfully changed." %(self.object.name))
+        messages.success(self.request, "The changes have been saved.")
         return response
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = "Course update"
-        context['coach'] = Coach.objects.filter(coach_courses=self.kwargs['pk'])
-        context['assistant'] = Coach.objects.filter(assistant_courses=self.kwargs['pk'])
+#        context['coach'] = Coach.objects.filter(coach_courses=self.kwargs['pk'])
+#        context['assistant'] = Coach.objects.filter(assistant_courses=self.kwargs['pk'])
         return context
 
 class LessonCreateView(CreateView):
@@ -81,6 +82,7 @@ class LessonCreateView(CreateView):
     template_name = 'courses/add_lesson.html'
     form_class = LessonModelForm
     context_object_name = 'lessons'
+    success_url = reverse_lazy('courses: detail')
 
     def get_initial(self):
         initial = super().get_initial()
