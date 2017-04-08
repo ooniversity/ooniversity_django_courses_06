@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'courses',
     'students',
     'coaches.apps.CoachesConfig',
+    'feedbacks.apps.FeedbacksConfig',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,15 @@ STATICFILES_DIRS = [
     # ...
     os.path.join(BASE_DIR, 'static'),
 ]
+
+
+EMAIL_HOST = "localhost"
+EMAIL_PORT = "2525"
+
+
+#EMAIL_HOST = 'smtp.any.wgere'
+#EMAIL_PORT = '666' #mail_of-death
+#EMAIL_HOST_USER = 'login@profile'
+#EMAIL_HOST_PASSWORD = 'superdupersecretpassword'
+
+ADMINS = (('dipperside', 'figvam@dot.com'),)
