@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block nav_students %}active{% endblock %}
+
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+{% include "include/messages_include.html" %}
+
+
+  <div class="container"><div class="jumbotron">
+    <div class="container">
+          <h1 class="studlst coolshadow">Студенти TechBursa</h1>
+    </div>
+  </div></div>
+  
+    <div class="container">
+    <p></p>
+      <p><a class='btn btn-sm btn-success' href="{% url 'students:add' %}" role='button'><span class="glyphicon glyphicon-plus-sign"></span> Добавить нового студента</a></p>
+      <table class="table table-striped table-hover bg-info" style="margin-bottom: 10px;">
+        <thead>
+          <tr>
+            <th style="width:5%">No</th>
+            <th style="width:15%">Name</th>
+            <th style="width:25%">Address</th>
+            <th style="width:10%">Skype</th>
+            <th style="width:15%">Courses</th>
+          </tr>
+        </thead>      
+      <tbody>
+        {% for person in object_list %}
+        <tr>
+          <td style="vertical-align: middle;">{{ forloop.counter }}</td>
+          <td style="vertical-align: middle;"><a href="{% url 'students:detail' person.id %}">{{person}}</a></td>
+          <td style="vertical-align: middle;">{{person.address}}</td>
+          <td style="vertical-align: middle;">{{person.skype}}
+          <td style="vertical-align: middle;">
+            {% for course in person.courses.all %}
+                <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a><br>
+            {% endfor %}
+          </td>
+          <td style="vertical-align: middle;">
+            <a class='btn btn-sm btn-primary' href="{% url 'students:edit' person.id %}" role='button'>
+            <span class="glyphicon glyphicon-edit"></span> Изменить
+            </a>
+            <a class='btn btn-sm btn-primary' href="{% url 'students:remove' person.id %}" role='button'>
+            <span class="glyphicon glyphicon-remove-sign"></span> Удалить
+            </a>
+          </td>        
+        </tr>
+        {% endfor %}
+       </tbody>
+      </table>
+      
+      {% if is_paginated %}
+        <nav>
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}"><span aria-hidden="true"><< previous</span></a></li>
+            {% endif %}
+            {% for page in paginator.page_range %}
+                <li {% if page == page_obj.number %} class="active" {% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}"><span aria-hidden="true">next >></span></a></li>
+            {% endif %}
+        </ul>
+        </nav>
+      {% endif %}    
+      
+   </div> 
+{% endblock content %}

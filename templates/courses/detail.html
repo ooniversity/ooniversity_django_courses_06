@@ -1,77 +1,54 @@
 {% extends "base.html" %}
 
-
-{% load static %}
-
-
-{% block title %}{{ course.name }}{% endblock title %}
-
-
-{% block course_id %}?course_id={{ course.id }}{% endblock %}
-
+{% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
 
-{% if messages %}
-    {% for message in messages %}
-        <div class="alert {% if message.tags %}alert-{{message.tags}}{%endif%}" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endif %}
+{% include "include/messages_include.html" %}
 
-{% include "include/jumbotron_include.html" with block_title=course.name block_text=course.description|truncatechars:32 %}
+	<div class="container">
+	  <div class="jumbotron">
+    	<h1 class="coolshadow">Курс - &laquo{{course.name}}&raquo</h1>
+		<h2><strong>Description</strong><small> (опис курсу):</small></h2>
+		<p class="greetings"><strong>{{course.description|truncatechars:32}}</strong></p>
+	  </div>
+	</div>
 
-<h2>Instructors</h2>
-
-{% if coach %}
-    {% include "../include/person_panel_include.html" with panel_title="Teacher" person=coach %}
-{% endif %}
-
-{% if assistant %}
-    {% include "../include/person_panel_include.html" with panel_title="Assistant" person=assistant %}
-{% endif %}
-
-<h2 class="page-header">Course plan</h2>
-
-<div class="panel panel-default">
-    <div class="panel-body">
-        <a href="{% url 'courses:add_lesson' course.id %}" class="btn btn-info">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            Add new lesson
-        </a>
-    </div>
-</div>
-
-<div class="table-responsive">
-    <table class="table table-bordered courses-table">
-        <thead>
-            <tr class="info">
-                <th>#</th>
-                <th class="courses-table__name">Subject</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            {% for lesson in lessons_list %}
-                <tr>
-                    <td>{{ lesson.order }}</td>
-                    <td><strong>{{ lesson.subject }}</strong></td>
-                    <td>{{ lesson.description }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-body">
-        <a href="{% url 'courses:add_lesson' course.id %}" class="btn btn-info">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            Add new lesson
-        </a>
-    </div>
-</div>
+    <div class="container">
+      {% if course.coach %}
+        <h2>Викладацький склад:</h2>
+        {% include "include/mentor_include.html" with mentor_title='Викладач' mentor=course.coach %}
+      {% endif %}
+        
+      {% if course.assistant %}
+        {% include "include/mentor_include.html" with mentor_title='Асистент' mentor=course.assistant %}
+      {% endif %}
+      <p><a class='btn btn-sm btn-success' href="{% url 'courses:add-lesson' course.id %}" role='button'>
+            <span class="glyphicon glyphicon-plus-sign"></span> Добавить занятие</a>
+      </p>
+		<div class="panel panel-primary"> 
+			  <div class="panel-heading"> 
+				<h2 class="panel-title" align="center"><h2 class="Program">Програма курсу:</h2></h2>
+			  </div>
+		  <div class="panel-body">
+                    <table class="table table-striped">
+                    <thead align=center>
+                    <tr>
+                        <th><h4>№</h4></th>
+                        <th style="width: 20%;"><h4>Тема</h4></th>
+                        <th><h4>Опис</h4></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for lesson in lessons %}
+                    <tr>
+                        <td style="vertical-align: middle;"><strong>{{ lesson.order }}</strong></td>
+                        <td style="vertical-align: middle;"><strong>{{ lesson.subject }}</strong></td>
+                        <td style="vertical-align: middle;"><strong>{{ lesson.description }}</strong></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+	</div>
 {% endblock content %}

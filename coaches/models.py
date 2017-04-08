@@ -1,28 +1,23 @@
 from django.db import models
-from django.conf import settings
+from django.contrib.auth.models import User
 
+
+# Create your models here.
 class Coach(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
-    date_of_birth = models.DateField()
-    gender = models.CharField(max_length=1, choices=(('M', 'Male'), ('F', 'Female')))
-    phone = models.CharField(max_length=20)
-    address = models.CharField(max_length=300)
-    skype = models.CharField(max_length=50)
-    description = models.TextField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    date_of_birth = models.DateField('Дата народження')
+    gender = models.CharField('Стать', max_length=1,
+                              choices=(('M', 'Male'), ('F', 'Female')))
+    phone = models.CharField('Тел', max_length=15)
+    address = models.CharField('Адреса', max_length=25)
+    skype = models.CharField(max_length=15)
+    description = models.TextField('Опис')
 
     def __str__(self):
-        return self.user.username
+        return str(self.user.username)
 
-    def get_name(self):
-        return '%s' % (self.user.first_name)
-    get_name.short_description = 'name'
-    # name = property(_get_user_first_name)
+    def name(self):
+        return self.user.first_name
 
-    def get_surname(self):
-        return '%s' % (self.user.last_name)
-    get_surname.short_description = 'surname'
-    # surname = property(_get_user_last_name)
-
-    def get_email(self):
-        return '%s' % (self.user.email)
-    get_email.short_description = 'email'
+    def surname(self):
+        return self.user.last_name

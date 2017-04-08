@@ -1,16 +1,32 @@
 {% extends "base.html" %}
 
+{% load static %}
 
-{% block title %}Remove course{% endblock title %}
-
+{% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
 
-<h1 class="page-header">Course {{ course.name }} will be removed</h1>
+<div class="container">
+    <div class="panel panel-danger"> 
+            <div class="panel-heading"> 
+                <h2 class="panel-title" align="center">
+                    <h2 class="Program"><b>Курс «{{ course.name }}» буде видалено!</b></h>
+                </h2>
+            </div>
+    <div class="panel-body">
+            <form method='post'>
+                {% csrf_token %}
+<!--                 <input type="submit" value="REMOVE"/> -->
+                <button type="submit" class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> 
+                    Ok
+                </button>
+            </form>
+            <br>
+    </div>
+</div>
 
-<form method="post" class="course-form">
-    {% csrf_token %}
-    <input type="submit" value="Delete" class="btn btn-danger">
-</form>
 
 {% endblock content %}
+
+
