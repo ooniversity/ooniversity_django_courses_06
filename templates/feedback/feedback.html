@@ -21,14 +21,13 @@
 
 
   <div class="jumbotron">
-  <p>форма отзыва</p>
-   <div class="container">
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="Отправить отзыв">
-    </form>
-
+    <div class="container">
+      <h2>Feedback</h2>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Send">
+      </form>
     </div>
   </div>
 {% endblock %}

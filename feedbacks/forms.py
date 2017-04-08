@@ -5,4 +5,3 @@ class FeedbackModelForm (forms.ModelForm):
     class Meta:
         model = Feedback
         fields = ['name', 'subject', 'message', 'from_email']
-
