@@ -12,8 +12,9 @@ from django.urls import reverse_lazy
 
 class StudentListView(ListView):
 	model = Student
-	template_name = 'students/list.html'
-	context_object_name = 'students_list'
+	paginate_by = 2
+	#template_name = 'students/list.html'
+	#context_object_name = 'students_list'
 
 	def get_queryset(self):
 		qs = super().get_queryset()
@@ -51,7 +52,7 @@ class StudentListView(ListView):
 
 class StudentDetailView(DetailView):
 	model = Student
-	template_name = 'students/detail.html'
+	#template_name = 'students/detail.html'
 
 #def detail(request, student_id):
 #   student = Student.objects.get(id=student_id)
@@ -66,7 +67,7 @@ class StudentDetailView(DetailView):
 class StudentCreateView(CreateView):
     model = Student
     form_class = StudentModelForm
-    template_name = 'students/add.html'
+    #template_name = 'students/add.html'
     success_url = reverse_lazy('students:list_view')
 
     def get_context_data(self, **kwargs):
@@ -97,7 +98,7 @@ class StudentUpdateView(UpdateView):
     model = Student
     form_class = StudentModelForm
     success_url = reverse_lazy('students:list_view')
-    template_name = 'students/edit.html'
+    #template_name = 'students/edit.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -128,7 +129,7 @@ class StudentUpdateView(UpdateView):
 class StudentDeleteView(DeleteView):
     model = Student
     success_url = reverse_lazy('students:list_view')
-    template_name = 'students/remove.html'
+    #template_name = 'students/remove.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

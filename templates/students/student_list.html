@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+
+{% block title %}PyBursa - Students{% endblock title %}
+
+
+{% block nav_class_student %}active{% endblock nav_class_student %}
+
+
+{% block content %} 
+
+
+{% load static %}
+
+
+{% if messages %}
+<div class = "alert alert-success" role="alert">
+   {% for message in messages %}
+      {{ message }}
+   {% endfor %}
+</div>
+{% endif %}
+
+<div class="container">
+    <p><a href="/students/add/" class="btn btn-success" role="button">
+       <span class="glyphicon glyphicon-plus"></span> 
+       Добавить нового студента
+</a></p>
+
+
+
+
+    <div class="page-content">
+        <div class="container">
+
+            {% if current_course %}
+                <h1 class="page-header">Students of "{{ current_course.name }}" course</h1>
+            {% else %}
+                <h1 class="page-header">Students of PyBursa</h1>
+            {% endif %}
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr class="info">
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Skype</th>
+                            <th>Courses</th>
+                        </tr>
+                  
+
+  </thead>
+
+                    <tbody>
+                        {% for student in students_list %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td><a href="{% url 'students:detail' student.id %}">{{ student.name }} {{ student.surname }}</a></td>
+                                <td>{{ student.address }}</td>
+                                <td>{{ student.skype }}</td>
+                                <td>
+                                    {% for course in student.get_courses %}
+                                        <ul>
+                                            <li><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></li>
+                                        </ul>
+                                    {% endfor %}
+  <td>
+            <a href="{% url 'students:edit' student.id %}" class="btn btn-success" type="button">
+              <span class="glyphicon glyphicon-pencil"></span>            
+                Изменить
+            </a>
+</td>
+
+  <td>
+            <a href="{% url 'students:remove' student.id %}" class="btn btn-success" type="button">
+              <span class="glyphicon glyphicon-pencil"></span>            
+                Удалить
+            </a>
+</td>
+
+
+                       {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %} 
