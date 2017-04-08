@@ -1,7 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from pybursa import views 
-#from django.views.generic.base import TemplateView
+from pybursa import views
+
 
 
 urlpatterns = [
@@ -10,9 +10,10 @@ urlpatterns = [
     url(r'^polls/', include('polls.urls')),
     url(r'^quadratic/', include('quadratic.urls')),
     url(r'^contact/$', views.contact, name='contact'),
-    url(r'^courses/', include('courses.urls')),    #non namespaces
+    url(r'^courses/', include('courses.urls')),
     url(r'^students/', include('students.urls', namespace='students')),
     url(r'^coaches/', include('coaches.urls', namespace='coaches')),
+    url(r'^feedback/', include('feedbacks.urls')),
 ]
 
 admin.site.site_header = 'PyBursa Administration'
