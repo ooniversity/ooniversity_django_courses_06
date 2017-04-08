@@ -1,27 +1,25 @@
 from django.db import models
 from coaches.models import Coach
 
-# Create your models here.
-
 
 class Course(models.Model):
-    name = models.CharField(max_length=100)
-    short_description = models.CharField(max_length=200)
-    description = models.TextField()
-    coach = models.ForeignKey(
-        Coach, blank=True, null=True, related_name='coach_courses')
-    assistant = models.ForeignKey(
-        Coach, blank=True, null=True, related_name='assistant_courses')
-
+    name = models.CharField(max_length=64)  
+    short_description = models.CharField(max_length=255)  
+    description = models.TextField(null=True, blank=True)
+    coach = models.ForeignKey(Coach, related_name='coach_courses', null=True, blank=True)
+    assistant = models.ForeignKey(Coach, related_name='assistant_courses', null=True, blank=True)
+    
     def __str__(self):
-        return '%s' % (self.name)
+        return self.name 
 
-
+    
 class Lesson(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    subject = models.CharField(max_length=200)
-    description = models.TextField()
-    order = models.PositiveIntegerField()
+    subject = models.CharField(max_length=255)                    
+    description = models.TextField(null=True, blank=True)
+    course = models.ForeignKey(Course)
+    order = models.PositiveIntegerField() 
 
     def __str__(self):
-        return self.subject
+        return self.subject      
+
+

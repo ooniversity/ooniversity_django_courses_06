@@ -7,7 +7,7 @@ class QuadraticForm(forms.Form):
     c = forms.IntegerField(label='коэффициент c')
 
     def clean_a(self):
-        a = int(self.cleaned_data['a'])
+        a = self.cleaned_data['a']
         if a == 0:
             raise forms.ValidationError("коэффициент при первом слагаемом уравнения не может быть равным нулю")
         return a

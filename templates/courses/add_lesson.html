@@ -1,34 +1,19 @@
 {% extends "base.html" %}
 
-{% load static %}
+
+{% block title %}Создание нового занятия{% endblock title %}
 
 
-{% block title %}{{ title }}{% endblock title %}
+{% block active_index %}"active"{% endblock %}
 
-{% block content %}
 
-{% include "include/messages_include.html" %}
-
-<div class="container">
-    <div class="panel panel-success"> 
-            <div class="panel-heading"> 
-                <h2 class="panel-title Program" align="center">
-                <strong>Створити нове заняття</strong></h2>
-            </div>
-    <div class="panel-body">
-        <div class='container'>
-            <form method='post'>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Ok"/>
-<!--                <hr>
-                <button type="submit" class="btn btn-success btn-sm">
-                    <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Ok
-                </button>-->
-            </form>
-        </div>
-    </div>
-</div>
-<br>
+{% block content %}   
+    <div class="container">
+      <h1 class="my_descript">Создание нового занятия</h1>
+        <form method="post">{% csrf_token %}
+          {{ form.as_p }}
+          <input class="btn btn-primary" type="submit" value="Создать"> 
+        </form>
+    </div> 
 
 {% endblock content %}

@@ -1,41 +1,43 @@
 {% extends "base.html" %}
 
 
-{% load static %}
+{% block title %}PyBursa - Equation{% endblock title %}
 
 
-{% block title %}Quadratic equation{% endblock title %}
+{% block content %}   
+    <div class="container">
+      <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
 
-
-{% block nav_class_quadratic %}active{% endblock %}
-
-
-{% block content %}
-
-<h1 class="page-header">Quadratic equation</h1>
-
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">A Quadratic equation is any equation having the form:</h3>
+      <form method="get">{% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit">
+      </form>
     </div>
 
-    <div class="panel-body">
-        <b>ax<sup>2</sup> + bx + c = 0</b>
+    <div class="container">
+      <p></p>
+
+      {% if discr < 0 %}
+
+      <p>Дискриминант: {{ discr }}</p>
+      <p>Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.</p>
+
+      {% elif discr == 0 %}
+
+      <p>Дискриминант: {{ discr }}</p>
+      <p>Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = {{ x1 }}</p>
+
+      {% elif discr > 0 %}
+
+      <p>Дискриминант: {{ discr }}</p>
+      <p>Квадратное уравнение имеет два действительных корня: x1 = {{ x1 }}, x2 = {{ x2 }} </p>
+
+      {% else %} 
+
+      <p></p>
+
+      {% endif %}
+
     </div>
-</div>
-
-<form method="get" class="quadratic-form">
-    <!--{% csrf_token %}-->
-    {{ form.as_p }}
-    <input type="submit" value="Submit" class="btn btn-primary">
-</form>
-
-{% if messages %}
-<ul class="list-group">
-    {% for message in messages %}
-        <li class="{% if message.tags %}{{message.tags}}{%endif%} list-group-item">{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-
+    
 {% endblock content %}

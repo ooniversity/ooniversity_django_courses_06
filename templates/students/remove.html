@@ -1,16 +1,19 @@
-{% extends "students/base.html" %}
+{% extends "base.html" %}
 
 
-{% block title %}Remove student{% endblock title %}
+{% block title %}удаление студента{% endblock title %}
 
 
-{% block content %}
+{% block active_students %}"active"{% endblock %}
 
-<h1 class="page-header">Student {{ student.name }} {{ student.surname }} will be removed</h1>
 
-<form method="post" class="person-form">
-    {% csrf_token %}
-    <input type="submit" value="Delete" class="btn btn-danger">
-</form>
+{% block content %}   
+    <div class="container">
+      <h1 class="my_descript">Студент {{ student.name }} {{ student.surname }} будет удален!</h1>
+        <form method="post">{% csrf_token %}
+
+          <input class="btn btn-danger" type="submit" value="Удалить"> 
+        </form>
+    </div> 
 
 {% endblock content %}

@@ -1,7 +1,6 @@
 *.pyc
 *.pyo
 *~
-.directory
 .idea/
-__pycache__/
-venv/
+__pycache__
+venv/ 

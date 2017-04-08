@@ -1,87 +1,71 @@
-body {
-  padding-top: 70px;
-  padding-bottom: 20px;
-}
+  .navbar-brand {
+	  padding-left: 200px;
+	}
 
-p {
-    word-wrap: break-word;
-}
+  .contact_name {
+    color: blue;
+  }
 
-.navbar {
-  margin-bottom: 20px;
-}
+  .skype_cn {
+    color: red;
+  }
 
-.greetings {
-	align: "center";
-	color: navy;	
-}
+  .some_mail {
+    color: red;
+  }
+   
+  .dr_mail { 
+    color: navy;
+  }
 
-div.thumbnail, h4 {
-	/*align: "center";
-	font-style: bolder;*/
-	font-weight: bolder;
-	color: #038;	
-	text-align: center;
-	text-transform: caption;
-	
-}
+  .some_phone {
+    font-weight: bold;
+    color: red;
+  }
 
-.Program, h2 {
-	text-align: center;
-	text-transform: caption;
-}
+  .dr_phone {
+    color: navy;
+  }
 
+  .my_descript {
+    color: navy;
+  }
 
-ol.num {
-counter-reset: myCounter;
-text-align: left;
-}
-ol.num > li {
-list-style: none;
-}
-ol.num > li:before  {
-counter-increment: myCounter;
-content:counter(myCounter);
-color: white;
-background: #2980B9;
-display: inline-block;
-text-align: center;
-margin: 5px 10px;
-line-height: 40px;
-width: 40px;
-height: 40px;
-}
+  .my_prog {
+    color: navy;
+  }
 
-.orgtitle {
-	font-style:bold;
-	font-weight: 600;
-	color: #f44;
-}
+  .my_weeks {
+    font-weight: bold;
+    color: blue;
+  }
 
-.revert {
-	padding-right: 20px !important;
-    padding-left: 20px !important;
-	padding-top: 1px !important;
-    padding-bottom: 30px !important;	
-}
+  .list-group {
+    width: 500px;
+  }
+  .coaches {
+  font-size: 16px;
+  font-weight: bold;
+  color: navy;
+  }
 
-.foot {
-	background-color: #330000;
-	font-weight: bold;
-	color: yellow;
-}
+  #dr_skype_cn {
+    color: navy;
+  }
 
-.skype {
-	color: green;	
-}
+  #dr_contact_name {
+    font-weight: bold;
+    color: navy;
+  }
 
-.mail {
-	color: maroon;	
+  #logo_itBursa {
+    height: 28px;
+  }
 
-}
+  #rad_name {
+    font-weight: bold;
+    color: navy;
+  }
+  
 
-.coolshadow {
-    color: SkyBlue !important;
-    text-shadow: 1px 1px 2px black, 0 0 15px blue, 0 0 5px darkblue;
-}
 

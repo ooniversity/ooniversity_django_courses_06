@@ -1,16 +1,19 @@
-{% extends "students/base.html" %}
+{% extends "base.html" %}
 
 
-{% block title %}Create new student{% endblock title %}
+{% block title %}Создание нового студента{% endblock title %}
 
 
-{% block content %}
-<h1 class="page-header">Create new student</h1>
+{% block active_students %}"active"{% endblock %}
 
-<form method="post" class="person-form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Create" class="btn btn-primary">
-</form>
+
+{% block content %}   
+    <div class="container">
+      <h1 class="my_descript">Создание нового студента</h1>
+        <form method="post">{% csrf_token %}
+          {{ form.as_p }}
+          <input class="btn btn-primary" type="submit" value="Создать"> 
+        </form>
+    </div> 
 
 {% endblock content %}
