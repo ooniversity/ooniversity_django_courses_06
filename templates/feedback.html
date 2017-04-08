@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} Feedback {% endblock title %}
+
+{% block nav_class_feedback %} active {% endblock %}
+
+{% block content %}
+
+{% if messages %}
+        <ul class="messages">
+         <div class="jumbotron">
+           {% for message in messages %}
+             <li{% if message.tags %} class="{{ massage.tags }}" {% endif %}>{{ message }}</li>
+           {% endfor %}
+        </div>
+        </ul>
+     {% endif %}
+      
+ <div class="blog-post">
+
+   <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value = "Отправить"/>
+   </form>
+
+{% endblock content %}
