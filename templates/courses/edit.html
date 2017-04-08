@@ -1,35 +1,26 @@
 {% extends "base.html" %}
 
-{% load static %}
 
-{% block title %}{{ title }}{% endblock title %}
+{% block title %}Редактирование данных курса{% endblock title %}
 
-{% block content %}
 
-{% include "include/messages_include.html" %}
+{% block active_index %}"active"{% endblock %}
 
-<div class="container">
-    <div class="panel panel-success"> 
-            <div class="panel-heading"> 
-                <h2 class="panel-title" align="center">
-                    <h2 class="Program">Редагувати дані по курсу: 
-                                        <b>{{ form.name.value }}</b>
-                    </h2>
-                </h2>
-            </div>
-    <div class="panel-body">
-        <div class='container'>
-            <form method='post'>
-                {% csrf_token %}
-                {{ form.as_p }}
-<!--                 <input type="submit" value="Ok"/> -->
-                <hr>
-                <button type="submit" class="btn btn-success btn-sm">
-                    <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Ok
-                </button>
-            </form>
-        </div>
-    </div>
-</div>
-<br>
+
+{% block content %} 
+	<div class="container">
+      {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+	</div>
+    <div class="container">
+      <h1 class="my_descript">Редактирование данных курса</h1>
+        <form method="post">{% csrf_token %}
+          {{ form.as_p }}
+          <input class="btn btn-primary" type="submit" value="Изменить"> 
+        </form>
+    </div> 
+
 {% endblock content %}

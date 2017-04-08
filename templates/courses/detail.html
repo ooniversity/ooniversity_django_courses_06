@@ -1,54 +1,59 @@
 {% extends "base.html" %}
 
-{% block title %}{{ title }}{% endblock title %}
+
+{% block title %}Курс {{ my_course.name }}{% endblock title %}
+
+
+{% block students_filter_link %}?course_id={{ course.id }}{% endblock %}
+
 
 {% block content %}
+    <div class="container">
+      {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div class="container">
+      <div class="jumbotron">
+          <h1>{{ course.name }}</h1>
+	        <p>{{ course.description|truncatechars:32 }}</p>	
+      </div>
+    </div>
+    <div class="container">
+    <h2>Преподаватели:</h2>
+    </div>
 
-{% include "include/messages_include.html" %}
 
-	<div class="container">
-	  <div class="jumbotron">
-    	<h1 class="coolshadow">Курс - &laquo{{course.name}}&raquo</h1>
-		<h2><strong>Description</strong><small> (опис курсу):</small></h2>
-		<p class="greetings"><strong>{{course.description|truncatechars:32}}</strong></p>
-	  </div>
-	</div>
+{% include "include/couch_include.html"  with block_title="Учитель" instructor=course.coach %}
+{% include "include/couch_include.html"  with block_title="Ассистент" instructor=course.assistant %}
+    
 
     <div class="container">
-      {% if course.coach %}
-        <h2>Викладацький склад:</h2>
-        {% include "include/mentor_include.html" with mentor_title='Викладач' mentor=course.coach %}
-      {% endif %}
-        
-      {% if course.assistant %}
-        {% include "include/mentor_include.html" with mentor_title='Асистент' mentor=course.assistant %}
-      {% endif %}
-      <p><a class='btn btn-sm btn-success' href="{% url 'courses:add-lesson' course.id %}" role='button'>
-            <span class="glyphicon glyphicon-plus-sign"></span> Добавить занятие</a>
-      </p>
-		<div class="panel panel-primary"> 
-			  <div class="panel-heading"> 
-				<h2 class="panel-title" align="center"><h2 class="Program">Програма курсу:</h2></h2>
-			  </div>
-		  <div class="panel-body">
-                    <table class="table table-striped">
-                    <thead align=center>
-                    <tr>
-                        <th><h4>№</h4></th>
-                        <th style="width: 20%;"><h4>Тема</h4></th>
-                        <th><h4>Опис</h4></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for lesson in lessons %}
-                    <tr>
-                        <td style="vertical-align: middle;"><strong>{{ lesson.order }}</strong></td>
-                        <td style="vertical-align: middle;"><strong>{{ lesson.subject }}</strong></td>
-                        <td style="vertical-align: middle;"><strong>{{ lesson.description }}</strong></td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-              </div>
-	</div>
+	    <h2>План курса:</h2>
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+        <a class="btn btn-primary" role="button" href="{% url 'courses:add-lesson' course.id %}" >
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить занятие
+        </a></div>        
+          <table class="table">         
+            <tr>           
+              <td><b>#</b></td>
+              <td><b>Тема</b></td>
+              <td><b>Описание</b></td>
+            </tr>         
+          {% for lesson in course.lesson_set.all %}
+            <tr>
+              <td>{{ lesson.order }} </td>
+              <td>{{ lesson.subject }} </td>
+              <td>{{ lesson.description }}</td>
+            </tr>
+          {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+
 {% endblock content %}

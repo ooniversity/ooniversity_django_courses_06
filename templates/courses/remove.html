@@ -1,32 +1,17 @@
 {% extends "base.html" %}
 
-{% load static %}
 
-{% block title %}{{ title }}{% endblock title %}
-
-{% block content %}
-
-<div class="container">
-    <div class="panel panel-danger"> 
-            <div class="panel-heading"> 
-                <h2 class="panel-title" align="center">
-                    <h2 class="Program"><b>Курс «{{ course.name }}» буде видалено!</b></h>
-                </h2>
-            </div>
-    <div class="panel-body">
-            <form method='post'>
-                {% csrf_token %}
-<!--                 <input type="submit" value="REMOVE"/> -->
-                <button type="submit" class="btn btn-danger btn-sm">
-                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> 
-                    Ok
-                </button>
-            </form>
-            <br>
-    </div>
-</div>
+{% block title %}Удаление Курса{% endblock title %}
 
 
+{% block active_index %}"active"{% endblock %}
+
+
+{% block content %}   
+    <div class="container">
+      <h1 class="my_descript">Курс {{ course.name }} будет удален!</h1>
+        <form method="post">{% csrf_token %}
+          <input class="btn btn-danger" type="submit" value="Удалить"> 
+        </form>
+    </div> 
 {% endblock content %}
-
-

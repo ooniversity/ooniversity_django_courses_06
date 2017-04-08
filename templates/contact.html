@@ -1,80 +1,25 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 
-{% block nav_contacts %}active{% endblock %}
+{% block title %}pyBursa Contacts{% endblock title %}
 
 
-{% block title %}TechBursa Python/Django :: Contacts{% endblock title %}
+{% block active_contacts %}"active"{% endblock %}
+
 
 {% block content %}
-<div class="container">
-<div class="revert jumbotron">
-  <h1 style=" margin-top: 10px;" class="coolshadow">Список контактів</h1>
-    <h3 style=" margin-top: 10px;"><i class="fa fa-users" aria-hidden="true">&nbsp</i><span class="orgtitle">ОРГАНІЗАТОРИ КУРСУ</span></h3>
-    <div class="row">
-      <div class="col-sm-6 col-md-4">
-        <div class="panel-group" role="tablist"> 
-          <div class="panel panel-info"> 
-            <div class="panel-heading" role="tab" id="Director"> 
-              <h4 class="panel-title">
-                <a href="#Director1" class="" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="Director1">
-                <span class="glyphicon glyphicon-briefcase" aria-hidden="true">&nbsp</span>Director<span class="caret">&nbsp</span></a>
-              </h4>
-            </div> 
-              <div class="panel-collapse collapse in" role="tabpanel" id="Director1" aria-labelledby="Director" aria-expanded="true"> 
-                <ul class="list-group"> 
-                  <li class="list-group-item"><i class="fa fa-user-circle" aria-hidden="true">&nbsp</i><strong>Name:</strong> Ждордж Клуні</li> 
-                  <li class="list-group-item"><i class="fa fa-skype" aria-hidden="true">&nbsp</i><strong>Skype: </strong><a class="skype" href="#logo">decameron</a></li> 
-                  <li class="list-group-item"><i class="fa fa-envelope-open" aria-hidden="true">&nbsp</i><strong>Email: </strong><a class="mail" href="#logo">geo.clooney@gmail.com</a></li> 
-                  <li class="list-group-item"><i class="fa fa-phone-square" aria-hidden="true">&nbsp</i><strong>Phone:</strong> (859) 368-68-58</li> 
-                </ul> 
-              </div>
-          </div> 
-        </div>
-      </div>						
-    <div class="col-sm-6 col-md-4">
-      <div class="panel-group" role="tablist"> 
-        <div class="panel panel-info"> 
-          <div class="panel-heading" role="tab" id="Manager"> 
-            <h4 class="panel-title"> 
-              <a href="#manager1" class="" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="manager1">
-              <span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp</span>Manager <span class="caret"></span></a>
-            </h4>
-          </div> 
-          <div class="panel-collapse collapse in" role="tabpanel" id="manager1" aria-labelledby="Manager" 
-          aria-expanded="true"> 
-            <ul class="list-group"> 
-              <li class="list-group-item"><i class="fa fa-user-circle" aria-hidden="true">&nbsp</i><strong>Name:</strong> Данило Виговський</li> 
-              <li class="list-group-item"><i class="fa fa-skype" aria-hidden="true">&nbsp</i><strong>Skype: </strong><a class="skype" href="#logo">vigoden</a></li> 
-              <li class="list-group-item"><i class="fa fa-envelope-open" aria-hidden="true">&nbsp</i><strong>Email: </strong><a class="mail" href="#logo">vigoden@dot.com</a></li> 
-              <li class="list-group-item"><i class="fa fa-phone-square" aria-hidden="true">&nbsp</i><strong>Phone:</strong> (322) 332-23-23</li> 
-            </ul> 
-          </div>
-        </div> 
-      </div>
-    </div>						
-    <div class="col-sm-6 col-md-4">
-     <div class="panel-group" role="tablist"> 
-        <div class="panel panel-info"> 
-          <div class="panel-heading" role="tab" id="Founder"> 
-            <h4 class="panel-title"> 
-                <a href="#founder1" class="" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="founder1">
-                <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true">&nbsp</span>Founder <span class="caret"></span></a>
-            </h4>
-          </div> 
-          <div class="panel-collapse collapse in" role="tabpanel" id="founder1" aria-labelledby="Founder" 
-          aria-expanded="true"> 
-            <ul class="list-group"> 
-              <li class="list-group-item"><i class="fa fa-user-circle" aria-hidden="true">&nbsp</i><strong>Name: </strong>Елон Маск</li> 
-              <li class="list-group-item"><i class="fa fa-skype" aria-hidden="true">&nbsp</i><strong>Skype: </strong><a class="skype" href="#logo">mackfly</a></li> 
-              <li class="list-group-item"><i class="fa fa-envelope-open" aria-hidden="true">&nbsp</i><strong>Email: </strong><a class="mail" href="#logo">eloooon@gmail.com</a></li> 
-              <li class="list-group-item"><i class="fa fa-phone-square" aria-hidden="true">&nbsp</i><strong>Phone:</strong> (213) 725-52-16</li> 
-            </ul> 
-          </div>
-        </div> 
-     </div>
-    </div>						
-  </div>	
- </div>
-</div>
+    <div class="container">
+      <h1>Организаторы курса:</h1>
+
+{% include "include/contact_include.html" with contact_position='Director' id1="dr_contact_name" id2="dr_skype_cn" contact_name='Дарья' contact_skype='@daria' contact_email='somemail@gmail.com' contact_phone='+380672222222' %}
+
+
+{% include "include/contact_include.html" with contact_position='Manager' contact_name='Лера Фомина' contact_skype='@lera.fomina<' contact_email='somemail@gmail.com' contact_phone='+380672222222' %}
+
+
+{% include "include/contact_include.html" with contact_position='Founder' contact_name='Алексей Радченко' contact_skype='@dixon' contact_email='somemail@gmail.com' contact_phone='+380672222222' %}
+
+    </div>
 {% endblock content %}
+  
