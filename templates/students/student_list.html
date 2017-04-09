@@ -53,17 +53,12 @@
       </td>
     <tr> 
   {% endfor %}
-
- 
-
-  </div>
-  </div>
-  </tbody>
+</tbody>
 </table>
   {% if is_paginated %}
     <ul class="pagination">
       {% if page_obj.has_previous %}
-        <li><a href="{{ course_id }}?page={{ page_obj.previous_page_number }}"><< previous</a></li>
+        <li><a href="{{ course_id }}page={{ page_obj.previous_page_number }}"><< previous</a></li>
       {% endif %}
         
       {% for page in paginator.page_range %}
