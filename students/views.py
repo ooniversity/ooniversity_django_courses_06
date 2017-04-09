@@ -19,8 +19,6 @@ class StudentDetailView(DetailView):
 
 class StudentListView(ListView):
     model = Student
-    template_name = 'students/list.html'
-    context_object_name =  'students'
     paginate_by = 2
 
     def get_queryset(self):
