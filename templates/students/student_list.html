@@ -63,7 +63,7 @@
                 <li {% if page == page_obj.number %} class="active" {% endif %}><a href="?{% if course_filter %}course_id={{ course_filter }}&amp;{% endif %}page={{ page }}">{{ page }}</a></li>
             {% endfor %}
             {% if page_obj.has_next %}
-                <li><a href="?{% if course_filter %}course_id={{ course_filter }}&amp;{% endif %}page={{ page_obj.next_page_number }}"><span aria-hidden="true">next &gt;&gt;</span></a></li>
+                <li><a href="?{% if course_filter %}course_id={{ course_filter }}&amp;{% endif %}page={{ page_obj.next_page_number }}"><span aria-hidden="true">&gt;&gt; next</span></a></li>
             {% endif %}
         </ul>
         </nav>
