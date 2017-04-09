@@ -20,3 +20,6 @@ class Student(models.Model):
         #my_property.short_description = "Full name of the person"
 
     full_name = property(fulname)
+    
+    def get_courses(self):
+	    return self.courses.all()
