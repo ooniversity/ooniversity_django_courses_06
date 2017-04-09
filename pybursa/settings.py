@@ -129,6 +129,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = '1025'
 ADMINS = (('Zoria', 'zarina.bondarenko@gmail.com'),)

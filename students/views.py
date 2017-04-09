@@ -28,7 +28,6 @@ class StudentListView(ListView):
 		return context
 
 
-
 #def list_view(request):
 #    data = request.GET
 #
