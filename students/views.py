@@ -42,7 +42,7 @@ class StudentCreateView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(self.request, "Student %s has been successfully added." %(self.object.full_name()))
+        messages.success(self.request, "Student has been successfully added")
         return response
 
     def get_context_data(self, **kwargs):
@@ -57,8 +57,7 @@ class StudentDeleteView(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         response = super().delete(request, *args, **kwargs)
-        studentname = self.object.full_name()
-        messages.success(request, "Info on %s has been successfully deleted." %(self.object.full_name()))
+        messages.success(request, "Info has been successfully deleted.")
         return response
 
     def get_context_data(self, **kwargs):
@@ -70,11 +69,10 @@ class StudentDeleteView(DeleteView):
 class StudentUpdateView(UpdateView):
     model = Student
     form_class =  StudentModelForm
-    template_name = 'students/edit.html'
     success_url = reverse_lazy('students:list_view')
     
 #    def get_success_url(self, **kwargs):
-#    	return reverse_lazy('students:edit', args = (self.kwargs['pk']))
+#       return reverse_lazy('students:edit', args = (self.kwargs['pk']))
 
     def form_valid(self, form):
         response = super().form_valid(form)
