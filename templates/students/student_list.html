@@ -54,19 +54,19 @@
         </table>
       </div>
       {% if is_paginated %}
-      <div class="pagination">
-        <span class="step-links">
-          {% if page_obj.has_previous %}
-          <p><a href="?page={{ page_obj.previous_page_number }}" class="btn btn-default"><< previous</a>
-          {% endif %}
-          {% for page in page_obj.paginator.page_range %}
-          <a href="?page={{ page }}" class="btn btn-default">{{ page }}</a>
-          {% endfor %}
-          {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}" class="btn btn-default">next >></a>
-          {% endif %}</p>
-        </span>
-      </div> 
-      {% endif %}
+        <nav>
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a href="?{% if course_filter %}course_id={{ course_filter }}&{% endif %}page={{ page_obj.previous_page_number }}"><span aria-hidden="true"><< previous</span></a></li>
+            {% endif %}
+            {% for page in paginator.page_range %}
+                <li {% if page == page_obj.number %} class="active" {% endif %}><a href="?{% if course_filter %}course_id={{ course_filter }}&{% endif %}page={{ page }}">{{ page }}</a></li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li><a href="?{% if course_filter %}course_id={{ course_filter }}&{% endif %}page={{ page_obj.next_page_number }}"><span aria-hidden="true">next >></span></a></li>
+            {% endif %}
+        </ul>
+        </nav>
+      {% endif %}  
     </div> 
 {% endblock content %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from students.models import Student
 from students.forms import StudentModelForm 
@@ -16,17 +16,25 @@ class StudentListView(ListView):
     paginate_by = 2
 
     def get_queryset(self):
-        rg = self.request.GET
         queryset = super().get_queryset()
-        course_id = rg.get('course_id')
-        if course_id:
-            queryset = queryset.filter(courses__id=course_id)
+        if self.get_course_id():
+            queryset = queryset.filter(courses__id=self.get_course_id())
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Список студентов pyBursa'
+        if self.get_course_id():
+            context['course_filter'] = self.get_course_id()
         return context
+
+    def get_course_id(self):
+        res = False
+        rg = self.request.GET
+        course_id = rg.get('course_id')
+        if course_id:
+            res = course_id
+        return res
 
 
 class StudentDetailView(DetailView):
