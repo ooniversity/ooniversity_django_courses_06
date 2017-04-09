@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block title %}PyBursa - Feedback{% endblock title %}
+
+
+
+{% block nav_class_feedback %}active{% endblock nav_class_feedback %}
+
+
+{% block content %} 
+
+
+{% include "include/messages_include.html" %}
+
+
+{% load static %}
+
+<br>
+
+<h2>Обратная связь</h2>
+
+<br>
+
+<div class="form-group form-group-lg">
+	<form method="post">
+		{% csrf_token %}          
+		{{ form.as_p }}
+		<input type="submit" value="Отправить"/>
+	</form>
+</div>
+{% endblock content %}

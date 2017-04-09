@@ -17,12 +17,13 @@
         <form method="post">
           {% csrf_token %}
           {{ form.as_p }} 
-            <br />
-            <br />
-          <input type="submit" value="Удалить"/>
-     		<br />
-	    	<br />
-        </form>
+          
+          <input type="submit" class="btn btn-danger" value="Удалить"/>
+    </form>
     </div>
-    <hr>
+   <div>
+<input type="submit" class="btn btn-success"
+            value="Выход" id="btn_crtlesson_cancel"
+            onClick="history.go(-1);return true;">      
+</div>
 {% endblock content %}

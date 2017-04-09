@@ -12,9 +12,9 @@ from django.urls import reverse_lazy
 
 class StudentListView(ListView):
 	model = Student
-	paginate_by = 2
 	#template_name = 'students/list.html'
-	#context_object_name = 'students_list'
+	context_object_name = 'students_list'
+	paginate_by = 2
 
 	def get_queryset(self):
 		qs = super().get_queryset()
