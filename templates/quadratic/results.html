@@ -8,7 +8,7 @@
 {% block title %}Quadratic{% endblock title %}
 
 
-{% block nav_class_students %}active{% endblock %}
+{% block nav_class_quadratic %}active{% endblock %}
 
 
 {% block content %}
@@ -25,7 +25,7 @@
     </form>
 
 <span>{% if diskr %} {{ diskr }} {% endif %}</span>
-        <div>{{ message }}</div>
+        <div>{% if message %} {{ message }} {% endif %}</div>
 
      </div>
 

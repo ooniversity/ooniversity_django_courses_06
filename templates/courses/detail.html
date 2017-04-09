@@ -11,6 +11,9 @@
 
 {% block content %}
 
+<div class="page-content">
+        <div class="container">
+
 {% include "include/course_include.html" %}
 
             <div class="jumbotron">
@@ -42,7 +45,7 @@
                     <h3 class="panel-title">
                     
                     <a href="{% url 'coaches:detail' course.assistant.id %}">{{ course.assistant.first_name }} {{ course.assistant.last_name }}</a>
-<br />
+					<br />
                     </h3>
                    </div>
 
@@ -106,7 +109,7 @@
             </div>
 
         
-
+</div>
     
  {% endblock content %}
 

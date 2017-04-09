@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+
+{% block title %}PyBursa Контакты{% endblock title %}
+
+class="{% block nav_class_feedback %}active{% endblock %}"
+
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<form method="post" class="course-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Send" class="btn btn-primary">
+</form>
+
+{% endblock content %}

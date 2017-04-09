@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'students',
     'coaches',
     'quadratic',
+    'feedbacks',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,12 @@ TEMPLATES = [{'APP_DIRS': True,
                                      'django.template.context_processors.request',
                                      'django.contrib.auth.context_processors.auth',
                                      'django.contrib.messages.context_processors.messages']}}]
+
+
+
+ADMINS = [
+    ('Alex', 'smolnax@gmail.com'),
+]
+
+EMAIL_HOST = '127.0.0.1'
+EMAIL_PORT = '1025'
