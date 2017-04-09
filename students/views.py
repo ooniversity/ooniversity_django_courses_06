@@ -19,10 +19,12 @@ class StudentDetailView(DetailView):
 
 class StudentListView(ListView):
     model = Student
+    template_name = 'students/list.html'
+    context_object_name =  'students'
+    paginate_by = 2
 
     def get_queryset(self):
         qs = super().get_queryset()
-
         if 'course_id' in self.request.GET:
             qs = qs.filter(courses__id=self.request.GET['course_id'])
         return qs
@@ -30,6 +32,7 @@ class StudentListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = " Список скубентов. "
+        print(self.queryset)
         return context
 
 
