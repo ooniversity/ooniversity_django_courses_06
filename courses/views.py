@@ -1,13 +1,11 @@
 from django.shortcuts import render, redirect
-from django.core.urlresolvers import reverse
 from django.urls import reverse_lazy
 from django.contrib import messages
 from courses.models import Course, Lesson
 from courses.forms import CourseModelForm, LessonModelForm
-from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
-from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from django import forms
+
 
 
 class CourseDetailView(DetailView):
@@ -45,7 +43,7 @@ class CourseCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Создание нового курса'
+        context['title'] = 'Course creation'
         return context
 
 
@@ -65,15 +63,15 @@ class CourseUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Редактирование данных курса'
+        context['title'] = 'Course update'
         return context
 
 
 class CourseDeleteView(DeleteView):
     model = Course
     template_name = 'courses/remove.html'
-    success_url = reverse_lazy('index')
     context_object_name = 'course'
+    success_url = reverse_lazy('index')
 
     def delete(self, request, *args, **kwargs):
         response = super().delete(request, *args, **kwargs)
@@ -82,7 +80,7 @@ class CourseDeleteView(DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Удаление Курса'
+        context['title'] = 'Course deletion'
         return context
 
 
