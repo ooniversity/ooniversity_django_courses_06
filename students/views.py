@@ -20,7 +20,7 @@ class StudentListView(ListView):
 		qs = super().get_queryset()
 		course_id = self.request.GET.get('course_id')
 		if course_id:
-			qs = qs.filter(courses_id=course_id)
+			qs = qs.filter(courses__id=course_id)
 		return qs
 
 	def get_context_data(self, **kwargs):

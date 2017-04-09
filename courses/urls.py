@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from . import views
+from courses import views
 
 app_name = 'courses'
 urlpatterns = [
