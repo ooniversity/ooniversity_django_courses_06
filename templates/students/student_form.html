@@ -21,8 +21,13 @@
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-           <input type="submit" value="Сохранить">
-        </form>
+           <input type="submit" value="Сохранить"> 
+</form>
+</div>
+<div>
+<input type="submit" 
+            value="Выход" id="btn_crtlesson_cancel"
+            onClick="history.go(-1);return true;">      
 </div>
 
 {% endblock content %} 
