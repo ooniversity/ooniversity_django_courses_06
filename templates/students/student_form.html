@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 
-{% block title %}Редактирование данных студента{% endblock title %}
+{% block title %}{{ title }}{% endblock title %}
 
 
 {% block active_students %}"active"{% endblock %}
@@ -16,10 +16,10 @@
       {% endif %}
     </div>
     <div class="container">
-      <h1 class="my_descript">Редактирование данных студента</h1>
+      <h1 class="my_descript">{% block page_header %}{{ page_header }}{% endblock %}</h1>
         <form method="post">{% csrf_token %}
           {{ form.as_p }}
-          <input class="btn btn-primary" type="submit" value="Изменить"> 
+          <input class="btn btn-primary" type="submit"> 
         </form>
     </div> 
 

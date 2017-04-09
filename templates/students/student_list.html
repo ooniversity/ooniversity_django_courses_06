@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 
-{% block title %}Список студентов pyBursa{% endblock title %}
+{% block title %}{{ title }}{% endblock title %}
 
 
 {% block active_students %}"active"{% endblock %}
@@ -30,7 +30,7 @@
             <td>skype</td>
             <td>курсы</td>
           </tr>
-          {% for student  in students %}
+          {% for student  in object_list %}
           <tr>
             <td>{{ forloop.counter }}</td>
             <td><a href="{% url 'students:detail' student.id %}">{{ student.name }} {{ student.surname }}</a></td>
