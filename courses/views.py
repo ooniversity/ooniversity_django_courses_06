@@ -52,9 +52,10 @@ class CourseUpdateView(UpdateView):
     form_class = CourseModelForm
     template_name = 'courses/edit.html'
     context_object_name = 'course'
+    success_url = reverse_lazy('courses:edit')
 
     def get_success_url(self):
-        return reverse('courses:edit', args=(self.object.pk,))
+        return reverse_lazy('courses:edit', args = (self.kwargs['pk']))
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -84,7 +85,7 @@ class CourseDeleteView(DeleteView):
         return context
 
 
-def add_lesson(request, pk):
+def add_lesson(request, course_id):
     context = {'error': False}
     if request.method == 'POST':
         form = LessonModelForm(request.POST)
@@ -92,9 +93,9 @@ def add_lesson(request, pk):
             instance = form.save()
             context['form'] = instance
             messages.success(request, "Lesson %s has been successfully added." %instance.subject)
-            return redirect('courses:detail', pk)
+            return redirect('courses:detail', course_id)
     else:
-        form = LessonModelForm(initial={'course':pk})
+        form = LessonModelForm(initial={'course': course_id})
     context['form'] = form
     return render(request, 'courses/add_lesson.html', context)
 
