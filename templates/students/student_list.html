@@ -57,13 +57,13 @@
         <nav>
         <ul class="pagination">
             {% if page_obj.has_previous %}
-                <li><a href="?{% if course_filter %}course_id={{ course_filter }}&{% endif %}page={{ page_obj.previous_page_number }}"><span aria-hidden="true"><< previous</span></a></li>
+                <li><a href="?{% if course_filter %}course_id={{ course_filter }}&{% endif %}page={{ page_obj.previous_page_number }}"><span aria-hidden="true">&lt;&lt; previous</span></a></li>
             {% endif %}
             {% for page in paginator.page_range %}
                 <li {% if page == page_obj.number %} class="active" {% endif %}><a href="?{% if course_filter %}course_id={{ course_filter }}&{% endif %}page={{ page }}">{{ page }}</a></li>
             {% endfor %}
             {% if page_obj.has_next %}
-                <li><a href="?{% if course_filter %}course_id={{ course_filter }}&{% endif %}page={{ page_obj.next_page_number }}"><span aria-hidden="true">next >></span></a></li>
+                <li><a href="?{% if course_filter %}course_id={{ course_filter }}&{% endif %}page={{ page_obj.next_page_number }}"><span aria-hidden="true">next &gt;&gt;</span></a></li>
             {% endif %}
         </ul>
         </nav>
