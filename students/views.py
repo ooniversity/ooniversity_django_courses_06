@@ -31,6 +31,10 @@ class StudentListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        if 'course_id' in self.request.GET:
+            context['courseId'] = '&course_id='+self.request.GET['course_id']
+        else:
+            context['courseId'] = ''
         context['title'] = " Список скубентов. "
         print(self.queryset)
         return context
