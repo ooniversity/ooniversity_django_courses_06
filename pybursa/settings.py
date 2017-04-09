@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 	'courses',
 	'students',
 	'coaches',
+	'feedbacks.apps.FeedbacksConfig',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +72,13 @@ TEMPLATES = [
         },
     },
 ]
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+#EMAIL_HOST_USER = 'artem'
+#EMAIL_HOST_PASSWORD = 'ytrewq'
+
+ADMINS = (('artem', 'amgreen@ukr.net'), )
 
 WSGI_APPLICATION = 'pybursa.wsgi.application'
 
