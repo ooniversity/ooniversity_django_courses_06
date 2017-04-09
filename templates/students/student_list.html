@@ -56,7 +56,7 @@
                                 <td>{{ student.address }}</td>
                                 <td>{{ student.skype }}</td>
                                 <td>
-                                    {% for course in student.get_courses %}
+                                    {% for course in student.courses.all %}
                                         <ul>
                                             <li><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></li>
                                         </ul>
