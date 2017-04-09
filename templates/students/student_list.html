@@ -53,19 +53,22 @@
       </td>
     <tr> 
   {% endfor %}
-{% if is_paginated %}
-  <div class="pagination">
-    <span class="step-links">
+  {% if is_paginated %}
+    <ul class="pagination">
       {% if page_obj.has_previous %}
-      <p><a href="?page={{ page_obj.previous_page_number }}" class="btn btn-default"><< previous</a>
+        <li><a href="?{{ course_id }}page={{ page_obj.previous_page_number }}"><< previous</a></li>
       {% endif %}
-      {% for page in page_obj.paginator.page_range %}
-      <a href="?page={{ page }}" class="btn btn-default">{{ page }}</a>
+      {% for page in paginator.page_range %}
+      {% if page == page_obj.number %}
+        <li class="active"><a href="?{{ course_id }}page={{ page }}">{{ page }}</a></li>
+      {% else %}
+        <li><a href="?{{ course_id }}page={{ page }}">{{ page }}</a></li>
+      {% endif %}
       {% endfor %}
       {% if page_obj.has_next %}
-      <a href="?page={{ page_obj.next_page_number }}" class="btn btn-default">next >></a>
-      {% endif %}</p>
-    </span>
+        <li><a href="?{{ course_id }}page={{ page_obj.next_page_number }}">next >></a></li>
+      {% endif %}
+    </ul>
   {% endif %}
   </div>
   </tbody>
