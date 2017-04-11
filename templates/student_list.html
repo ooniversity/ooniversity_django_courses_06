@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>PyBursa06</title>
+
+  <!-- Bootstrap -->
+ {% load static%}
+  <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'bootstrap/css/style.css' %}" rel="stylesheet" >
+  
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'index' %}">PyBursa</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="{% url 'index' %}">Main</a></li>
+          <li><a href="{% url 'contact' %}">Contacts</a></li>
+          <li><a href="{% url 'student_list' %}">Students</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  <div class="panel panel-primary"><h2>Студенты курса PyBursa</h2></div>
+  <div class="panel panel-default" >
+  <div class="panel-body">
+    <h4>Ниже  представлен  список  студентов .</h4>
+  </div>
+  <!-- Table -->
+  <table class="table table-hover" width="100%" >
+    <tr >
+      <th>No</th>
+      <th>Surname</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Skype</th>
+    </tr>
+    <tr>
+    
+        <td><a href="{% url 'student_detail' %}">1</a></td>
+        <td><a href="{% url 'student_detail' %}">Pupkin</a></td>
+        <td><a href="{% url 'student_detail' %}">Kolya</a></td>
+        <td>Украина,г.Киев,ул.Кировская,д.10,кв.48</td>
+        <td>pupkin.k</td>
+        
+    </tr>
+    
+    <tr>
+        <td><a href="{% url 'student_detail' %}">2</a></td>
+        <td><a href="{% url 'student_detail' %}">Ivanov</a></td>
+        <td><a href="{% url 'student_detail' %}">Tolya</a></td>
+        <td>Россия,г.Москва,ул.Киевская,д.10,кв.48</td>
+        <td>15</td>
+    </tr>
+    
+    <tr>
+        <td><a href="{% url 'student_detail' %}">3</a></td>
+        <td><a href="{% url 'student_detail' %}">Petrov</a></td>
+        <td><a href="{% url 'student_detail' %}">Pasha</a></td>
+        <td>Украина,г.Харьков,ул.ХренЕгоЗнает,д.10,кв.48</td>
+        <td>66</td>
+    </tr>
+    
+    <tr>
+        <td><a href="{% url 'student_detail' %}">4</a></td>
+        <td><a href="{% url 'student_detail' %}">Sidorov</a></td>
+        <td><a href="{% url 'student_detail' %}">Saha</a></td>
+        <td>Украина,г.Одесса,ул.Дерибасовкая,д.45,кв.48</td>
+        <td>42</td>
+    </tr>
+    
+    <tr>
+        <td><a href="{% url 'student_detail' %}">5</a></td>
+        <td><a href="{% url 'student_detail' %}">Vasechkin</a></td>
+        <td><a href="{% url 'student_detail' %}">Sergei</a></td>
+        <td>Украина,г.Львов,ул.Махно,д.15,кв.48</td>
+        <td>44</td>
+    </tr>
+
+  </table>
+</div>
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+       <script src="{%static 'bootstrap/js/bootstrap.min.js'%}"></script>
+</body>
+</html>

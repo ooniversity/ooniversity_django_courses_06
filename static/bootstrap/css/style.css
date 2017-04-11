@@ -1,0 +1,68 @@
+.active ,.navbar-brand, .collapse, .sr-only
+{
+	font-size: 25px; 
+	text-shadow: 1px 1px 3px #666, -1px -1px 3px #FFF, 1px 1px #666, -1px -1px #FFF; 
+	color: #EEE8AA;
+	background: #EEE8AA;
+}
+.jumbotron
+{
+	padding-top: 30px;
+  	padding-bottom: 20px;
+  	margin-bottom: 30px;
+  	color: inherit;
+  	background-color: #EEE8AA;
+}
+.container
+{
+	margin: 5%;
+	padding: 10px;
+}
+#welcome_about
+{
+	font-size: 30px;
+	text-shadow:4px 4px 5px #AAAAAA;
+	color:#000;
+}
+body
+{
+	background-color: #0F0E0E
+}
+
+.panel, .panel-heading, .panel-default
+{
+  background-color: #EEE8AA;
+  
+}
+h4
+{
+	font-size: 25px;
+	color: #807C7C
+}
+p
+{
+	color: #807C7C
+}
+#student_detail_panel
+{
+	width: 20%;
+	
+}
+#students_about
+{
+	width: 60%;
+	float: right;
+	margin-right:20px;
+	margin-top:245px;
+}
+.well {
+	width: 15%;
+  min-height: 20px;
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
