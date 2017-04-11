@@ -46,10 +46,11 @@
             <th>Курс</th>
             <th>Описание</th>
         </tr>
-           {% for course in list_courses %}
+           {% for course in details %}
         <tr>
-                <td><h5><a href="index.html">{{ course.name }}</a></h5></td>
-               <td><h5>{{ course.short_description }}</h5></td>
+                <td><h5>{{ course.order }}</h5></td>
+               <td><h5>{{ course.subject }}</h5></td>
+               <td><h5>{{ course.description }}</h5></td>
                </tr>
             {% endfor %}
 
