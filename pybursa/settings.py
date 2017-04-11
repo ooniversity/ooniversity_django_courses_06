@@ -43,19 +43,24 @@ INSTALLED_APPS = [
     'coaches.apps.CoachesConfig',
     'quadratic.apps.QuadraticConfig',
     'feedbacks.apps.FeedbacksConfig',
+    'debug_toolbar',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'pybursa.urls'
+
+INTERNAL_IPS = ['127.0.0.1']
 
 TEMPLATES = [
     {
@@ -82,6 +87,51 @@ EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 EMAIL_HOST_USER = 'edstrkv@gmail.com'
 EMAIL_HOST_PASSWORD = ''
+
+
+#logger.debug()
+#logger.info()
+#logger.warning()
+#logger.error()
+#logger.critical()
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'loggers': 
+    {
+        'courses': {
+            'handlers': ['courses_log_file'],
+            'level': 'DEBUG',
+        },
+        'students': {
+            'handlers': ['students_log_file'],
+            'level': 'DEBUG',
+        },
+    },
+    'handlers': 
+    {
+        'courses_log_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'courses_logger.log'),
+            'formatter': 'courses_format',
+        },
+        'students_log_file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'students_logger.log'),
+            'formatter': 'students_format',
+        },
+    },
+    'formatters': {
+        'courses_format': {
+            'format': 'Уровень %(levelname)s %(message)s'
+        },
+        'students_format': {
+            'format': 'Уровень %(levelname)s %(message)s %(asctime)s'
+    }
+}}
 
 ADMINS = (('Eduard Striukov', 'edstrkv@gmail.com'),)
 

@@ -8,6 +8,11 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
+
+import logging
+logger = logging.getLogger("courses")
+
+
 class CourseDetailView(DetailView):
     model = Course
     template_name = 'courses/detail.html'
@@ -15,6 +20,10 @@ class CourseDetailView(DetailView):
 
     def get_queryset(self):
         qs = super().get_queryset()
+        logger.debug("Courses detail view has been debugged!")
+        logger.info("Logger of courses detail view informs you!")
+        logger.warning("Logger of courses detail view warns you!")
+        logger.error("Courses detail view went wrong!")
         cours_id = self.request.GET.get('pk', None)
         if cours_id:
             qs = qs.filter(courses=cours_id)
