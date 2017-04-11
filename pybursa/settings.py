@@ -1,3 +1,4 @@
+# This Python file uses the following encoding: utf-8
 """
 Django settings for pybursa project.
 
@@ -146,10 +147,18 @@ ADMINS = (('dipperside', 'figvam@dot.com'),)
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'formatters': {
-        'simple': {
-            'format': '%(levelname)s: "%(message)s"',
+    'loggers': {
+        'courses': {
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
         },
+        'students': {
+            'handlers': ['file2', 'console'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        
     },
     'handlers': {
         'file': {
@@ -170,17 +179,9 @@ LOGGING = {
             'formatter': 'simple'
         },        
     },
-    'loggers': {
-        'courses': {
-            'handlers': ['file', 'console'],
-            'level': 'DEBUG',
-            'propagate': True,
+    'formatters': {
+        'simple': {
+            'format': 'Уровень %(levelname)s: "%(message)s"',
         },
-        'students': {
-            'handlers': ['file2', 'console'],
-            'level': 'WARNING',
-            'propagate': True,
-        },
-        
     },
 }
