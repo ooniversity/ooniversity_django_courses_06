@@ -11,7 +11,7 @@ from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteVi
 from django.urls import reverse_lazy
 
 import logging
-logger = logging.getLogger("students")
+logger = logging.getLogger(__name__)
 
 
 class StudentListView(ListView):
