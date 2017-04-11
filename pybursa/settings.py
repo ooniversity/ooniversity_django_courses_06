@@ -141,3 +141,46 @@ EMAIL_PORT = "2525"
 #EMAIL_HOST_PASSWORD = 'superdupersecretpassword'
 
 ADMINS = (('dipperside', 'figvam@dot.com'),)
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': 'Уровень %(levelname)s: "%(message)s"',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'courses_logger.log'),
+            'formatter': 'simple',
+        },
+        'file2': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'students_logger.log'),
+            'formatter': 'simple',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },        
+    },
+    'loggers': {
+        'courses': {
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'students': {
+            'handlers': ['file2', 'console'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        
+    },
+}
