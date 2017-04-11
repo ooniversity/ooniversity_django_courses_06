@@ -126,3 +126,43 @@ STATICFILES_DIRS = [
 EMAIL_HOST = '127.0.0.1'
 EMAIL_PORT = '1025'
 ADMINS = (('John', 'john@example.com'), ('Mary', 'mary@example.com'))
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'loggers': {
+        'courses': {
+            'handlers': ['courses_file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'students': {
+            'handlers': ['students_file'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+    },
+    'handlers': {
+        'courses_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'courses_logger.log'),
+            'formatter': 'courses'
+        },
+        'students_file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'students_logger.log'),
+            'formatter': 'students'
+        },
+    },
+    'formatters': {
+        'courses': {
+            'format': '%(levelname)s %(message)s'
+        },
+        'students': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
+        }
+    }
+}
