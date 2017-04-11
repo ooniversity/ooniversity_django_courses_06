@@ -94,19 +94,18 @@
 {% if is_paginated %}
   <ul class="pagination">
     {% if page_obj.has_previous %}
-      <li><a href="?page={{ page_obj.previous_page_number }}"><< previous</a></li>
-    {% else %}
+      	<li><a href="?page={{ page_obj.previous_page_number }}"><< previous</a></li>
     {% endif %}
+
     {% for page in paginator.page_range %}
-      {% if page_obj.number == page %}
-        <li class="active"><span>{{ page }} <span class="sr-only">(current)</span></span></li>
-      {% else %}
-        <li><a href="?page={{ page }}">{{ page }}</a></li>
-      {% endif %}
+        {% if page_obj.number == page %}
+             <li class="active"><span>{{ page }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+             <li><a href="?page={{ page }}">{{ page }}</a></li>
+        {% endif %}
     {% endfor %}
     {% if page_obj.has_next %}
       <li><a href="?page={{ page_obj.next_page_number }}">next >></a></li>
-    {% else %}
     {% endif %}
   </ul>
  {% endif %}

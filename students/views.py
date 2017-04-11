@@ -19,8 +19,15 @@ class StudentListView(ListView):
         course_id = self.request.GET.get('course_id', None)
         if course_id:
             qs = qs.filter(courses__id=course_id)
+            #students = Student.objects.filter(courses__id=course_id)
+        #else:
+            #students = Student.objects.all()
                    
         return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
     '''def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
