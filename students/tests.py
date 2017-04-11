@@ -58,7 +58,7 @@ class StudentsListTest(TestCase):
         self.assertEqual(Student.objects.all().count(), 2)
 
 
-class CoursesDetailTest(TestCase):
+class StudentsDetailTest(TestCase):
     def test_student_detail1(self):
         from django.test import Client
         client = Client()
@@ -87,7 +87,10 @@ class CoursesDetailTest(TestCase):
         from django.test import Client
         client = Client()
         response = client.get('/students/3/')
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3d90fb1ecea185c2f15ba44a4a7ea336f419ae37
         self.assertEqual(response.context['student'].name, 'Student_3_name')
 
     def test_student_detail4(self):
@@ -103,7 +106,10 @@ class CoursesDetailTest(TestCase):
         from django.test import Client
         client = Client()
         response = client.get('/students/3/')
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3d90fb1ecea185c2f15ba44a4a7ea336f419ae37
         self.assertEqual(response.context['student'].surname, 'Student_3_surname')
 
     def test_student_detail5(self):
@@ -119,5 +125,8 @@ class CoursesDetailTest(TestCase):
         from django.test import Client
         client = Client()
         response = client.get('/students/3/')
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3d90fb1ecea185c2f15ba44a4a7ea336f419ae37
         self.assertEqual(response.context['student'].email, 'student3@email.com')

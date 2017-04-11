@@ -10,8 +10,7 @@ class CoursesListTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_course_list2(self):
-        course1 = Course.objects.create(name='Course_1',
-                                        short_description='Course_1 description')
+        course1 = Course.objects.create(name='Course_1',                                        short_description='Course_1 description')
         self.assertEqual(Course.objects.all().count(), 1)
 
     def test_course_list3(self):
@@ -21,7 +20,6 @@ class CoursesListTest(TestCase):
                                             short_description='Course_2 description')
         course3 = Course.objects.create(name='Course_3',
                                             short_description='Course_3 description')
-
         self.assertEqual(Course.objects.get(name='Course_1').name, 'Course_1')
 
     def test_course_list4(self):
@@ -31,7 +29,6 @@ class CoursesListTest(TestCase):
                                             short_description='Course_2 description')
         course3 = Course.objects.create(name='Course_3',
                                             short_description='Course_3 description')
-
         self.assertEqual(Course.objects.get(short_description='Course_2 description').short_description,
                                                    'Course_2 description')
 
@@ -43,7 +40,6 @@ class CoursesListTest(TestCase):
         course3 = Course.objects.create(name='Course_3',
                                                 short_description='Course_3 description')
         Course.objects.get(name='Course_1').delete()
-
         self.assertEqual(Course.objects.all().count(), 2)
 
 
@@ -72,7 +68,6 @@ class CoursesDetailTest(TestCase):
         from django.test import Client
         client = Client()
         response = client.get('/courses/3/')
-
         self.assertEqual(response.context['course'].name, 'Course_3')
 
     def test_course_detail4(self):
@@ -85,7 +80,6 @@ class CoursesDetailTest(TestCase):
         from django.test import Client
         client = Client()
         response = client.get('/courses/3/')
-
         self.assertEqual(response.context['title'], 'Course creation')
 
     def test_course_detail5(self):
@@ -98,5 +92,4 @@ class CoursesDetailTest(TestCase):
         from django.test import Client
         client = Client()
         response = client.get('/courses/3/')
-
         self.assertEqual(response.context['course'].short_description, 'Course_3 description')
