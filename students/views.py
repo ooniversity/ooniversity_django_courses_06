@@ -21,10 +21,7 @@ class StudentListView(ListView):
     def get_queryset(self):
 
         qs = super().get_queryset()
-        logger.debug("Students detail view has been debugged!")
-        logger.info("Logger of students detail view informs you!")
-        logger.warning("Logger of students detail view warns you!")
-        logger.error("Students detail view went wrong!")
+        
         course_id = self.request.GET.get('course_id')
         if course_id:
             qs = qs.filter(courses__id=course_id)
@@ -39,6 +36,10 @@ class StudentListView(ListView):
 
 
 class StudentDetailView(DetailView):
+    logger.debug("Students detail view has been debugged!")
+    logger.info("Logger of students detail view informs you!")
+    logger.warning("Logger of students detail view warns you!")
+    logger.error("Students detail view went wrong!")
     model = Student
 
 
@@ -54,6 +55,7 @@ class StudentCreateView(CreateView):
         return response
 
     def get_context_data(self, **kwargs):
+
         context = super().get_context_data(**kwargs)
         context['title'] = "Student registration"
         context['page_header'] = "Создание нового студента"

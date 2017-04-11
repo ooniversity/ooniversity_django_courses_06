@@ -106,7 +106,7 @@ LOGGING = {
         },
         'students': {
             'handlers': ['students_log_file'],
-            'level': 'DEBUG',
+            'level': 'WARNING',
         },
     },
     'handlers': 
@@ -126,12 +126,13 @@ LOGGING = {
     },
     'formatters': {
         'courses_format': {
-            'format': 'Уровень %(levelname)s %(message)s'
+            'format': '%(levelname)s %(message)s'
         },
         'students_format': {
-            'format': 'Уровень %(levelname)s %(message)s %(asctime)s'
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
+        }
     }
-}}
+}
 
 ADMINS = (('Eduard Striukov', 'edstrkv@gmail.com'),)
 
