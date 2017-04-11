@@ -148,7 +148,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'simple': {
-            'format': 'Уровень %(levelname)s: "%(message)s"',
+            'format': '%(levelname)s: "%(message)s"',
         },
     },
     'handlers': {
