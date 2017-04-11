@@ -5,6 +5,9 @@ from django.contrib import messages
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+import logging
+
+logger = logging.getLogger('courses')
 
 
 class CourseDetailView(DetailView):
@@ -13,6 +16,11 @@ class CourseDetailView(DetailView):
     context_object_name = 'course'
 
     def get_context_data(self, **kwargs):
+        logger.debug('Courses detail view has been debugged!')
+        logger.info('Logger of courses detail view informs you!')
+        logger.warning('Logger of courses detail view warns you!')
+        logger.error('Courses detail view went wrong!')
+
         context = super().get_context_data(**kwargs)
         context['title'] = 'Course creation'
         lessons = Lesson.objects.filter(course=self.kwargs['pk'])
@@ -26,7 +34,6 @@ class CourseCreateView(CreateView):
     context_object_name = 'course'
     form_class = CourseModelForm
     success_url = reverse_lazy('index')
-    #print('!!!! CourseCreateView:', CourseCreateView)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -46,7 +53,6 @@ class CourseUpdateView(UpdateView):
     template_name = 'courses/edit.html'
     context_object_name = 'course'
     form_class = CourseModelForm
-    #success_url = reverse_lazy('courses:edit')
 
     def get_success_url(self):
         return reverse_lazy('courses:edit', args=(self.object.id, ))
@@ -98,6 +104,3 @@ class LessonCreateView(CreateView):
         response = super().form_valid(form)
         messages.success(self.request, 'Lesson has been successfully added.')
         return response
-
-
-

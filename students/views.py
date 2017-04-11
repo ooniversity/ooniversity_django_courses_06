@@ -7,7 +7,9 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+import logging
 
+logger = logging.getLogger('students')
 
 class StudentListView(ListView):
     model = Student
@@ -18,23 +20,14 @@ class StudentListView(ListView):
     def get_queryset(self):
         global global_course_id
         global trigger
-        #trigger = None
-
-
         qs = super().get_queryset()
-        print('COURSE_ID:', self.request.GET.get('course_id'))
-        print('PAGE:', self.request.GET.get('page', None))
         course_id = self.request.GET.get('course_id', None)
         if course_id:
             global_course_id = self.request.GET.get('course_id', None)
             trigger = True
-            print('GLOBAL_COURSE_ID:', global_course_id)
-
         if self.request.GET.get('page', None) and trigger:
-            print('Label_1')
             qs = qs.filter(courses__id=global_course_id)
         elif course_id:
-            print('Label_2')
             qs = qs.filter(courses__id=course_id)
         else:
             trigger = False
@@ -42,6 +35,10 @@ class StudentListView(ListView):
 
 class StudentDetailView(DetailView):
     model = Student
+    logger.debug('Students detail view has been debugged!')
+    logger.info('Logger of students detail view informs you!')
+    logger.warning('Logger of students detail view warns you!')
+    logger.error('Students detail view went wrong!')
 
 class StudentCreateView(CreateView):
     model = Student

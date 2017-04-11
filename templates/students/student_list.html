@@ -62,15 +62,10 @@
   </table>
 
 
-
-
-
 {% if is_paginated %}
   <ul class="pagination">
     {% if page_obj.has_previous %}
       <li><a href="?page={{ page_obj.previous_page_number }}"><< previous</a></li>
-    {% else %}
-
     {% endif %}
     {% for i in paginator.page_range %}
       {% if page_obj.number == i %}
@@ -81,8 +76,6 @@
     {% endfor %}
     {% if page_obj.has_next %}
       <li><a href="?page={{ page_obj.next_page_number }}">next >></a></li>
-    {% else %}
-
     {% endif %}
   </ul>
 {% endif %}
