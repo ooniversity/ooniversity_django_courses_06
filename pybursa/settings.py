@@ -149,12 +149,12 @@ LOGGING = {
     'disable_existing_loggers': False,
     'loggers': {
         'courses': {
-            'handlers': ['file', 'console'],
+            'handlers': ['file'],
             'level': 'DEBUG',
             'propagate': True,
         },
         'students': {
-            'handlers': ['file2', 'console'],
+            'handlers': ['file2'],
             'level': 'WARNING',
             'propagate': True,
         },
@@ -165,23 +165,26 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'courses_logger.log'),
-            #'formatter': 'simple',
+            'formatter': 'simple',
         },
         'file2': {
             'level': 'WARNING',
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'students_logger.log'),
-            #'formatter': 'simple',
+            'formatter': 'verbose',
         },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            #'formatter': 'simple'
+        #'console': {
+            #'level': 'DEBUG',
+            #'class': 'logging.StreamHandler',
+            #'formatter': 'verbose'
+        #},        
+    },
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s "%(message)s"',
+        },
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
         },        
     },
-    #'formatters': {
-        #'simple': {
-            #'format': 'Уровень %(levelname)s: "%(message)s"',
-        #},
-    #},
 }

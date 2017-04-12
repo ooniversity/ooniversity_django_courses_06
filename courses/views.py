@@ -19,10 +19,10 @@ class CourseDetailView(DetailView):
         context = super(CourseDetailView,self).get_context_data(**kwargs)
         context['title'] = 'TechBursa Python/Django 06 :: CourseDetail'
         context['lessons'] = Lesson.objects.filter(course=self.kwargs['pk'])
-        logger.debug('Уровень DEBUG: "Courses detail view has been debugged!"')
-        logger.info('Уровень INFO: "Logger of courses detail view informs you!"')
-        logger.warning('Уровень WARNING: "Logger of courses detail view warns you!"')
-        logger.error('Уровень ERROR: "Courses detail view went wrong!"')
+        logger.debug("Courses detail view has been debugged!")
+        logger.info("Logger of courses detail view informs you!")
+        logger.warning("Logger of courses detail view warns you!")
+        logger.error("Courses detail view went wrong!")
         return context
 
 
