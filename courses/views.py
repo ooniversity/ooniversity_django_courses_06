@@ -2,6 +2,8 @@
     Courses module
 '''
 
+import logging
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
@@ -10,16 +12,21 @@ from coaches.models import Coach
 from . models import Course, Lesson
 from . forms import CourseModelForm, LessonModelForm
 
+LOGGER = logging.getLogger('courses')
+
 
 def detail(request, course_id):
     '''
         Detail info about course
     '''
 
-    course = Course.objects.get(id=course_id)
-    # import pdb; pdb.set_trace()
-    lessons_list = Lesson.objects.filter(course=course)
+    LOGGER.debug('Courses detail view has been debugged!')
+    LOGGER.info('Logger of courses detail view informs you!')
+    LOGGER.warning('Logger of courses detail view warns you!')
+    LOGGER.error('Courses detail view went wrong!')
 
+    course = Course.objects.get(id=course_id)
+    lessons_list = Lesson.objects.filter(course=course)
     coach = Coach.objects.get(id=course.coach.id)
     assistant = Coach.objects.get(id=course.assistant.id)
 
