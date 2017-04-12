@@ -1,0 +1,15 @@
+.selector1 {color:#04B404; font-weight: bold; font-style: oblique}
+.selector2 {color:#0174DF; text-decoration: underline; font-style: italic}
+.selector3 {font-weight:bold}
+.selector4 {text-align:center}
+.selector5 {color:red}
+.selector6 {color:red; font-weight: bold}
+.selector7 {color:#D7DF01; font-weight: bold}
+.selector8 {color:#04B404; font-weight: bold}
+.selector_h1 {color:#0174DF; text-decoration: underline }
+h3.selector_h3 {font-style: italic}
+p.selector_p {font-style: italic}
+.selector_li {font-weight: bold}
+/***li  {text-decoration: underline}***/
+
+

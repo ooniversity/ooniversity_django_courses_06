@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{title}}{% endblock title %}
+
+
+{% block jumbotron %}
+  {% block jumbotron_header %}{% endblock jumbotron_header %}</h1>
+  {% block jumbotron_header2 %}{% endblock jumbotron_header2 %}</h2>
+  {% block jumbotron_header3 %}{% endblock jumbotron_header3 %}
+  {% block jumbotron_description %}{% endblock jumbotron_description %}
+{% endblock jumbotron %}
+
+
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+    <h2>Создание нового студента</h2>
+    <form method='post'>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Создать" />
+    </form>
+  </div>
+</div>
+{% endblock content %}
+
+
+{% block pager_footer %}{% endblock pager_footer %}

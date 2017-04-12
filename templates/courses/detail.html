@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+
+{% block title %}{{title}}{% endblock title %}
+
+
+{% block students_link %}<a href="{% url 'students:list_view' %}?course_id={{ course.id }}"{% endblock students_link %}
+
+
+{% block jumbotron_header %}{{ course.name }}{% endblock jumbotron_header %}
+{% block jumbotron_header2 %}Description{% endblock jumbotron_header2 %}
+{% block jumbotron_header3 %}{% endblock jumbotron_header3 %}
+{% block jumbotron_description %}{{ course.description|truncatechars:32 }}{% endblock jumbotron_description %}
+
+
+{% block content %}
+{% if messages %}
+  <div class="container">
+  <div class="messages">
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  </div>
+{% endif %}
+
+  <div class="container">
+    <h2>Преподы</h2>
+    <br/>
+      {% if course.coach %}
+      <div class="panel panel-default">
+      <div class="panel-heading">Coach</div>
+      <div class="panel-body"><a href="{% url 'coaches:detail' course.coach.id %}">{{ course.coach.full_name }}</a><br/>
+      {{ course.coach.description }}
+      </div>
+      {% endif %}
+      {% if course.assistant %}
+      <div class="panel panel-default">
+      <div class="panel-heading">Assistant</div>
+      <div class="panel-body"><a href="{% url 'coaches:detail' course.assistant.id %}">{{ course.assistant.full_name }}</a><br/>
+        {{ course.assistant.description }}
+      </div>
+      </div>
+    </div>
+      {% endif %}
+
+    <h2>План курса</h2>
+    <p>
+    <a class='btn btn-sm btn-success' href="{% url 'courses:add-lesson' course.id %}" role='button'>
+    <span class="glyphicon glyphicon-plus-sign"></span>Добавить занятие</a>
+    </p>
+    <p></p>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Тема</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for lesson in lessons %}
+      <tr>
+        <td>{{ lesson.order }}</td>
+        <td>{{ lesson.subject }}</td>
+        <td>{{ lesson.description }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+  </div>
+{% endblock content %}
+
+
+{% block pager_footer %}{% endblock pager_footer %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{title}}{% endblock title %}
+
+
+{% block jumbotron %}
+  {% block jumbotron_header %}{% endblock jumbotron_header %}</h1>
+  {% block jumbotron_header2 %}{% endblock jumbotron_header2 %}</h2>
+  {% block jumbotron_header3 %}{% endblock jumbotron_header3 %}
+  {% block jumbotron_description %}{% endblock jumbotron_description %}
+{% endblock jumbotron %}
+
+
+{% block content %}
+{% if messages %}
+  <div class="container">
+  <div class="messages">
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  </div>
+{% endif %}
+
+<div class="container">
+  <div class="jumbotron">
+  <h2>Редактирование курса</h2>
+  <form method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+  <input type="submit" value="Изменить" />
+  </form>
+{% endblock content %}
+
+
+{% block pager_footer %}{% endblock pager_footer %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Coaches and Assistents {% endblock title %}
+
+
+{% block jumbotron %}
+  {% block jumbotron_header %}{% endblock jumbotron_header %}</h1>
+  {% block jumbotron_header2 %}{% endblock jumbotron_header2 %}</h2>
+  {% block jumbotron_header3 %}{% endblock jumbotron_header3 %}
+  {% block jumbotron_description %}{% endblock jumbotron_description %}
+{% endblock jumbotron %}
+
+
+{% block content %}
+  <div class="container">
+    <h2 align="center">{{ coach.user.first_name }} {{ coach.user.last_name }}</h2>
+    <div class="table-responsive">
+    <table class="table table-striped">
+      <tr>
+        <td>дата рождения</td>
+        <td>{{ coach.date_of_birth|date:'j F, Y' }}</td>
+      </tr>
+      <tr>
+        <td>адрес</td>
+        <td>{{ coach.address }}</td>
+      </tr>
+      <tr>
+        <td>логин skype</td>
+        <td>{{ coach.skype }}</td>
+      </tr>
+      <tr>
+        <td>email</td>
+          <td>{{ coach.user.email }}</td>
+      </tr>
+      <tr>
+        <td>телефон</td>
+        <td>{{ coach.phone }}</td>
+      </tr>
+      <tr>
+        <td>курсы учитель</td>
+        <td>{% for course_item in teacher %}
+            <p>
+            <a href="{% url 'courses:detail' course_item.id %}">{{course_item.name}}</a>студенты курса
+            <a href="{% url 'students:list_view' %}?course_id={{course_item.id}}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+            </p>
+            {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <td>курсы ассистент</td>
+        <td>{% for course_item in assistant %}
+            <p>
+            <a href="{% url 'courses:detail' course_item.id %}">{{course_item.name}}</a>студенты курса
+            <a href="{% url 'students:list_view' %}?course_id={{course_item.id}}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+            </p>
+            {% endfor %}
+        </td>
+      </tr>
+      </table>
+    </div>
+  </div>
+{% endblock content %}
+
+
+{% block pager_footer %}{% endblock pager_footer %}

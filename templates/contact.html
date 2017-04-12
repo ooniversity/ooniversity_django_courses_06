@@ -1,0 +1,71 @@
+{% extends 'base.html'%}
+
+
+{% load static %}
+
+
+{% block title %} Contacts-PyBursa {% endblock title %}
+
+
+{% block contacts_active %} class="active" {% endblock contacts_active %}
+
+
+{% block jumbotron %}
+  {% block jumbotron_header %}{% endblock jumbotron_header %}</h1>
+  {% block jumbotron_header2 %}{% endblock jumbotron_header2 %}</h2>
+  {% block jumbotron_header3 %}{% endblock jumbotron_header3 %}
+  {% block jumbotron_description %}{% endblock jumbotron_description %}
+{% endblock jumbotron %}
+
+{% block content %}
+  <h2 selector="selector6">Director</h2>
+  <div class="container">
+  <div class="alert alert-success" role="alert"></div>
+  <ul class="list-group">
+    <li class="list-group-item">Name: XXX YYY </li>
+    <li class="list-group-item">Skype: xxx_skype </li>
+    <li class="list-group-item">Email: xxx@email.com</li>
+    <li class="list-group-item">Phone: +38(067)-1234567</li>
+  </ul>
+  </div>
+
+  <h2 class="selector7">Manager</h2>
+  <div class="container">
+  <div class="alert alert-info" role="alert"></div>
+  <ul class="list-group">
+    <li class="list-group-item">Name: XXX YYY </li>
+    <li class="list-group-item">Skype: xxx_skype </li>
+    <li class="list-group-item">Email: xxx@email.com</li>
+    <li class="list-group-item">Phone: +38(067)-1234567</li>
+  </ul>
+  </div>
+
+  <h2 class="selector8">Founder</h2>
+  <div class="container">
+  <div class="alert alert-warning" role="alert"></div>
+  <ul class="list-group">
+    <li class="list-group-item">Name: XXX YYY </li>
+    <li class="list-group-item">Skype: xxx_skype </li>
+    <li class="list-group-item">Email: xxx@email.com</li>
+    <li class="list-group-item">Phone: +38(067)-1234567</li>
+  </ul>
+
+  <div class="jumbotron">
+    <div class="container">
+    <p class="selector1">Call Us</p>
+    <p class="selector2">Write to Us</p>
+    <p class="selector3">Come to Us</p>
+    <p class="selector4">Tell about Us</p>
+    <p class="selector5">Think about Us</p>
+    </div>
+  </div>
+  </div>
+{% endblock content %}
+
+
+{% block previous %} class="selector_li" {% endblock previous %}
+{% block previous_href %}"{% url 'index' %}"{% endblock previous_href %}
+
+
+{% block next %}class="selector_li"{% endblock next %}>
+{% block next_href %}"{% url 'student_list' %}"{% endblock next_href %}

@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+
+
+{% load static %}
+
+
+{% block title %} Main-PyBursa {% endblock title %}
+
+
+{% block main_active %} class="active" {% endblock main_active %}
+
+{% block content%}
+{{ block.super }} {% include 'include/plan_include.html' %} {{ endblock.super }}
+
+{% endblock content %}
+
+
+<{% block previous %} class="previous disabled" {% endblock previous%}>
+{% block previous_href%}"#"{% endblock previous_href%}
+
+
+{% block next %}class="selector_li"{% endblock next%}>
+{% block next_href %}"{% url 'contact' %}"{% endblock next_href %}
