@@ -1,11 +1,25 @@
+'''
+    Students module
+'''
+
+import logging
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
-from . models import Student
 from courses.models import Course
+
+from . models import Student
 from . forms import StudentModelForm
 
+LOGGER = logging.getLogger('students')
+
+
 def list_view(request):
+    '''
+        List of students functionality
+    '''
+
     data = request.GET
 
     if data:
@@ -27,6 +41,15 @@ def list_view(request):
 
 
 def detail(request, student_id):
+    '''
+        Detail information about student
+    '''
+
+    LOGGER.debug('Students detail view has been debugged!')
+    LOGGER.info('Logger of students detail view informs you!')
+    LOGGER.warning('Logger of students detail view warns you!')
+    LOGGER.error('Students detail view went wrong!')
+
     student = Student.objects.get(id=student_id)
 
     context = {
@@ -37,6 +60,10 @@ def detail(request, student_id):
 
 
 def create(request):
+    '''
+        Create student functionality
+    '''
+
     if request.method == 'POST':
         form = StudentModelForm(request.POST)
 
@@ -45,7 +72,8 @@ def create(request):
 
             form.save()
 
-            message = 'Student {} {} has been successfully added.'.format(data['name'], data['surname'])
+            message = ('Student {} {} has been successfully added.'
+                       .format(data['name'], data['surname']))
 
             messages.success(request, message)
 
@@ -61,6 +89,10 @@ def create(request):
 
 
 def edit(request, student_id):
+    '''
+        Edit student's information
+    '''
+
     student = Student.objects.get(id=student_id)
 
     if request.method == 'POST':
@@ -83,14 +115,19 @@ def edit(request, student_id):
 
     return render(request, 'students/edit.html', context)
 
+
 def remove(request, student_id):
+    '''
+        Remove student functionality
+    '''
+
     student = Student.objects.get(id=student_id)
 
     if request.method == 'POST':
-        message = 'Info on {} {} has been successfully deleted.'.format(student.name, student.surname)
+        message = ('Info on {} {} has been successfully deleted.'
+                   .format(student.name, student.surname))
 
         student.delete()
-
 
         messages.success(request, message)
 

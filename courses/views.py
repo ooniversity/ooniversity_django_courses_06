@@ -1,11 +1,30 @@
+'''
+    Courses module
+'''
+
+import logging
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
-from . models import Course, Lesson
 from coaches.models import Coach
+
+from . models import Course, Lesson
 from . forms import CourseModelForm, LessonModelForm
 
+LOGGER = logging.getLogger('courses')
+
+
 def detail(request, course_id):
+    '''
+        Detail info about course
+    '''
+
+    LOGGER.debug('Courses detail view has been debugged!')
+    LOGGER.info('Logger of courses detail view informs you!')
+    LOGGER.warning('Logger of courses detail view warns you!')
+    LOGGER.error('Courses detail view went wrong!')
+
     course = Course.objects.get(id=course_id)
     lessons_list = Lesson.objects.filter(course=course)
     coach = Coach.objects.get(id=course.coach.id)
@@ -21,6 +40,10 @@ def detail(request, course_id):
 
 
 def add(request):
+    '''
+        Add new course
+    '''
+
     if request.method == 'POST':
         form = CourseModelForm(request.POST)
 
@@ -29,7 +52,8 @@ def add(request):
 
             form.save()
 
-            message = 'Course {} has been successfully added.'.format(data['name'])
+            message = ('Course {} has been successfully added.'
+                       .format(data['name']))
 
             messages.success(request, message)
 
@@ -43,14 +67,19 @@ def add(request):
 
     return render(request, 'courses/add.html', context)
 
+
 def edit(request, course_id):
+    '''
+        Edit course information
+    '''
+
     course = Course.objects.get(id=course_id)
 
     if request.method == 'POST':
         form = CourseModelForm(request.POST, instance=course)
 
         if form.is_valid():
-            student = form.save()
+            form.save()
 
             message = 'The changes have been saved.'
 
@@ -66,7 +95,12 @@ def edit(request, course_id):
 
     return render(request, 'courses/edit.html', context)
 
+
 def remove(request, course_id):
+    '''
+        Remove course functionality
+    '''
+
     course = Course.objects.get(id=course_id)
 
     if request.method == 'POST':
@@ -86,6 +120,10 @@ def remove(request, course_id):
 
 
 def add_lesson(request, course_id):
+    '''
+        Add new lesson functionality
+    '''
+
     course = Course.objects.get(id=course_id)
 
     if request.method == 'POST':
@@ -96,7 +134,8 @@ def add_lesson(request, course_id):
 
             form.save()
 
-            message = 'Lesson {} has been successfully added.'.format(data['subject'])
+            message = ('Lesson {} has been successfully added.'
+                       .format(data['subject']))
 
             messages.success(request, message)
 
