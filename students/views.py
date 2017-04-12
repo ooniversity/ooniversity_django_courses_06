@@ -30,7 +30,7 @@ class StudentListView(ListView):
         context = super().get_context_data(**kwargs)
         if 'course_id' in self.request.GET:
             course_id = self.request.GET['course_id']
-            context['course_id'] = '?course_id=%s&' % course_id if course_id else '?'
+            context['course_id'] = 'course_id=%s&' % course_id
         return context
 
     '''def get_context_data(self, **kwargs):
