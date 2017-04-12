@@ -2,6 +2,8 @@
     Students module
 '''
 
+import logging
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
@@ -9,6 +11,8 @@ from courses.models import Course
 
 from . models import Student
 from . forms import StudentModelForm
+
+LOGGER = logging.getLogger('students')
 
 
 def list_view(request):
@@ -40,6 +44,11 @@ def detail(request, student_id):
     '''
         Detail information about student
     '''
+
+    LOGGER.debug('Students detail view has been debugged!')
+    LOGGER.info('Logger of students detail view informs you!')
+    LOGGER.warning('Logger of students detail view warns you!')
+    LOGGER.error('Students detail view went wrong!')
 
     student = Student.objects.get(id=student_id)
 
