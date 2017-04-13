@@ -6,6 +6,7 @@ import logging
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
 from courses.models import Course
@@ -16,29 +17,56 @@ from . forms import StudentModelForm
 LOGGER = logging.getLogger('students')
 
 
-def list_view(request):
+class StudentListView(ListView):
     '''
         List of students functionality
     '''
 
-    data = request.GET
+    model = Student
 
-    if data:
-        course_id = data['course_id']
-        course = Course.objects.get(id=course_id)
-        students_list = Student.objects.filter(courses__id=course_id)
+    def _get_course_id(self):
+        return self.request.GET.get('course_id', None)
 
-        context = {
-            'students_list': students_list,
-            'current_course': course,
-        }
-    else:
-        students_list = Student.objects.all()
-        context = {
-            'students_list': students_list
-        }
+    def get_queryset(self):
+        qs = super().get_queryset()
 
-    return render(request, 'students/list.html', context)
+        course_id = self._get_course_id()
+
+        if course_id:
+            qs = qs.filter(courses__id=course_id)
+
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        course_id = self._get_course_id()
+
+        if course_id:
+            context['current_course'] = Course.objects.get(id=course_id)
+
+        return context
+
+
+# def list_view(request):
+#     data = request.GET
+
+#     if data:
+#         course_id = data['course_id']
+#         course = Course.objects.get(id=course_id)
+#         students_list = Student.objects.filter(courses__id=course_id)
+
+#         context = {
+#             'students_list': students_list,
+#             'current_course': course,
+#         }
+#     else:
+#         students_list = Student.objects.all()
+#         context = {
+#             'students_list': students_list
+#         }
+
+#     return render(request, 'students/list.html', context)
 
 
 class StudentDetailView(DetailView):
