@@ -70,7 +70,7 @@ class StudentCreateView(CreateView):
     
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(self.request, 'Student {} {} been successfully added.'.format(self.object.name, self.object.surname))
+        messages.success(self.request, 'Student {} {} has been successfully added.'.format(self.object.name, self.object.surname))
         return response
 
 
@@ -100,7 +100,7 @@ class StudentUpdateView(UpdateView):
     
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(self.request, 'Info on the {} {} has been successfully changed.'.format(self.object.name, self.object.surname))
+        messages.success(self.request, 'Info on the student has been successfully changed.')
         return response
 
 
