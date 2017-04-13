@@ -17,6 +17,8 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+#from django.views.generic.base import TemplateView
+
 from .views import *
 
 urlpatterns = [
@@ -31,4 +33,6 @@ urlpatterns = [
     url(r'^quadratic/', include('quadratic.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^feedback/', include('feedbacks.urls')),
+    #url(r'^400/$', TemplateView.as_view(template_name='400.html')),
+    #url(r'^500/$', TemplateView.as_view(template_name='500.html')),
 ]
