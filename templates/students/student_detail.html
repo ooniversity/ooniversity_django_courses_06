@@ -4,11 +4,14 @@
 {% load staticfiles %}
 
 
-{% block title %}students detail{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block nav_class_students %}active{% endblock %}  
 
 
 {% block content %}
-<h2 align="center">Список студентов</h2>
+<h2 align="center">Детали о студенте</h2>
 <div class='container'>
    <h2>{{ student.name }} {{ student.surname }}</h2>
 </div>

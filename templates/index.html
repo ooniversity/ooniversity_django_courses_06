@@ -4,7 +4,7 @@
 {% load staticfiles %}
 
 
-{% block title %}main{% endblock %}
+{% block title %}Main{% endblock %}
 
 
 {% block nav_class_index %}active{% endblock %}
@@ -36,16 +36,20 @@
   <table>
   <thead>
     <tr>
-     <th>Course</th>
-     <th>Short description</th>
+     <th>Курс</th>
+     <th>Краткое описание</th>
     </tr>
   </thead>
   <tbody>
   {% for course in courses %}
   <tr>
-    <td><a href="{% url 'courses:detail' course.id %}">{{ course.name|upper }}</a></td>
-    <td>{{ course.short_description|title }}<a class="btn btn-default" href="{% url 'courses:edit' course.id %}" role="button">Изменить</a>
-                                            <a class="btn btn-default" href="{% url 'courses:remove' course.id %}" role="button">Удалить</a></td>
+    <td>
+      <a href="{% url 'courses:detail' course.id %}">
+      {{ course.name|upper }}</a></td>
+    <td>
+      {{ course.short_description|title }}
+      <a class="btn btn-default" href="{% url 'courses:edit' course.id %}" role="button">  Изменить</a>
+      <a class="btn btn-default" href="{% url 'courses:remove' course.id %}" role="button">  Удалить</a></td>
   {% endfor %}
   </tbody>
   </table>
