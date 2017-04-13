@@ -6,6 +6,7 @@ import logging
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.views.generic.detail import DetailView
 
 from coaches.models import Coach
 
@@ -15,28 +16,43 @@ from . forms import CourseModelForm, LessonModelForm
 LOGGER = logging.getLogger('courses')
 
 
-def detail(request, course_id):
+class CourseDetailView(DetailView):
     '''
-        Detail info about course
+        Detail information about course
     '''
 
-    LOGGER.debug('Courses detail view has been debugged!')
-    LOGGER.info('Logger of courses detail view informs you!')
-    LOGGER.warning('Logger of courses detail view warns you!')
-    LOGGER.error('Courses detail view went wrong!')
+    model = Course
 
-    course = Course.objects.get(id=course_id)
-    lessons_list = Lesson.objects.filter(course=course)
-    coach = Coach.objects.get(id=course.coach.id)
-    assistant = Coach.objects.get(id=course.assistant.id)
+    template_name = 'courses/detail.html'
 
-    context = {
-        'course': course,
-        'lessons_list': lessons_list,
-        'coach': coach,
-        'assistant': assistant,
-    }
-    return render(request, 'courses/detail.html', context)
+    context_object_name = 'course'
+
+    def get_context_data(self, **kwargs):
+        LOGGER.debug('Courses detail view has been debugged!')
+        LOGGER.info('Logger of courses detail view informs you!')
+        LOGGER.warning('Logger of courses detail view warns you!')
+        LOGGER.error('Courses detail view went wrong!')
+
+        context = super().get_context_data(**kwargs)
+
+        context['lessons_list'] = Lesson.objects.filter(course=self.kwargs['pk'])
+
+        return context
+
+
+# def detail(request, course_id):
+#     course = Course.objects.get(id=course_id)
+#     lessons_list = Lesson.objects.filter(course=course)
+#     coach = Coach.objects.get(id=course.coach.id)
+#     assistant = Coach.objects.get(id=course.assistant.id)
+
+#     context = {
+#         'course': course,
+#         'lessons_list': lessons_list,
+#         'coach': coach,
+#         'assistant': assistant,
+#     }
+#     return render(request, 'courses/detail.html', context)
 
 
 def add(request):
