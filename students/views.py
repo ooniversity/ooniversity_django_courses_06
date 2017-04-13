@@ -42,6 +42,7 @@ class StudentDetailView(DetailView):
         logger.info("Logger of students detail view informs you!")
         logger.warning("Logger of students detail view warns you!")
         logger.error("Students detail view went wrong!")
+        context['title'] = "Student detail"
         return context
 
 
