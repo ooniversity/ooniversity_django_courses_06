@@ -6,6 +6,7 @@ import logging
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.views.generic.detail import DetailView
 
 from courses.models import Course
 
@@ -40,23 +41,31 @@ def list_view(request):
     return render(request, 'students/list.html', context)
 
 
-def detail(request, student_id):
+class StudentDetailView(DetailView):
     '''
         Detail information about student
     '''
 
-    LOGGER.debug('Students detail view has been debugged!')
-    LOGGER.info('Logger of students detail view informs you!')
-    LOGGER.warning('Logger of students detail view warns you!')
-    LOGGER.error('Students detail view went wrong!')
+    model = Student
 
-    student = Student.objects.get(id=student_id)
+    def get_context_data(self, **kwargs):
+        LOGGER.debug('Students detail view has been debugged!')
+        LOGGER.info('Logger of students detail view informs you!')
+        LOGGER.warning('Logger of students detail view warns you!')
+        LOGGER.error('Students detail view went wrong!')
 
-    context = {
-        'student': student
-    }
+        context = super().get_context_data(**kwargs)
+        return context
 
-    return render(request, 'students/detail.html', context)
+
+# def detail(request, student_id):
+#     student = Student.objects.get(id=student_id)
+
+#     context = {
+#         'student': student
+#     }
+
+#     return render(request, 'students/detail.html', context)
 
 
 def create(request):
