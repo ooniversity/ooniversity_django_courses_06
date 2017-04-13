@@ -25,12 +25,12 @@
 
 <h2>Instructors</h2>
 
-{% if coach %}
-    {% include "../include/person_panel_include.html" with panel_title="Teacher" person=coach %}
+{% if course.coach %}
+    {% include "../include/person_panel_include.html" with panel_title="Teacher" person=course.coach %}
 {% endif %}
 
-{% if assistant %}
-    {% include "../include/person_panel_include.html" with panel_title="Assistant" person=assistant %}
+{% if course.assistant %}
+    {% include "../include/person_panel_include.html" with panel_title="Assistant" person=course.assistant %}
 {% endif %}
 
 <h2 class="page-header">Course plan</h2>

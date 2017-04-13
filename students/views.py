@@ -55,6 +55,7 @@ class StudentDetailView(DetailView):
         LOGGER.error('Students detail view went wrong!')
 
         context = super().get_context_data(**kwargs)
+
         return context
 
 
