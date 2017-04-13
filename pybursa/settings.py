@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '93q)2g_qieht*6(_gvjuyk&7835#rgru$=#(jb0nvu^=5f$b8#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
 
 # Application definition
@@ -172,12 +172,7 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'students_logger.log'),
             'formatter': 'verbose',
-        },
-        #'console': {
-            #'level': 'DEBUG',
-            #'class': 'logging.StreamHandler',
-            #'formatter': 'verbose'
-        #},        
+        },      
     },
     'formatters': {
         'simple': {
