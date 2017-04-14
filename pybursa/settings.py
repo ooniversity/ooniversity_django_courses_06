@@ -132,11 +132,13 @@ LOGGING = {
                 'level': 'WARNING',
                 'class': 'logging.FileHandler',
                 'filename':  os.path.join(BASE_DIR, 'students_logger.log'),
+                'formatter': 'courses'
             },
             'courses_log': {
                 'level': 'DEBUG',
                 'class': 'logging.FileHandler',
                 'filename':  os.path.join(BASE_DIR, 'courses_logger.log'),
+                'formatter': 'students'
             },
         },
     'loggers': {
@@ -147,7 +149,7 @@ LOGGING = {
         },
         'courses': {
             'handlers': ['courses_log'],
-            'level': 'WARNING',
+            'level': 'DEBUG',
             'propagate': True,
         }
     },
