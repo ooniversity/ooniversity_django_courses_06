@@ -23,9 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '+wj_g0r9h4&iucqv&ksnrk37393#lz-)#=h3b+*vqoomc(3_39'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
 
 # Application definition
@@ -118,12 +117,48 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+            'students_log': {
+                'level': 'WARNING',
+                'class': 'logging.FileHandler',
+                'filename':  os.path.join(BASE_DIR, 'students_logger.log'),
+                'formatter': 'courses'
+            },
+            'courses_log': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename':  os.path.join(BASE_DIR, 'courses_logger.log'),
+                'formatter': 'students'
+            },
+        },
+    'loggers': {
+        'students': {
+            'handlers': ['students_log'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        'courses': {
+            'handlers': ['courses_log'],
+            'level': 'DEBUG',
+            'propagate': True,
+        }
+    },
+    'formatters': {
+        'students': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
+        },
+        'courses': {
+            'format': '%(levelname)s %(message)s'
+        }
+    }
+}
