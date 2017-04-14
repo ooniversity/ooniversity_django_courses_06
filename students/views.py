@@ -8,6 +8,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 from courses.models import Course
 
@@ -95,6 +97,26 @@ class StudentDetailView(DetailView):
 #     }
 
 #     return render(request, 'students/detail.html', context)
+
+
+class StudentCreateView(CreateView):
+    model = Student
+
+    form_class = StudentModelForm
+
+    success_url = reverse_lazy('students:list_view')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        data = form.cleaned_data
+
+        message = ('Student {} {} has been successfully added.'
+                   .format(data['name'], data['surname']))
+
+        messages.success(self.request, message)
+
+        return response
 
 
 def create(request):
