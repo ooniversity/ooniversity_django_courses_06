@@ -1,0 +1,55 @@
+.red_color {
+	color: red;
+}
+
+.orange_color {
+	color: orange;
+}
+
+.grey_color {
+	color: grey;
+}
+
+.green_color {
+	color: green;
+}
+
+.blue_color {
+	color: blue;
+}
+
+.font_size_120 {
+	font-size: 120%;
+}
+
+.font_size_110 {
+	font-size: 110%;
+}
+
+.font_size_100 {
+	font-size: 100%;
+}
+
+.font_size_90 {
+	font-size: 90%;
+}
+
+.font_size_130 {
+	font-size: 130%;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
