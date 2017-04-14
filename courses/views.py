@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 class CourseDetailView(DetailView):
     model = Course
-    template_name = 'courses/detail.html'
+    template_name = 'coursaes/detail.html'
     context_object_name = 'course'
 
     def get_queryset(self):

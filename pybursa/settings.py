@@ -194,4 +194,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    print("Warning! local_settings are not defined!")
