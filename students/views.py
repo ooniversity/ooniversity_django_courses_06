@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 
 
 import logging
-logger = logger.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 class StudentListView(ListView):
@@ -38,11 +38,11 @@ class StudentDetailView(DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
+		context['title'] = 'Student detail'
 		logger.debug('Studens detail view has been debugged!')
 		logger.info('Logger of students detail view informs you!')
 		logger.warning('Logger of students detail view warns you!')
 		logger.error('Students detail view went wrong!')
-		context['title'] = 'Student detail'
 		return context
 
 
