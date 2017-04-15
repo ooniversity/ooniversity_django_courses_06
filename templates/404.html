@@ -1,8 +1,14 @@
 {% extends "base.html" %}
-{% load i18n %}
- 
-{% block title %}Page not found{% endblock %}
- 
+
+
+{% load static %}
+
+
+{% block title %}404 - Page not found{% endblock %}
+
+
 {% block content %}
-<h1>Sorry, page is not found</h1>
-{% endblock %}
+		<div class="page-header">
+	  		<h1>Sorry, page is not found</h1>
+		</div>
+{% endblock content %}
