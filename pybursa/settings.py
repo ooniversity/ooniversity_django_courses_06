@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    #'polls.apps.PollsConfig',
+    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 	'coaches',
 	'quadratic',
 	'feedbacks',
-  
+
 ]
 
 MIDDLEWARE = [
@@ -133,3 +133,42 @@ STATICFILES_DIRS = [
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = '1025'
 ADMINS = (('Zoria', 'zarina.bondarenko@gmail.com'),)
+
+LOGGING = {
+    'version' : 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'loggers' :
+    {
+        'courses': {
+            'handlers': ['course_file'],
+            'level': 'DEBUG',
+        },
+        'students': {
+            'handlers': ['student_file'],
+            'level': 'WARNING',
+        },
+    },
+    'handlers':
+    {
+        'course_file':{
+            'level' : 'DEBUG',
+            'class' : 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'courses_logger.log'),
+            'formatter': 'simple',
+        },
+        'student_file':{
+            'level' : 'WARNING',
+            'class' : 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'students_logger.log'),
+            'formatter': 'verbose',
+        },
+    },
+}

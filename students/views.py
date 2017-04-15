@@ -7,8 +7,11 @@ from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy 
+from django.urls import reverse_lazy
 
+
+import logging
+logger = logging.getLogger(__name__) #pybursa.views
 
 class StudentListView(ListView):
 	model = Student
@@ -51,6 +54,15 @@ class StudentListView(ListView):
 
 class StudentDetailView(DetailView):
 	model = Student
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		logger.debug("Students detail view has been debugged!")
+		logger.info("Logger of students detail view informs you!")
+		logger.warning("Logger of students detail view warns you!")
+		logger.error("Students detail view went wrong!")
+		context['title'] = "Student detailed info"
+		return context
 	#template_name = 'students/detail.html'
 
 #def detail(request, student_id):
@@ -104,7 +116,7 @@ class StudentUpdateView(UpdateView):
         context['title'] = 'Student info update'
         return context
 
-    def form_valid(self, form):  
+    def form_valid(self, form):
         response = super().form_valid(form)
         messages.success(self.request, 'Info on %s %s the student has been successfully changed.'% (self.object.name, self.object.surname))
         return response
@@ -121,7 +133,7 @@ class StudentUpdateView(UpdateView):
 #			return redirect('students:list_view')
 #	else:
 #		form = StudentModelForm(instance=student_inst)
-#	
+#
 #	return render(request,"students/edit.html",{"form":form})
 
 
@@ -148,6 +160,3 @@ class StudentDeleteView(DeleteView):
 #		messages.success(request, message)
 #		return redirect('students:list_view')
 #	return render(request,"students/remove.html",{"student":student})
-
-
- 
