@@ -2,7 +2,7 @@ from django.test import TestCase
 from courses.models import Course
 from django.test import Client
 
-class StudentsListTest(TestCase):
+class CoursesListTest(TestCase):
 
     def test_courses_list(self):
         client = Client()
@@ -36,7 +36,7 @@ class StudentsListTest(TestCase):
         updated_object = Course.objects.get(description='First course')
         self.assertEqual(updated_object.name, 'Change name')
 
-class StudentsDetailTest(TestCase):
+class CoursesDetailTest(TestCase):
     
     def test_detail_get(self):
         client = Client()
