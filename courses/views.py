@@ -5,19 +5,30 @@ from courses.models import Course, Lesson
 from django.contrib import messages
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+import logging
 
+logger = logging.getLogger('courses')
 
 class CourseDetailView(DetailView):
     model = Course
     template_name = 'courses/detail.html'
     context_object_name = 'course'
 
-    def get_context_data(self, **kwargs):
-        pk = self.kwargs['pk']
-        context = super().get_context_data(**kwargs)
-        context['lessons'] = Lesson.objects.filter(course=pk).order_by('order')
-        return context
+    def get_queryset(self):
+        qs = super().get_queryset()
+        cours_id = self.request.GET.get('pk', None)
+        if cours_id:
+            qs = qs.filter(courses=cours_id)
+        return qs
 
+    def get_context_data(self, **kwargs):
+        logger.debug("Courses detail view has been debugged!")
+        logger.info('Logger of courses detail view informs you!')
+        logger.warning('Logger of courses detail view warns you!')
+        logger.error('Courses detail view went wrong!')
+        context = super().get_context_data(**kwargs)
+        context['lessons'] = Lesson.objects.filter(course=self.object.pk)
+        return context
 
 class CourseCreateView(CreateView):
     model = Course
