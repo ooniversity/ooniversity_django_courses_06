@@ -17,10 +17,6 @@ class CourseDetailView(DetailView):
 
     def get_queryset(self):
         rg = self.request.GET
-        logger.debug("Courses detail view has been debugged!")
-        logger.info("Logger of courses detail view informs you!")
-        logger.warning("Logger of courses detail view warns you!")
-        logger.error("Courses detail view went wrong!")
         queryset = super().get_queryset()
         cours_id = rg.get('pk', None)
         if cours_id:
@@ -32,6 +28,10 @@ class CourseDetailView(DetailView):
         context['lessons'] = Lesson.objects.filter(course=self.object.pk)
         context['course'] = Course.objects.get(id=self.object.pk)
         context['title'] = 'Курс: %s' %context['course']
+        logger.debug("Courses detail view has been debugged!")
+        logger.info("Logger of courses detail view informs you!")
+        logger.warning("Logger of courses detail view warns you!")
+        logger.error("Courses detail view went wrong!")
         return context
 
 
