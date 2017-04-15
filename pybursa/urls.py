@@ -21,6 +21,8 @@ from django.shortcuts import render
 from .views import index, contact, student_list, student_detail
 from quadratic.views import quadratic_results
 from feedbacks import views
+from django.views.defaults import server_error, page_not_found, permission_denied
+from django.conf import settings
 
 urlpatterns = [
     url(r'^$', index, name='index'),
@@ -33,3 +35,13 @@ urlpatterns = [
     url(r'^coaches/', include('coaches.urls', namespace = 'coaches', app_name='coaches')),
     url(r'^admin/', admin.site.urls),
 ]
+
+#handler404 = curry(page_not_found, template_name='404.html')
+#handler500 = curry(server_error, template_name='500.html')
+
+#handler404 = views.handler404
+#handler500 = views.handler500
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [url(r'^__debug__/', include(debug_toolbar.urls)),]
