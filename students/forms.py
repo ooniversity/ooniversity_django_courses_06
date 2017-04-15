@@ -1,12 +1,21 @@
+'''
+    Students forms models
+'''
+
 from django import forms
 from . models import Student
 
 
 class StudentModelForm(forms.ModelForm):
+    '''
+        Student form
+    '''
+
     class Meta:
         model = Student
 
-        fields = ['name', 'surname', 'date_of_birth', 'email', 'phone', 'address', 'skype', 'courses']
+        fields = ['name', 'surname', 'date_of_birth', 'email', 'phone',
+                  'address', 'skype', 'courses']
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
