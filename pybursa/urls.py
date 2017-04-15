@@ -22,7 +22,6 @@ from .views import index, contact, student_list, student_detail
 from quadratic.views import quadratic_results
 from feedbacks import views
 from django.views.defaults import server_error, page_not_found, permission_denied
-from django.conf import settings
 
 urlpatterns = [
     url(r'^$', index, name='index'),
@@ -41,7 +40,3 @@ urlpatterns = [
 
 #handler404 = views.handler404
 #handler500 = views.handler500
-
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns += [url(r'^__debug__/', include(debug_toolbar.urls)),]
