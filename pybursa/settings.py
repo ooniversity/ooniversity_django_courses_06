@@ -159,6 +159,9 @@ LOGGING = {
         'verbose': {
             'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
         },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
     },
     'loggers' :
     {
@@ -177,6 +180,7 @@ LOGGING = {
             'level' : 'DEBUG',
             'class' : 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'courses_logger.log'),
+            'formatter': 'simple',
         },
         'student_file':{
             'level' : 'WARNING',
