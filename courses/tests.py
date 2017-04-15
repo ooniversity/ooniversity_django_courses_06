@@ -20,7 +20,16 @@ class CoursesListTest(TestCase):
         response = client.get('/')
         self.assertContains(response, 'COURSE NAME')
 
-    def test_courses1(self):
+    def test_courses2(self):
+        client = Client()
+        course = Course.objects.create(name='Course name',
+                                       short_description='Short descr',
+                                       description='Description',
+                                       )
+        response = client.get('/')
+        self.assertContains(response, 'Description')
+
+    def test_courses3(self):
         course = Course.objects.create(name='Course name',
                                        short_description='Short descr',
                                        description='Description',

@@ -25,7 +25,7 @@ class StudentsListTest(TestCase):
         self.assertContains(response, 'skypename')
         self.assertContains(response, 'Edit student')
 
-    def test_student_list(self):
+    def test_student_list1(self):
         client = Client()
         response = self.client.get('/students/')
         self.assertContains(response, 'Address')
