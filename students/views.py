@@ -10,6 +10,10 @@ from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteVi
 from django.urls import reverse_lazy
 
 
+import logging
+logger = logger.getLogger(__name__)
+
+
 class StudentListView(ListView):
 	model = Student
 	template_name = 'students/list.html'
@@ -31,6 +35,15 @@ class StudentListView(ListView):
 class StudentDetailView(DetailView):
 	model = Student
 	template_name = 'students/detail.html'
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		logger.debug('Studens detail view has been debugged!')
+		logger.info('Logger of students detail view informs you!')
+		logger.warning('Logger of students detail view warns you!')
+		logger.error('Students detail view went wrong!')
+		context['title'] = 'Student detail'
+		return context
 
 
 class StudentCreateView(CreateView):

@@ -132,6 +132,49 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 STATICFILES_DIRS = [
 	os.path.join(BASE_DIR, "static"),
 ]
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'loggers': {
+        'courses': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+			'propagate': True,
+        },
+        'students': {
+            'handlers': ['file2'],
+            'level': 'WARNING',
+			'propagate': True,
+		},
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'courses_logger.log'),
+			'formatter': 'simple',
+        },
+    },
+    'handlers': {
+        'file2': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'students_logger.log'),
+			'formatter': 'verbose',
+        },
+    },
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+		},
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
+        },
+	},
+}

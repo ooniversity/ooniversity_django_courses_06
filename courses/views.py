@@ -9,6 +9,10 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 
+
+import logging
+logger = logging.getLogger(__name__)
+
 class CourseDetailView(DetailView):
 	model = Course
 	template_name = 'courses/detail.html'
@@ -22,18 +26,14 @@ class CourseDetailView(DetailView):
 		return qs
 
 	def get_context_data(self, **kwargs):
+		logger.debug('Courses detail view has been debugged!')
+		logger.info('Logger of courses detail view informs you!')
+		logger.warning('Logger of courses detail view warns you!')
+		logger.error('Courses detail view went wrong!')
 		context = super().get_context_data(**kwargs)
 		context['lessons'] = Lesson.objects.filter(course=self.object.pk)
 		context['course'] = Course.objects.get(id=self.object.pk)
 		return context
-
-#def detail(request, course_id):
-#	course = Course.objects.get(id=course_id)
-#	lessons_list = Lesson.objects.filter(course=course_id)
-#	coach = Coach.objects.get(id=course.coach.id)
-#	assistant = Coach.objects.get(id=course.assistant.id)
-#	
-#	return render(request, 'courses/detail.html', {'course':course, 'lessons_list':lessons_list, 'coach':coach, 'assistant':assistant})
 
 class CourseCreateView(CreateView):
 	model = Course
@@ -51,17 +51,6 @@ class CourseCreateView(CreateView):
 		context = super().get_context_data(**kwargs)
 		context['title'] = 'Course creation'
 		return context
-
-#def add(request):
-#	if request.method == "POST":
-#		form = CourseModelForm(request.POST)
-#		if form.is_valid():
-#			course = form.save()
-#			messages.success(request, "Course {} has been successfully added.".format(course.name))
-#			return redirect('index')
-#	else:
-#		form = CourseModelForm()
-#	return render(request, 'courses/add.html', {'form': form})
 
 class CourseUpdateView(UpdateView):
 	model = Course
@@ -82,18 +71,6 @@ class CourseUpdateView(UpdateView):
 		context['title'] = 'Course update'
 		return context
 
-#def edit(request, course_id):
-#	course = Course.objects.get(id=course_id)
-#	if request.method == "POST":
-#		form = CourseModelForm(request.POST, instance=course)
-#		if form.is_valid():
-#			course = form.save()
-#			messages.success(request, "The changes have been saved.")
-#			return redirect('courses:edit', course.id)
-#	else:
-#		form = CourseModelForm(request.POST, instance=course)
-#	form = CourseModelForm(instance=course)
-#	return render(request, 'courses/edit.html', {'form': form})
 
 class CourseDeleteView(DeleteView):
 	model = Course
@@ -111,14 +88,6 @@ class CourseDeleteView(DeleteView):
 		context = super().get_context_data(**kwargs)
 		context['title'] = 'Course deletion'
 		return context
-
-#def remove(request, course_id):
-#	course = Course.objects.get(id=course_id)
-#	if request.method == "POST":
-#		course.delete()
-#		messages.success(request, "Course {} has been deleted.".format(course.name))
-#		return redirect('index')
-#	return render(request, 'courses/remove.html', {'course': course})
 
 def add_lesson(request, course_id):
 	if request.method == "POST":
