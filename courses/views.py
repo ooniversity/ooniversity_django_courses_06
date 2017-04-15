@@ -8,6 +8,8 @@ from django.views.generic import ListView
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
+import logging
+logger = logging.getLogger(__name__) #pybursa.views
 
 
 # Create your views here.
@@ -21,13 +23,17 @@ class CourseDetailView(DetailView):
         course_id = self.request.GET.get('course_id', None)
         if course_id:
             qs = qs.filter(courses__id=course_id)
-                   
+                           
         return qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['lessons'] = Lesson.objects.filter(course=self.object.pk)
         context['course'] = Course.objects.get(id=self.object.pk)
+        logger.debug("Courses detail view has been debugged!")
+        logger.info("Logger of courses detail view informs you!")
+        logger.warning("Logger of courses detail view warns you!")
+        logger.error("Courses detail view went wrong!")
         return context
 
 
