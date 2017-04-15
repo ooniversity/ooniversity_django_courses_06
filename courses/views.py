@@ -6,6 +6,8 @@ from courses.forms import CourseModelForm, LessonModelForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 
+import logging
+logger = logging.getLogger(__name__)
 
 
 class CourseDetailView(DetailView):
@@ -15,6 +17,10 @@ class CourseDetailView(DetailView):
 
     def get_queryset(self):
         rg = self.request.GET
+        logger.debug("Courses detail view has been debugged!")
+        logger.info("Logger of courses detail view informs you!")
+        logger.warning("Logger of courses detail view warns you!")
+        logger.error("Courses detail view went wrong!")
         queryset = super().get_queryset()
         cours_id = rg.get('pk', None)
         if cours_id:

@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'yr@i^t!z85h@4%yg9yl(yp%%3wm3h!o9m%ed4bpg3t%5)ckune'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
 
 # Application definition
@@ -130,5 +130,46 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
 ADMINS = (('Alex Tsumibito', 'alex.tsumibito@gmail.com'),)
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'loggers': {
+        'courses': {
+            'handlers': ['file_courses'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'students': {
+            'handlers': ['file_students'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        
+    },
+    'handlers': {
+        'file_courses': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'courses_logger.log'),
+            'formatter': 'simple',
+        },
+        'file_students': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'students_logger.log'),
+            'formatter': 'verbose',
+        },      
+    },
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(message)s',
+        },
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
+        },        
+    },
+}
 
 
