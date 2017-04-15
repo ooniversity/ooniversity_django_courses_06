@@ -1,0 +1,9 @@
+*.pyc
+*.pyo
+*~
+.idea/
+__pycache__
+venv/ 
+
+students_logger.log
+courses_logger.log
