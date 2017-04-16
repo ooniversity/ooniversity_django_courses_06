@@ -1,71 +1,180 @@
-  .navbar-brand {
-	  padding-left: 200px;
-	}
-
-  .contact_name {
-    color: blue;
-  }
-
-  .skype_cn {
-    color: red;
-  }
-
-  .some_mail {
-    color: red;
-  }
-   
-  .dr_mail { 
-    color: navy;
-  }
-
-  .some_phone {
-    font-weight: bold;
-    color: red;
-  }
-
-  .dr_phone {
-    color: navy;
-  }
-
-  .my_descript {
-    color: navy;
-  }
-
-  .my_prog {
-    color: navy;
-  }
-
-  .my_weeks {
-    font-weight: bold;
-    color: blue;
-  }
-
-  .list-group {
-    width: 500px;
-  }
-  .coaches {
-  font-size: 16px;
+.table caption {
+  font-style: italic;
   font-weight: bold;
-  color: navy;
+  font-size: 24px;
+  line-height: 1.2;
+  color: #245580;
+}
+
+.navbar-inverse {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+.menu-opener {
+  color: #fff;
+}
+
+.page-header {
+  border-width: 3px;
+}
+
+.persons-container {
+  padding-top: 25px;
+}
+
+.persons-container__title {
+  margin-top: 0;
+}
+
+.person-item {
+  padding: 0 15px 30px;
+}
+
+.person-item .thumbnail {
+  width: 100%;
+  margin: 0;
+}
+
+.person-item__image {
+  margin: 0 0 25px;
+}
+
+.person-item__title {
+  margin: 0 0 15px;
+}
+
+.info-list {
+  display: table;
+  width: 100%;
+  margin: 0;
+}
+
+.info-list__row {
+  display: table-row;
+}
+
+.info-list__row > * {
+  display: table-cell;
+  padding: 4px 0;
+}
+
+.info-list__title {
+  padding-right: 5px;
+}
+
+.info-list__title:after {
+  content: ':';
+}
+
+.info-list__value {
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+}
+
+.well p:last-child {
+  margin-bottom: 0;
+}
+
+.user-header {
+  margin: 0 0 50px;
+  overflow: hidden;
+}
+
+.user-header__image {
+  float: left;
+  width: 200px;
+  margin-right: 20px;
+}
+
+.user-header__image img {
+  width: 100%;
+  height: auto;
+}
+
+.user-header__text {
+  padding-top: 5px;
+  overflow: hidden;
+}
+
+.user-header__title {
+  margin: 0 0 20px;
+}
+
+.course-table .tests-period {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* --------------- */
+.courses-table__name {
+  width: 30%;
+}
+
+.table ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.table ul li {
+  padding: 4px 0;
+}
+
+.panel-title {
+  font-weight: bold;
+}
+
+.quadratic-form {
+  margin: 0 0 40px;
+}
+
+.person-form {
+  margin: 0 0 40px;
+}
+
+.helptext {
+  display: block;
+  margin: 5px 0 30px 20px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.table .btn {
+  display: block;
+  margin: 5px 0;
+}
+
+@media (min-width:600px) {
+  .persons-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
   }
 
-  #dr_skype_cn {
-    color: navy;
+  .person-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 50%;
+    flex: 1 0 50%;
+
+    max-width: 50%;
   }
+}
 
-  #dr_contact_name {
-    font-weight: bold;
-    color: navy;
+@media (min-width:1200px) {
+  .person-item {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 25%;
+    flex: 1 0 25%;
+
+    max-width: 25%;
   }
-
-  #logo_itBursa {
-    height: 28px;
-  }
-
-  #rad_name {
-    font-weight: bold;
-    color: navy;
-  }
-  
-
-
+}

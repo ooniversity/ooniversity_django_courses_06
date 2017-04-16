@@ -1,25 +1,139 @@
 {% extends "base.html" %}
-{% load staticfiles %}
 
 
-{% block title %}pyBursa Contacts{% endblock title %}
+{% load static %}
 
 
-{% block active_contacts %}"active"{% endblock %}
+{% block title %}Contacts PyBursa{% endblock title %}
+
+
+{% block nav_class_contact %}active{% endblock %}
 
 
 {% block content %}
-    <div class="container">
-      <h1>Организаторы курса:</h1>
 
-{% include "include/contact_include.html" with contact_position='Director' id1="dr_contact_name" id2="dr_skype_cn" contact_name='Дарья' contact_skype='@daria' contact_email='somemail@gmail.com' contact_phone='+380672222222' %}
+<h1 class="page-header">Contacts</h1>
 
+<div class="persons-container">
+    <h2 class="persons-container__title">Executives</h2>
 
-{% include "include/contact_include.html" with contact_position='Manager' contact_name='Лера Фомина' contact_skype='@lera.fomina<' contact_email='somemail@gmail.com' contact_phone='+380672222222' %}
+    <div class="persons-list row">
+        <div class="person-item">
+            <div class="thumbnail">
+                <img class="person-item__image" src="{% static 'images/profile-placeholder.png' %}" alt="director photo">
 
+                <div class="caption">
+                    <h3 class="person-item__title">Director</h3>
 
-{% include "include/contact_include.html" with contact_position='Founder' contact_name='Алексей Радченко' contact_skype='@dixon' contact_email='somemail@gmail.com' contact_phone='+380672222222' %}
+                    <div class="info-list">
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Name</dt>
+                            <dd class="info-list__value">Lorem</dd>
+                        </dl>
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Skype</dt>
+                            <dd class="info-list__value">director.pybursa</dd>
+                        </dl>
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Email</dt>
+                            <dd class="info-list__value">director@pybursa</dd>
+                        </dl>
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Phone</dt>
+                            <dd class="info-list__value">111111</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="person-item">
+            <div class="thumbnail">
+                <img class="person-item__image" src="{% static 'images/profile-placeholder.png' %}" alt="manager photo">
+
+                <div class="caption">
+                    <h3 class="person-item__title">Manager</h3>
+
+                    <div class="info-list">
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Name</dt>
+                            <dd class="info-list__value">Ipsum dolore</dd>
+                        </dl>
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Skype</dt>
+                            <dd class="info-list__value">manager.pybursa</dd>
+                        </dl>
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Email</dt>
+                            <dd class="info-list__value">manager@pybursa</dd>
+                        </dl>
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Phone</dt>
+                            <dd class="info-list__value">222222</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="person-item">
+            <div class="thumbnail">
+                <img class="person-item__image" src="{% static 'images/profile-placeholder.png' %}" alt="founder photo">
+
+                <div class="caption">
+                    <h3 class="person-item__title">Founder</h3>
+
+                    <div class="info-list">
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Name</dt>
+                            <dd class="info-list__value">Sit Amet</dd>
+                        </dl>
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Skype</dt>
+                            <dd class="info-list__value">founder.pybursa</dd>
+                        </dl>
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Email</dt>
+                            <dd class="info-list__value">founder@pybursa</dd>
+                        </dl>
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Phone</dt>
+                            <dd class="info-list__value">333333</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="person-item">
+            <div class="thumbnail">
+                <img class="person-item__image" src="{% static 'images/profile-placeholder.png' %}" alt="teacher photo">
+
+                <div class="caption">
+                    <h3 class="person-item__title">Teacher</h3>
+
+                    <div class="info-list">
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Name</dt>
+                            <dd class="info-list__value">Consectetur</dd>
+                        </dl>
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Skype</dt>
+                            <dd class="info-list__value">teacher.pybursa</dd>
+                        </dl>
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Email</dt>
+                            <dd class="info-list__value">teacher@pybursa</dd>
+                        </dl>
+                        <dl class="info-list__row">
+                            <dt class="info-list__title">Phone</dt>
+                            <dd class="info-list__value">444444</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
+</div>
 {% endblock content %}
-  
