@@ -1,59 +1,77 @@
 {% extends "base.html" %}
 
 
-{% block title %}Курс {{ my_course.name }}{% endblock title %}
+{% load static %}
 
 
-{% block students_filter_link %}?course_id={{ course.id }}{% endblock %}
+{% block title %}{{ course.name }}{% endblock title %}
+
+
+{% block course_id %}?course_id={{ course.id }}{% endblock %}
 
 
 {% block content %}
-    <div class="container">
-      {% if messages %}
-        {% for message in messages %}
-        <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">{{ message }}</div>
-        {% endfor %}
-      {% endif %}
-    </div>
-    <div class="container">
-      <div class="jumbotron">
-          <h1>{{ course.name }}</h1>
-	        <p>{{ course.description|truncatechars:32 }}</p>	
-      </div>
-    </div>
-    <div class="container">
-    <h2>Преподаватели:</h2>
-    </div>
 
-
-{% include "include/couch_include.html"  with block_title="Учитель" instructor=course.coach %}
-{% include "include/couch_include.html"  with block_title="Ассистент" instructor=course.assistant %}
-    
-
-    <div class="container">
-	    <h2>План курса:</h2>
-      <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading">
-        <a class="btn btn-primary" role="button" href="{% url 'courses:add-lesson' course.id %}" >
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить занятие
-        </a></div>        
-          <table class="table">         
-            <tr>           
-              <td><b>#</b></td>
-              <td><b>Тема</b></td>
-              <td><b>Описание</b></td>
-            </tr>         
-          {% for lesson in course.lesson_set.all %}
-            <tr>
-              <td>{{ lesson.order }} </td>
-              <td>{{ lesson.subject }} </td>
-              <td>{{ lesson.description }}</td>
-            </tr>
-          {% endfor %}
-          </table>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{message.tags}}{%endif%}" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{ message }}
         </div>
-      </div>
-    </div>
+    {% endfor %}
+{% endif %}
 
+{% include "include/jumbotron_include.html" with block_title=course.name block_text=course.description|truncatechars:32 %}
+
+<h2>Instructors</h2>
+
+{% if course.coach %}
+    {% include "../include/person_panel_include.html" with panel_title="Teacher" person=course.coach %}
+{% endif %}
+
+{% if course.assistant %}
+    {% include "../include/person_panel_include.html" with panel_title="Assistant" person=course.assistant %}
+{% endif %}
+
+<h2 class="page-header">Course plan</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <a href="{% url 'courses:add_lesson' course.id %}" class="btn btn-info">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Add new lesson
+        </a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered courses-table">
+        <thead>
+            <tr class="info">
+                <th>#</th>
+                <th class="courses-table__name">Subject</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for lesson in lessons_list %}
+                <tr>
+                    <td>{{ lesson.order }}</td>
+                    <td><strong>{{ lesson.subject }}</strong></td>
+                    <td>{{ lesson.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <a href="{% url 'courses:add_lesson' course.id %}" class="btn btn-info">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Add new lesson
+        </a>
+    </div>
+</div>
 {% endblock content %}

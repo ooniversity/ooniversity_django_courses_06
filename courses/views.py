@@ -1,69 +1,163 @@
+'''
+    Courses module
+'''
+
+import logging
+
 from django.shortcuts import render, redirect
-from django.core.urlresolvers import reverse
 from django.contrib import messages
-from courses.models import Course, Lesson
-from courses.forms import CourseModelForm, LessonModelForm
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy, reverse
+
+from coaches.models import Coach
+
+from . models import Course, Lesson
+from . forms import CourseModelForm, LessonModelForm
+
+LOGGER = logging.getLogger('courses')
 
 
-def detail(request, id):
-    course = Course.objects.get(id=id)
-    return render(request, 'courses/detail.html', {
-                    'course': course,	
-                    })
+class CourseDetailView(DetailView):
+    '''
+        Detail information about course
+    '''
 
-def add(request):
-    context = {'error': False}
-    if request.method == 'POST':
-        form = CourseModelForm(request.POST)
-        if form.is_valid():
-            instance = form.save()
-            context['form'] = instance
-            messages.success(request, "Course %s has been successfully added." %instance.name)
-            return redirect('/')
-    else:
-        form = CourseModelForm()
-    context['form'] = form
-    return render(request, 'courses/add.html', context)
+    model = Course
 
-def edit(request, id):
-    context = {'error': False}
-    course = Course.objects.get(id=id)
-    if request.method == 'POST':
-        form = CourseModelForm(request.POST, instance=course)
-        if form.is_valid():
-            instance = form.save()
-            context['form'] = instance
-            messages.success(request, "The changes have been saved." )
-            return redirect('courses:edit', id=id)
-    else:
-        form = CourseModelForm(instance=course)
-    context['form'] = form
-    return render(request, 'courses/edit.html', context)
+    template_name = 'courses/detail.html'
 
-def remove(request, id):
-    context = {'error': False}
-    instance = Course.objects.get(id=id)
-    if request.method == 'POST':
-        messages.success(request, "Course %s has been deleted." %instance.name)
-        instance.delete()
-        return redirect('/')
-    else:
-        form = CourseModelForm(instance)
-    context['course'] = instance
-    context['form'] = form
-    return render(request, 'courses/remove.html', context)
+    context_object_name = 'course'
 
-def add_lesson(request, id):
-    context = {'error': False}
+    def get_context_data(self, **kwargs):
+        LOGGER.debug('Courses detail view has been debugged!')
+        LOGGER.info('Logger of courses detail view informs you!')
+        LOGGER.warning('Logger of courses detail view warns you!')
+        LOGGER.error('Courses detail view went wrong!')
+
+        context = super().get_context_data(**kwargs)
+
+        context['lessons_list'] = Lesson.objects.filter(course=self.kwargs['pk'])
+
+        return context
+
+
+class CourseCreateView(CreateView):
+    '''
+        Create new course functionality
+    '''
+
+    model = Course
+
+    form_class = CourseModelForm
+
+    success_url = reverse_lazy('index')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        data = form.cleaned_data
+
+        message = ('Course {} has been successfully added.'
+                   .format(data['name']))
+
+        messages.success(self.request, message)
+
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['title'] = 'Course creation'
+        context['button_text'] = 'Create'
+
+        return context
+
+
+class CourseUpdateView(UpdateView):
+    '''
+        Update course information functionality
+    '''
+
+    model = Course
+
+    form_class = CourseModelForm
+
+    def get_success_url(self):
+        return reverse('courses:edit', kwargs={'pk': self.kwargs['pk']})
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        message = ('The changes have been saved.')
+
+        messages.success(self.request, message)
+
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['title'] = 'Course update'
+        context['button_text'] = 'Update'
+
+        return context
+
+
+class CourseDeleteView(DeleteView):
+    '''
+        Delete course functionality
+    '''
+
+    model = Course
+
+    success_url = reverse_lazy('index')
+
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+
+        course = self.object
+
+        message = 'Course {} has been deleted.'.format(course.name)
+
+        messages.success(self.request, message)
+
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['title'] = 'Course deletion'
+
+        return context
+
+
+def add_lesson(request, course_id):
+    '''
+        Add new lesson functionality
+    '''
+
+    course = Course.objects.get(id=course_id)
+
     if request.method == 'POST':
         form = LessonModelForm(request.POST)
-        if form.is_valid():
-            instance = form.save()
-            context['form'] = instance
-            messages.success(request, "Lesson %s has been successfully added." %instance.subject)
-            return redirect('courses:detail', id)
-    else:
-        form = LessonModelForm(initial={'course':id})
-    context['form'] = form
-    return render(request, 'courses/add_lesson.html', context)
 
+        if form.is_valid():
+            data = form.cleaned_data
+
+            form.save()
+
+            message = ('Lesson {} has been successfully added.'
+                       .format(data['subject']))
+
+            messages.success(request, message)
+
+            return redirect('/courses/{}'.format(data['course'].id))
+    else:
+        form = LessonModelForm(initial={'course': course})
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'courses/add_lesson.html', context)
