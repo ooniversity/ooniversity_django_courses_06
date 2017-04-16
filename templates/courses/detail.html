@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+
+{% block title %}{{ course.name }}{% endblock title %}
+
+
+{% block course_id %}?course_id={{ course.id }}{% endblock %}
+
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{message.tags}}{%endif%}" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% include "include/jumbotron_include.html" with block_title=course.name block_text=course.description|truncatechars:32 %}
+
+<h2>Instructors</h2>
+
+{% if course.coach %}
+    {% include "../include/person_panel_include.html" with panel_title="Teacher" person=course.coach %}
+{% endif %}
+
+{% if course.assistant %}
+    {% include "../include/person_panel_include.html" with panel_title="Assistant" person=course.assistant %}
+{% endif %}
+
+<h2 class="page-header">Course plan</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <a href="{% url 'courses:add_lesson' course.id %}" class="btn btn-info">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Add new lesson
+        </a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered courses-table">
+        <thead>
+            <tr class="info">
+                <th>#</th>
+                <th class="courses-table__name">Subject</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for lesson in lessons_list %}
+                <tr>
+                    <td>{{ lesson.order }}</td>
+                    <td><strong>{{ lesson.subject }}</strong></td>
+                    <td>{{ lesson.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <a href="{% url 'courses:add_lesson' course.id %}" class="btn btn-info">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Add new lesson
+        </a>
+    </div>
+</div>
+{% endblock content %}

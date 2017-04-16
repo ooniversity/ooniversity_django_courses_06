@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <title>Quaratic equation</title>
+</head>
+<body>
+<h1>КВАДРАТНЕ РІВНЯННЯ:</h1>
+<h2 style="display:inline">ax<sup><small>2</small></sup>+bx+c=0</h2><br>
+<h2 style="color:brown; display:inline">{{ a }}x<sup><small>2</small></sup>+{{ b }}x+{{ c }}=0 - з вашими параметрами</h2>
+    <form method="get">
+        {{ form.as_p }}
+        <input type="submit" value="Рахувати" />
+    </form>
+    
+    {% if discriminant != '' %}
+    <p>Дискриминант: {{ discriminant }}</p>
+    <p>{{ message }}</p>
+{% endif %}
+
+</body>
+</html>

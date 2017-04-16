@@ -1,0 +1,30 @@
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.studlst, h2 {
+	margin-top: 10px;
+	font-weight: bolder;
+	text-align: left;
+}
+
+.sml {
+	font-size: 14px !important;
+	font-style: italic;
+	font-weight: lighter;
+}
+
+.link:hover { 
+   background: Indigo  !important; 
+   color: white;
+   cursor:pointer;
+}
+
+.centr {
+ /* display: block;
+  margin-left: auto;
+  margin-right: auto;*/
+  display: block;
+  float: none;
+}

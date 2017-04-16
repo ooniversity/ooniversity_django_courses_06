@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% block title %}Edit course data{% endblock title %}
+
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{message.tags}}{%endif%}" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<h1 class="page-header">Edit course data</h1>
+
+<form method="post" class="course-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update" class="btn btn-primary">
+</form>
+
+{% endblock content %}
