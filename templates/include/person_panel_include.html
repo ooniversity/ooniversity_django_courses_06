@@ -5,7 +5,7 @@
 
     <div class="panel-body">
         <h4>
-            <a href="{% url 'coaches:detail' coach.id %}">{{ person.get_name|title }} {{ person.get_surname|title }}</a>
+            <a href="{% url 'coaches:detail' person.id %}">{{ person.get_name|title }} {{ person.get_surname|title }}</a>
         </h4>
 
         <p>{{ person.description }}</p>

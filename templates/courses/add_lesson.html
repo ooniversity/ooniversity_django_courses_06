@@ -1,19 +1,16 @@
 {% extends "base.html" %}
 
 
-{% block title %}Создание нового занятия{% endblock title %}
+{% block title %}Add new Lesson{% endblock title %}
 
 
-{% block active_index %}"active"{% endblock %}
+{% block content %}
+<h1 class="page-header">Create new lesson</h1>
 
-
-{% block content %}   
-    <div class="container">
-      <h1 class="my_descript">Создание нового занятия</h1>
-        <form method="post">{% csrf_token %}
-          {{ form.as_p }}
-          <input class="btn btn-primary" type="submit" value="Создать"> 
-        </form>
-    </div> 
+<form method="post" class="course-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Create" class="btn btn-primary">
+</form>
 
 {% endblock content %}

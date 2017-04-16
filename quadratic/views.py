@@ -1,24 +1,38 @@
 from django.shortcuts import render
-from math import sqrt
-from quadratic.forms import QuadraticForm
+from django.contrib import messages
 
+from . forms import QuadraticForm
+
+import math
 
 def quadratic_results(request):
-    context = {'error': False}
-    if request.GET:
-        form = QuadraticForm(request.GET)
-        if form.is_valid():
-            context['a'] = a = form.clean_a()
-            context['b'] = b = form.cleaned_data['b']
-            context['c'] = c = form.cleaned_data['c']
-            context['discr'] = my_discr = b*b - 4*a*c
-            if my_discr == 0:
-                context['x1'] = -b /(2 * a)
-            elif my_discr > 0:
-                context['x1'] = (-b + sqrt(my_discr)) / (2 * a)
-                context['x2'] = (-b - sqrt(my_discr)) / (2 * a)
-    else:
-        form = QuadraticForm()
-    context['form'] = form
+    data = request.GET
 
-    return render(request, 'quadratic/results.html', context)
+    if not data:
+        form = QuadraticForm()
+    else:
+        form = QuadraticForm(request.GET)
+
+        if form.is_valid():
+            data = form.cleaned_data
+
+            A = data['a']
+            B = data['b']
+            C = data['c']
+
+            D = B**2 - 4*A*C
+
+            if D < 0:
+                message = 'Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.'
+            elif D == 0:
+                x = -B/(2*A)
+                message = 'Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = {}'.format(x)
+            else:
+                x1 = (-B + math.sqrt(B**2 - 4*A*C)) / (2*A)
+                x2 = (-B - math.sqrt(B**2 - 4*A*C)) / (2*A)
+                message = 'Квадратное уравнение имеет два действительных корня: x1 = {}, x2 = {}'.format(x1, x2)
+
+            messages.success(request, 'Дискриминант: {}'.format(D))
+            messages.success(request, message)
+
+    return render(request, 'quadratic/results.html', {'form': form})

@@ -1,64 +1,154 @@
+'''
+    Students module
+'''
+
+import logging
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from students.models import Student
-from students.forms import StudentModelForm 
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy, reverse
+
+from courses.models import Course
+
+from . models import Student
+from . forms import StudentModelForm
+
+LOGGER = logging.getLogger('students')
 
 
-def list_view(request):
-    req = request.GET
-    course_id = req.get('course_id', '')
-    if course_id != '':
-        course_students = Student.objects.filter(courses__id=course_id)
-    else:
-        course_students = Student.objects.all()
-    return render(request, 'students/list.html', {
-                           'students': course_students,	
-                           })
+class StudentListView(ListView):
+    '''
+        List of students functionality
+    '''
 
-def detail(request, student_id):
-    student = Student.objects.get(id=student_id)
-    return render(request, 'students/detail.html', {
-                           'student': student,	
-                           })
+    model = Student
 
-def create(request):
-    context = {'error': False}
-    if request.method == 'POST':
-        form = StudentModelForm(request.POST)
-        if form.is_valid():
-            instance = form.save()
-            context['form'] = instance
-            messages.success(request, "Student %s %s has been successfully added." %(instance.name, instance.surname))
-            return redirect('/students/')
-    else:
-        form = StudentModelForm()
-    context['form'] = form
-    return render(request, 'students/add.html', context)
+    def _get_course_id(self):
+        return self.request.GET.get('course_id', None)
 
-def edit(request, student_id):
-    context = {'error': False}
-    student = Student.objects.get(id=student_id)
-    if request.method == 'POST':
-        form = StudentModelForm(request.POST, instance=student)
-        if form.is_valid():
-            instance = form.save()
-            context['form'] = instance
-            messages.success(request, "Info on the student has been successfully changed." )
-            return redirect('students:edit', student_id=student_id)
-    else:
-        form = StudentModelForm(instance=student)
-    context['form'] = form
-    return render(request, 'students/edit.html', context)
+    def get_queryset(self):
+        qs = super().get_queryset()
 
-def remove(request, student_id):
-    context = {'error': False}
-    instance = Student.objects.get(id=student_id)
-    if request.method == 'POST':
-        messages.success(request, "Info on %s %s has been successfully deleted." %(instance.name, instance.surname))
-        instance.delete()
-        return redirect('/students/')
-    else:
-        form = StudentModelForm(instance)
-    context['student'] = instance
-    context['form'] = form
-    return render(request, 'students/remove.html', context)
+        course_id = self._get_course_id()
+
+        if course_id:
+            qs = qs.filter(courses__id=course_id)
+
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        course_id = self._get_course_id()
+
+        if course_id:
+            context['current_course'] = Course.objects.get(id=course_id)
+
+        return context
+
+
+class StudentDetailView(DetailView):
+    '''
+        Detail information about student
+    '''
+
+    model = Student
+
+    def get_context_data(self, **kwargs):
+        LOGGER.debug('Students detail view has been debugged!')
+        LOGGER.info('Logger of students detail view informs you!')
+        LOGGER.warning('Logger of students detail view warns you!')
+        LOGGER.error('Students detail view went wrong!')
+
+        context = super().get_context_data(**kwargs)
+
+        return context
+
+
+class StudentCreateView(CreateView):
+    '''
+        Create student functionality
+    '''
+
+    model = Student
+
+    form_class = StudentModelForm
+
+    success_url = reverse_lazy('students:list_view')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        data = form.cleaned_data
+
+        message = ('Student {} {} has been successfully added.'
+                   .format(data['name'], data['surname']))
+
+        messages.success(self.request, message)
+
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['title'] = 'Student registration'
+        context['button_text'] = 'Create'
+
+        return context
+
+
+class StudentUpdateView(UpdateView):
+    '''
+        Update student information functionality
+    '''
+
+    model = Student
+
+    form_class = StudentModelForm
+
+    # success_url = reverse_lazy('students:edit')
+
+    def get_success_url(self):
+        return reverse('students:edit', kwargs={'pk': self.kwargs['pk']})
+
+    def form_valid(self, form):
+        response = super(StudentUpdateView, self).form_valid(form)
+
+        message = ('Info on the student has been successfully changed.')
+
+        messages.success(self.request, message)
+
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['title'] = 'Student info update'
+        context['button_text'] = 'Update'
+
+        return context
+
+
+class StudentDeleteView(DeleteView):
+    '''
+        Delet student functionality
+    '''
+
+    model = Student
+
+    success_url = reverse_lazy('students:list_view')
+
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+
+        student = self.object
+
+        message = ('Info on {} {} has been successfully deleted.'
+                   .format(student.name, student.surname))
+
+        messages.success(self.request, message)
+
+        return response

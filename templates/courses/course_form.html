@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 
 
-{% block title %}Edit course data{% endblock title %}
+{% block title %}{{ title }}{% endblock title %}
 
 
 {% block content %}
-
 {% if messages %}
     {% for message in messages %}
         <div class="alert {% if message.tags %}alert-{{message.tags}}{%endif%}" role="alert">
@@ -15,12 +14,12 @@
     {% endfor %}
 {% endif %}
 
-<h1 class="page-header">Edit course data</h1>
+<h1 class="page-header">{{ title }}</h1>
 
 <form method="post" class="course-form">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Update" class="btn btn-primary">
+    <input type="submit" value="{{ button_text }}" class="btn btn-primary">
 </form>
 
 {% endblock content %}
