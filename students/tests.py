@@ -78,7 +78,7 @@ class StudentsListTest(TestCase):
 
     def test_student_add_button(self):
         '''
-            Check that page contain Add new student button.
+            Check that page contain 'Add new student' button.
         '''
 
         client = Client()
@@ -99,7 +99,7 @@ class StudentsListTest(TestCase):
 
     def test_student_edit_button(self):
         '''
-            Check that page contain student edit button.
+            Check that page contain correct student edit button.
         '''
 
         client = Client()
@@ -239,9 +239,9 @@ class StudentsDetailTest(TestCase):
 
         self.assertContains(response, '31 December, 2016')
 
-    def test_student_name_surname_in_title(self):
+    def test_student_name_surname_title(self):
         '''
-            Check that student name and surname is in page title.
+            Check that student name and surname is in the page title.
         '''
 
         client = Client()
