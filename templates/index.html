@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+
+{% block title %}PyBursa - Main{% endblock title %}
+
+
+{% block nav_class_index %}active{% endblock nav_class_index %}
+
+
+{% block content %} 
+
+
+{% include "include/messages_include.html" %}
+
+
+{% load static %}
+   <div class="jumbotron">
+                <h1>PyBursa</h1>
+                <p><i>If programming makes you interested, and you know what variables and functions are, then this course is for you.</i></p>
+        <h2>Program PyBursa</h2>
+        <p>In our course you will be able to master Python. This is a full-fledged language that is used in the development of software</p>
+        <h2>Our principles</h2>
+        <ol>
+          <li>Support</li>
+          <li>Focus on practice</li>
+          <li>Deadlines</li>
+          <li>Refund</li>
+        </ol>
+        <h2>Your result after the courses</h2>
+        <ul type="square">
+          <li>a basic level of Python</li>
+          <li>a basic level of Django</li>
+          <li>instruments Web-developer (html/css, bootstrap, linux, git/github)</li>
+        </ul>
+            </div>
+
+
+<div class="container">
+    <p><a href="/courses/add/" class="btn btn-success" role="button">
+       <span class="glyphicon glyphicon-plus"></span> 
+       Добавить новий курс
+</a></p>
+
+
+            <h2 class="page-header">Our courses</h2>
+
+            <div class="table-responsive">
+                <table class="table table-bordered courses-table">
+                    <thead>
+                        <tr class="info">
+                            <th class="courses-table__name">Course</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for course in courses_list %}
+                            <tr>
+                                <th><a href="{% url 'courses:detail' course.id %}">{{ course.name|upper }}</a></th>
+                                <td>{{ course.short_description }}</td>
+                            </tr>
+                        
+
+<td><a href="{% url 'courses:edit' course.id %}" 
+	class="btn btn-success" type="button">
+              <span class="glyphicon glyphicon-pencil"></span>            
+                Изменить
+            </a>
+</td>
+
+  <td>
+            <a href="{% url 'courses:remove' course.id %}" class="btn btn-success" type="button">
+              <span class="glyphicon glyphicon-remove"></span>            
+                Удалить
+            </a>
+</td>
+{% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+
+{% endblock content %}
+ 
+

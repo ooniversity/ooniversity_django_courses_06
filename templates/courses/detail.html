@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+
+{% block title %}PyBursa - Courses{% endblock title %}
+
+
+
+{% block nav_class_index %}active{% endblock nav_class_index %}
+
+
+{% block content %} 
+
+
+{% include "include/messages_include.html" %}
+
+
+{% load static %}
+
+
+    <div class="page-content">
+        <div class="container">
+
+            <div class="jumbotron">
+                <h1>{{ course.name }}</h1>
+                <p>{{ course.description|truncatechars:32 }}
+            </div>
+
+            <h2 class="page-header">Course plan</h2>
+
+
+<p><a href="{% url 'courses:add-lesson' course.id %}" class="btn btn-success" role="button">
+<span class="glyphicon glyphicon-plus"></span>Добавить занятие</a></p>
+
+
+
+
+
+            <div class="table-responsive">
+                <table class="table table-bordered courses-table">
+                    <thead>
+                        <tr class="info">
+                            <th>#</th>
+                            <th class="courses-table__name">Subject</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+
+                     <tbody>
+
+        {% for l in lessons %}
+          <tr>
+            <td>{{ l.order }}</td>
+            <td style="width:17%">{{ l.subject }}</td>
+            <td style="width:50%">{{ l.description }}</td>
+          </tr>
+        {% endfor %}
+</tbody>
+                </table>
+            </div>
+
+
+
+    <div class="jumbotron">
+        <h2>Преподаватели</h2>
+    <div><h4>Учитель</h4>
+
+     <a href="{% url 'coaches:detail' course.coach.id %}">{{ course.coach.first_name }} {{ course.coach.last_name }}</a>
+    </div>
+    <p>{{ course.coach.description }}</p>
+
+   <div><h4>Ассистент</h4>
+
+    <a href="{% url 'coaches:detail' course.assistant.id %}">{{ course.assistant.first_name }} {{ course.assistant.last_name }}</a>
+    </div>
+    <p>{{ course.assistant.description }}</p>
+
+
+</div>
+
+
+
+        </div>
+    </div>
+{% endblock content %} 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% block title %}PyBursa - Remove Student{% endblock title %}
+
+
+{% block nav_class_student %}active{% endblock nav_class_student %}
+
+
+{% load static %}
+
+
+{% block content %} 
+
+<p><h3 class="text-center">Студент  {{ student.name }} {{ student.surname }}  будет удален</h3></p>
+    <div class="container">
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }} 
+          
+          <input type="submit" class="btn btn-danger" value="Удалить"/>
+    </form>
+    </div>
+   <div>
+<input type="submit" class="btn btn-success"
+            value="Выход" id="btn_crtlesson_cancel"
+            onClick="history.go(-1);return true;">      
+</div>
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% block title %}PyBursa - New Student{% endblock title %}
+
+
+{% block nav_class_student %}active{% endblock nav_class_student %}
+
+
+{% load static %}
+
+
+{% block content %} 
+
+
+  <div class="page-header"><h3 class="text-center">Добавить нового студента</h3></div>
+	<div class="container">
+		<form method="post">
+			{% csrf_token %}          
+			{{ form.as_p }}
+			<input type="submit" value="Сохранить"/>
+<input type="submit" 
+            value="Выход" id="btn_crtlesson_cancel"
+            onClick="history.go(-1);return true;">
+		</form>
+    </div>
+</div>
+
+{% endblock content %} 

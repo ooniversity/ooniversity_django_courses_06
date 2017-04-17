@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block title %}PyBursa - Edit Student{% endblock title %}
+
+
+{% block nav_class_student %}active{% endblock nav_class_student %}
+
+
+{% load static %}
+
+
+{% block content %} 
+
+
+    <div class="page-header">
+        <h2>Редактирование данных студента</h2>
+    </div>
+
+    <div class="form-group form-group-lg">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+           <input type="submit" value="Сохранить"> 
+</form>
+</div>
+<div>
+<input type="submit" 
+            value="Выход" id="btn_crtlesson_cancel"
+            onClick="history.go(-1);return true;">      
+</div>
+
+{% endblock content %} 

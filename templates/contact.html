@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+
+{% block title %}PyBursa - Contacts{% endblock title %}
+
+
+{% block nav_class_contact %}active{% endblock nav_class_contact %}
+
+
+{% block content %} 
+
+
+{% load static %}
+
+<div class="page-content">
+        <div class="container">
+            <h1 class="page-header">Contacts</h1>
+
+            
+                <div class="persons-list row">
+                    <div class="person-item">
+                        <div class="thumbnail">
+            
+                         <img class="person-item__image" src="{% static 'images/IMG_1.JPG' %}" alt="director photo">  
+
+                            <div class="caption">
+                                <h3><b>Director</b></h3>
+        <p>Name: Ivanov Ivan </p>
+        <p>Skype: Ivan21</p>
+        <p>Email:Ivanov_Ivan@gmail.com</p>
+        <p>Phone:+380991111111</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="person-item">
+                        <div class="thumbnail">
+                            <img class="person-item__image" src="{% static 'images/IMG_2.jpg' %}" alt="manager photo">
+
+                            <div class="caption">
+                                <h3><b>Manager</b></h3>
+        <p>Name: Mamsimova Mariy</p>
+        <p>Skype: Mariy12</p>
+        <p>Email: Mamsimova_Mariy@gmail.com</p>
+        <p>Phone: +380992222222</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="person-item">
+                        <div class="thumbnail">
+                            <img class="person-item__image" src="{% static 'images/IMG_3.jpg' %}" alt="founder photo">
+
+                            <h3><b>Founder </b></h3>
+        <p>Name: Kovalenko Anna</p>
+        <p>Skype: Anna13</p>
+        <p>Email: Kovalenko_Anna@gmail.com</p>
+        <p>Phone: +380993333333</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="person-item">
+                    
+
+                </div>
+            </div>
+
+  {% endblock content %} 
